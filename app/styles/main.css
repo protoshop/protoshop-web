@@ -1,3 +1,5 @@
+html, body { height: 100%; width: 100%; overflow: hidden }
+
 body {
     background: #fafafa;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -9,4 +11,41 @@ body {
     background: #ccc;
     color: #000;
     padding: 0.2em 0;
+}
+
+.layout {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.layout-main {
+    display: table-row;
+    overflow: auto;
+}
+
+.layout-main > div {
+    height: 100%;
+}
+
+.layout-scenes,
+.layout-tools {
+    display: table-cell;
+    width: 260px;
+    background-color: lightgray;
+}
+
+.layout-stage {
+    width: auto;
+    border-top: 1px solid lightgray
+}
+
+.navbar {
+    display: table-row;
+    height: 50px;
+    margin: 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
 }
