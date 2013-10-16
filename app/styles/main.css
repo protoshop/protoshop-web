@@ -37,7 +37,8 @@ body {
 
 .layout-stage {
     width: auto;
-    border-top: 1px solid lightgray
+    border-top: 1px solid lightgray;
+    background-color: #EEE;
 }
 
 .navbar {
@@ -49,3 +50,28 @@ body {
 .navbar-brand {
     font-weight: bold;
 }
+
+/* ==================================================
+ *  Scenes ( layout - left sidebar )
+ */
+
+.scenes-list {
+    list-style: none;
+    padding: 0;
+}
+
+.scene-item {
+    height: 260px;
+    border-bottom: 1px solid #BBB;
+}
+
+.scene-thumb {
+    height: 200px;
+    width: 120px;
+    background-color: #FFF;
+    margin: 50px auto;
+}
+
+/* ==================================================
+ *  Tools ( layout - right sidebar )
+ */
