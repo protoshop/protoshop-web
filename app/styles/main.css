@@ -12,9 +12,9 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 .navbar { position: -webkit-sticky; position: sticky; top: 0; height: 50px; margin: 0; border-radius: 0; background-color: #383838; border: none; border-bottom: 1px solid #000; }
 .navbar-brand { font-weight: bold; }
 
-.layout-main { position: fixed; top: 50px; display: -webkit-box; display: box; width: 100%; height: 100%; }
+.layout-main { position: fixed; top: 50px; display: -webkit-box; display: box; width: 100%; height: 100%; padding-bottom: 50px; }
 
-.layout-scenes { width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; }
+.layout-scenes { width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: scroll; }
 .layout-tools { width: 300px; background-color: #202020; color: #7f7f7f; }
 .layout-stage { -webkit-box-flex: 1; box-flex: 1; border-left: 1px solid #000; border-right: 1px solid #000; background: #292929 url(../images/bg-stage-iphone5.png) center center no-repeat; }
 
