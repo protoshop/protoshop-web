@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype HTML>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -20,7 +20,7 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="layout">
+    <div class="layout" style="-webkit-box-orient: vertical;">
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">ToHELL</a>
@@ -28,20 +28,63 @@
         </nav>
         <div class="layout-main">
             <div class="layout-scenes">
+                <a href="###" class="scenes-title">Demo 1</a>
                 <ul class="scenes-list">
-                    <li class="scene-item">
-                        <div class="scene-thumb"></div>
+                    <li class="scene-item item-current">
+                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
+                        <input type="text" value="Scene 1" />
                     </li>
                     <li class="scene-item">
-                        <div class="scene-thumb"></div>
+                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
+                        <input type="text" value="Scene 2" />
                     </li>
                     <li class="scene-item">
-                        <div class="scene-thumb"></div>
+                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
+                        <input type="text" value="Scene 3" />
+                    </li>
+                    <li class="scene-item">
+                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
+                        <input type="text" value="Scene 4" />
+                    </li>
+                    <li class="scene-item">
+                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
+                        <input type="text" value="Scene 5" />
                     </li>
                 </ul>
             </div>
-            <div class="layout-stage"></div>
-            <div class="layout-tools"></div>
+            <div class="layout-stage">
+                Layout-Stage
+            </div>
+            <div class="layout-tools">
+                <!-- tools: position -->
+                <div class="tools-box">
+                    <a href="###" class="tools-title">Position</a>
+                    <ul class="tools-position">
+                        <li><label>X</label><input type="text" value="0" /></li>
+                        <li><label>Y</label><input type="text" value="428" /></li>
+                        <li><label>W</label><input type="text" value="320" /></li>
+                        <li><label>H</label><input type="text" value="50" /></li>
+                    </ul>
+                </div>
+                <!-- tools: background -->
+                <div class="tools-box">
+                    <a href="###" class="tools-title">Background</a>
+                    <div class="tools-background">
+                        <img src="images/zzz-scene-thumb.png" alt="" class="tools-bg-thumb" />
+                        <input type="button" value="Add" />
+                        <input type="button" value="Remove" />
+                    </div>
+                </div>
+                <!-- tools: export -->
+                <div class="tools-box">
+                    <a href="###" class="tools-title">Export</a>
+                    <div class="tools-export">
+                        <input type="button" value="Preview" />
+                        <input type="button" value="Export" />
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
