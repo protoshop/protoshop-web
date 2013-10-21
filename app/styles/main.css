@@ -13,7 +13,7 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 .navbar-brand { font-weight: bold; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
 .menu-main { float: left; }
-.menu-modeswitch { float: right; }
+.menu-modeswitch { float: right; margin-right: 10px; }
 .menu-main a, .menu-modeswitch a { display: inline-block; padding: 0 10px; line-height: 32px; border: 1px solid #000; color: #afafaf; }
 .menu-modeswitch .current { background-color: #162a3a; color: #1ba1eb; }
 
@@ -50,9 +50,12 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 .tools-position li { float: left; width: 50%; padding: 5px 0; }
 .tools-position label { display: inline-block; width: 50px; padding: 0 10px; text-align: right; }
 .tools-position input[type="text"] { width: 58px; height: 18px; background-color: #282828; border: 1px solid #000; color: #fff; vertical-align: middle; }
-.tools-background, .tools-export { padding: 10px; text-align: center; }
+.tools-background { padding: 10px; text-align: center; }
 .tools-bg-thumb { display: block; margin: 10px auto; }
-.tools-background input[type="button"], .tools-export input[type="button"] { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
+.tools-background input[type="button"] { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
+
+.tools-action { }
+.tools-action li { padding: 5px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
 
 
 /*    project    */
