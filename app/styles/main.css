@@ -39,7 +39,11 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
  */
 
 .scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 0 auto; -webkit-transform: translate(-220px, -283px); }
-.hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; }
+.hotspot { position: relative; background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; }
+.hotspot:before { position: absolute; content: ""; left: 50%; top: -5px; width: 2px; height: 10px; background-color: #000; }
+.hotspot:after { position: absolute; content: ""; left: 50%; top: -15px; margin-left: -4px; width: 10px; height: 10px; border-radius: 5px; background-color: #fef935; border: 1px solid #000; }
+.scene-goto-thumb { position: relative; padding: 8px 10px; border: 2px solid #7d7d7d; border-radius: 5px; font-size: 12px; color: #fff; text-align: center; }
+.scene-goto-thumb:after { position: absolute; content: ""; left: 34px; top: 52px; width: 244px; height: 2px; background-color: #c5c5c5; }
 
 /* ==================================================
  *  Tools ( layout - right sidebar )
