@@ -53,3 +53,28 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 .tools-bg-thumb { display: block; margin: 10px auto; }
 .tools-background input[type="button"], .tools-export input[type="button"] { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 
+
+/*    project    */
+.project-box { width: 1200px; margin: 0 auto; }
+.p-top { padding-top: 25px; padding-bottom: 8px; overflow: hidden; border-bottom: #000 solid 1px; }
+h1.p-title { float: left; font-size: 16px; font-weight: 100; padding-left: 24px; color: #afafaf; }
+.add-btn { float: right; padding: 0 10px; font-size: 14px; color: #fff; line-height: 32px; background: #1ba1eb; }
+.add-btn i{ font-style: normal; padding-right: 5px; }
+.p-activity { padding-top: 15px; }
+.event-item { border-bottom: #424242 solid 1px; padding: 25px; }
+.event-item img{ float: left; margin-right: 20px; }
+.change-btn { float: right; }
+.change-btn a { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 12px; }
+.event-info { overflow: hidden; height: 28px; line-height: 28px; }
+.author-name { float: left; }
+.author-name a { color: #1ba1eb; margin-right: 20px; }
+.author-name a:hover { text-decoration: underline; }
+.pull-time { float: left; font-size: 12px; color: #afafaf; }
+.event-body { padding-left: 48px; margin-top: 15px; }
+.commit { padding-bottom: 10px; overflow:hidden; }
+.commit:last-child{ padding-bottom: 0; }
+.commit img { float:left; margin-right: 10px; }
+.commit-info { float:left; font-size: 12px; line-height: 24px; color: #afafaf; }
+
+
+
