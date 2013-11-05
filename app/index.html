@@ -4,16 +4,27 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ToHELL</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>ToHELL</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+<link rel="stylesheet" href="styles/main.css">
+<!-- endbuild -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('ul.scenes-list li').on('click', function(e){
+            for (var i = $('ul.scenes-list li').length - 1; i >= 0; i--) {
+                $('ul.scenes-list li')[i].className = 'scene-item';
+            };
+            this.className = 'scene-item item-current';
+        });
+    });
+</script>
 </head>
 <body>
     <!--[if lt IE 10]>
@@ -63,8 +74,39 @@
             </div>
             <div class="layout-stage">
                 <div class="scene">
-                    <div class="hotspot" style="position:absolute; left:100px; top:252px; width:118px; height:42px;"></div>
-                    <div class="scene-goto-thumb" style="position:absolute; left: -120px; top: 220px;"><img src="images/zzz-scene-thumb.png" width="40" /><br />Scene 2</div>
+                    <div class="hotspot" style="position:absolute; left:100px; top:252px; width:118px; height:42px;">
+                        <i></i><i></i><i></i><i></i>
+                    </div>
+                    <div class="scene-goto" style="position:absolute; left:-120px; top:220px;">
+                        <div class="scene-goto-thumb"><img src="images/zzz-scene-thumb.png" width="40" /><br />Scene 2</div>
+                        <div class="scene-goto-line" style="position:absolute; width:244px;"></div>
+                        <div class="scene-goto-animation">
+                            <dl>
+                                <dt>JUMP TO</dt>
+                                <dd>Scene 2</dd>
+                                <dt>TRANSITION</dt>
+                                <dd>
+                                    <div class="transition-name">
+                                        <a href="###">none</a>
+                                        <a href="###">Push</a>
+                                        <a href="###">Cover</a>
+                                    </div>
+                                    <div class="transition-direction">
+                                        <a href="###">Up</a>
+                                        <a href="###">Right</a>
+                                        <a href="###">Down</a>
+                                        <a href="###">Left</a>
+                                    </div>
+                                    <div class="transtion-time">
+                                        <input type="text" value="0s" readonly="true" /> delay<br />
+                                        <input type="text" value="0.25s" readonly="true" /> duration
+                                    </div>
+                                </dd>
+                                <dt>PLAY A SOUND</dt>
+                                <dd><a href="###">+</a></dd>
+                            </dl>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="layout-tools">

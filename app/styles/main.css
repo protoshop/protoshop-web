@@ -29,10 +29,11 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 
 .scenes-list { padding: 0; }
 .scenes-title { display: block; padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
-.scene-item { height: 272px; padding: 20px 0; }
+.scene-item { position: relative; height: 272px; padding: 20px 0; }
 .item-current { background-color: #393939; }
-.scene-thumb { display: block; width: 120px; height: 213px; margin: 0 auto 5px; background-color: #FFF; }
-.scene-item input[type="text"] { width: 100%; background: none; font-size: 12px; color: #fff; text-align: center; }
+.item-current:before { position: absolute; content: ""; left: 12px; top: 10px; width: 156px; height: 252px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); }
+.scene-thumb { position: relative; display: block; width: 120px; height: 213px; margin: 0 auto 5px; background-color: #FFF; }
+.scene-item input[type="text"] { position: relative; width: 100%; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; }
 
 /* ==================================================
  *  Stage ( layout - center stage )
@@ -40,10 +41,26 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 
 .scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 0 auto; -webkit-transform: translate(-220px, -283px); }
 .hotspot { position: relative; background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; }
-.hotspot:before { position: absolute; content: ""; left: 50%; top: -5px; width: 2px; height: 10px; background-color: #000; }
-.hotspot:after { position: absolute; content: ""; left: 50%; top: -15px; margin-left: -4px; width: 10px; height: 10px; border-radius: 5px; background-color: #fef935; border: 1px solid #000; }
-.scene-goto-thumb { position: relative; padding: 8px 10px; border: 2px solid #7d7d7d; border-radius: 5px; font-size: 12px; color: #fff; text-align: center; }
-.scene-goto-thumb:after { position: absolute; content: ""; left: 34px; top: 52px; width: 244px; height: 2px; background-color: #c5c5c5; }
+.hotspot i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -5px; border-radius: 5px; background-color: #fff; border: 1px solid #000; }
+.hotspot i:nth-child(1) { left: 0; top: 50%; }
+.hotspot i:nth-child(2) { left: 50%; top: 0; }
+.hotspot i:nth-child(3) { right: 0; top: 50%; }
+.hotspot i:nth-child(4) { left: 50%; bottom: 0; }
+.hotspot:before, .hotspot:after { position: absolute; content: ""; left: 50%; }
+.hotspot:before { left: 50%; top: -15px; margin-left: -1px; width: 2px; height: 10px; background-color: #000; }
+.hotspot:after { left: 50%; top: -25px; margin-left: -5px; width: 10px; height: 10px; border-radius: 5px; background-color: #fef935; border: 1px solid #000; }
+.scene-goto-thumb { padding: 8px 10px; border: 2px solid #7d7d7d; border-radius: 5px; font-size: 12px; color: #fff; text-align: center; }
+.scene-goto-line { position: relative; height: 2px; margin-left:36px; margin-top:-54px; background-color: #4fc9f0; }
+.scene-goto-line:before, .scene-goto-line:after { position: absolute; content: ""; width: 12px; height: 12px; border-radius: 6px; background-color: #4fc9f0; }
+.scene-goto-line:before { left: -5px; top: -5px; }
+.scene-goto-line:after { right: -5px; top: -5px; }
+.scene-goto-animation { position: absolute; margin-left: 24px; margin-top: -262px; width: 268px; height: 184px; padding: 5px;  border: 1px solid #000; border-radius: 5px; background-color: #232323; font-size: 12px; color: #b7b7b7; box-shadow: 0 0 15px rgba(0,0,0,0.8), inset 0 0 1px #ccc; }
+.scene-goto-animation:after { position: absolute; content: ""; left: 50%; bottom: -10px; margin-left: -5px; margin-bottom: -10px; width: 0; height: 0; border-width: 10px; border-style: solid; border-color: #4a4a4a transparent transparent; }
+.scene-goto-animation dt { float: left; padding: 3px 0 3px 5px; line-height: 2; font-weight: 300; }
+.scene-goto-animation dd { padding: 3px 0 3px 120px; border-bottom: 1px solid #333; line-height: 2; }
+.scene-goto-animation dd:last-child { border: none; }
+.scene-goto-animation a { color: #b7b7b7; }
+.scene-goto-animation input[type="text"] { display: inline-block; width: 36px; border-bottom: 1px dotted #999; line-height: 1.5; background-color: transparent; font-weight: 300; color: #fff; outline: none; }
 
 /* ==================================================
  *  Tools ( layout - right sidebar )
@@ -53,12 +70,12 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 .tools-position { padding: 10px; overflow: hidden; }
 .tools-position li { float: left; width: 50%; padding: 5px 0; }
 .tools-position label { display: inline-block; width: 50px; padding: 0 10px; text-align: right; }
-.tools-position input[type="text"] { width: 58px; height: 18px; background-color: #282828; border: 1px solid #000; color: #fff; vertical-align: middle; }
+.tools-position input[type="text"] { width: 58px; height: 18px; background-color: #282828; border: 1px solid #000; font-size: 12px; color: #fff; vertical-align: middle; }
 .tools-background { padding: 10px; text-align: center; }
 .tools-bg-thumb { display: block; margin: 10px auto; }
 .tools-background input[type="button"] { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 
-.tools-action { }
+.tools-action {  }
 .tools-action li { padding: 5px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
 
 
