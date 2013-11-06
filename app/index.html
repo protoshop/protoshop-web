@@ -13,6 +13,7 @@
 <!-- build:css(.tmp) styles/main.css -->
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
 <link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/font.css">
 <!-- endbuild -->
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
@@ -37,13 +38,13 @@
                 <a class="navbar-brand" href="#">ToHELL</a>
             </div>
             <div class="menu-main">
-                <a href="###">Run</a>
-                <a href="###">Preview</a>
-                <a href="###">Export</a>
+                <a href="###" title="Run"><i class="icon-play"></i></a>
+                <a href="###" title="Preview"><i class="icon-eye"></i></a>
+                <a href="###" title="Export"><i class="icon-export"></i></a>
             </div>
             <div class="menu-modeswitch">
-                <a href="###">Overview</a>
-                <a href="###" class="current">Scene</a>
+                <a href="###"><i class="icon-flow-tree"></i></a>
+                <a href="###" class="current"><i class="icon-mobile"></i></a>
             </div>
         </nav>
         <div class="layout-main">
@@ -83,19 +84,22 @@
                         <div class="scene-goto-animation">
                             <dl>
                                 <dt>JUMP TO</dt>
-                                <dd>Scene 2</dd>
-                                <dt>TRANSITION</dt>
                                 <dd>
+                                    <a href="###" class="goto-target"><i class="icon-target"></i></a>
+                                    Scene 2
+                                </dd>
+                                <dt>TRANSITION</dt>
+                                <dd class="goto-transition">
                                     <div class="transition-name">
-                                        <a href="###">none</a>
-                                        <a href="###">Push</a>
+                                        <a href="###"><i class="icon-block"></i></a>
+                                        <a href="###" class="current">Push</a>
                                         <a href="###">Cover</a>
                                     </div>
                                     <div class="transition-direction">
-                                        <a href="###">Up</a>
-                                        <a href="###">Right</a>
-                                        <a href="###">Down</a>
-                                        <a href="###">Left</a>
+                                        <a href="###"><i class="icon-up-bold"></i></a>
+                                        <a href="###"><i class="icon-right-bold"></i></a>
+                                        <a href="###"><i class="icon-down-bold"></i></a>
+                                        <a href="###" class="current"><i class="icon-left-bold"></i></a>
                                     </div>
                                     <div class="transtion-time">
                                         <input type="text" value="0s" readonly="true" /> delay<br />
