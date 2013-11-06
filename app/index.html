@@ -1,38 +1,18 @@
-<!Doctype HTML>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ToHELL</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width">
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<!-- build:css(.tmp) styles/main.css -->
-<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-<link rel="stylesheet" href="styles/main.css">
-<link rel="stylesheet" href="styles/font.css">
-<!-- endbuild -->
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('ul.scenes-list li').on('click', function(e){
-            for (var i = $('ul.scenes-list li').length - 1; i >= 0; i--) {
-                $('ul.scenes-list li')[i].className = 'scene-item';
-            };
-            this.className = 'scene-item item-current';
-        });
-    });
-</script>
+    <meta charset="utf-8">
+    <title>ToHELL</title>
+    <meta name="viewport" content="width=device-width">
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/font.css">
+    <!-- endbuild -->
 </head>
 <body>
-    <!--[if lt IE 10]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <div class="layout" style="-webkit-box-orient: vertical;">
+    <div class="layout">
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">ToHELL</a>
