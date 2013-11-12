@@ -99,7 +99,7 @@
     </div>
     <div class="layer">
         <div class="project-title">
-            <a class="close">close</a>           
+            <a class="closes">close</a>           
             <h3>New project</h3>
         </div>
         <div class="project-info">
@@ -112,7 +112,7 @@
             </div>
             <div class="control-group">
                 <label>Details:</label>
-                <textarea cols="20"  name="" rows="8" class="large-input"></textarea>
+                <textarea cols="20"  name="" rows="5" class="large-input"></textarea>
             </div>
         </div>
     </div>
@@ -127,11 +127,11 @@
     <!-- endbuild -->
 
     <!-- layer -->
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="http://shouji.ctrip.com/js/jQuery.js"></script>
     <script>
         var addBtn = $(".add-btn");
         var layer = $(".layer");
-        var close = $(".close");
+        var close = $(".closes");
         addBtn.click(function(){
             var hh = ($(window).height()-layer.height())/2;   
             var ww = ($(window).width()-layer.width())/2; 
