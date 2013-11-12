@@ -20,7 +20,7 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="layout" style="-webkit-box-orient: vertical;">
+    <div class="layout">
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">ToHELL</a>
@@ -97,7 +97,25 @@
             </div>
         </div>
     </div>
-
+    <div class="layer">
+        <div class="project-title">
+            <a class="closes">close</a>           
+            <h3>New project</h3>
+        </div>
+        <div class="project-info">
+            <div class="control-group">
+                <label>
+                    <img src="" width="22" height="22">
+                    Name:
+                </label>
+                <input type="text" name="" placeholder="项目名称" class="project-text">
+            </div>
+            <div class="control-group">
+                <label>Details:</label>
+                <textarea cols="20"  name="" rows="5" class="large-input"></textarea>
+            </div>
+        </div>
+    </div>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/jquery.js"></script>
@@ -107,5 +125,25 @@
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
+
+    <!-- layer -->
+    <script src="http://shouji.ctrip.com/js/jQuery.js"></script>
+    <script>
+        var addBtn = $(".add-btn");
+        var layer = $(".layer");
+        var close = $(".closes");
+        addBtn.click(function(){
+            var hh = ($(window).height()-layer.height())/2;   
+            var ww = ($(window).width()-layer.width())/2; 
+            var h = $(document).height();
+            var w = $(document).width();            
+            layer.css("display","block");
+            layer.css({top:(parseInt(hh)+$(window).scrollTop())+"px",left:(parseInt(ww)+$(window).scrollLeft())+"px","position":"absolute"});
+        })
+        close.click(function(){
+            layer.css("display","none");
+        })
+    </script>
+    <!-- endlayer -->
 </body>
 </html>
