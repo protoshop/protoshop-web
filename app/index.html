@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="toHELL">
 <head>
     <meta charset="utf-8">
     <title>ToHELL</title>
@@ -12,130 +12,22 @@
 </head>
 <body>
 
-    <div class="layout">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">ToHELL</a>
-            </div>
-            <div class="menu-main">
-                <a href="###" title="Run"><i class="icon-play"></i></a>
-                <a href="###" title="Preview"><i class="icon-eye"></i></a>
-                <a href="###" title="Export"><i class="icon-export"></i></a>
-            </div>
-            <div class="menu-modeswitch">
-                <a href="###"><i class="icon-flow-tree"></i></a>
-                <a href="###" class="current"><i class="icon-mobile"></i></a>
-            </div>
-        </nav>
-        <div class="layout-main">
-            <div class="layout-scenes">
-                <a href="###" class="scenes-title">Demo 1</a>
-                <ul class="scenes-list">
-                    <li class="scene-item item-current">
-                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
-                        <input type="text" value="Scene 1" />
-                    </li>
-                    <li class="scene-item">
-                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
-                        <input type="text" value="Scene 2" />
-                    </li>
-                    <li class="scene-item">
-                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
-                        <input type="text" value="Scene 3" />
-                    </li>
-                    <li class="scene-item">
-                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
-                        <input type="text" value="Scene 4" />
-                    </li>
-                    <li class="scene-item">
-                        <img src="images/zzz-scene-thumb.png" class="scene-thumb" />
-                        <input type="text" value="Scene 5" />
-                    </li>
-                </ul>
-            </div>
-            <div class="layout-stage">
-                <div class="scene">
-                    <div class="hotspot" style="position:absolute; left:100px; top:252px; width:118px; height:42px;">
-                        <i></i><i></i><i></i><i></i>
-                    </div>
-                    <div class="scene-goto" style="position:absolute; left:-140px; top:220px;">
-                        <div class="scene-goto-thumb"><img src="images/zzz-scene-thumb.png" width="40" /><br />Scene 2</div>
-                        <div class="scene-goto-line" style="position:absolute; width:264px;"></div>
-                        <div class="scene-goto-animation">
-                            <dl>
-                                <dt>JUMP TO</dt>
-                                <dd>
-                                    <a href="###" class="goto-target"><i class="icon-target"></i></a>
-                                    Scene 2
-                                </dd>
-                                <dt>TRANSITION</dt>
-                                <dd class="goto-transition">
-                                    <div class="transition-name">
-                                        <a href="###"><i class="icon-block"></i></a>
-                                        <a href="###" class="current">Push</a>
-                                        <a href="###">Cover</a>
-                                    </div>
-                                    <div class="transition-direction">
-                                        <a href="###"><i class="icon-up-bold"></i></a>
-                                        <a href="###"><i class="icon-right-bold"></i></a>
-                                        <a href="###"><i class="icon-down-bold"></i></a>
-                                        <a href="###" class="current"><i class="icon-left-bold"></i></a>
-                                    </div>
-                                    <div class="transtion-time">
-                                        <input type="text" value="0s" readonly="true" /> delay<br />
-                                        <input type="text" value="0.25s" readonly="true" /> duration
-                                    </div>
-                                </dd>
-                                <dt>PLAY A SOUND</dt>
-                                <dd><a href="###">+</a></dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="layout-tools">
-                <!-- tools: position -->
-                <div class="tools-box">
-                    <a href="###" class="tools-title">Position</a>
-                    <ul class="tools-position">
-                        <li><label>X</label><input type="text" value="0" /></li>
-                        <li><label>Y</label><input type="text" value="428" /></li>
-                        <li><label>W</label><input type="text" value="320" /></li>
-                        <li><label>H</label><input type="text" value="50" /></li>
-                    </ul>
-                </div>
-                <!-- tools: background -->
-                <div class="tools-box">
-                    <a href="###" class="tools-title">Background</a>
-                    <div class="tools-background">
-                        <img src="images/zzz-scene-thumb.png" alt="" width="174" class="tools-bg-thumb" />
-                        <input type="button" value="Add" />
-                        <input type="button" value="Remove" />
-                    </div>
-                </div>
-                <!-- tools: action -->
-                <div class="tools-box">
-                    <a href="###" class="tools-title">Actions</a>
-                    <ul class="tools-action">
-                        <li>Go To: Scene 2</li>
-                        <li>Transtion: <input type="radio" /> Push, <input type="radio" /> Cover</li>
-                        <li>Direction: <input type="radio" /> left, <input type="radio" /> right</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <div class="layout" ng-view=""></div>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
+    <!-- build:js scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
     <!-- endbuild -->
 </body>
 </html>
