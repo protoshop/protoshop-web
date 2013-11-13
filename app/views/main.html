@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">ToHELL</a>
+        <span class="navbar-brand">ToHELL</span>
     </div>
     <div class="menu-main">
         <button class="icon-play" title="Run"></button>
@@ -12,7 +12,11 @@
         <button class="icon-mobile current"></button>
     </div>
 </nav>
+
+<!-- 布局主体 -->
 <div class="layout-main">
+
+    <!-- 左栏：场景列表 -->
     <div class="layout-scenes">
         <span class="scenes-title">{{project.name}}</span>
         <ul class="scenes-list">
@@ -38,6 +42,8 @@
             </li>
         </ul>
     </div>
+
+    <!-- 中栏：场景详情修改区 -->
     <div class="layout-stage">
         <div class="scene">
             <div class="hotspot" style="position:absolute; left:100px; top:252px; width:118px; height:42px;">
@@ -78,6 +84,8 @@
             </div>
         </div>
     </div>
+
+    <!-- 右栏：场景修改工具区 -->
     <div class="layout-tools">
         <!-- tools: position -->
         <div class="tools-box">
@@ -108,6 +116,6 @@
                 <li>Direction: <input type="radio"/> left, <input type="radio"/> right</li>
             </ul>
         </div>
-
     </div>
+
 </div>
