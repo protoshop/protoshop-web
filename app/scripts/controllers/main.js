@@ -3,7 +3,7 @@
 angular.module('toHELL')
   .controller('MainCtrl', function ($scope) {
     $scope.projectStat = {
-      selectedOrder: 0
+      selectedScene: 0
     };
     $scope.project = {
       name: 'Demo 1',
@@ -60,5 +60,9 @@ angular.module('toHELL')
           ]
         }
       ]
+    };
+
+    $scope.selectScene = function(scene){
+      $scope.projectStat.selectedScene = scene.order;
     };
   });
