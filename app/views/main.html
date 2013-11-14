@@ -18,27 +18,11 @@
 
     <!-- 左栏：场景列表 -->
     <div class="layout-scenes">
-        <span class="scenes-title">{{project.name}}</span>
+        <span class="scenes-title" ng-bind="project.name"></span>
         <ul class="scenes-list">
-            <li class="scene-item item-current">
-                <img src="images/zzz-scene-thumb.png" class="scene-thumb"/>
-                <input type="text" value="Scene 1"/>
-            </li>
-            <li class="scene-item">
-                <img src="images/zzz-scene-thumb.png" class="scene-thumb"/>
-                <input type="text" value="Scene 2"/>
-            </li>
-            <li class="scene-item">
-                <img src="images/zzz-scene-thumb.png" class="scene-thumb"/>
-                <input type="text" value="Scene 3"/>
-            </li>
-            <li class="scene-item">
-                <img src="images/zzz-scene-thumb.png" class="scene-thumb"/>
-                <input type="text" value="Scene 4"/>
-            </li>
-            <li class="scene-item">
-                <img src="images/zzz-scene-thumb.png" class="scene-thumb"/>
-                <input type="text" value="Scene 5"/>
+            <li class="scene-item" ng-repeat="scene in project.scenes" ng-class="{'item-current': scene.order == projectStat.selectedOrder}">
+                <img ng-src="{{scene.background}}" class="scene-thumb"/>
+                <input type="text" value="{{scene.name}}"/>
             </li>
         </ul>
     </div>
