@@ -20,8 +20,9 @@
     <div class="layout-scenes">
         <span class="scenes-title" ng-bind="project.name"></span>
         <ul class="scenes-list">
-            <li class="scene-item" ng-repeat="scene in project.scenes" ng-class="{'item-current': scene.order == projectStat.selectedScene}"
-                    ng-click="selectScene(scene)">
+            <li class="scene-item" ng-repeat="scene in project.scenes"
+                ng-class="{'item-current': scene.order == projectStat.selectedScene}"
+                ng-click="selectScene(scene)">
                 <img class="scene-thumb" ng-src="{{scene.background}}"/>
                 <input type="text" value="{{scene.name}}"/>
             </li>
