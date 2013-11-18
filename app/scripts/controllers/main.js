@@ -6,7 +6,13 @@ angular.module('toHELL')
       selectedScene: 0
     };
     $scope.project = {
-      name: 'Demo 1',
+      appName: 'Demo HELL1',
+      appIcon: '',
+      splash: {
+        image: 'splash.png',
+        delay: 500,
+        transferType: ''
+      },
       scenes: [
         {
           order: 0,
@@ -17,11 +23,12 @@ angular.module('toHELL')
               type: 'button',
               size: [80, 30],  // width, height
               position: [0,0], // x, y
-              actions: {
-                jumpto: 'Scene 2',
+              actions: [{
+                type: 'jumpto',
+                target: 'Scene 2',
                 transition: '',
                 direction: 'left'
-              }
+              }]
             }
           ]
         },
@@ -65,4 +72,7 @@ angular.module('toHELL')
     $scope.selectScene = function(scene){
       $scope.projectStat.selectedScene = scene.order;
     };
+  }])
+  .controller('PackageListCTRL',['$scope',function($scope){
+    $scope.aaa = 'adsf';
   }]);

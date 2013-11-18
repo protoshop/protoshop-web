@@ -9,6 +9,10 @@ angular.module('toHELL', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: 'package-list.html',
+        controller: 'PackageListCTRL'
+      })
+      .when('/package', {
         templateUrl: 'package.html',
         controller: 'PackageCTRL'
       })
