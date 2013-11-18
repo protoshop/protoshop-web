@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('ProjectCTRL', function ($scope) {
+  .controller('ProjectCTRL',['$scope', function ($scope) {
     $scope.projectStat = {
       selectedScene: 0
     };
@@ -65,4 +65,4 @@ angular.module('toHELL')
     $scope.selectScene = function(scene){
       $scope.projectStat.selectedScene = scene.order;
     };
-  });
+  }]);
