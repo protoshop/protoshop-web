@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('ProjectCTRL',['$scope', function ($scope) {
+  .controller('PackageCTRL',['$scope', function ($scope) {
     $scope.projectStat = {
       selectedScene: 0
     };

@@ -9,8 +9,8 @@ angular.module('toHELL', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/project.html',
-        controller: 'ProjectCTRL'
+        templateUrl: 'package.html',
+        controller: 'PackageCTRL'
       })
       .otherwise({
         redirectTo: '/'
