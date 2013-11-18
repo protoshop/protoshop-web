@@ -6,7 +6,7 @@ angular.module('toHELL', [
     'ngSanitize',
     'ngRoute'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider',function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'package-list.html',
@@ -19,4 +19,4 @@ angular.module('toHELL', [
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
