@@ -1,13 +1,13 @@
 {
   "name": "uitool",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "jquery": "~2.0.3",
-    "angular": "~1.2.0",
-    "angular-resource": "~1.2.0",
-    "angular-cookies": "~1.2.0",
-    "angular-sanitize": "~1.2.0",
-    "angular-route": "~1.2.0",
+    "angular": "~1.2.1",
+    "angular-resource": "~1.2.1",
+    "angular-cookies": "~1.2.1",
+    "angular-sanitize": "~1.2.1",
+    "angular-route": "~1.2.1",
     "bootstrap": "~3.0.2"
   },
   "devDependencies": {}
