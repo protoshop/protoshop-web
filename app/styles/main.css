@@ -6,11 +6,11 @@ a { color:#000; text-decoration:none; -webkit-tap-highlight-color:rgba(0,0,0,0);
 
 input, select, textarea { -webkit-appearence:none; border: none; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: 300; }
 
-.browsehappy { margin: 0.2em 0; padding: 0.2em 0; background: #ccc; color: #000; }
 .layout { width: 100%; height: 100%; }
 
 .navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; margin: 0; border-radius: 0; background-color: #383838; border: none; border-bottom: 1px solid #000; }
-.navbar-brand { font-weight: bold; cursor: default }
+.navbar-header { float: left; padding: 0 10px; }
+.navbar-brand { line-height: 50px; font-size: 18px; font-weight: normal; cursor: default; color: #fafafa; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
 .menu-main { float: left; }
 .menu-modeswitch { float: right; margin-right: 10px; }
@@ -69,7 +69,7 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
  *  Tools ( layout - right sidebar )
  */
 
-.tools-title { padding: 0 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; }
+.tools-title { padding: 0 10px; height: 30px; line-height: 30px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
 .tools-title a { display: block; height: 30px; line-height: 30px; color: #afafaf; }
 .tools-title .tools-title-action { float: right; }
 .tools-position { padding: 10px; overflow: hidden; }
