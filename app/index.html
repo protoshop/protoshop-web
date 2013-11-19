@@ -35,7 +35,7 @@
 
         <!-- 左栏：场景列表 -->
         <div class="layout-scenes">
-            <span class="scenes-title" ng-bind="package.name"></span>
+            <span class="scenes-title" ng-bind="package.appName"></span>
             <ul class="scenes-list">
                 <li class="scene-item" ng-repeat="scene in package.scenes"
                     ng-class="{'item-current': scene.order == editStat.selectedScene}"
