@@ -97,25 +97,26 @@ i { font-style: normal; }
 /*    project by zxq   */
 .project-box { width: 1200px; margin: 0 auto; }
 .p-top { padding-top: 25px; padding-bottom: 8px; overflow: hidden; border-bottom: #000 solid 1px; }
-h1.p-title { float: left; font-size: 16px; font-weight: 100; padding-left: 24px; color: #afafaf; }
-.add-btn { float: right; padding: 0 10px; font-size: 14px; color: #fff; line-height: 32px; background: #1ba1eb; }
+h1.p-title { float: left; font-size: 24px; font-weight: 100; padding-left: 24px; color: #afafaf; }
+.add-btn { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
 .add-btn:hover{ color: #fff; background: #46b6f4; text-decoration: none; }
 .add-btn i{ font-style: normal; padding-right: 5px; }
 .p-activity { padding-top: 15px; }
 .event-item { border-bottom: #424242 solid 1px; padding: 25px; }
 .event-item img{ float: left; margin-right: 20px; }
 .change-btn { float: right; }
-.change-btn a { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 12px; }
-.event-info { overflow: hidden; height: 28px; line-height: 28px; }
+.change-btn button { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 18px; }
+.event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
 .author-name {margin-right: 20px; }
 .author-name a { color: #1ba1eb; }
 .author-name a:hover { text-decoration: underline; }
-.pull-time { font-size: 12px; color: #afafaf; }
+.pull-time { color: #afafaf; }
 .event-body { padding-left: 48px; margin-top: 15px; }
 .commit { padding-bottom: 10px; overflow: hidden; }
 .commit:last-child{ padding-bottom: 0; }
 .commit img { float: left; margin-right: 10px; }
-.commit-info { float: left; font-size: 12px; line-height: 24px; color: #afafaf; }
+.commit-info { float: left; font-size: 18px; line-height: 24px; color: #afafaf; }
+.commit-info span:first-child { color:#6a6a6a; margin-right:10px; }
 .layer{ width: 500px; background: #232323; display: none; box-shadow: 0 0 15px rgba(0,0,0,0.8), inset 0 0 1px #ccc; border-radius: 5px; padding: 10px; }
 .project-title{ border-bottom: 1px solid #333; height: 30px;  padding:0 10px; }
 .project-title h3{ font-weight: 100; color: #b7b7b7; font-size: 16px; line-height: 30px; }

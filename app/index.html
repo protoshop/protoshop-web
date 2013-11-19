@@ -165,7 +165,7 @@
                 <!-- Package 列表项目 -->
                 <div class="event-item" ng-repeat="pkg in packageList">
                     <div class="change-btn">
-                        <button ng-click="editPackage(pkg)">change</button>
+                        <button ng-click="editPackage(pkg)">edit</button>
                         <button ng-click="deletePackage(pkg)">delete</button>
                     </div>
                     <img ng-src="{{pkg.packageIcon}}" width="27" height="27">
@@ -175,10 +175,9 @@
                     </div>
                     <ul class="event-body" ng-show="pkg.changelog">
                         <li class="commit" ng-repeat="log in pkg.changelog">
-                            <img src="" width="22" height="22">
                             <div class="commit-info">
-                                <p ng-bind="log.by + ' - ' + log.note"></p>
-                                <p ng-bind="log.date"></p>
+                                <span ng-bind="log.date"></span>                            
+                                <span ng-bind="log.by + ' - ' + log.note"></span>
                             </div>
                         </li>
                     </ul>
