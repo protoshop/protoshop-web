@@ -1,14 +1,16 @@
+/* To Hell by xll */
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, form, input,select, textarea, button, header, nav, menu, section, aside, footer { margin: 0; padding: 0; }
 body { min-width: 1280px; min-height: 804px; background:#292929; font-size:14px; font-family: "Open Sans", Helvetica, Arial, sans-serif; -webkit-user-select:none; -webkit-text-size-adjust:none; overflow-x:hidden; color: #333; }
 html, body { height: 100%; }
 ul, li { list-style:none; }
 a { color:#000; text-decoration:none; -webkit-tap-highlight-color:rgba(0,0,0,0); }
 
-input, select, textarea { -webkit-appearence:none; border: none; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: 300; }
+input, select, textarea, button { -webkit-appearence:none; background: none; border: none; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: 300; }
+button { cursor: pointer; }
 
 .layout { width: 100%; height: 100%; }
 
-.navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; margin: 0; border-radius: 0; background-color: #383838; border: none; border-bottom: 1px solid #000; }
+.navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; background-color: #383838; border-bottom: 1px solid #000; z-index: 9; }
 .navbar-header { float: left; padding: 0 10px; }
 .navbar-brand { line-height: 50px; font-size: 18px; font-weight: normal; cursor: default; color: #fafafa; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
@@ -17,7 +19,7 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 .menu-main button, .menu-modeswitch button { display: inline-block; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 16px; color: #afafaf; background: transparent }
 .menu-modeswitch .current { background-color: #162a3a; color: #178dd4; }
 
-.layout-main { position: relative; margin-top: 50px; display: -webkit-box; display: box; width: 100%; height: 100%; }
+.layout-main { position: relative; margin-top: 51px; display: -webkit-box; display: box; width: 100%; height: 100%; }
 
 .layout-scenes { width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; }
 .layout-tools { width: 300px; background-color: #202020; color: #7f7f7f; overflow-x: hidden; overflow-y: auto; }
@@ -29,11 +31,11 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 
 .scenes-list { padding: 0; }
 .scenes-title { display: block; padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
-.scene-item { position: relative; height: 272px; padding: 20px 0; }
+.scene-item { position: relative; padding: 20px 0; }
 .item-current { background-color: #393939; }
 .item-current:before { position: absolute; content: ""; left: 12px; top: 10px; width: 156px; height: 252px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); }
 .scene-thumb { position: relative; display: block; width: 120px; height: 213px; margin: 0 auto 5px; background-color: #FFF; }
-.scene-item input[type="text"] { position: relative; width: 100%; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; }
+.scene-item input[type="text"] { position: relative; width: 100%; height: 24px; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; }
 
 /* ==================================================
  *  Stage ( layout - center stage )
@@ -71,19 +73,25 @@ input, select, textarea { -webkit-appearence:none; border: none; font-family: "O
 
 .tools-title { padding: 0 10px; height: 30px; line-height: 30px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
 .tools-title a { display: block; height: 30px; line-height: 30px; color: #afafaf; }
-.tools-title .tools-title-action { float: right; }
+.tools-title .tools-title-action { float: right; width: 30px; height: 30px; color: #178dd4; }
 .tools-position { padding: 10px; overflow: hidden; }
 .tools-position li { float: left; width: 50%; padding: 5px 0; }
-.tools-position label { display: inline-block; width: 50px; padding: 0 10px; text-align: right; }
-.tools-position input[type="text"] { width: 58px; height: 18px; background-color: #282828; border: 1px solid #000; font-size: 12px; color: #fff; vertical-align: middle; }
+.tools-box label { display: inline-block; width: 50px; padding: 0 10px; text-align: right; }
+.tools-box input[type="text"] { padding: 3px; background-color: #282828; border: 1px solid #000; font-size: 12px; color: #fff; vertical-align: middle; }
+.tools-position input[type="text"] { width: 58px; height: 18px; }
 .tools-background { padding: 10px; text-align: center; }
 .tools-bg-thumb { display: block; margin: 10px auto; }
-.tools-background input[type="button"] { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
+.tools-background button { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 
-.tools-action {  }
-.tools-action li { padding: 5px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
+.tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
+.tools-actor button { color: #178dd4; }
+.tools-setting input[type="text"] { width: 160px; height: 18px; }
+.tools-setting img { border-radius: 10px; vertical-align: middle; }
 
-/*    project    */
+
+
+
+/*    project by zxq   */
 .project-box { width: 1200px; margin: 0 auto; }
 .p-top { padding-top: 25px; padding-bottom: 8px; overflow: hidden; border-bottom: #000 solid 1px; }
 h1.p-title { float: left; font-size: 16px; font-weight: 100; padding-left: 24px; color: #afafaf; }
