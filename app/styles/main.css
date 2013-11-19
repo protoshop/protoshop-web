@@ -128,3 +128,5 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .control-group img{ margin-right: 10px; }
 .project-text{ width: 300px; padding: 6px 10px; -webkit-border-radius: 5px; background: #efefef; }
 .large-input{ width: 300px; padding: 6px 10px; border:#333 solid 1px; -webkit-border-radius: 5px; background: #efefef; }
+
+.fade { opacity: 0.3 }
