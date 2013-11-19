@@ -5,8 +5,9 @@ html, body { height: 100%; }
 ul, li { list-style:none; }
 a { color:#000; text-decoration:none; -webkit-tap-highlight-color:rgba(0,0,0,0); }
 
-input, select, textarea, button { -webkit-appearence:none; background: none; border: none; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: 300; }
-button { cursor: pointer; }
+input, select, textarea, button { -webkit-appearence:none; border: none; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: 300; }
+button { background: none; cursor: pointer; }
+i { font-style: normal; }
 
 .layout { width: 100%; height: 100%; }
 
@@ -64,8 +65,9 @@ button { cursor: pointer; }
 .scene-goto-animation a { color: #b7b7b7; }
 .scene-goto-animation input[type="text"] { display: inline-block; width: 36px; border-bottom: 1px dotted #999; line-height: 1.5; background-color: transparent; font-weight: 300; color: #fff; outline: none; }
 .goto-target { float: right; font-size: 16px; }
-.goto-transition a { color: #424242; }
-.goto-transition .current { color: #b7b7b7; }
+.goto-transition label { color: #424242; cursor: pointer; }
+.goto-transition input[type="radio"] { visibility: hidden; width: 0; height: 0; }
+.goto-transition input[type="radio"]:checked + i { color: #b7b7b7; }
 
 /* ==================================================
  *  Tools ( layout - right sidebar )
