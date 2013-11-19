@@ -122,4 +122,9 @@ angular.module('toHELL')
     $scope.deletePackage = function(pkg){
       console.log(pkg);
     }
+
+    $scope.showCreateDialog = false;
+    $scope.toggleCreateDialog = function(){
+      $scope.showCreateDialog = !$scope.showCreateDialog;
+    }
   }]);

@@ -91,12 +91,12 @@ i { font-style: normal; }
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
 .tools-setting img { border-radius: 10px; vertical-align: middle; }
 
+/* ==================================================
+ *  Package List (previously 'project')
+ */
 
-
-
-/*    project by zxq   */
 .project-box { width: 1200px; margin: 0 auto; }
-.p-top { padding-top: 25px; padding-bottom: 8px; overflow: hidden; border-bottom: #000 solid 1px; }
+.p-top { padding-top: 25px; padding-bottom: 8px; height: 40px; border-bottom: #000 solid 1px; }
 h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px; color: #afafaf; }
 .add-btn { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
 .add-btn:hover{ color: #fff; background: #46b6f4; text-decoration: none; }
@@ -117,7 +117,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .commit img { float: left; margin-right: 10px; }
 .commit-info { float: left; font-size: 18px; line-height: 24px; color: #afafaf; }
 .commit-info span:first-child { color:#6a6a6a; margin-right:10px; }
-.layer{ width: 500px; background: #232323; display: none; box-shadow: 0 0 15px rgba(0,0,0,0.8), inset 0 0 1px #ccc; border-radius: 5px; padding: 10px; }
+.layer{ position: fixed; top: 200px; left: 50%; margin-left: -250px; width: 500px; background: #232323; box-shadow: 0 0 15px rgba(0,0,0,0.8), inset 0 0 1px #ccc; border-radius: 5px; padding: 10px; }
 .project-title{ border-bottom: 1px solid #333; height: 30px;  padding:0 10px; }
 .project-title h3{ font-weight: 100; color: #b7b7b7; font-size: 16px; line-height: 30px; }
 .closes{ float: right; color: #b7b7b7; cursor: pointer; line-height: 30px; }
