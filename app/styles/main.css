@@ -97,7 +97,7 @@ i { font-style: normal; }
 /*    project by zxq   */
 .project-box { width: 1200px; margin: 0 auto; }
 .p-top { padding-top: 25px; padding-bottom: 8px; overflow: hidden; border-bottom: #000 solid 1px; }
-h1.p-title { float: left; font-size: 24px; font-weight: 100; padding-left: 24px; color: #afafaf; }
+h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px; color: #afafaf; }
 .add-btn { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
 .add-btn:hover{ color: #fff; background: #46b6f4; text-decoration: none; }
 .add-btn i{ font-style: normal; padding-right: 5px; }
@@ -105,7 +105,7 @@ h1.p-title { float: left; font-size: 24px; font-weight: 100; padding-left: 24px;
 .event-item { border-bottom: #424242 solid 1px; padding: 25px; }
 .event-item img{ float: left; margin-right: 20px; }
 .change-btn { float: right; }
-.change-btn button { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 18px; }
+.change-btn button { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 22px; }
 .event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
 .author-name {margin-right: 20px; }
 .author-name a { color: #1ba1eb; }
