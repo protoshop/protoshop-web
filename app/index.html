@@ -35,10 +35,10 @@
 
         <!-- 左栏：场景列表 -->
         <div class="layout-scenes">
-            <span class="scenes-title" ng-bind="project.name"></span>
+            <span class="scenes-title" ng-bind="package.name"></span>
             <ul class="scenes-list">
-                <li class="scene-item" ng-repeat="scene in project.scenes"
-                    ng-class="{'item-current': scene.order == projectStat.selectedScene}"
+                <li class="scene-item" ng-repeat="scene in package.scenes"
+                    ng-class="{'item-current': scene.order == editStat.selectedScene}"
                     ng-click="selectScene(scene)">
                     <img class="scene-thumb" ng-src="{{scene.background}}"/>
                     <input type="text" value="{{scene.name}}"/>
@@ -49,8 +49,8 @@
         <!-- 中栏：场景详情修改区 -->
         <div class="layout-stage">
             <div class="scene">
-                <div class="hotspot" style="position:absolute; left:100px; top:252px; width:118px; height:42px;">
-                    <i></i><i></i><i></i><i></i>
+                <div class="hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements"
+                     style="position:absolute; left:{{ele.posX}}px; top:{{ele.posY}}px; width:{{ele.width}}px; height:{{ele.height}}px;">
                 </div>
                 <div class="scene-goto" style="position:absolute; left:-140px; top:220px;">
                     <div class="scene-goto-thumb"><img src="images/zzz-scene-thumb.png" width="40"/><br/>Scene 2</div>
@@ -74,18 +74,16 @@
                                     <label><input type="radio" name="transition-name" /><i>Cover</i></label>
                                 </div>
                                 <div class="transition-direction">
-                                    <label><input type="radio" name="transition-direction" /><i class="icon-up-bold"></i></label>
-                                    <label><input type="radio" name="transition-direction" /><i class="icon-right-bold"></i></label>
-                                    <label><input type="radio" name="transition-direction" /><i class="icon-down-bold"></i></label>
-                                    <label><input type="radio" name="transition-direction" checked="checked" /><i class="icon-left-bold"></i></label>
+                                    <label><input type="radio" name="transition-direction" value="up" /><i class="icon-up-bold"></i></label>
+                                    <label><input type="radio" name="transition-direction" value="right" /><i class="icon-right-bold"></i></label>
+                                    <label><input type="radio" name="transition-direction" value="down" /><i class="icon-down-bold"></i></label>
+                                    <label><input type="radio" name="transition-direction" value="left" checked="checked" /><i class="icon-left-bold"></i></label>
                                 </div>
                                 <div class="transtion-time">
                                     <input type="text" value="0s" readonly="true"/> delay<br/>
                                     <input type="text" value="0.25s" readonly="true"/> duration
                                 </div>
                             </dd>
-                            <dt>PLAY A SOUND</dt>
-                            <dd><a href="###">+</a></dd>
                         </dl>
                     </div>
                 </div>

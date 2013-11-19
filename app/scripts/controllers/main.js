@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageCTRL',['$scope', function ($scope) {
-    $scope.projectStat = {
-      selectedScene: 0
+  .controller('PackageCTRL', ['$scope', function ($scope) {
+    $scope.editStat = {
+      selectedScene: 0,
+      selectedElement: null
     };
-    $scope.project = {
+    $scope.package = {
       appName: 'Demo HELL1',
       appIcon: '',
       splash: {
@@ -17,18 +18,25 @@ angular.module('toHELL')
         {
           order: 0,
           name: 'Scene 1',
+          icon: 'images/icon-app-120.png',
           background: 'images/zzz-scene-thumb.png',
           elements: [
             {
               type: 'button',
-              size: [80, 30],  // width, height
-              position: [0,0], // x, y
-              actions: [{
-                type: 'jumpto',
-                target: 'Scene 2',
-                transition: '',
-                direction: 'left'
-              }]
+              posX: 100,
+              posY: 300,
+              width: 120,
+              height: 42,
+              actions: [
+                {
+                  type: 'jumpto',
+                  target: 'scene 2',
+                  transitionType: 'push',
+                  transitionDirection: 'up',
+                  transitionDelay: 0,
+                  transitionDuration: 0.25
+                }
+              ]
             }
           ]
         },
@@ -36,43 +44,21 @@ angular.module('toHELL')
           order: 1,
           name: 'Scene 2',
           background: 'images/zzz-scene-thumb.png',
-          elements: [
-            {
-              type: 'button',
-              size: [80, 30],  // width, height
-              position: [0,0], // x, y
-              actions: {
-                jumpto: 'Scene 2',
-                transition: '',
-                direction: 'left'
-              }
-            }
-          ]
+          elements: []
         },
         {
           order: 2,
           name: 'Scene 3',
           background: '',
-          elements: [
-            {
-              type: 'button',
-              size: [80, 30],  // width, height
-              position: [0,0], // x, y
-              actions: {
-                jumpto: 'Scene 2',
-                transition: '',
-                direction: 'left'
-              }
-            }
-          ]
+          elements: []
         }
       ]
     };
 
-    $scope.selectScene = function(scene){
-      $scope.projectStat.selectedScene = scene.order;
+    $scope.selectScene = function (scene) {
+      $scope.editStat.selectedScene = scene.order;
     };
   }])
-  .controller('PackageListCTRL',['$scope',function($scope){
+  .controller('PackageListCTRL', ['$scope', function ($scope) {
     $scope.aaa = 'adsf';
   }]);
