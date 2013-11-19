@@ -162,40 +162,23 @@
                 <h1 class="p-title">project</h1>
             </div>
             <div class="p-activity">
-                <div class="event-item">
+                <!-- Package 列表项目 -->
+                <div class="event-item" ng-repeat="pkg in packageList">
                     <div class="change-btn">
-                        <a href="#">change</a>
-                        <a href="#">delete</a>
+                        <button ng-click="editPackage(pkg)">change</button>
+                        <button ng-click="deletePackage(pkg)">delete</button>
                     </div>
-                    <img src="" width="27" height="27">
+                    <img ng-src="{{pkg.packageIcon}}" width="27" height="27">
                     <div class="event-info">
-                        <span class="author-name"><a href="#/package">jade</a></span>
-                        <span class="pull-time">2013-10-24</span>
+                        <span class="author-name"><a href="#/package" ng-bind="pkg.packageName"></a></span>
+                        <span class="pull-time" ng-bind="pkg.modifyDate"></span>
                     </div>
-                </div>
-                <div class="event-item">
-                    <div class="change-btn">
-                        <a href="#">change</a>
-                        <a href="#">delete</a>
-                    </div>
-                    <img src="" width="27" height="27">
-                    <div class="event-info">
-                        <span class="author-name"><a href="#/package">jade</a></span>
-                        <span class="pull-time">2013-10-24</span>
-                    </div>
-                    <ul class="event-body">
-                        <li class="commit">
+                    <ul class="event-body" ng-show="pkg.changelog">
+                        <li class="commit" ng-repeat="log in pkg.changelog">
                             <img src="" width="22" height="22">
                             <div class="commit-info">
-                                <p>guo lei - changes some cod</p>
-                                <p>2013-10-24</p>
-                            </div>
-                        </li>
-                        <li class="commit">
-                            <img src="" width="22" height="22">
-                            <div class="commit-info">
-                                <p>guo lei - changes some cod</p>
-                                <p>2013-10-24</p>
+                                <p ng-bind="log.by + ' - ' + log.note"></p>
+                                <p ng-bind="log.date"></p>
                             </div>
                         </li>
                     </ul>
