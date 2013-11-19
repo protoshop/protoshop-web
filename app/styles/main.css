@@ -118,6 +118,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .commit-info { float: left; font-size: 18px; line-height: 24px; color: #afafaf; }
 .commit-info span:first-child { color:#6a6a6a; margin-right:10px; }
 .layer{ position: fixed; top: 200px; left: 50%; margin-left: -250px; width: 500px; background: #232323; box-shadow: 0 0 15px rgba(0,0,0,0.8), inset 0 0 1px #ccc; border-radius: 5px; padding: 10px; }
+.layer:after { content: ""; background-color: rgba(33,33,33,0.6); position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1 }
 .project-title{ border-bottom: 1px solid #333; height: 30px;  padding:0 10px; }
 .project-title h3{ font-weight: 100; color: #b7b7b7; font-size: 16px; line-height: 30px; }
 .closes{ float: right; color: #b7b7b7; cursor: pointer; line-height: 30px; }
@@ -128,5 +129,3 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .control-group img{ margin-right: 10px; }
 .project-text{ width: 300px; padding: 6px 10px; -webkit-border-radius: 5px; background: #efefef; }
 .large-input{ width: 300px; padding: 6px 10px; border:#333 solid 1px; -webkit-border-radius: 5px; background: #efefef; }
-
-.fade { opacity: 0.3 }
