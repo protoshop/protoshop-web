@@ -49,42 +49,47 @@
         <!-- 中栏：场景详情修改区 -->
         <div class="layout-stage">
             <div class="scene">
-                <div class="hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements"
-                     style="position:absolute; left:{{ele.posX}}px; top:{{ele.posY}}px; width:{{ele.width}}px; height:{{ele.height}}px;">
-                </div>
-                <div class="scene-goto" style="position:absolute; left:-140px; top:220px;">
-                    <div class="scene-goto-thumb"><img src="images/zzz-scene-thumb.png" width="40"/><br/>Scene 2</div>
-                    <div class="scene-goto-line" style="position:absolute; width:264px;"></div>
-                    <div class="scene-goto-animation">
-                        <dl>
-                            <dt>JUMP TO</dt>
-                            <dd>
-                                <!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
-                                <select>
-                                    <option>Scene 1</option>
-                                    <option selected="selected">Scene 2</option>
-                                    <option>Scene 3</option>
-                                </select>
-                            </dd>
-                            <dt>TRANSITION</dt>
-                            <dd class="goto-transition">
-                                <div class="transition-name">
-                                    <label><input type="radio" name="transition-name" /><i class="icon-block"></i></label>
-                                    <label><input type="radio" name="transition-name" checked="checked" /><i>Push</i></label>
-                                    <label><input type="radio" name="transition-name" /><i>Cover</i></label>
-                                </div>
-                                <div class="transition-direction">
-                                    <label><input type="radio" name="transition-direction" value="up" /><i class="icon-up-bold"></i></label>
-                                    <label><input type="radio" name="transition-direction" value="right" /><i class="icon-right-bold"></i></label>
-                                    <label><input type="radio" name="transition-direction" value="down" /><i class="icon-down-bold"></i></label>
-                                    <label><input type="radio" name="transition-direction" value="left" checked="checked" /><i class="icon-left-bold"></i></label>
-                                </div>
-                                <div class="transtion-time">
-                                    <input type="text" value="0s" readonly="true"/> delay<br/>
-                                    <input type="text" value="0.25s" readonly="true"/> duration
-                                </div>
-                            </dd>
-                        </dl>
+                <div class="actor hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements" style="position:absolute; left:{{ele.posX}}px; top:{{ele.posY}}px; width:{{ele.width}}px; height:{{ele.height}}px;">
+                    <div class="anchor">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+                    <div class="scene-goto">
+                        <div class="scene-goto-thumb"><img src="images/zzz-scene-thumb.png" width="40"/><br/>Scene 2</div>
+                        <div class="scene-goto-line" style="width:264px;"></div>
+                        <div class="scene-goto-animation">
+                            <dl>
+                                <dt>JUMP TO</dt>
+                                <dd>
+                                    <!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
+                                    <select>
+                                        <option>Scene 1</option>
+                                        <option selected="selected">Scene 2</option>
+                                        <option>Scene 3</option>
+                                    </select>
+                                </dd>
+                                <dt>TRANSITION</dt>
+                                <dd class="goto-transition">
+                                    <div class="transition-name">
+                                        <label><input type="radio" name="transition-name" /><i class="icon-block"></i></label>
+                                        <label><input type="radio" name="transition-name" checked="checked" /><i>Push</i></label>
+                                        <label><input type="radio" name="transition-name" /><i>Cover</i></label>
+                                    </div>
+                                    <div class="transition-direction">
+                                        <label><input type="radio" name="transition-direction" value="up" /><i class="icon-up-bold"></i></label>
+                                        <label><input type="radio" name="transition-direction" value="right" /><i class="icon-right-bold"></i></label>
+                                        <label><input type="radio" name="transition-direction" value="down" /><i class="icon-down-bold"></i></label>
+                                        <label><input type="radio" name="transition-direction" value="left" checked="checked" /><i class="icon-left-bold"></i></label>
+                                    </div>
+                                    <div class="transtion-time">
+                                        <input type="text" value="0s" readonly="true"/> delay<br/>
+                                        <input type="text" value="0.25s" readonly="true"/> duration
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </div>
