@@ -56,13 +56,19 @@ angular.module('toHELL')
 
     $scope.selectScene = function (scene) {
       $scope.editStat.selectedScene = scene.order;
+      // 自动选择该场景的第一个element
+      if (scene.elements.length) {
+        $scope.editStat.selectedElement = 0;
+      }
+      
     };
 
-    $scope.newAction = function() {
+    $scope.addAction = function() {
       for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
         if ($scope.package.scenes[i].order == $scope.editStat.selectedScene) {
           $scope.package.scenes[i].elements.push({
               type: 'hotspot',
+              // 默认参数
               posX: 100,
               posY: 300,
               width: 120,
@@ -72,7 +78,20 @@ angular.module('toHELL')
           break;
         }
       };
-    }
+    };
+
+    $scope.renderActionItem = function(action) {
+      var action_text = '';
+      switch (action.type) {
+        case 'jumpto':
+          action_text += 'Go To:';
+          break;
+        default:
+          action_text += 'Unknown Action:';
+      }
+      action_text += action.target;
+      return action_text;
+    };
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
     $scope.packageList = [

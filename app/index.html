@@ -122,7 +122,7 @@
 				<ul class="tools-actor">
 					<li><button class="icon-plus-circled">New Button Actor</button></li>
 					<li><button class="icon-plus-circled">New Text Actor</button></li>
-					<li><button class="icon-plus-circled" ng-click="newAction()">New Hotspot Actor</button></li>
+					<li><button class="icon-plus-circled" ng-click="addAction()">New Hotspot Actor</button></li>
 				</ul>
 			</div>
 			<!-- tools: action -->
@@ -131,8 +131,8 @@
 					<button class="tools-title-action icon-plus-circled"></button>
 					Actions
 				</div>
-				<ul class="tools-action">
-					<li>Go To: Scene 2</li>
+				<ul class="tools-action" ng-repeat="action in package.scenes[editStat.selectedScene].elements[editStat.selectedElement].actions">
+					<li ng-bind="renderActionItem(action)"></li>
 				</ul>
 			</div>
 			<!-- tools: setting -->
