@@ -17,12 +17,12 @@ i { font-style: normal; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
 .menu-main { float: left; }
 .menu-modeswitch { float: right; margin-right: 10px; }
-.menu-main button, .menu-modeswitch button { display: inline-block; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 16px; color: #afafaf; background: transparent }
+.menu-main button, .menu-modeswitch button, .scenes-edit button { display: inline-block; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 16px; color: #afafaf; background: transparent; cursor: pointer; }
 .menu-modeswitch .current { background-color: #162a3a; color: #178dd4; }
 
 .layout-main { position: relative; margin-top: 51px; display: -webkit-box; display: box; width: 100%; height: 100%; }
 
-.layout-scenes { width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; }
+.layout-scenes { position: relative; width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; }
 .layout-tools { width: 300px; background-color: #202020; color: #7f7f7f; overflow-x: hidden; overflow-y: auto; }
 .layout-stage { -webkit-box-flex: 1; box-flex: 1; border-left: 1px solid #000; border-right: 1px solid #000; background: #292929 url(../images/bg-stage-iphone5.png) center center no-repeat; }
 
@@ -31,12 +31,14 @@ i { font-style: normal; }
  */
 
 .scenes-list { padding: 0; }
-.scenes-title { display: block; padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
+.scenes-title { padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
 .scene-item { position: relative; padding: 20px 0; }
 .item-current { background-color: #393939; }
 .item-current:before { position: absolute; content: ""; left: 12px; top: 10px; width: 156px; height: 252px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); }
 .scene-thumb { position: relative; display: block; width: 120px; height: 213px; margin: 0 auto 5px; background-color: #FFF; }
 .scene-item input[type="text"] { position: relative; width: 100%; height: 24px; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; }
+.scenes-edit { position: absolute; left: 0; bottom: 40px; width: 100%; height: 40px; background-color: #383838; text-align: center; }
+.scenes-edit button { width: 40px; height: 26px; line-height: 26px; margin-top: 2px; font-size: 20px; }
 
 /* ==================================================
  *  Stage ( layout - center stage )

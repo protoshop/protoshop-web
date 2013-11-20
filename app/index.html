@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html ng-app="toHELL">
 <head>
-    <meta charset="utf-8">
-    <title>ToHELL</title>
-    <meta name="viewport" content="width=device-width" />
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css" />
-    <link rel="stylesheet" href="styles/font.css" />
-    <!-- endbuild -->
+	<meta charset="utf-8">
+	<title>ToHELL</title>
+	<meta name="viewport" content="width=device-width" />
+	<!-- build:css(.tmp) styles/main.css -->
+	<link rel="stylesheet" href="styles/main.css" />
+	<link rel="stylesheet" href="styles/font.css" />
+	<!-- endbuild -->
 </head>
 <body>
 
@@ -15,194 +15,198 @@
 
 <!-- ng-template: package.html -->
 <script type="text/ng-template" id="package.html">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#/">ToHELL</a>
-        </div>
-        <div class="menu-main">
-            <button class="icon-play" title="Run"></button>
-            <button class="icon-eye" title="Preview"></button>
-            <button class="icon-export" title="Export"></button>
-        </div>
-        <div class="menu-modeswitch">
-            <button class="icon-flow-tree"></button>
-            <button class="icon-mobile current"></button>
-        </div>
-    </nav>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#/">ToHELL</a>
+		</div>
+		<div class="menu-main">
+			<button class="icon-play" title="Run"></button>
+			<button class="icon-eye" title="Preview"></button>
+			<button class="icon-export" title="Export"></button>
+		</div>
+		<div class="menu-modeswitch">
+			<button class="icon-flow-tree"></button>
+			<button class="icon-mobile current"></button>
+		</div>
+	</nav>
 
-    <!-- 布局主体 -->
-    <div class="layout-main">
+	<!-- 布局主体 -->
+	<div class="layout-main">
 
-        <!-- 左栏：场景列表 -->
-        <div class="layout-scenes">
-            <span class="scenes-title" ng-bind="package.name"></span>
-            <ul class="scenes-list">
-                <li class="scene-item" ng-repeat="scene in package.scenes"
-                    ng-class="{'item-current': scene.order == editStat.selectedScene}"
-                    ng-click="selectScene(scene)">
-                    <img class="scene-thumb" ng-src="{{scene.background}}"/>
-                    <input type="text" value="{{scene.name}}"/>
-                </li>
-            </ul>
-        </div>
+		<!-- 左栏：场景列表 -->
+		<div class="layout-scenes">
+			<div class="scenes-title" ng-bind="package.name"></div>
+			<ul class="scenes-list">
+				<li class="scene-item" ng-repeat="scene in package.scenes"
+					ng-class="{'item-current': scene.order == editStat.selectedScene}"
+					ng-click="selectScene(scene)">
+					<img class="scene-thumb" ng-src="{{scene.background}}"/>
+					<input type="text" value="{{scene.name}}"/>
+				</li>
+			</ul>
+			<div class="scenes-edit">
+				<button>+</button>
+				<button>-</button>
+			</div>
+		</div>
 
-        <!-- 中栏：场景详情修改区 -->
-        <div class="layout-stage">
-            <div class="scene">
-                <div class="actor hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements" style="position:absolute; left:{{ele.posX}}px; top:{{ele.posY}}px; width:{{ele.width}}px; height:{{ele.height}}px;">
-                    <div class="anchor">
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                        <i></i>
-                    </div>
-                    <div class="scene-goto">
-                        <div class="scene-goto-thumb"><img src="images/zzz-scene-thumb.png" width="40"/><br/>Scene 2</div>
-                        <div class="scene-goto-line" style="width:264px;"></div>
-                        <div class="scene-goto-animation">
-                            <dl>
-                                <dt>JUMP TO</dt>
-                                <dd>
-                                    <!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
-                                    <select>
-                                        <option>Scene 1</option>
-                                        <option selected="selected">Scene 2</option>
-                                        <option>Scene 3</option>
-                                    </select>
-                                </dd>
-                                <dt>TRANSITION</dt>
-                                <dd class="goto-transition">
-                                    <div class="transition-name">
-                                        <label><input type="radio" name="transition-name" /><i class="icon-block"></i></label>
-                                        <label><input type="radio" name="transition-name" checked="checked" /><i>Push</i></label>
-                                        <label><input type="radio" name="transition-name" /><i>Cover</i></label>
-                                    </div>
-                                    <div class="transition-direction">
-                                        <label><input type="radio" name="transition-direction" value="up" /><i class="icon-up-bold"></i></label>
-                                        <label><input type="radio" name="transition-direction" value="right" /><i class="icon-right-bold"></i></label>
-                                        <label><input type="radio" name="transition-direction" value="down" /><i class="icon-down-bold"></i></label>
-                                        <label><input type="radio" name="transition-direction" value="left" checked="checked" /><i class="icon-left-bold"></i></label>
-                                    </div>
-                                    <div class="transtion-time">
-                                        <input type="text" value="0s" readonly="true"/> delay<br/>
-                                        <input type="text" value="0.25s" readonly="true"/> duration
-                                    </div>
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<!-- 中栏：场景详情修改区 -->
+		<div class="layout-stage">
+			<div class="scene">
+				<div class="actor hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements" style="position:absolute; left:{{ele.posX}}px; top:{{ele.posY}}px; width:{{ele.width}}px; height:{{ele.height}}px;">
+					<div class="anchor">
+						<i></i>
+						<i></i>
+						<i></i>
+						<i></i>
+					</div>
+					<div class="scene-goto">
+						<div class="scene-goto-thumb"><img src="images/zzz-scene-thumb.png" width="40"/><br/>Scene 2</div>
+						<div class="scene-goto-line" style="width:264px;"></div>
+						<div class="scene-goto-animation">
+							<dl>
+								<dt>JUMP TO</dt>
+								<dd>
+									<!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
+									<select>
+										<option>Scene 1</option>
+										<option selected="selected">Scene 2</option>
+										<option>Scene 3</option>
+									</select>
+								</dd>
+								<dt>TRANSITION</dt>
+								<dd class="goto-transition">
+									<div class="transition-name">
+										<label><input type="radio" name="transition-name" /><i class="icon-block"></i></label>
+										<label><input type="radio" name="transition-name" checked="checked" /><i>Push</i></label>
+										<label><input type="radio" name="transition-name" /><i>Cover</i></label>
+									</div>
+									<div class="transition-direction">
+										<label><input type="radio" name="transition-direction" value="up" /><i class="icon-up-bold"></i></label>
+										<label><input type="radio" name="transition-direction" value="right" /><i class="icon-right-bold"></i></label>
+										<label><input type="radio" name="transition-direction" value="down" /><i class="icon-down-bold"></i></label>
+										<label><input type="radio" name="transition-direction" value="left" checked="checked" /><i class="icon-left-bold"></i></label>
+									</div>
+									<div class="transtion-time">
+										<input type="text" value="0s" readonly="true"/> delay<br/>
+										<input type="text" value="0.25s" readonly="true"/> duration
+									</div>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- 右栏：场景修改工具区 -->
-        <div class="layout-tools">
-            <!-- tools: position -->
-            <div class="tools-box">
-                <div class="tools-title">Position</div>
-                <ul class="tools-position">
-                    <li><label>X</label><input type="text" value="0" /></li>
-                    <li><label>Y</label><input type="text" value="428" /></li>
-                    <li><label>W</label><input type="text" value="320" /></li>
-                    <li><label>H</label><input type="text" value="50" /></li>
-                </ul>
-            </div>
-            <!-- tools: background -->
-            <div class="tools-box">
-                <div class="tools-title">Background</div>
-                <div class="tools-background">
-                    <img src="images/zzz-scene-thumb.png" alt="" width="174" class="tools-bg-thumb" />
-                    <button>Add</button>
-                    <button>Remove</button>
-                </div>
-            </div>
-            <!-- tools: actor -->
-            <div class="tools-box">
-                <div class="tools-title">Actors</div>
-                <ul class="tools-actor">
-                    <li><button class="icon-plus-circled">New Button Actor</button></li>
-                    <li><button class="icon-plus-circled">New Text Actor</button></li>
-                    <li><button class="icon-plus-circled">New Hotspot Actor</button></li>
-                </ul>
-            </div>
-            <!-- tools: action -->
-            <div class="tools-box">
-                <div class="tools-title">
-                    <button class="tools-title-action icon-plus-circled"></button>
-                    Actions
-                </div>
-                <ul class="tools-action">
-                    <li>Go To: Scene 2</li>
-                </ul>
-            </div>
-            <!-- tools: setting -->
-            <div class="tools-box">
-                <div class="tools-title">Settings</div>
-                <ul class="tools-setting">
-                    <li><label>Name:</label><input type="text" value="Demo 1" /></li>
-                    <li><label>Icon:</label><img src="images/icon-app-120.png" width="60" /></li>
-                </ul>
-            </div>
-        </div>
+		<!-- 右栏：场景修改工具区 -->
+		<div class="layout-tools">
+			<!-- tools: position -->
+			<div class="tools-box">
+				<div class="tools-title">Position</div>
+				<ul class="tools-position">
+					<li><label>X</label><input type="text" value="0" /></li>
+					<li><label>Y</label><input type="text" value="428" /></li>
+					<li><label>W</label><input type="text" value="320" /></li>
+					<li><label>H</label><input type="text" value="50" /></li>
+				</ul>
+			</div>
+			<!-- tools: background -->
+			<div class="tools-box">
+				<div class="tools-title">Background</div>
+				<div class="tools-background">
+					<img src="images/zzz-scene-thumb.png" alt="" width="174" class="tools-bg-thumb" />
+					<button>Add</button>
+					<button>Remove</button>
+				</div>
+			</div>
+			<!-- tools: actor -->
+			<div class="tools-box">
+				<div class="tools-title">Actors</div>
+				<ul class="tools-actor">
+					<li><button class="icon-plus-circled">New Button Actor</button></li>
+					<li><button class="icon-plus-circled">New Text Actor</button></li>
+					<li><button class="icon-plus-circled">New Hotspot Actor</button></li>
+				</ul>
+			</div>
+			<!-- tools: action -->
+			<div class="tools-box">
+				<div class="tools-title">
+					<button class="tools-title-action icon-plus-circled"></button>
+					Actions
+				</div>
+				<ul class="tools-action">
+					<li>Go To: Scene 2</li>
+				</ul>
+			</div>
+			<!-- tools: setting -->
+			<div class="tools-box">
+				<div class="tools-title">Settings</div>
+				<ul class="tools-setting">
+					<li><label>Name:</label><input type="text" value="Demo 1" /></li>
+					<li><label>Icon:</label><img src="images/icon-app-120.png" width="60" /></li>
+				</ul>
+			</div>
+		</div>
 
-    </div>
+	</div>
 </script>
 
 <!-- ng-template: package-list.html -->
 <script type="text/ng-template" id="package-list.html">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">ToHELL</a>
-        </div>
-    </nav>
-    <div class="layout-main">
-        <div class="project-box">
-            <div class="p-top">
-                <a href="#" class="add-btn"><i>+</i>New</a>
-                <h1 class="p-title">project</h1>
-            </div>
-            <div class="p-activity">
-                <div class="event-item">
-                    <div class="change-btn">
-                        <a href="#">change</a>
-                        <a href="#">delete</a>
-                    </div>
-                    <img src="" width="27" height="27">
-                    <div class="event-info">
-                        <span class="author-name"><a href="#/package">jade</a></span>
-                        <span class="pull-time">2013-10-24</span>
-                    </div>
-                </div>
-                <div class="event-item">
-                    <div class="change-btn">
-                        <a href="#">change</a>
-                        <a href="#">delete</a>
-                    </div>
-                    <img src="" width="27" height="27">
-                    <div class="event-info">
-                        <span class="author-name"><a href="#/package">jade</a></span>
-                        <span class="pull-time">2013-10-24</span>
-                    </div>
-                    <ul class="event-body">
-                        <li class="commit">
-                            <img src="" width="22" height="22">
-                            <div class="commit-info">
-                                <p>guo lei - changes some cod</p>
-                                <p>2013-10-24</p>
-                            </div>
-                        </li>
-                        <li class="commit">
-                            <img src="" width="22" height="22">
-                            <div class="commit-info">
-                                <p>guo lei - changes some cod</p>
-                                <p>2013-10-24</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">ToHELL</a>
+		</div>
+	</nav>
+	<div class="layout-main">
+		<div class="project-box">
+			<div class="p-top">
+				<a href="#" class="add-btn"><i>+</i>New</a>
+				<h1 class="p-title">project</h1>
+			</div>
+			<div class="p-activity">
+				<div class="event-item">
+					<div class="change-btn">
+						<a href="#">change</a>
+						<a href="#">delete</a>
+					</div>
+					<img src="" width="27" height="27">
+					<div class="event-info">
+						<span class="author-name"><a href="#/package">jade</a></span>
+						<span class="pull-time">2013-10-24</span>
+					</div>
+				</div>
+				<div class="event-item">
+					<div class="change-btn">
+						<a href="#">change</a>
+						<a href="#">delete</a>
+					</div>
+					<img src="" width="27" height="27">
+					<div class="event-info">
+						<span class="author-name"><a href="#/package">jade</a></span>
+						<span class="pull-time">2013-10-24</span>
+					</div>
+					<ul class="event-body">
+						<li class="commit">
+							<img src="" width="22" height="22">
+							<div class="commit-info">
+								<p>guo lei - changes some cod</p>
+								<p>2013-10-24</p>
+							</div>
+						</li>
+						<li class="commit">
+							<img src="" width="22" height="22">
+							<div class="commit-info">
+								<p>guo lei - changes some cod</p>
+								<p>2013-10-24</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </script>
 
 <!-- build:js scripts/vendor.js -->
