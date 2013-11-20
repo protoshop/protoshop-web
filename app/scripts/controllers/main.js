@@ -57,6 +57,22 @@ angular.module('toHELL')
     $scope.selectScene = function (scene) {
       $scope.editStat.selectedScene = scene.order;
     };
+
+    $scope.newAction = function() {
+      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
+        if ($scope.package.scenes[i].order == $scope.editStat.selectedScene) {
+          $scope.package.scenes[i].elements.push({
+              type: 'hotspot',
+              posX: 100,
+              posY: 300,
+              width: 120,
+              height: 42,
+              actions: []
+          });
+          break;
+        }
+      };
+    }
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
     $scope.packageList = [
