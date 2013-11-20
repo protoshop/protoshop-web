@@ -4,7 +4,7 @@ angular.module('toHELL')
   .controller('PackageCTRL', ['$scope', function ($scope) {
     $scope.editStat = {
       selectedScene: 0,
-      selectedElement: null
+      selectedElement: 0
     };
     $scope.package = {
       appName: 'Demo HELL1',
@@ -29,7 +29,7 @@ angular.module('toHELL')
               actions: [
                 {
                   type: 'jumpto',
-                  target: 'scene 2',
+                  target: 'Scene 2',
                   transitionType: 'push',
                   transitionDirection: 'up',
                   transitionDelay: 0,
@@ -81,6 +81,7 @@ angular.module('toHELL')
     };
 
     $scope.renderActionItem = function(action) {
+      console.log('action to render: ', action);
       var action_text = '';
       switch (action.type) {
         case 'jumpto':
@@ -91,6 +92,17 @@ angular.module('toHELL')
       }
       action_text += action.target;
       return action_text;
+    };
+
+    // 简化模板中的复杂寻值
+    $scope.currentElement = function() {
+      var elements = $scope.package.scenes[$scope.editStat.selectedScene]
+        .elements;
+      if (elements.length) {
+        return elements[$scope.editStat.selectedElement];
+      } else {
+        return {};
+      }
     };
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {

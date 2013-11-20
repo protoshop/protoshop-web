@@ -64,10 +64,7 @@
 								<dt>JUMP TO</dt>
 								<dd>
 									<!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
-									<select>
-										<option>Scene 1</option>
-										<option selected="selected">Scene 2</option>
-										<option>Scene 3</option>
+									<select ng-model="currentElement().actions[0].target" ng-options="s.name as s.name for s in package.scenes">
 									</select>
 								</dd>
 								<dt>TRANSITION</dt>
@@ -131,8 +128,8 @@
 					<button class="tools-title-action icon-plus-circled"></button>
 					Actions
 				</div>
-				<ul class="tools-action" ng-repeat="action in package.scenes[editStat.selectedScene].elements[editStat.selectedElement].actions">
-					<li ng-bind="renderActionItem(action)"></li>
+				<ul class="tools-action">
+					<li ng-repeat="action in currentElement().actions" ng-bind="renderActionItem(action)"></li>
 				</ul>
 			</div>
 			<!-- tools: setting -->
