@@ -33,8 +33,8 @@ angular.module('toHELL')
                   target: 'Scene 2',
                   transitionType: 'push',
                   transitionDirection: 'up',
-                  transitionDelay: 0,
-                  transitionDuration: 3.25
+                  transitionDelay: '0s',
+                  transitionDuration: '3.25s'
                 }
               ]
             }
