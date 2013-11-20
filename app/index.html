@@ -64,7 +64,7 @@
 								<dt>JUMP TO</dt>
 								<dd>
 									<!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
-									<select ng-model="currentElement().actions[0].target" ng-options="s.name as s.name for s in package.scenes">
+									<select ng-model="editStat.selectedElementObj.actions[0].target" ng-options="s.name as s.name for s in package.scenes">
 									</select>
 								</dd>
 								<dt>TRANSITION</dt>
@@ -95,13 +95,13 @@
 		<!-- 右栏：场景修改工具区 -->
 		<div class="layout-tools">
 			<!-- tools: position -->
-			<div class="tools-box">
+			<div class="tools-box" ng-show="editStat.selectedElement != null">
 				<div class="tools-title">Position</div>
 				<ul class="tools-position">
-					<li><label>X</label><input type="text" value="0" /></li>
-					<li><label>Y</label><input type="text" value="428" /></li>
-					<li><label>W</label><input type="text" value="320" /></li>
-					<li><label>H</label><input type="text" value="50" /></li>
+					<li><label>X</label><input type="text" ng-value="editStat.selectedElementObj.posX" /></li>
+					<li><label>Y</label><input type="text" ng-value="editStat.selectedElementObj.posY" /></li>
+					<li><label>W</label><input type="text" ng-value="editStat.selectedElementObj.width" /></li>
+					<li><label>H</label><input type="text" ng-value="editStat.selectedElementObj.height" /></li>
 				</ul>
 			</div>
 			<!-- tools: background -->
@@ -123,13 +123,13 @@
 				</ul>
 			</div>
 			<!-- tools: action -->
-			<div class="tools-box">
+			<div class="tools-box" ng-show="editStat.selectedElement != null">
 				<div class="tools-title">
 					<button class="tools-title-action icon-plus-circled"></button>
 					Actions
 				</div>
 				<ul class="tools-action">
-					<li ng-repeat="action in currentElement().actions" ng-bind="renderActionItem(action)"></li>
+					<li ng-repeat="action in editStat.selectedElementObj.actions" ng-bind="renderActionItem(action)"></li>
 				</ul>
 			</div>
 			<!-- tools: setting -->

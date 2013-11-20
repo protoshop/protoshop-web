@@ -4,7 +4,8 @@ angular.module('toHELL')
   .controller('PackageCTRL', ['$scope', function ($scope) {
     $scope.editStat = {
       selectedScene: 0,
-      selectedElement: 0
+      selectedElement: null,
+      selectedElementObj: null
     };
     $scope.package = {
       appName: 'Demo HELL1',
@@ -55,10 +56,15 @@ angular.module('toHELL')
     };
 
     $scope.selectScene = function (scene) {
+      console.log('selectScene');
       $scope.editStat.selectedScene = scene.order;
       // 自动选择该场景的第一个element
       if (scene.elements.length) {
         $scope.editStat.selectedElement = 0;
+        $scope.editStat.selectedElementObj = currentElementObj();
+      } else {
+        $scope.editStat.selectedElement = null;
+        $scope.editStat.selectedElementObj = null;
       }
       
     };
@@ -81,29 +87,30 @@ angular.module('toHELL')
     };
 
     $scope.renderActionItem = function(action) {
-      console.log('action to render: ', action);
       var action_text = '';
       switch (action.type) {
         case 'jumpto':
-          action_text += 'Go To:';
+          action_text += 'Go To: ';
           break;
         default:
-          action_text += 'Unknown Action:';
+          action_text += 'Unknown Action: ';
       }
       action_text += action.target;
       return action_text;
     };
 
     // 简化模板中的复杂寻值
-    $scope.currentElement = function() {
-      var elements = $scope.package.scenes[$scope.editStat.selectedScene]
-        .elements;
+    function currentElementObj() {
+      var elements = $scope.package.scenes[$scope.editStat.selectedScene].elements;
       if (elements.length) {
         return elements[$scope.editStat.selectedElement];
       } else {
-        return {};
+        return null;
       }
     };
+
+    $scope.selectScene($scope.package.scenes[0]);
+
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
     $scope.packageList = [
