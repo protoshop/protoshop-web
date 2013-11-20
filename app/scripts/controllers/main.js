@@ -69,7 +69,7 @@ angular.module('toHELL')
       
     };
 
-    $scope.addAction = function() {
+    $scope.addHotspotAction = function() {
       for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
         if ($scope.package.scenes[i].order == $scope.editStat.selectedScene) {
           $scope.package.scenes[i].elements.push({
