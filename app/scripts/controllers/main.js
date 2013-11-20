@@ -34,7 +34,7 @@ angular.module('toHELL')
                   transitionType: 'push',
                   transitionDirection: 'up',
                   transitionDelay: 0,
-                  transitionDuration: 0.25
+                  transitionDuration: 3.25
                 }
               ]
             }
@@ -81,6 +81,8 @@ angular.module('toHELL')
               height: 42,
               actions: []
           });
+          $scope.editStat.selectedElement = $scope.package.scenes[i].elements.length-1;
+          $scope.editStat.selectedElementObj = currentElementObj();
           break;
         }
       };

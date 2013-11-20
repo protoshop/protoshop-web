@@ -70,19 +70,19 @@
 								<dt>TRANSITION</dt>
 								<dd class="goto-transition">
 									<div class="transition-name">
-										<label><input type="radio" name="transition-name" /><i class="icon-block"></i></label>
-										<label><input type="radio" name="transition-name" checked="checked" /><i>Push</i></label>
-										<label><input type="radio" name="transition-name" /><i>Cover</i></label>
+										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionType" name="transition-name" value="none"/><i class="icon-block"></i></label>
+										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionType" name="transition-name" value="push" checked="checked" /><i>Push</i></label>
+										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionType" name="transition-name" value="cover"/><i>Cover</i></label>
 									</div>
 									<div class="transition-direction">
-										<label><input type="radio" name="transition-direction" value="up" /><i class="icon-up-bold"></i></label>
-										<label><input type="radio" name="transition-direction" value="right" /><i class="icon-right-bold"></i></label>
-										<label><input type="radio" name="transition-direction" value="down" /><i class="icon-down-bold"></i></label>
-										<label><input type="radio" name="transition-direction" value="left" checked="checked" /><i class="icon-left-bold"></i></label>
+										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionDirection" name="transition-direction" value="up" /><i class="icon-up-bold"></i></label>
+										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionDirection" name="transition-direction" value="right" /><i class="icon-right-bold"></i></label>
+										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionDirection" name="transition-direction" value="down" /><i class="icon-down-bold"></i></label>
+										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionDirection" name="transition-direction" value="left" checked="checked" /><i class="icon-left-bold"></i></label>
 									</div>
 									<div class="transtion-time">
-										<input type="text" value="0s" readonly="true"/> delay<br/>
-										<input type="text" value="0.25s" readonly="true"/> duration
+										<input type="text" ng-model="editStat.selectedElementObj.actions[0].transitionDelay"/> delay<br/>
+										<input type="text" ng-model="editStat.selectedElementObj.actions[0].transitionDuration"/> duration
 									</div>
 								</dd>
 							</dl>
