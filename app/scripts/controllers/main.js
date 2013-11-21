@@ -17,6 +17,7 @@ angular.module('toHELL')
       },
       scenes: [
         {
+          id: 0,
           order: 0,
           name: 'Scene 1',
           background: 'images/zzz-scene-thumb.png',
@@ -30,7 +31,7 @@ angular.module('toHELL')
               actions: [
                 {
                   type: 'jumpto',
-                  target: 'Scene 2',
+                  target: 1,
                   transitionType: 'push',
                   transitionDirection: 'up',
                   transitionDelay: '0s',
@@ -41,12 +42,14 @@ angular.module('toHELL')
           ]
         },
         {
+          id: 1,
           order: 1,
           name: 'Scene 2',
           background: 'images/zzz-scene-thumb.png',
           elements: []
         },
         {
+          id: 2,
           order: 2,
           name: 'Scene 3',
           background: '',
@@ -69,7 +72,7 @@ angular.module('toHELL')
       
     };
 
-    $scope.addHotspotAction = function() {
+    $scope.addHotspotAction = function () {
       for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
         if ($scope.package.scenes[i].order == $scope.editStat.selectedScene) {
           $scope.package.scenes[i].elements.push({
@@ -88,7 +91,16 @@ angular.module('toHELL')
       };
     };
 
-    $scope.renderActionItem = function(action) {
+    $scope.findSceneById = function (sid) {
+      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
+        if ($scope.package.scenes[i].id == sid) {
+          return $scope.package.scenes[i];
+        }
+      };
+      return null;
+    };
+
+    $scope.renderActionItem = function (action) {
       var action_text = '';
       switch (action.type) {
         case 'jumpto':
@@ -97,7 +109,15 @@ angular.module('toHELL')
         default:
           action_text += 'Unknown Action: ';
       }
-      action_text += action.target;
+
+      var scene = $scope.findSceneById(action.target);
+
+      if(scene) {
+        action_text += scene.name;
+      } else {
+        action_text += '???';
+      }
+      
       return action_text;
     };
 
