@@ -187,17 +187,15 @@ angular.module('toHELL')
     };
 
     $scope.renderHotspotStyle = function (element) {
-      console.log(element);
       return {
         left: element.posX,
         top: element.posY,
         width: element.width,
-        height: element.height,
-        position: 'absolute'
+        height: element.height
       };
     };
 
-    $scope.isTransitionDirectionDisabled = function(action) {
+    $scope.isTransDirDisabled = function(action) {
       return action.transitionType == 'none';
     };
 
