@@ -91,6 +91,25 @@ angular.module('toHELL')
       // FIXME: 目前考虑自动选中第一个action，时机成熟时移除
       this.selectAction(0);
     };
+
+    /**
+     * 增加一个hotspot元素
+     * @func addHotspotElement
+     */
+    $scope.addHotspotElement = function () {
+      var scene = this.findSceneById(this.editStat.selectedScene);
+      scene.elements.push({
+          // 默认参数
+          type: 'hotspot',
+          posX: '100px',
+          posY: '300px',
+          width: '120px',
+          height: '42px',
+          actions: []
+      });
+      this.selectElement(scene.elements.length-1);
+    };
+
     /**
      * 选中一个动作
      * @func selectAction
@@ -104,31 +123,30 @@ angular.module('toHELL')
         return;
       }
 
-      a_.selectedActionObj = b_.actions.length > action_index ? 
-                                b_.actions[action_index] : null;
-      a_.selectedAction = action_index;
+      if (b_.actions.length > action_index) {
+        a_.selectedActionObj = b_.actions[action_index];
+        a_.selectedAction = action_index;
+      } else {
+        a_.selectedActionObj = null;
+        a_.selectedAction = null;
+      }
     };
 
     /**
-     * 增加一个hotspot动作
-     * @func addHotspotAction
+     * 增加一个动作。该动作会直接增加在当前元素中。
+     * @func addAction
      */
-    $scope.addHotspotAction = function () {
-      for (var i = this.package.scenes.length - 1; i >= 0; i--) {
-        if (this.package.scenes[i].id == this.editStat.selectedScene) {
-          this.package.scenes[i].elements.push({
-              type: 'hotspot',
-              // 默认参数
-              posX: '100px',
-              posY: '300px',
-              width: '120px',
-              height: '42px',
-              actions: []
-          });
-          this.selectElement(this.package.scenes[i].elements.length-1);
-          break;
-        }
-      };
+    $scope.addAction = function () {
+      var element = this.editStat.selectedElementObj;
+      element.actions.push({
+        type: 'jumpto',
+        target: null,
+        transitionType: 'push',
+        transitionDirection: 'up',
+        transitionDelay: '0s',
+        transitionDuration: '3.25s'
+      });
+      this.selectAction(element.actions.length-1);
     };
 
     /**
@@ -214,6 +232,21 @@ angular.module('toHELL')
         height: element.height
       };
     };
+
+    /**
+    * 返回一个场景的背景图。如果没有设置背景图则返回一张空白图。
+    * @func renderSceneThumbById
+    * @param {number} sid - 场景的id
+    * @return {string} 背景图的路径。
+    */
+    $scope.renderSceneThumbById = function (sid) {
+      var scene = this.findSceneById(sid);
+      if(scene && scene.background.length) {
+        return scene.background;
+      } else {
+        return 'images/dummy-scene-thumb.png';
+      }
+    }
 
     /**
     * 测试Transition方向是否已禁用
