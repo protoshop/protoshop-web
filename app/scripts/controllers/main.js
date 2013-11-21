@@ -82,7 +82,8 @@ angular.module('toHELL')
     /**
      * 选中一个元素
      * @func selectElement
-     * @todo
+     * @param {number} element_index 该元素的索引值
+     * @todo 目前考虑自动选中第一个action，时机成熟时移除
      */
     $scope.selectElement = function (element_index) {
       this.editStat.selectedElement = element_index;
@@ -93,7 +94,7 @@ angular.module('toHELL')
     /**
      * 选中一个动作
      * @func selectAction
-     * @todo
+     * @param {number} action_index 该动作的索引值
      */
     $scope.selectAction = function (action_index) {
       var a_ = this.editStat;
@@ -130,6 +131,11 @@ angular.module('toHELL')
       };
     };
 
+    /**
+     * 编辑区空白区域点击时调用此函数，用以清除已选元素、动作
+     * @func onBackgroundClick
+     * @private
+     */
     $scope.onBackgroundClick = function () {
       this.selectElement(null);
     };
@@ -194,6 +200,12 @@ angular.module('toHELL')
       return action_text;
     };
 
+    /**
+    * 返回一个元素的坐标样式信息
+    * @func renderHotspotStyle
+    * @param {Element} element - 要处理的元素
+    * @return {Object} 样式信息，需包含left、top、width、height
+    */
     $scope.renderHotspotStyle = function (element) {
       return {
         left: element.posX,
@@ -203,10 +215,22 @@ angular.module('toHELL')
       };
     };
 
+    /**
+    * 测试Transition方向是否已禁用
+    * @func isTransDirDisabled
+    * @param {Action} action - 要测试的Action
+    * @return {bool}
+    */
     $scope.isTransDirDisabled = function(action) {
       return action ? (action.transitionType == 'none') : false;
     };
 
+    /**
+    * transition的方式发生变化时调用此函数
+    * @func onTransitionTypeChanged
+    * @param {Action} action - 发生变化的的Action
+    * @todo 目前没有transition从无到有的默认值，同时也就意味着没有“记忆”能力
+    */
     $scope.onTransitionTypeChanged = function(action) {
       if (action.transitionType == 'none') {
         action.transitionDirection = 'none';
