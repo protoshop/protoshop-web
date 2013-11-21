@@ -197,6 +197,10 @@ angular.module('toHELL')
       };
     };
 
+    $scope.isTransitionDirectionDisabled = function(action) {
+      return action.transitionType == 'none';
+    }
+
     // 简化模板中的复杂寻值
     /**
     * 返回当前选中的元素
