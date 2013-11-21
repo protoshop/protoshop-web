@@ -14,3 +14,9 @@
 在 webapp 目录下执行命令 `npm install` —— 安装 node 模组
 在 webapp 目录下执行命令 `bower install` —— 安装 bower 依赖
 在 webapp 目录下执行命令 `grunt server` —— 启动本地服务器
+
+## 开发规范
+
+
+- 提交代码注释以『WA』开头（以区分项目中的其他子工程），三种分类：『WA样式』、『WA功能』、『WA代码』。所有既非样式调整，又非功能增减的修改都归类为代码整理，即『WA代码』
+- HTML、CSS代码使用tab作为缩进符，JavaScript代码使用2个空格作为缩进符
