@@ -2,6 +2,10 @@
 
 angular.module('toHELL')
   .controller('PackageCTRL', ['$scope', function ($scope) {
+    /**
+     * 存储当前的编辑状态
+     * @var {Object}
+     */
     $scope.editStat = {
       selectedScene: 0, // NOTE: 这里是scene的id，不能直接作为索引使用
       selectedElement: null,
@@ -9,6 +13,10 @@ angular.module('toHELL')
       selectedAction: null,
       selectedActionObj: null
     };
+    /**
+     * 存储整个工程的实时状态
+     * @var {Object}
+     */
     $scope.package = {
       appName: 'Demo HELL1',
       appIcon: 'images/icon-app-120.png',
@@ -25,11 +33,11 @@ angular.module('toHELL')
           background: 'images/zzz-scene-thumb.png',
           elements: [
             {
-              type: 'button',
-              posX: 100,
-              posY: 300,
-              width: 120,
-              height: 42,
+              type: 'hotspot',
+              posX: '100px',
+              posY: '300px',
+              width: '120px',
+              height: '42px',
               actions: [
                 {
                   type: 'jumpto',
@@ -60,8 +68,12 @@ angular.module('toHELL')
       ]
     };
 
+    /**
+     * 选中一个场景
+     * @func selectScene
+     * @param {Scene} scene - 被选中的场景
+     */
     $scope.selectScene = function (scene) {
-      console.log('selectScene');
       $scope.editStat.selectedScene = scene.id;
       // 自动选择该场景的第一个element
       if (scene.elements.length) {
@@ -74,24 +86,37 @@ angular.module('toHELL')
       
     };
 
+    /**
+     * 选中一个元素
+     * @func selectElement
+     * @todo
+     */
     $scope.selectElement = function (element) {
       // TODO
     };
-
+    /**
+     * 选中一个动作
+     * @func selectAction
+     * @todo
+     */
     $scope.selectAction = function (action) {
       // TODO
     };
 
+    /**
+     * 增加一个hotspot动作
+     * @func addHotspotAction
+     */
     $scope.addHotspotAction = function () {
       for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
         if ($scope.package.scenes[i].id == $scope.editStat.selectedScene) {
           $scope.package.scenes[i].elements.push({
               type: 'hotspot',
               // 默认参数
-              posX: 100,
-              posY: 300,
-              width: 120,
-              height: 42,
+              posX: '100px',
+              posY: '300px',
+              width: '120px',
+              height: '42px',
               actions: []
           });
           $scope.editStat.selectedElement = $scope.package.scenes[i].elements.length-1;
@@ -101,24 +126,45 @@ angular.module('toHELL')
       };
     };
 
-    $scope.findSceneById = function (sid) {
-      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
-        if ($scope.package.scenes[i].id == sid) {
-          return $scope.package.scenes[i];
+    /**
+     * 搜索符合条件的场景
+     * @private
+     * @func findScene
+     * @param {string} key - 要搜索的键
+     * @param {string|number} value - 要搜索的值
+     * @return {number|null} 如果找到则返回该场景的id，否则返回null
+     */
+    function findScene(key, value) {
+      for (var i = this.scenes.length - 1; i >= 0; i--) {
+        if (this.scenes[i][key] == value) {
+          return this.scenes[i];
         }
       };
       return null;
-    };
+    }
 
-    $scope.findSceneByOrder = function (order) {
-      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
-        if ($scope.package.scenes[i].order == order) {
-          return $scope.package.scenes[i];
-        }
-      };
-      return null;
-    };
+    // 快捷方法
+    /**
+     * 搜索特定id的场景
+     * @func findSceneById
+     * @param {number} id - 要搜索的id
+     * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
+     */
+     /**
+     * 搜索特定order的场景
+     * @func findSceneByOrder
+     * @param {number} order - 要搜索的order
+     * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
+     */
+    $scope.findSceneById = findScene.bind($scope.package, 'id');
+    $scope.findSceneByOrder = findScene.bind($scope.package, 'order');
 
+    /**
+    * 将一条Action渲染为文本信息
+    * @func renderActionItem
+    * @param {Action} action - 要渲染的action
+    * @return {string} 文本信息
+    */
     $scope.renderActionItem = function (action) {
       var action_text = '';
       switch (action.type) {
@@ -140,7 +186,36 @@ angular.module('toHELL')
       return action_text;
     };
 
+    $scope.renderHotspotStyle = function (element) {
+      console.log(element);
+      return {
+        left: element.posX,
+        top: element.posY,
+        width: element.width,
+        height: element.height,
+        position: 'absolute'
+      };
+    };
+
+    $scope.isTransitionDirectionDisabled = function(action) {
+      return action.transitionType == 'none';
+    };
+
+    $scope.onTransitionTypeChanged = function(action) {
+      if (action.transitionType == 'none') {
+        action.transitionDirection = 'none';
+      } else {
+        // TODO: 目前没有默认值，同时也就意味着没有“记忆”能力
+      }
+    };
+
     // 简化模板中的复杂寻值
+    /**
+    * 返回当前选中的元素
+    * @private
+    * @func currentElementObj
+    * @return {Element|null} 如果存在被选中的，则返回该元素，否则返回null
+    */
     function currentElementObj() {
       var scene = $scope.findSceneById($scope.editStat.selectedScene);
       if (!scene) {
