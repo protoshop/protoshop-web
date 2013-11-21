@@ -3,9 +3,11 @@
 angular.module('toHELL')
   .controller('PackageCTRL', ['$scope', function ($scope) {
     $scope.editStat = {
-      selectedScene: 0,
+      selectedScene: 0, // NOTE: 这里是scene的id，不能直接作为索引使用
       selectedElement: null,
-      selectedElementObj: null
+      selectedElementObj: null,
+      selectedAction: null,
+      selectedActionObj: null
     };
     $scope.package = {
       appName: 'Demo HELL1',
@@ -17,6 +19,7 @@ angular.module('toHELL')
       },
       scenes: [
         {
+          id: 0,
           order: 0,
           name: 'Scene 1',
           background: 'images/zzz-scene-thumb.png',
@@ -30,23 +33,25 @@ angular.module('toHELL')
               actions: [
                 {
                   type: 'jumpto',
-                  target: 'Scene 2',
+                  target: 1,
                   transitionType: 'push',
                   transitionDirection: 'up',
-                  transitionDelay: 0,
-                  transitionDuration: 3.25
+                  transitionDelay: '0s',
+                  transitionDuration: '3.25s'
                 }
               ]
             }
           ]
         },
         {
+          id: 1,
           order: 1,
           name: 'Scene 2',
           background: 'images/zzz-scene-thumb.png',
           elements: []
         },
         {
+          id: 2,
           order: 2,
           name: 'Scene 3',
           background: '',
@@ -57,7 +62,7 @@ angular.module('toHELL')
 
     $scope.selectScene = function (scene) {
       console.log('selectScene');
-      $scope.editStat.selectedScene = scene.order;
+      $scope.editStat.selectedScene = scene.id;
       // 自动选择该场景的第一个element
       if (scene.elements.length) {
         $scope.editStat.selectedElement = 0;
@@ -69,9 +74,17 @@ angular.module('toHELL')
       
     };
 
-    $scope.addHotspotAction = function() {
+    $scope.selectElement = function (element) {
+      // TODO
+    };
+
+    $scope.selectAction = function (action) {
+      // TODO
+    };
+
+    $scope.addHotspotAction = function () {
       for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
-        if ($scope.package.scenes[i].order == $scope.editStat.selectedScene) {
+        if ($scope.package.scenes[i].id == $scope.editStat.selectedScene) {
           $scope.package.scenes[i].elements.push({
               type: 'hotspot',
               // 默认参数
@@ -88,7 +101,25 @@ angular.module('toHELL')
       };
     };
 
-    $scope.renderActionItem = function(action) {
+    $scope.findSceneById = function (sid) {
+      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
+        if ($scope.package.scenes[i].id == sid) {
+          return $scope.package.scenes[i];
+        }
+      };
+      return null;
+    };
+
+    $scope.findSceneByOrder = function (order) {
+      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
+        if ($scope.package.scenes[i].order == order) {
+          return $scope.package.scenes[i];
+        }
+      };
+      return null;
+    };
+
+    $scope.renderActionItem = function (action) {
       var action_text = '';
       switch (action.type) {
         case 'jumpto':
@@ -97,13 +128,25 @@ angular.module('toHELL')
         default:
           action_text += 'Unknown Action: ';
       }
-      action_text += action.target;
+
+      var scene = $scope.findSceneById(action.target);
+
+      if(scene) {
+        action_text += scene.name;
+      } else {
+        action_text += '???';
+      }
+      
       return action_text;
     };
 
     // 简化模板中的复杂寻值
     function currentElementObj() {
-      var elements = $scope.package.scenes[$scope.editStat.selectedScene].elements;
+      var scene = $scope.findSceneById($scope.editStat.selectedScene);
+      if (!scene) {
+        return null;
+      }
+      var elements = scene.elements;
       if (elements.length) {
         return elements[$scope.editStat.selectedElement];
       } else {
@@ -111,7 +154,8 @@ angular.module('toHELL')
       }
     };
 
-    $scope.selectScene($scope.package.scenes[0]);
+    // TODO: 如果初始态不选中任何场景，则这里应该去掉
+    $scope.selectScene($scope.package.scenes[0]); 
 
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {

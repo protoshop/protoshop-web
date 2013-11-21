@@ -38,10 +38,10 @@
 			<div class="scenes-title" ng-bind="package.appName"></div>
 			<ul class="scenes-list">
 				<li class="scene-item" ng-repeat="scene in package.scenes"
-					ng-class="{'item-current': scene.order == editStat.selectedScene}"
+					ng-class="{'item-current': scene.id == editStat.selectedScene}"
 					ng-click="selectScene(scene)">
 					<img class="scene-thumb" ng-src="{{scene.background}}"/>
-					<input type="text" value="{{scene.name}}"/>
+					<input type="text" ng-model="scene.name"/>
 				</li>
 			</ul>
 			<div class="scenes-edit">
@@ -53,7 +53,7 @@
 		<!-- 中栏：场景详情修改区 -->
 		<div class="layout-stage">
 			<div class="scene">
-				<div class="actor hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements" style="position:absolute; left:{{ele.posX}}px; top:{{ele.posY}}px; width:{{ele.width}}px; height:{{ele.height}}px;">
+				<div class="actor hotspot" ng-repeat="ele in findSceneById(editStat.selectedScene).elements" style="position:absolute; left:{{ele.posX}}px; top:{{ele.posY}}px; width:{{ele.width}}px; height:{{ele.height}}px;">
 					<div class="anchor">
 						<i></i>
 						<i></i>
@@ -61,14 +61,14 @@
 						<i></i>
 					</div>
 					<div class="scene-goto">
-						<div class="scene-goto-thumb"><img src="images/zzz-scene-thumb.png" width="40"/><br/>Scene 2</div>
+						<div class="scene-goto-thumb"><img src="{{findSceneById(editStat.selectedElementObj.actions[0].target).background}}" width="40"/><br/>{{findSceneById(editStat.selectedElementObj.actions[0].target).name}}</div>
 						<div class="scene-goto-line" style="width:264px;"></div>
 						<div class="scene-goto-animation">
 							<dl>
 								<dt>JUMP TO</dt>
 								<dd>
 									<!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
-									<select ng-model="editStat.selectedElementObj.actions[0].target" ng-options="s.name as s.name for s in package.scenes">
+									<select ng-model="editStat.selectedElementObj.actions[0].target" ng-options="s.id as s.name for s in package.scenes">
 									</select>
 								</dd>
 								<dt>TRANSITION</dt>
