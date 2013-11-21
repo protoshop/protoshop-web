@@ -74,16 +74,9 @@ angular.module('toHELL')
      * @param {Scene} scene - 被选中的场景
      */
     $scope.selectScene = function (scene) {
-      $scope.editStat.selectedScene = scene.id;
-      // 自动选择该场景的第一个element
-      if (scene.elements.length) {
-        $scope.editStat.selectedElement = 0;
-        $scope.editStat.selectedElementObj = currentElementObj();
-      } else {
-        $scope.editStat.selectedElement = null;
-        $scope.editStat.selectedElementObj = null;
-      }
-      
+      this.editStat.selectedScene = scene.id;
+      // 清除掉之前可能有的其他元素、动作选择
+      this.selectElement(null);
     };
 
     /**
@@ -91,16 +84,28 @@ angular.module('toHELL')
      * @func selectElement
      * @todo
      */
-    $scope.selectElement = function (element) {
-      // TODO
+    $scope.selectElement = function (element_index) {
+      this.editStat.selectedElement = element_index;
+      this.editStat.selectedElementObj = currentElementObj();
+      // FIXME: 目前考虑自动选中第一个action，时机成熟时移除
+      this.selectAction(0);
     };
     /**
      * 选中一个动作
      * @func selectAction
      * @todo
      */
-    $scope.selectAction = function (action) {
-      // TODO
+    $scope.selectAction = function (action_index) {
+      var a_ = this.editStat;
+      var b_ = a_.selectedElementObj;
+      if (action_index == null || b_ == null) {
+        a_.selectActionObj = a_.selectAction = null;
+        return;
+      }
+
+      a_.selectedActionObj = b_.actions.length > action_index ? 
+                                b_.actions[action_index] : null;
+      a_.selectedAction = action_index;
     };
 
     /**
@@ -108,9 +113,9 @@ angular.module('toHELL')
      * @func addHotspotAction
      */
     $scope.addHotspotAction = function () {
-      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
-        if ($scope.package.scenes[i].id == $scope.editStat.selectedScene) {
-          $scope.package.scenes[i].elements.push({
+      for (var i = this.package.scenes.length - 1; i >= 0; i--) {
+        if (this.package.scenes[i].id == this.editStat.selectedScene) {
+          this.package.scenes[i].elements.push({
               type: 'hotspot',
               // 默认参数
               posX: '100px',
@@ -119,11 +124,14 @@ angular.module('toHELL')
               height: '42px',
               actions: []
           });
-          $scope.editStat.selectedElement = $scope.package.scenes[i].elements.length-1;
-          $scope.editStat.selectedElementObj = currentElementObj();
+          this.selectElement(this.package.scenes[i].elements.length-1);
           break;
         }
       };
+    };
+
+    $scope.onBackgroundClick = function () {
+      this.selectElement(null);
     };
 
     /**
@@ -175,7 +183,7 @@ angular.module('toHELL')
           action_text += 'Unknown Action: ';
       }
 
-      var scene = $scope.findSceneById(action.target);
+      var scene = this.findSceneById(action.target);
 
       if(scene) {
         action_text += scene.name;
@@ -196,7 +204,7 @@ angular.module('toHELL')
     };
 
     $scope.isTransDirDisabled = function(action) {
-      return action.transitionType == 'none';
+      return action ? (action.transitionType == 'none') : false;
     };
 
     $scope.onTransitionTypeChanged = function(action) {
