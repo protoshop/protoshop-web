@@ -199,7 +199,15 @@ angular.module('toHELL')
 
     $scope.isTransitionDirectionDisabled = function(action) {
       return action.transitionType == 'none';
-    }
+    };
+
+    $scope.onTransitionTypeChanged = function(action) {
+      if (action.transitionType == 'none') {
+        action.transitionDirection = 'none';
+      } else {
+        // TODO: 目前没有默认值，同时也就意味着没有“记忆”能力
+      }
+    };
 
     // 简化模板中的复杂寻值
     /**

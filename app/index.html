@@ -74,7 +74,7 @@
 								<dt>TRANSITION</dt>
 								<dd class="goto-transition">
 									<div class="transition-name">
-										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionType" name="transition-name" value="none"/><i class="icon-block"></i></label>
+										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionType" ng-change="onTransitionTypeChanged(editStat.selectedElementObj.actions[0])" name="transition-name" value="none"/><i class="icon-block"></i></label>
 										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionType" name="transition-name" value="push" checked="checked" /><i>Push</i></label>
 										<label><input type="radio" ng-model="editStat.selectedElementObj.actions[0].transitionType" name="transition-name" value="cover"/><i>Cover</i></label>
 									</div>
