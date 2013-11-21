@@ -35,7 +35,7 @@
 
 		<!-- 左栏：场景列表 -->
 		<div class="layout-scenes">
-			<span class="scenes-title" ng-bind="package.appName"></span>
+			<div class="scenes-title" ng-bind="package.appName"></div>
 			<ul class="scenes-list">
 				<li class="scene-item" ng-repeat="scene in package.scenes"
 					ng-class="{'item-current': scene.order == editStat.selectedScene}"
@@ -44,6 +44,10 @@
 					<input type="text" value="{{scene.name}}"/>
 				</li>
 			</ul>
+			<div class="scenes-edit">
+				<button>+</button>
+				<button>-</button>
+			</div>
 		</div>
 
 		<!-- 中栏：场景详情修改区 -->
