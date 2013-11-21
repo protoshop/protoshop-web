@@ -101,23 +101,18 @@ angular.module('toHELL')
       };
     };
 
-    $scope.findSceneById = function (sid) {
-      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
-        if ($scope.package.scenes[i].id == sid) {
-          return $scope.package.scenes[i];
+    var findScene = function (key, value) {
+      for (var i = this.scenes.length - 1; i >= 0; i--) {
+        if (this.scenes[i][key] == value) {
+          return this.scenes[i];
         }
       };
       return null;
-    };
+    }
 
-    $scope.findSceneByOrder = function (order) {
-      for (var i = $scope.package.scenes.length - 1; i >= 0; i--) {
-        if ($scope.package.scenes[i].order == order) {
-          return $scope.package.scenes[i];
-        }
-      };
-      return null;
-    };
+    // 快捷方法
+    $scope.findSceneById = findScene.bind($scope.package, 'id');
+    $scope.findSceneByOrder = findScene.bind($scope.package, 'order');
 
     $scope.renderActionItem = function (action) {
       var action_text = '';
