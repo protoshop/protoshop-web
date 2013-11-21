@@ -41,7 +41,7 @@
 					ng-class="{'item-current': scene.order == editStat.selectedScene}"
 					ng-click="selectScene(scene)">
 					<img class="scene-thumb" ng-src="{{scene.background}}"/>
-					<input type="text" value="{{scene.name}}"/>
+					<input type="text" ng-model="scene.name"/>
 				</li>
 			</ul>
 		</div>
