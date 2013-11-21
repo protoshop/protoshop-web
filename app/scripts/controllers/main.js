@@ -33,11 +33,11 @@ angular.module('toHELL')
           background: 'images/zzz-scene-thumb.png',
           elements: [
             {
-              type: 'button',
-              posX: 100,
-              posY: 300,
-              width: 120,
-              height: 42,
+              type: 'hotspot',
+              posX: '100px',
+              posY: '300px',
+              width: '120px',
+              height: '42px',
               actions: [
                 {
                   type: 'jumpto',
@@ -74,7 +74,6 @@ angular.module('toHELL')
      * @param {Scene} scene - 被选中的场景
      */
     $scope.selectScene = function (scene) {
-      console.log('selectScene');
       $scope.editStat.selectedScene = scene.id;
       // 自动选择该场景的第一个element
       if (scene.elements.length) {
@@ -114,10 +113,10 @@ angular.module('toHELL')
           $scope.package.scenes[i].elements.push({
               type: 'hotspot',
               // 默认参数
-              posX: 100,
-              posY: 300,
-              width: 120,
-              height: 42,
+              posX: '100px',
+              posY: '300px',
+              width: '120px',
+              height: '42px',
               actions: []
           });
           $scope.editStat.selectedElement = $scope.package.scenes[i].elements.length-1;
@@ -185,6 +184,17 @@ angular.module('toHELL')
       }
       
       return action_text;
+    };
+
+    $scope.renderHotspotStyle = function (element) {
+      console.log(element);
+      return {
+        left: element.posX,
+        top: element.posY,
+        width: element.width,
+        height: element.height,
+        position: 'absolute'
+      };
     };
 
     // 简化模板中的复杂寻值

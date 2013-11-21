@@ -53,7 +53,7 @@
 		<!-- 中栏：场景详情修改区 -->
 		<div class="layout-stage">
 			<div class="scene">
-				<div class="actor hotspot" ng-repeat="ele in findSceneById(editStat.selectedScene).elements" style="position:absolute; left:{{ele.posX}}px; top:{{ele.posY}}px; width:{{ele.width}}px; height:{{ele.height}}px;">
+				<div class="actor hotspot" ng-repeat="ele in findSceneById(editStat.selectedScene).elements" ng-style="renderHotspotStyle(ele)">
 					<div class="anchor">
 						<i></i>
 						<i></i>
@@ -61,7 +61,7 @@
 						<i></i>
 					</div>
 					<div class="scene-goto">
-						<div class="scene-goto-thumb"><img src="{{findSceneById(editStat.selectedElementObj.actions[0].target).background}}" width="40"/><br/>{{findSceneById(editStat.selectedElementObj.actions[0].target).name}}</div>
+						<div class="scene-goto-thumb"><img ng-src="{{findSceneById(editStat.selectedElementObj.actions[0].target).background}}" width="40"/><br/>{{findSceneById(editStat.selectedElementObj.actions[0].target).name}}</div>
 						<div class="scene-goto-line" style="width:264px;"></div>
 						<div class="scene-goto-animation">
 							<dl>
@@ -102,10 +102,10 @@
 			<div class="tools-box" ng-show="editStat.selectedElement != null">
 				<div class="tools-title">Position</div>
 				<ul class="tools-position">
-					<li><label>X</label><input type="text" ng-value="editStat.selectedElementObj.posX" /></li>
-					<li><label>Y</label><input type="text" ng-value="editStat.selectedElementObj.posY" /></li>
-					<li><label>W</label><input type="text" ng-value="editStat.selectedElementObj.width" /></li>
-					<li><label>H</label><input type="text" ng-value="editStat.selectedElementObj.height" /></li>
+					<li><label>X</label><input type="text" ng-model="editStat.selectedElementObj.posX" /></li>
+					<li><label>Y</label><input type="text" ng-model="editStat.selectedElementObj.posY" /></li>
+					<li><label>W</label><input type="text" ng-model="editStat.selectedElementObj.width" /></li>
+					<li><label>H</label><input type="text" ng-model="editStat.selectedElementObj.height" /></li>
 				</ul>
 			</div>
 			<!-- tools: background -->
