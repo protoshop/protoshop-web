@@ -85,11 +85,11 @@ angular.module('toHELL')
      * @return {Scene} 返回新增的场景对象
      */
     $scope.addScene = function () {
-      var id_ = findMaxSceneId()+1;
+      var idTemp = findMaxSceneId()+1;
       this.package.scenes.push({
-        id: id_,
+        id: idTemp,
         order: findMaxSceneOrder()+1,
-        name: 'Scene '+(id_+1),
+        name: 'Scene '+(idTemp+1),
         background: '',
         elements: []
       });
@@ -99,13 +99,13 @@ angular.module('toHELL')
     /**
      * 增加一个场景并插入在所给order之后。
      * @func insertScene
-     * @param {number} last_order - 新场景所要跟随的order
+     * @param {number} lastOrder - 新场景所要跟随的order
      * @return {Scene} 返回新增的场景对象
      * @todo
      */
-    $scope.insertScene = function (last_order) {
-      // TODO
-    };
+    // $scope.insertScene = function (lastOrder) {
+    //   // TODO
+    // };
 
     /**
      * 删除一个场景。如果不存在满足条件的场景，则操作无效。
@@ -114,20 +114,20 @@ angular.module('toHELL')
      */
     $scope.removeScene = function (sid) {
       for (var i = this.package.scenes.length - 1; i >= 0; i--) {
-        if (this.package.scenes[i].id == sid) {
+        if (this.package.scenes[i].id === sid) {
           this.package.scenes.splice(i, 1);
         }
-      };
+      }
     };
 
     /**
      * 选中一个元素
      * @func selectElement
-     * @param {number} element_index 该元素的索引值
+     * @param {number} elementIndex 该元素的索引值
      * @todo 目前考虑自动选中第一个action，时机成熟时移除
      */
-    $scope.selectElement = function (element_index) {
-      this.editStat.selectedElement = element_index;
+    $scope.selectElement = function (elementIndex) {
+      this.editStat.selectedElement = elementIndex;
       this.editStat.selectedElementObj = currentElementObj();
       // FIXME: 目前考虑自动选中第一个action，时机成熟时移除
       this.selectAction(0);
@@ -147,29 +147,29 @@ angular.module('toHELL')
           width: '120px',
           height: '42px',
           actions: []
-      });
+        });
       this.selectElement(scene.elements.length-1);
     };
 
     /**
      * 选中一个动作
      * @func selectAction
-     * @param {number} action_index 该动作的索引值
+     * @param {number} actionIndex 该动作的索引值
      */
-    $scope.selectAction = function (action_index) {
-      var a_ = this.editStat;
-      var b_ = a_.selectedElementObj;
-      if (action_index == null || b_ == null) {
-        a_.selectActionObj = a_.selectAction = null;
+    $scope.selectAction = function (actionIndex) {
+      var aT = this.editStat;
+      var bT = aT.selectedElementObj;
+      if (actionIndex === null || bT === null) {
+        aT.selectActionObj = aT.selectAction = null;
         return;
       }
 
-      if (b_.actions.length > action_index) {
-        a_.selectedActionObj = b_.actions[action_index];
-        a_.selectedAction = action_index;
+      if (bT.actions.length > actionIndex) {
+        aT.selectedActionObj = bT.actions[actionIndex];
+        aT.selectedAction = actionIndex;
       } else {
-        a_.selectedActionObj = null;
-        a_.selectedAction = null;
+        aT.selectedActionObj = null;
+        aT.selectedAction = null;
       }
     };
 
@@ -208,11 +208,13 @@ angular.module('toHELL')
      * @return {number|null} 如果找到则返回该场景的id，否则返回null
      */
     function findScene(key, value) {
-      for (var i = this.scenes.length - 1; i >= 0; i--) {
-        if (this.scenes[i][key] == value) {
-          return this.scenes[i];
+      /*jshint validthis:true */
+      var self = this;
+      for (var i = self.scenes.length - 1; i >= 0; i--) {
+        if (self.scenes[i][key] === value) {
+          return self.scenes[i];
         }
-      };
+      }
       return null;
     }
 
@@ -244,24 +246,24 @@ angular.module('toHELL')
      */
     function findMaxSceneId() {
       var maxId = -1;
-      var s_ = $scope.package.scenes;
-      for (var i = s_.length - 1; i >= 0; i--) {
-        maxId = s_[i].id > maxId ? s_[i].id : maxId;
-      };
+      var sT = $scope.package.scenes;
+      for (var i = sT.length - 1; i >= 0; i--) {
+        maxId = sT[i].id > maxId ? sT[i].id : maxId;
+      }
       return maxId;
-    };
+    }
 
     function findMaxSceneOrder() {
       return $scope.package.scenes.length-1;
 
       // NOTE: 当order可能超出length-1时，使用以下实现
       // var maxOrder = -1;
-      // var s_ = $scope.package.scenes;
-      // for (var i = s_.length - 1; i >= 0; i--) {
-      //   maxOrder = s_[i].order > maxOrder ? s_[i].order : maxOrder;
+      // var sT = $scope.package.scenes;
+      // for (var i = sT.length - 1; i >= 0; i--) {
+      //   maxOrder = sT[i].order > maxOrder ? sT[i].order : maxOrder;
       // };
       // return maxOrder;
-    };
+    }
 
     /**
     * 将一条Action渲染为文本信息
@@ -270,24 +272,24 @@ angular.module('toHELL')
     * @return {string} 文本信息
     */
     $scope.renderActionItem = function (action) {
-      var action_text = '';
+      var actionText = '';
       switch (action.type) {
-        case 'jumpto':
-          action_text += 'Go To: ';
-          break;
-        default:
-          action_text += 'Unknown Action: ';
+      case 'jumpto':
+        actionText += 'Go To: ';
+        break;
+      default:
+        actionText += 'Unknown Action: ';
       }
 
       var scene = this.findSceneById(action.target);
 
       if(scene) {
-        action_text += scene.name;
+        actionText += scene.name;
       } else {
-        action_text += '???';
+        actionText += '???';
       }
       
-      return action_text;
+      return actionText;
     };
 
     /**
@@ -318,7 +320,7 @@ angular.module('toHELL')
       } else {
         return 'images/dummy-scene-thumb.png';
       }
-    }
+    };
 
     /**
     * 测试Transition方向是否已禁用
@@ -327,7 +329,7 @@ angular.module('toHELL')
     * @return {bool}
     */
     $scope.isTransDirDisabled = function(action) {
-      return action ? (action.transitionType == 'none') : false;
+      return action ? (action.transitionType === 'none') : false;
     };
 
     /**
@@ -337,7 +339,7 @@ angular.module('toHELL')
     * @todo 目前没有transition从无到有的默认值，同时也就意味着没有“记忆”能力
     */
     $scope.onTransitionTypeChanged = function(action) {
-      if (action.transitionType == 'none') {
+      if (action.transitionType === 'none') {
         action.transitionDirection = 'none';
       } else {
         // TODO: 目前没有默认值，同时也就意味着没有“记忆”能力
@@ -371,16 +373,17 @@ angular.module('toHELL')
     * @private
     */
     $scope.onHotspotDown = function(index, ele, $event) {
-      if ($event.which != 1) // 不接受非左键点击
+      if ($event.which !== 1) {// 不接受非左键点击
         return;
-      var s_ = hotspotStack;
+      }
+      var sT = hotspotStack;
       this.selectElement(index);
-      s_.hotspotMovingTarget = ele;
-      s_.hotspotMovingStart.x = $event.clientX;
-      s_.hotspotMovingStart.y = $event.clientY;
-      s_.hotspotMovingOffset.x = parseInt($event.target.style.left); // 小心单位
-      s_.hotspotMovingOffset.y = parseInt($event.target.style.top);
-      s_.hotspotOldZindex = $event.target.zIndex;
+      sT.hotspotMovingTarget = ele;
+      sT.hotspotMovingStart.x = $event.clientX;
+      sT.hotspotMovingStart.y = $event.clientY;
+      sT.hotspotMovingOffset.x = parseInt($event.target.style.left, 10); // 小心单位
+      sT.hotspotMovingOffset.y = parseInt($event.target.style.top, 10);
+      sT.hotspotOldZindex = $event.target.zIndex;
       $event.target.zIndex = 10000;
     };
 
@@ -391,23 +394,25 @@ angular.module('toHELL')
     * @private
     */
     $scope.onHotspotMoved = function($event) {
-      var s_ = hotspotStack;
+      var sT = hotspotStack;
       // 返回范围内的数值
       function bound(min, value, max) {
-        if (value < min)
+        if (value < min) {
           return min;
-        if (value > max)
+        }
+        if (value > max) {
           return max;
+        }
         return value;
       }
-      if(s_.hotspotMovingTarget != null) {
+      if(sT.hotspotMovingTarget !== null) {
         $event.target.style.cursor = 'move';
-        var t_x = s_.hotspotMovingOffset.x + $event.clientX - s_.hotspotMovingStart.x;
-        var t_y = s_.hotspotMovingOffset.y + $event.clientY - s_.hotspotMovingStart.y;
-        var t_w = parseInt(s_.hotspotMovingTarget.width);  // 小心单位
-        var t_h = parseInt(s_.hotspotMovingTarget.height);
-        s_.hotspotMovingTarget.posX = bound(0, t_x, 320-t_w) + 'px';
-        s_.hotspotMovingTarget.posY = bound(0, t_y, 568-t_h) + 'px';
+        var xT = sT.hotspotMovingOffset.x + $event.clientX - sT.hotspotMovingStart.x;
+        var yT = sT.hotspotMovingOffset.y + $event.clientY - sT.hotspotMovingStart.y;
+        var wT = parseInt(sT.hotspotMovingTarget.width, 10);  // 小心单位
+        var hT = parseInt(sT.hotspotMovingTarget.height, 10);
+        sT.hotspotMovingTarget.posX = bound(0, xT, 320-wT) + 'px';
+        sT.hotspotMovingTarget.posY = bound(0, yT, 568-hT) + 'px';
         // TODO: 热点移动时颜色可以发生变化
         // TODO: 热点移动时，如果热点移至屏幕另半侧，则应将线框转移
       }
@@ -420,9 +425,9 @@ angular.module('toHELL')
     * @private
     */
     $scope.onHotspotUp = function($event) {
-      var s_ = hotspotStack;
-      s_.hotspotMovingTarget = null;
-      $event.target.zIndex = s_.hotspotOldZindex;
+      var sT = hotspotStack;
+      sT.hotspotMovingTarget = null;
+      $event.target.zIndex = sT.hotspotOldZindex;
       $event.target.style.cursor = 'auto'; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
     };
 
@@ -444,7 +449,7 @@ angular.module('toHELL')
       } else {
         return null;
       }
-    };
+    }
 
     // TODO: 如果初始态不选中任何场景，则这里应该去掉
     // $scope.selectScene($scope.package.scenes[0]);
@@ -509,14 +514,14 @@ angular.module('toHELL')
     $scope.editPackage = function (pkg) {
       console.log(pkg);
       $location.path('/package');
-    }
+    };
 
     $scope.deletePackage = function(pkg){
       console.log(pkg);
-    }
+    };
 
     $scope.showCreateDialog = false;
     $scope.toggleCreateDialog = function(){
       $scope.showCreateDialog = !$scope.showCreateDialog;
-    }
+    };
   }]);
