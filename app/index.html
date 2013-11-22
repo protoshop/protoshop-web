@@ -140,8 +140,8 @@
 			<div class="tools-box">
 				<div class="tools-title">Settings</div>
 				<ul class="tools-setting">
-					<li><label>Name:</label><input type="text" value="Demo 1" /></li>
-					<li><label>Icon:</label><img src="images/icon-app-120.png" width="60" /></li>
+					<li><label>Name:</label><input type="text" ng-model="package.appName" /></li>
+					<li><label>Icon:</label><img ng-src="{{package.appIcon}}" width="60" /></li>
 				</ul>
 			</div>
 		</div>
