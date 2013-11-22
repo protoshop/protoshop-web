@@ -79,6 +79,25 @@ angular.module('toHELL')
       this.selectElement(null);
     };
 
+    $scope.addScene = function () {
+      var id_ = findMaxSceneId()+1;
+      this.package.scenes.push({
+        id: id_,
+        order: findMaxSceneOrder()+1,
+        name: 'Scene '+(id_+1),
+        background: '',
+        elements: []
+      });
+    };
+
+    $scope.removeScene = function (sid) {
+      for (var i = this.package.scenes.length - 1; i >= 0; i--) {
+        if (this.package.scenes[i].id == sid) {
+          this.package.scenes.splice(i, 1);
+        }
+      };
+    };
+
     /**
      * 选中一个元素
      * @func selectElement
@@ -190,6 +209,24 @@ angular.module('toHELL')
      */
     $scope.findSceneById = findScene.bind($scope.package, 'id');
     $scope.findSceneByOrder = findScene.bind($scope.package, 'order');
+
+    function findMaxSceneId() {
+      var maxId = 0;
+      var s_ = $scope.package.scenes;
+      for (var i = s_.length - 1; i >= 0; i--) {
+        maxId = s_[i].id > maxId ? s_[i].id : maxId;
+      };
+      return maxId;
+    };
+
+    function findMaxSceneOrder() {
+      var maxOrder = 0;
+      var s_ = $scope.package.scenes;
+      for (var i = s_.length - 1; i >= 0; i--) {
+        maxOrder = s_[i].order > maxOrder ? s_[i].order : maxOrder;
+      };
+      return maxOrder;
+    };
 
     /**
     * 将一条Action渲染为文本信息
