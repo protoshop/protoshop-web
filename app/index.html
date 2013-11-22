@@ -52,15 +52,15 @@
 
 		<!-- 中栏：场景详情修改区 -->
 		<div class="layout-stage" ng-click="onBackgroundClick()">
-			<div class="scene">
-				<div class="actor hotspot" ng-repeat="ele in findSceneById(editStat.selectedScene).elements" ng-style="renderHotspotStyle(ele)" ng-click="selectElement($index);$event.stopPropagation()" style="position: absolute">
-					<div class="anchor" ng-show="$index == editStat.selectedElement">
+			<div class="scene" ng-mousemove="onHotspotMoved($event)" ng-mouseup="onHotspotUp($event)">
+				<div class="actor hotspot" ng-repeat="ele in findSceneById(editStat.selectedScene).elements" ng-style="renderHotspotStyle(ele)" ng-click="selectElement($index);$event.stopPropagation()" ng-mousedown="onHotspotDown($index, ele, $event)" style="position: absolute">
+					<div class="anchor" ng-show="$index == editStat.selectedElement" ng-mousedown="$event.stopPropagation()">
 						<i></i>
 						<i></i>
 						<i></i>
 						<i></i>
 					</div>
-					<div class="scene-goto" ng-show="$index == editStat.selectedElement && editStat.selectedAction != null">
+					<div class="scene-goto" ng-show="$index == editStat.selectedElement && editStat.selectedAction != null" ng-mousedown="$event.stopPropagation()">
 						<div class="scene-goto-thumb"><img ng-src="{{renderSceneThumbById(editStat.selectedActionObj.target)}}" width="40"/><br/>{{findSceneById(editStat.selectedActionObj.target).name}}</div>
 						<div class="scene-goto-line" style="width:264px;"></div>
 						<div class="scene-goto-animation">

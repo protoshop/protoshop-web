@@ -344,6 +344,54 @@ angular.module('toHELL')
       }
     };
 
+    /**
+    * 移动hotspot时的临时存储栈
+    * @var hotspotStack
+    * @private 
+    */
+    var hotspotStack = {
+      hotspotMovingTarget: null,
+      hotspotMovingStart: {
+        x: 0,
+        y: 0
+      },
+      hotspotMovingOffset: {
+        x: 0,
+        y: 0
+      },
+      hotspotOldZindex: null
+    };
+
+    $scope.onHotspotDown = function(index, ele, $event) {
+      var s_ = hotspotStack;
+      this.selectElement(index);
+      s_.hotspotMovingTarget = ele;
+      s_.hotspotMovingStart.x = $event.clientX;
+      s_.hotspotMovingStart.y = $event.clientY;
+      s_.hotspotMovingOffset.x = parseInt($event.target.style.left);
+      s_.hotspotMovingOffset.y = parseInt($event.target.style.top);
+      s_.hotspotOldZindex = $event.target.zIndex;
+      $event.target.zIndex = 10000;
+    };
+
+    $scope.onHotspotMoved = function($event) {
+      var s_ = hotspotStack;
+      if(s_.hotspotMovingTarget != null) {
+        s_.hotspotMovingTarget.posX = 
+          s_.hotspotMovingOffset.x + $event.clientX - s_.hotspotMovingStart.x + 'px';
+        s_.hotspotMovingTarget.posY = 
+          s_.hotspotMovingOffset.y + $event.clientY - s_.hotspotMovingStart.y + 'px';
+        // TODO: 热点移动时颜色可以发生变化
+        // TODO: 热点移动时，如果热点移至屏幕另半侧，则应将线框转移
+      }
+    };
+
+    $scope.onHotspotUp = function($event) {
+      var s_ = hotspotStack;
+      s_.hotspotMovingTarget = null;
+      $event.target.zIndex = s_.hotspotOldZindex;
+    };
+
     // 简化模板中的复杂寻值
     /**
     * 返回当前选中的元素
