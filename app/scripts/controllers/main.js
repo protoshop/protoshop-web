@@ -362,6 +362,14 @@ angular.module('toHELL')
       hotspotOldZindex: null
     };
 
+    /**
+    * 热点被鼠标按下时触发此函数
+    * @func onHotspotDown
+    * @param {number} index - 被点击的元素的索引值
+    * @param {Element} ele - 被点击的元素对象
+    * @param {event} $event - 点击事件
+    * @private
+    */
     $scope.onHotspotDown = function(index, ele, $event) {
       var s_ = hotspotStack;
       this.selectElement(index);
@@ -374,6 +382,12 @@ angular.module('toHELL')
       $event.target.zIndex = 10000;
     };
 
+    /**
+    * 热点在鼠标移动时触发此函数
+    * @func onHotspotMoved
+    * @param {event} $event - 点击事件
+    * @private
+    */
     $scope.onHotspotMoved = function($event) {
       var s_ = hotspotStack;
       if(s_.hotspotMovingTarget != null) {
@@ -386,6 +400,12 @@ angular.module('toHELL')
       }
     };
 
+    /**
+    * 热点在鼠标抬起时触发此函数
+    * @func onHotspotUp
+    * @param {event} $event - 点击事件
+    * @private
+    */
     $scope.onHotspotUp = function($event) {
       var s_ = hotspotStack;
       s_.hotspotMovingTarget = null;
