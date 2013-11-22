@@ -401,6 +401,7 @@ angular.module('toHELL')
         return value;
       }
       if(s_.hotspotMovingTarget != null) {
+        $event.target.style.cursor = 'move';
         var t_x = s_.hotspotMovingOffset.x + $event.clientX - s_.hotspotMovingStart.x;
         var t_y = s_.hotspotMovingOffset.y + $event.clientY - s_.hotspotMovingStart.y;
         var t_w = parseInt(s_.hotspotMovingTarget.width);  // 小心单位
@@ -422,6 +423,7 @@ angular.module('toHELL')
       var s_ = hotspotStack;
       s_.hotspotMovingTarget = null;
       $event.target.zIndex = s_.hotspotOldZindex;
+      $event.target.style.cursor = 'auto';
     };
 
     // 简化模板中的复杂寻值
