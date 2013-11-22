@@ -371,12 +371,14 @@ angular.module('toHELL')
     * @private
     */
     $scope.onHotspotDown = function(index, ele, $event) {
+      if ($event.which != 1) // 不接受非左键点击
+        return;
       var s_ = hotspotStack;
       this.selectElement(index);
       s_.hotspotMovingTarget = ele;
       s_.hotspotMovingStart.x = $event.clientX;
       s_.hotspotMovingStart.y = $event.clientY;
-      s_.hotspotMovingOffset.x = parseInt($event.target.style.left);
+      s_.hotspotMovingOffset.x = parseInt($event.target.style.left); // 小心单位
       s_.hotspotMovingOffset.y = parseInt($event.target.style.top);
       s_.hotspotOldZindex = $event.target.zIndex;
       $event.target.zIndex = 10000;
@@ -390,11 +392,21 @@ angular.module('toHELL')
     */
     $scope.onHotspotMoved = function($event) {
       var s_ = hotspotStack;
+      // 返回范围内的数值
+      function bound(min, value, max) {
+        if (value < min)
+          return min;
+        if (value > max)
+          return max;
+        return value;
+      }
       if(s_.hotspotMovingTarget != null) {
-        s_.hotspotMovingTarget.posX = 
-          s_.hotspotMovingOffset.x + $event.clientX - s_.hotspotMovingStart.x + 'px';
-        s_.hotspotMovingTarget.posY = 
-          s_.hotspotMovingOffset.y + $event.clientY - s_.hotspotMovingStart.y + 'px';
+        var t_x = s_.hotspotMovingOffset.x + $event.clientX - s_.hotspotMovingStart.x;
+        var t_y = s_.hotspotMovingOffset.y + $event.clientY - s_.hotspotMovingStart.y;
+        var t_w = parseInt(s_.hotspotMovingTarget.width);  // 小心单位
+        var t_h = parseInt(s_.hotspotMovingTarget.height);
+        s_.hotspotMovingTarget.posX = bound(0, t_x, 320-t_w) + 'px';
+        s_.hotspotMovingTarget.posY = bound(0, t_y, 568-t_h) + 'px';
         // TODO: 热点移动时颜色可以发生变化
         // TODO: 热点移动时，如果热点移至屏幕另半侧，则应将线框转移
       }
