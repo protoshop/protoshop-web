@@ -79,6 +79,11 @@ angular.module('toHELL')
       this.selectElement(null);
     };
 
+    /**
+     * 增加一个场景。增加的场景将在所有场景之后。
+     * @func addScene
+     * @return {Scene} 返回新增的场景对象
+     */
     $scope.addScene = function () {
       var id_ = findMaxSceneId()+1;
       this.package.scenes.push({
@@ -88,8 +93,25 @@ angular.module('toHELL')
         background: '',
         elements: []
       });
+      return this.package.scenes[this.package.scenes.length-1];
     };
 
+    /**
+     * 增加一个场景并插入在所给order之后。
+     * @func insertScene
+     * @param {number} last_order - 新场景所要跟随的order
+     * @return {Scene} 返回新增的场景对象
+     * @todo
+     */
+    $scope.insertScene = function (last_order) {
+      // TODO
+    };
+
+    /**
+     * 删除一个场景。如果不存在满足条件的场景，则操作无效。
+     * @func removeScene
+     * @param {number} sid - 所要删除的场景id
+     */
     $scope.removeScene = function (sid) {
       for (var i = this.package.scenes.length - 1; i >= 0; i--) {
         if (this.package.scenes[i].id == sid) {
@@ -210,8 +232,18 @@ angular.module('toHELL')
     $scope.findSceneById = findScene.bind($scope.package, 'id');
     $scope.findSceneByOrder = findScene.bind($scope.package, 'order');
 
+    /**
+     * 搜索最大的场景id
+     * @func findMaxSceneId
+     * @return {number} 返回该id。如果不存在任何一个场景，返回-1。
+     */
+     /**
+     * 搜索最大的场景order
+     * @func findSceneByOrder
+     * @return {number} 返回找到的最大order，如果不存在任何一个场景则返回-1。
+     */
     function findMaxSceneId() {
-      var maxId = 0;
+      var maxId = -1;
       var s_ = $scope.package.scenes;
       for (var i = s_.length - 1; i >= 0; i--) {
         maxId = s_[i].id > maxId ? s_[i].id : maxId;
@@ -220,12 +252,15 @@ angular.module('toHELL')
     };
 
     function findMaxSceneOrder() {
-      var maxOrder = 0;
-      var s_ = $scope.package.scenes;
-      for (var i = s_.length - 1; i >= 0; i--) {
-        maxOrder = s_[i].order > maxOrder ? s_[i].order : maxOrder;
-      };
-      return maxOrder;
+      return $scope.package.scenes.length-1;
+
+      // NOTE: 当order可能超出length-1时，使用以下实现
+      // var maxOrder = -1;
+      // var s_ = $scope.package.scenes;
+      // for (var i = s_.length - 1; i >= 0; i--) {
+      //   maxOrder = s_[i].order > maxOrder ? s_[i].order : maxOrder;
+      // };
+      // return maxOrder;
     };
 
     /**
@@ -330,7 +365,7 @@ angular.module('toHELL')
     };
 
     // TODO: 如果初始态不选中任何场景，则这里应该去掉
-    $scope.selectScene($scope.package.scenes[0]); 
+    // $scope.selectScene($scope.package.scenes[0]);
 
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
