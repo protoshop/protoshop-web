@@ -423,7 +423,7 @@ angular.module('toHELL')
       var s_ = hotspotStack;
       s_.hotspotMovingTarget = null;
       $event.target.zIndex = s_.hotspotOldZindex;
-      $event.target.style.cursor = 'auto';
+      $event.target.style.cursor = 'auto'; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
     };
 
     // 简化模板中的复杂寻值
