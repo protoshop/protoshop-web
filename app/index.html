@@ -40,8 +40,8 @@
 				<li class="scene-item" ng-repeat="scene in package.scenes"
 					ng-class="{'item-current': scene.id == editStat.selectedScene}"
 					ng-click="selectScene(scene)">
-					<img class="scene-thumb" ng-src="{{scene.background}}"/>
-					<input type="text" ng-model="scene.name"/>
+					<img class="scene-thumb" ng-src="{{scene.background}}" />
+					<input type="text" ng-model="scene.name" />
 				</li>
 			</ul>
 			<div class="scenes-edit">
@@ -51,44 +51,75 @@
 		</div>
 
 		<!-- 中栏：场景详情修改区 -->
-		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onHotspotMoved($event)" ng-mouseup="onHotspotUp($event)">
+		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onHotspotMoved($event)"
+			 ng-mouseup="onHotspotUp($event)">
 			<div class="scene">
-				<div class="actor hotspot" ng-repeat="ele in findSceneById(editStat.selectedScene).elements" ng-style="renderHotspotStyle(ele)" ng-click="selectElement($index);$event.stopPropagation()" ng-mousedown="onHotspotDown($index, ele, $event);$event.stopPropagation()" style="position: absolute">
-					<div class="anchor" ng-show="$index == editStat.selectedElement" ng-mousedown="$event.stopPropagation()">
-						<i></i>
-						<i></i>
-						<i></i>
-						<i></i>
+				<div class="actor hotspot" ng-repeat="ele in findSceneById(editStat.selectedScene).elements"
+					 ng-style="renderHotspotStyle(ele)" ng-click="selectElement($index);$event.stopPropagation()"
+					 ng-mousedown="onHotspotDown($index, ele, $event);$event.stopPropagation()"
+					 style="position: absolute">
+					<div class="anchor" ng-show="$index == editStat.selectedElement"
+						 ng-mousedown="$event.stopPropagation()">
+						<i></i><i></i><i></i><i></i>
 					</div>
-					<div class="scene-goto" ng-show="$index == editStat.selectedElement && editStat.selectedAction != null" ng-mousedown="$event.stopPropagation()">
-						<div class="scene-goto-thumb"><img ng-src="{{renderSceneThumbById(editStat.selectedActionObj.target)}}" width="40"/><br/>{{findSceneById(editStat.selectedActionObj.target).name||'???'}}</div>
+					<div class="scene-goto"
+						 ng-show="$index == editStat.selectedElement && editStat.selectedAction != null"
+						 ng-mousedown="$event.stopPropagation()">
+						<div class="scene-goto-thumb">
+							<img ng-src="{{renderSceneThumbById(editStat.selectedActionObj.target)}}" width="40" />
+							<p ng-bind="findSceneById(editStat.selectedActionObj.target).name||'???'"></p>
+						</div>
 						<div class="scene-goto-line" style="width:264px;"></div>
 						<div class="scene-goto-animation">
 							<dl>
 								<dt>JUMP TO</dt>
 								<dd>
-									<!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
 									<div class="goto-scenes">
-										<select ng-model="editStat.selectedActionObj.target" ng-options="s.id as s.name for s in package.scenes">
+										<select ng-model="editStat.selectedActionObj.target"
+												ng-options="s.id as s.name for s in package.scenes">
 										</select>
 									</div>
 								</dd>
 								<dt>TRANSITION</dt>
 								<dd class="goto-transition">
 									<div class="transition-name">
-										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType" ng-change="onTransitionTypeChanged(editStat.selectedActionObj)" name="transition-name" value="none"/><i class="icon-block"></i></label>
-										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType" name="transition-name" value="push" checked="checked" /><i>Push</i></label>
-										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType" name="transition-name" value="cover"/><i>Cover</i></label>
+										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType"
+													  ng-change="onTransitionTypeChanged(editStat.selectedActionObj)"
+													  name="transition-name" value="none" /><i
+												class="icon-block"></i></label>
+										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType"
+													  name="transition-name" value="push"
+													  checked="checked" /><i>Push</i></label>
+										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType"
+													  name="transition-name" value="cover" /><i>Cover</i></label>
 									</div>
 									<div class="transition-direction">
-										<label><input type="radio" ng-disabled="isTransDirDisabled(editStat.selectedActionObj)" ng-model="editStat.selectedActionObj.transitionDirection" name="transition-direction" value="up" /><i class="icon-up-bold"></i></label>
-										<label><input type="radio" ng-disabled="isTransDirDisabled(editStat.selectedActionObj)" ng-model="editStat.selectedActionObj.transitionDirection" name="transition-direction" value="right" /><i class="icon-right-bold"></i></label>
-										<label><input type="radio" ng-disabled="isTransDirDisabled(editStat.selectedActionObj)" ng-model="editStat.selectedActionObj.transitionDirection" name="transition-direction" value="down" /><i class="icon-down-bold"></i></label>
-										<label><input type="radio" ng-disabled="isTransDirDisabled(editStat.selectedActionObj)" ng-model="editStat.selectedActionObj.transitionDirection" name="transition-direction" value="left" /><i class="icon-left-bold"></i></label>
+										<label><input type="radio"
+													  ng-disabled="isTransDirDisabled(editStat.selectedActionObj)"
+													  ng-model="editStat.selectedActionObj.transitionDirection"
+													  name="transition-direction" value="up" /><i
+												class="icon-up-bold"></i></label>
+										<label><input type="radio"
+													  ng-disabled="isTransDirDisabled(editStat.selectedActionObj)"
+													  ng-model="editStat.selectedActionObj.transitionDirection"
+													  name="transition-direction" value="right" /><i
+												class="icon-right-bold"></i></label>
+										<label><input type="radio"
+													  ng-disabled="isTransDirDisabled(editStat.selectedActionObj)"
+													  ng-model="editStat.selectedActionObj.transitionDirection"
+													  name="transition-direction" value="down" /><i
+												class="icon-down-bold"></i></label>
+										<label><input type="radio"
+													  ng-disabled="isTransDirDisabled(editStat.selectedActionObj)"
+													  ng-model="editStat.selectedActionObj.transitionDirection"
+													  name="transition-direction" value="left" /><i
+												class="icon-left-bold"></i></label>
 									</div>
 									<div class="transtion-time">
-										<input type="text" ng-model="editStat.selectedActionObj.transitionDelay"/> delay<br/>
-										<input type="text" ng-model="editStat.selectedActionObj.transitionDuration"/> duration
+										<input type="text" ng-model="editStat.selectedActionObj.transitionDelay" />
+										delay<br />
+										<input type="text" ng-model="editStat.selectedActionObj.transitionDuration" />
+										duration
 									</div>
 								</dd>
 							</dl>
@@ -123,9 +154,15 @@
 			<div class="tools-box">
 				<div class="tools-title">Actors</div>
 				<ul class="tools-actor">
-					<li><button class="icon-plus-circled">New Button Actor</button></li>
-					<li><button class="icon-plus-circled">New Text Actor</button></li>
-					<li><button class="icon-plus-circled" ng-click="addHotspotElement()">New Hotspot Actor</button></li>
+					<li>
+						<button class="icon-plus-circled">New Button Actor</button>
+					</li>
+					<li>
+						<button class="icon-plus-circled">New Text Actor</button>
+					</li>
+					<li>
+						<button class="icon-plus-circled" ng-click="addHotspotElement()">New Hotspot Actor</button>
+					</li>
 				</ul>
 			</div>
 			<!-- tools: action -->
@@ -135,7 +172,8 @@
 					Actions
 				</div>
 				<ul class="tools-action">
-					<li ng-repeat="action in editStat.selectedElementObj.actions" ng-bind="renderActionItem(action)"></li>
+					<li ng-repeat="action in editStat.selectedElementObj.actions"
+						ng-bind="renderActionItem(action)"></li>
 				</ul>
 			</div>
 			<!-- tools: setting -->
@@ -179,7 +217,7 @@
 					<ul class="event-body" ng-show="pkg.changelog">
 						<li class="commit" ng-repeat="log in pkg.changelog">
 							<div class="commit-info">
-								<span ng-bind="log.date"></span>                            
+								<span ng-bind="log.date"></span>
 								<span ng-bind="log.by + ' - ' + log.note"></span>
 							</div>
 						</li>
@@ -203,7 +241,7 @@
 			</div>
 			<div class="control-group">
 				<label>Details:</label>
-				<textarea cols="20"  name="projectDetails" rows="5" class="large-input"></textarea>
+				<textarea cols="20" name="projectDetails" rows="5" class="large-input"></textarea>
 			</div>
 			<div class="control-group">
 				<div class="submit-btn">
