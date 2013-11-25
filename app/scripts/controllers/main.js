@@ -11,7 +11,24 @@ angular.module('toHELL')
       selectedElement: null,
       selectedElementObj: null,
       selectedAction: null,
-      selectedActionObj: null
+      selectedActionObj: null,
+      /**
+      * 移动hotspot时的临时存储栈
+      * @var hotspotStack
+      * @private 
+      */
+      hotspotStack: {
+        hotspotMovingTarget: null,
+        hotspotMovingStart: {
+          x: 0,
+          y: 0
+        },
+        hotspotMovingOffset: {
+          x: 0,
+          y: 0
+        },
+        hotspotOldZindex: null
+      }
     };
     /**
      * 存储整个工程的实时状态
@@ -130,7 +147,9 @@ angular.module('toHELL')
       this.editStat.selectedElement = elementIndex;
       this.editStat.selectedElementObj = currentElementObj();
       // FIXME: 目前考虑自动选中第一个action，时机成熟时移除
-      this.selectAction(0);
+      if(this.editStat.selectedElementObj) {
+        this.selectAction(0);
+      }
     };
 
     /**
@@ -346,23 +365,7 @@ angular.module('toHELL')
       }
     };
 
-    /**
-    * 移动hotspot时的临时存储栈
-    * @var hotspotStack
-    * @private 
-    */
-    var hotspotStack = {
-      hotspotMovingTarget: null,
-      hotspotMovingStart: {
-        x: 0,
-        y: 0
-      },
-      hotspotMovingOffset: {
-        x: 0,
-        y: 0
-      },
-      hotspotOldZindex: null
-    };
+    
 
     /**
     * 热点被鼠标按下时触发此函数
@@ -376,7 +379,7 @@ angular.module('toHELL')
       if ($event.which !== 1) {// 不接受非左键点击
         return;
       }
-      var sT = hotspotStack;
+      var sT = this.editStat.hotspotStack;
       this.selectElement(index);
       sT.hotspotMovingTarget = ele;
       sT.hotspotMovingStart.x = $event.clientX;
@@ -394,7 +397,7 @@ angular.module('toHELL')
     * @private
     */
     $scope.onHotspotMoved = function($event) {
-      var sT = hotspotStack;
+      var sT = this.editStat.hotspotStack;
       // 返回范围内的数值
       function bound(min, value, max) {
         if (value < min) {
@@ -425,7 +428,7 @@ angular.module('toHELL')
     * @private
     */
     $scope.onHotspotUp = function($event) {
-      var sT = hotspotStack;
+      var sT = this.editStat.hotspotStack;
       sT.hotspotMovingTarget = null;
       $event.target.zIndex = sT.hotspotOldZindex;
       $event.target.style.cursor = 'auto'; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto

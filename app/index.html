@@ -61,7 +61,7 @@
 						<i></i>
 					</div>
 					<div class="scene-goto" ng-show="$index == editStat.selectedElement && editStat.selectedAction != null" ng-mousedown="$event.stopPropagation()">
-						<div class="scene-goto-thumb"><img ng-src="{{renderSceneThumbById(editStat.selectedActionObj.target)}}" width="40"/><br/>{{findSceneById(editStat.selectedActionObj.target).name}}</div>
+						<div class="scene-goto-thumb"><img ng-src="{{renderSceneThumbById(editStat.selectedActionObj.target)}}" width="40"/><br/>{{findSceneById(editStat.selectedActionObj.target).name||'???'}}</div>
 						<div class="scene-goto-line" style="width:264px;"></div>
 						<div class="scene-goto-animation">
 							<dl>
