@@ -68,8 +68,10 @@
 								<dt>JUMP TO</dt>
 								<dd>
 									<!-- <a href="###" class="goto-target"><i class="icon-target"></i></a> -->
-									<select ng-model="editStat.selectedActionObj.target" ng-options="s.id as s.name for s in package.scenes">
-									</select>
+									<div class="goto-scenes">
+										<select ng-model="editStat.selectedActionObj.target" ng-options="s.id as s.name for s in package.scenes">
+										</select>
+									</div>
 								</dd>
 								<dt>TRANSITION</dt>
 								<dd class="goto-transition">

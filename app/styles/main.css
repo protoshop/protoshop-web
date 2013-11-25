@@ -5,7 +5,7 @@ html, body { height: 100%; }
 ul, li { list-style:none; }
 a { color:#000; text-decoration:none; -webkit-tap-highlight-color:rgba(0,0,0,0); }
 
-input, select, textarea, button { -webkit-appearence:none; border: none; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: 300; }
+input, select, textarea, button { -webkit-appearance:none; border: none; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: 300; }
 button { background: none; cursor: pointer; }
 i { font-style: normal; }
 
@@ -66,8 +66,11 @@ i { font-style: normal; }
 .scene-goto-animation dd { padding: 3px 0 3px 120px; border-bottom: 1px solid #333; line-height: 2; }
 .scene-goto-animation dd:last-child { border: none; }
 .scene-goto-animation a { color: #b7b7b7; }
-.scene-goto-animation input[type="text"] { display: inline-block; width: 36px; border-bottom: 1px dotted #999; line-height: 1.5; background-color: transparent; font-weight: 300; color: #fff; outline: none; }
+.scene-goto-animation input[type="text"] { display: inline-block; width: 36px; padding: 0 5px; border-bottom: 1px dotted #999; line-height: 1.5; background-color: transparent; font-weight: 300; color: #fff; outline: none; }
 .goto-target { float: right; font-size: 16px; }
+.goto-scenes { position: relative; margin-bottom: 2px; }
+.goto-scenes:after { position: absolute; content: ""; right: 10px; top: 10px; width: 0; height: 0; border-width: 6px; border-style: solid; border-color: #666 transparent transparent; }
+.goto-scenes select { width: 148px; height: 28px; padding: 0 5px; background: #000; border-radius: 0; border: 1px solid #333; color: #fff; }
 .goto-transition label { color: #424242; cursor: pointer; }
 .goto-transition input[type="radio"] { visibility: hidden; width: 0; height: 0; }
 .goto-transition input[type="radio"]:checked + i { color: #b7b7b7; }
