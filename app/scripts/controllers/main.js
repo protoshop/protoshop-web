@@ -394,6 +394,14 @@ angular.module('toHELL')
       }
     };
 
+    /**
+     * 将热点平移至指定位置。函数保证热点不会超出屏幕。
+     * @func moveHotspotTo
+     * @param {Element} ele - 关联的热点对象
+     * @param {number|String} x - 横坐标。可携带单位，比如10px
+     * @param {number|String} y - 纵坐标。同样可携带单位
+     * @todo 屏幕应当可配置
+     */
     $scope.moveHotspotTo = function(ele, x, y) {
       // TODO: 屏幕的尺寸应当可配置
       var widthMax = 320 - parseInt(ele.width, 10);
@@ -404,6 +412,14 @@ angular.module('toHELL')
       ele.posY = bound(0, yValue, heightMax) + 'px';
     };
 
+    /**
+     * 将热点缩放至特定尺寸。函数保证热点不会超出屏幕。
+     * @func resizeHotspotTo
+     * @param {Element} ele - 关联的热点对象
+     * @param {number|String} w - 宽度。可携带单位，比如10px
+     * @param {number|String} h - 高度。同样可携带单位
+     * @todo 屏幕应当可配置
+     */
     $scope.resizeHotspotTo = function(ele, w, h) {
       // TODO: 屏幕的尺寸应当可配置
       var widthMax = 320 - parseInt(ele.posX, 10);
@@ -412,6 +428,12 @@ angular.module('toHELL')
       ele.height = bound(0, parseInt(h, 10), heightMax) + 'px';
     };
 
+    /**
+     * 场景中鼠标移动时触发此函数。由于热点区域有多个可点击、拖动的对象，这个函数用来将其分发。
+     * @func onSceneMoved
+     * @param {event} $event - 点击事件
+     * @private
+     */
     $scope.onSceneMoved = function ($event) {
       var eT = this.editStat;
       var sT = eT.hotspotStack;
@@ -425,6 +447,12 @@ angular.module('toHELL')
       }
     };
 
+    /**
+     * 场景中鼠标抬起时触发此函数。由于热点区域有多个可点击、拖动的对象，这个函数用来将其分发。
+     * @func onSceneUp
+     * @param {event} $event - 点击事件
+     * @private
+     */
     $scope.onSceneUp = function ($event) {
       this.onHotspotUp($event);
       this.onExpanderUp($event);
@@ -490,6 +518,15 @@ angular.module('toHELL')
       document.body.style.cursor = ''; // TODO: 换用更angular的方法
     };
 
+    /**
+     * 元素缩放触头在鼠标按下时触发此函数
+     * @func onExpanderDown
+     * @param {number} index - 元素的索引
+     * @param {Element} ele - 元素对象
+     * @param {number} pos - 触头的索引，用来区分是哪个触头。从左开始顺时针依次为1、2、3、4
+     * @param {event} $event - 鼠标事件
+     * @private
+     */
     $scope.onExpanderDown = function (index, ele, pos, $event) {
       if ($event.which !== 1) {// 不接受非左键点击
         return;
@@ -525,12 +562,23 @@ angular.module('toHELL')
       
     };
 
+    /**
+     * 元素缩放触头在鼠标松开时触发此函数
+     * @func onExpanderUp
+     * @private
+     */
     $scope.onExpanderUp = function () {
       var sT = this.editStat.expanderStack;
       sT.expanderMovingTarget = null;
       document.body.style.cursor = ''; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
     };
 
+    /**
+     * 元素缩放触头在鼠标移动时触发此函数
+     * @func onExpanderMove
+     * @param {event} $event - 鼠标事件
+     * @private
+     */
     $scope.onExpanderMove = function ($event) {
       var eT = this.editStat.expanderStack;
       if (eT.expanderMovingTarget !== null) {
@@ -598,6 +646,15 @@ angular.module('toHELL')
       }
     }
 
+    /**
+     * 辅助函数，将值限定在某个区间之内
+     * @func bound
+     * @param {number} min - 最小值
+     * @param {number} value - 需要进行限定的值
+     * @param {number} max - 最大值
+     * @return {number} 若value在区间内，则返回value；否则最小为min，最大为max，
+     * @private
+     */
     function bound(min, value, max) {
       if (value < min) {
         return min;
