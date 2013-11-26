@@ -1,0 +1,50 @@
+{
+  "appName": "Demo HELL1",
+  "appIcon": "images/icon-app-120.png",
+  "splash": {
+    "image": "splash.png",
+    "delay": 500,
+    "transferType": ""
+  },
+  "scenes": [
+    {
+      "id": 0,
+      "order": 0,
+      "name": "Scene 1",
+      "background": "images/zzz-scene-thumb.png",
+      "elements": [
+        {
+          "type": "hotspot",
+          "posX": "100px",
+          "posY": "300px",
+          "width": "120px",
+          "height": "42px",
+          "actions": [
+            {
+              "type": "jumpto",
+              "target": 1,
+              "transitionType": "push",
+              "transitionDirection": "up",
+              "transitionDelay": "0s",
+              "transitionDuration": "3.25s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "order": 1,
+      "name": "Scene 2",
+      "background": "images/zzz-scene-thumb.png",
+      "elements": []
+    },
+    {
+      "id": 2,
+      "order": 2,
+      "name": "Scene 3",
+      "background": "",
+      "elements": []
+    }
+  ]
+}
