@@ -51,8 +51,8 @@
 		</div>
 
 		<!-- 中栏：场景详情修改区 -->
-		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onHotspotMoved($event)"
-			 ng-mouseup="onHotspotUp($event)">
+		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onSceneMoved($event)"
+			 ng-mouseup="onSceneUp($event)">
 			<div class="scene">
 				<div class="actor hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements"
 					 ng-style="renderHotspotStyle(ele)" ng-click="selectElement($index);$event.stopPropagation()"
@@ -60,7 +60,10 @@
 					 style="position: absolute">
 					<div class="anchor" ng-show="$index == editStat.selectedElement"
 						 ng-mousedown="$event.stopPropagation()">
-						<i></i><i></i><i></i><i></i>
+						<i ng-mousedown="onExpanderDown($index, ele, 1, $event);$event.stopPropagation()"></i>
+						<i ng-mousedown="onExpanderDown($index, ele, 2, $event);$event.stopPropagation()"></i>
+						<i ng-mousedown="onExpanderDown($index, ele, 3, $event);$event.stopPropagation()"></i>
+						<i ng-mousedown="onExpanderDown($index, ele, 4, $event);$event.stopPropagation()"></i>
 					</div>
 					<div class="scene-goto"
 						 ng-show="$index == editStat.selectedElement && editStat.selectedAction != null"
