@@ -246,12 +246,11 @@ angular.module('toHELL')
      * @param {string|number} value - 要搜索的值
      * @return {number|null} 如果找到则返回该场景的id，否则返回null
      */
-    function findScene(key, value) {
-      /*jshint validthis:true */
-      var self = this;
-      for (var i = self.scenes.length - 1; i >= 0; i--) {
-        if (self.scenes[i][key] === value) {
-          return self.scenes[i];
+    $scope.findScene = function (key, value) {
+      var scenes = this.package.scenes;
+      for (var i = scenes.length - 1; i >= 0; i--) {
+        if (scenes[i][key] === value) {
+          return scenes[i];
         }
       }
       return null;
@@ -264,7 +263,9 @@ angular.module('toHELL')
      * @param {number} id - 要搜索的id
      * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
      */
-    $scope.findSceneById = findScene.bind($scope.package, 'id');
+    $scope.findSceneById = function (id) {
+      return this.findScene('id', id);
+    };
 
     /**
      * 搜索特定order的场景
@@ -272,7 +273,9 @@ angular.module('toHELL')
      * @param {number} order - 要搜索的order
      * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
      */
-    $scope.findSceneByOrder = findScene.bind($scope.package, 'order');
+    $scope.findSceneByOrder = function (order) {
+      return this.findScene('order', order);
+    };
 
     /**
      * 搜索最大的场景id
