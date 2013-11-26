@@ -528,7 +528,7 @@ angular.module('toHELL')
     $scope.onExpanderUp = function () {
       var sT = this.editStat.expanderStack;
       sT.expanderMovingTarget = null;
-      // $event.target.style.cursor = 'auto'; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
+      document.body.style.cursor = ''; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
     };
 
     $scope.onExpanderMove = function ($event) {
