@@ -452,6 +452,7 @@ angular.module('toHELL')
       sT.hotspotDom = $event.target;
       sT.hotspotOldZindex = sT.hotspotDom.zIndex;
       sT.hotspotDom.zIndex = 10000;
+      document.body.style.cursor = 'move'; // TODO: 换用更angular的方法
     };
 
     /**
@@ -464,7 +465,6 @@ angular.module('toHELL')
       var sT = this.editStat.hotspotStack;
       // 返回范围内的数值
       if (sT.hotspotMovingTarget !== null) {
-        document.body.style.cursor = 'move'; // TODO: 换用更angular的方法
         var xT = sT.hotspotMovingOffset.x + $event.clientX - sT.hotspotMovingStart.x;
         var yT = sT.hotspotMovingOffset.y + $event.clientY - sT.hotspotMovingStart.y;
         this.moveHotspotTo(sT.hotspotMovingTarget, xT, yT);
@@ -506,6 +506,23 @@ angular.module('toHELL')
       sT.hotspot.height = parseInt(ele.height, 10);
       sT.expanderMovingOffset.y = parseInt(sT.expanderMovingTarget.height, 10); // 小心单位
       sT.expanderMovingOffset.x = parseInt(sT.expanderMovingTarget.width, 10);
+      switch (pos) {
+      case 1:
+        document.body.style.cursor = 'w-resize'; // TODO: 换用更angular的方法
+      break;
+      case 2:
+        document.body.style.cursor = 'n-resize'; // TODO: 换用更angular的方法
+      break;
+      case 3:
+        document.body.style.cursor = 'e-resize'; // TODO: 换用更angular的方法
+      break;
+      case 4:
+        document.body.style.cursor = 's-resize'; // TODO: 换用更angular的方法
+      break;
+      default:
+      break;
+      }
+      
     };
 
     $scope.onExpanderUp = function () {
