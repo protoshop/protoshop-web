@@ -19,6 +19,7 @@ angular.module('toHELL')
        */
       hotspotStack: {
         hotspotMovingTarget: null,
+        hotspotDom: null,
         hotspotMovingStart: {
           x: 0,
           y: 0
@@ -448,8 +449,9 @@ angular.module('toHELL')
       sT.hotspotMovingStart.y = $event.clientY;
       sT.hotspotMovingOffset.x = parseInt($event.target.style.left, 10); // 小心单位
       sT.hotspotMovingOffset.y = parseInt($event.target.style.top, 10);
-      sT.hotspotOldZindex = $event.target.zIndex;
-      $event.target.zIndex = 10000;
+      sT.hotspotDom = $event.target;
+      sT.hotspotOldZindex = sT.hotspotDom.zIndex;
+      sT.hotspotDom.zIndex = 10000;
     };
 
     /**
@@ -462,7 +464,7 @@ angular.module('toHELL')
       var sT = this.editStat.hotspotStack;
       // 返回范围内的数值
       if (sT.hotspotMovingTarget !== null) {
-        $event.target.style.cursor = 'move';
+        sT.hotspotDom.style.cursor = 'move';
         var xT = sT.hotspotMovingOffset.x + $event.clientX - sT.hotspotMovingStart.x;
         var yT = sT.hotspotMovingOffset.y + $event.clientY - sT.hotspotMovingStart.y;
         this.moveHotspotTo(sT.hotspotMovingTarget, xT, yT);
@@ -480,8 +482,12 @@ angular.module('toHELL')
     $scope.onHotspotUp = function ($event) {
       var sT = this.editStat.hotspotStack;
       sT.hotspotMovingTarget = null;
-      $event.target.zIndex = sT.hotspotOldZindex;
-      $event.target.style.cursor = 'auto'; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
+      if (!sT.hotspotDom) {
+        return;
+      }
+      sT.hotspotDom.zIndex = sT.hotspotOldZindex;
+      // NOTE: 注意这里不要使用auto，以免覆盖CSS中的相应设置
+      sT.hotspotDom.style.cursor = ''; 
     };
 
     $scope.onExpanderDown = function (index, ele, pos, $event) {
