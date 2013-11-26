@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageCTRL', ['$scope', function ($scope) {
+  .controller('PackageCTRL', ['$scope', '$http', function ($scope, $http) {
     /**
      * 存储当前的编辑状态
      * @var {Object}
