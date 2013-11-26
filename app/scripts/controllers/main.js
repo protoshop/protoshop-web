@@ -28,6 +28,26 @@ angular.module('toHELL')
           y: 0
         },
         hotspotOldZindex: null
+      },
+      expanderStack: {
+        expanderMovingTarget: null,
+        expanderMovingStart: {
+          x: 0,
+          y: 0
+        },
+        expanderMovingOffset: {
+          x: 0,
+          y: 0
+        },
+        hotspotPos: {
+          x: 0,
+          y: 0
+        },
+        hotspot: {
+          width: 0,
+          height: 0
+        },
+        expanderIndex: null
       }
     };
     /**
@@ -365,7 +385,33 @@ angular.module('toHELL')
       }
     };
 
-    
+    $scope.moveHotspotTo = function(ele, x, y) {
+      ele.posX = parseInt(x, 10) + 'px';
+      ele.posY = parseInt(y, 10) + 'px';
+    };
+
+    $scope.resizeHotspotTo = function(ele, w, h) {
+      ele.width = parseInt(w, 10) + 'px';
+      ele.height = parseInt(h, 10) + 'px';
+    };
+
+    $scope.onSceneMoved = function($event) {
+      var eT = this.editStat;
+      var sT = eT.hotspotStack;
+      var expT = eT.expanderStack;
+
+      if(sT.hotspotMovingTarget !== null) {
+        this.onHotspotMoved($event);
+      }
+      if(expT.expanderMovingTarget !== null) {
+        this.onExpanderMove($event);
+      }
+    };
+
+    $scope.onSceneUp = function($event) {
+      this.onHotspotUp($event);
+      this.onExpanderUp($event);
+    };
 
     /**
     * 热点被鼠标按下时触发此函数
@@ -432,6 +478,77 @@ angular.module('toHELL')
       sT.hotspotMovingTarget = null;
       $event.target.zIndex = sT.hotspotOldZindex;
       $event.target.style.cursor = 'auto'; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
+    };
+
+    $scope.onExpanderDown = function(index, ele, pos, $event) {
+      if ($event.which !== 1) {// 不接受非左键点击
+        return;
+      }
+      var sT = this.editStat.expanderStack;
+      this.selectElement(index);
+      sT.expanderIndex = pos;
+      sT.expanderMovingTarget = ele;
+      sT.expanderMovingStart.x = $event.clientX;
+      sT.expanderMovingStart.y = $event.clientY;
+      sT.hotspotPos.x = parseInt(ele.posX, 10);
+      sT.hotspotPos.y = parseInt(ele.posY, 10);
+      sT.hotspot.width = parseInt(ele.width, 10);
+      sT.hotspot.height = parseInt(ele.height, 10);
+      sT.expanderMovingOffset.y = parseInt(sT.expanderMovingTarget.height, 10); // 小心单位
+      sT.expanderMovingOffset.x = parseInt(sT.expanderMovingTarget.width, 10);
+    };
+
+    $scope.onExpanderUp = function($event) {
+      var sT = this.editStat.expanderStack;
+      sT.expanderMovingTarget = null;
+      // $event.target.style.cursor = 'auto'; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
+    };
+
+    $scope.onExpanderMove = function($event) {
+      var eT = this.editStat.expanderStack;
+      // 返回范围内的数值
+      function bound(min, value, max) {
+        if (value < min) {
+          return min;
+        }
+        if (value > max) {
+          return max;
+        }
+        return value;
+      }
+      if(eT.expanderMovingTarget !== null) {
+        var target = eT.expanderMovingTarget;
+        // $event.target.style.cursor = 'move';
+        var xT = eT.expanderMovingOffset.x + $event.clientX - eT.expanderMovingStart.x;
+        var yT = eT.expanderMovingOffset.y + $event.clientY - eT.expanderMovingStart.y;
+        var wT = parseInt(target.width, 10);  // 小心单位
+        var hT = parseInt(target.height, 10);
+        // 计算实际的移动距离
+        var deltaY = eT.hotspot.height - yT;
+        var deltaX = eT.hotspot.width - xT;
+
+        // TODO: 增加扩张范围限制
+        switch (eT.expanderIndex) {
+          // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
+          case 1:
+          this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
+          this.moveHotspotTo(target, eT.hotspotPos.x - deltaX, eT.hotspotPos.y);
+          break;
+          case 2:
+          this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
+          this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
+          break;
+          // 而右边侧与下边侧的移动则不会对整体位置造成影响
+          case 3:
+          this.resizeHotspotTo(target, eT.hotspot.width - deltaX, eT.hotspot.height);
+          break;
+          case 4:
+          this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height - deltaY);
+          break;
+          default:
+          break;
+        }
+      }
     };
 
     // 简化模板中的复杂寻值
