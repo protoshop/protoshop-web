@@ -157,10 +157,10 @@
 			<div class="tools-box">
 				<div class="tools-title">Actors</div>
 				<ul class="tools-actor">
-					<li>
+					<li ng-show="null">
 						<button class="icon-plus-circled">New Button Actor</button>
 					</li>
-					<li>
+					<li ng-show="null">
 						<button class="icon-plus-circled">New Text Actor</button>
 					</li>
 					<li>
@@ -180,7 +180,7 @@
 				</ul>
 			</div>
 			<!-- tools: setting -->
-			<div class="tools-box">
+			<div class="tools-box" ng-show="editStat.selectedScene === null">
 				<div class="tools-title">Settings</div>
 				<ul class="tools-setting">
 					<li><label>Name:</label><input type="text" ng-model="package.appName" /></li>
