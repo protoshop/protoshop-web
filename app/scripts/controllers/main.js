@@ -386,13 +386,21 @@ angular.module('toHELL')
     };
 
     $scope.moveHotspotTo = function(ele, x, y) {
-      ele.posX = parseInt(x, 10) + 'px';
-      ele.posY = parseInt(y, 10) + 'px';
+      // TODO: 屏幕的尺寸应当可配置
+      var widthMax = 320-parseInt(ele.width, 10);
+      var heightMax = 568-parseInt(ele.height, 10);
+      var xValue = parseInt(x, 10);
+      var yValue = parseInt(y, 10);
+      ele.posX = bound( 0, xValue, widthMax ) + 'px';
+      ele.posY = bound( 0, yValue, heightMax ) + 'px';
     };
 
     $scope.resizeHotspotTo = function(ele, w, h) {
-      ele.width = parseInt(w, 10) + 'px';
-      ele.height = parseInt(h, 10) + 'px';
+      // TODO: 屏幕的尺寸应当可配置
+      var widthMax = 320 - parseInt(ele.posX, 10);
+      var heightMax = 568 - parseInt(ele.posY, 10);
+      ele.width = bound(0, parseInt(w, 10), widthMax) + 'px';
+      ele.height = bound(0, parseInt(h, 10), heightMax) + 'px';
     };
 
     $scope.onSceneMoved = function($event) {
@@ -445,23 +453,15 @@ angular.module('toHELL')
     $scope.onHotspotMoved = function($event) {
       var sT = this.editStat.hotspotStack;
       // 返回范围内的数值
-      function bound(min, value, max) {
-        if (value < min) {
-          return min;
-        }
-        if (value > max) {
-          return max;
-        }
-        return value;
-      }
+      
       if(sT.hotspotMovingTarget !== null) {
         $event.target.style.cursor = 'move';
         var xT = sT.hotspotMovingOffset.x + $event.clientX - sT.hotspotMovingStart.x;
         var yT = sT.hotspotMovingOffset.y + $event.clientY - sT.hotspotMovingStart.y;
         var wT = parseInt(sT.hotspotMovingTarget.width, 10);  // 小心单位
         var hT = parseInt(sT.hotspotMovingTarget.height, 10);
-        sT.hotspotMovingTarget.posX = bound(0, xT, 320-wT) + 'px';
-        sT.hotspotMovingTarget.posY = bound(0, yT, 568-hT) + 'px';
+
+        this.moveHotspotTo(sT.hotspotMovingTarget, xT, yT);
         // TODO: 热点移动时颜色可以发生变化
         // TODO: 热点移动时，如果热点移至屏幕另半侧，则应将线框转移
       }
@@ -506,16 +506,6 @@ angular.module('toHELL')
 
     $scope.onExpanderMove = function($event) {
       var eT = this.editStat.expanderStack;
-      // 返回范围内的数值
-      function bound(min, value, max) {
-        if (value < min) {
-          return min;
-        }
-        if (value > max) {
-          return max;
-        }
-        return value;
-      }
       if(eT.expanderMovingTarget !== null) {
         var target = eT.expanderMovingTarget;
         // $event.target.style.cursor = 'move';
@@ -528,15 +518,27 @@ angular.module('toHELL')
         var deltaX = eT.hotspot.width - xT;
 
         // TODO: 增加扩张范围限制
+        // TODO: 控制线框的长短和位置
         switch (eT.expanderIndex) {
           // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
           case 1:
-          this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
-          this.moveHotspotTo(target, eT.hotspotPos.x - deltaX, eT.hotspotPos.y);
+          // 防止因无法resize而导致的move
+          if (eT.hotspotPos.x - deltaX < eT.hotspotPos.x+eT.hotspot.width) {
+            this.moveHotspotTo(target, eT.hotspotPos.x - deltaX, eT.hotspotPos.y);
+          }
+          // 防止因无法move而导致的resize
+          // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
+          if(parseInt(target.posX, 10) > 0) {
+            this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
+          }
           break;
           case 2:
-          this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
-          this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
+          if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y+eT.hotspot.height) {
+            this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
+          }
+          if(parseInt(target.posY, 10) > 0) {
+            this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
+          }
           break;
           // 而右边侧与下边侧的移动则不会对整体位置造成影响
           case 3:
@@ -569,6 +571,16 @@ angular.module('toHELL')
       } else {
         return null;
       }
+    }
+
+    function bound(min, value, max) {
+      if (value < min) {
+        return min;
+      }
+      if (value > max) {
+        return max;
+      }
+      return value;
     }
 
     // TODO: 如果初始态不选中任何场景，则这里应该去掉
