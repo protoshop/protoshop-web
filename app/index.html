@@ -134,16 +134,6 @@
 
 		<!-- 右栏：场景修改工具区 -->
 		<div class="layout-tools">
-			<!-- tools: position -->
-			<div class="tools-box" ng-show="editStat.selectedElement != null">
-				<div class="tools-title">Position</div>
-				<ul class="tools-position">
-					<li><label>X</label><input type="text" ng-model="editStat.selectedElementObj.posX" /></li>
-					<li><label>Y</label><input type="text" ng-model="editStat.selectedElementObj.posY" /></li>
-					<li><label>W</label><input type="text" ng-model="editStat.selectedElementObj.width" /></li>
-					<li><label>H</label><input type="text" ng-model="editStat.selectedElementObj.height" /></li>
-				</ul>
-			</div>
 			<!-- tools: background -->
 			<div class="tools-box">
 				<div class="tools-title">Background</div>
@@ -166,6 +156,16 @@
 					<li>
 						<button class="icon-plus-circled" ng-click="addHotspotElement()">New Hotspot Actor</button>
 					</li>
+				</ul>
+			</div>
+			<!-- tools: position -->
+			<div class="tools-box" ng-show="editStat.selectedElement != null">
+				<div class="tools-title">Position</div>
+				<ul class="tools-position">
+					<li><label>X</label><input type="text" ng-model="editStat.selectedElementObj.posX" /></li>
+					<li><label>Y</label><input type="text" ng-model="editStat.selectedElementObj.posY" /></li>
+					<li><label>W</label><input type="text" ng-model="editStat.selectedElementObj.width" /></li>
+					<li><label>H</label><input type="text" ng-model="editStat.selectedElementObj.height" /></li>
 				</ul>
 			</div>
 			<!-- tools: action -->
