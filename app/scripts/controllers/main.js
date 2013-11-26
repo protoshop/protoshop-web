@@ -464,7 +464,7 @@ angular.module('toHELL')
       var sT = this.editStat.hotspotStack;
       // 返回范围内的数值
       if (sT.hotspotMovingTarget !== null) {
-        sT.hotspotDom.style.cursor = 'move';
+        document.body.style.cursor = 'move'; // TODO: 换用更angular的方法
         var xT = sT.hotspotMovingOffset.x + $event.clientX - sT.hotspotMovingStart.x;
         var yT = sT.hotspotMovingOffset.y + $event.clientY - sT.hotspotMovingStart.y;
         this.moveHotspotTo(sT.hotspotMovingTarget, xT, yT);
@@ -487,7 +487,7 @@ angular.module('toHELL')
       }
       sT.hotspotDom.zIndex = sT.hotspotOldZindex;
       // NOTE: 注意这里不要使用auto，以免覆盖CSS中的相应设置
-      sT.hotspotDom.style.cursor = ''; 
+      document.body.style.cursor = ''; // TODO: 换用更angular的方法
     };
 
     $scope.onExpanderDown = function (index, ele, pos, $event) {
