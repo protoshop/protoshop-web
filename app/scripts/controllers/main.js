@@ -217,8 +217,12 @@ angular.module('toHELL')
      * @func addAction
      */
     $scope.addAction = function () {
-      var element = this.editStat.selectedElementObj;
-      element.actions.push({
+      var actions = this.editStat.selectedElementObj.actions;
+      if (actions.length > 0) {
+        // 当前一个Element只能有一个Action
+        return;
+      }
+      actions.push({
         type: 'jumpto',
         target: null,
         transitionType: 'push',
@@ -226,7 +230,7 @@ angular.module('toHELL')
         transitionDelay: '0s',
         transitionDuration: '3.25s'
       });
-      this.selectAction(element.actions.length - 1);
+      this.selectAction(actions.length - 1);
     };
 
     /**
@@ -254,7 +258,7 @@ angular.module('toHELL')
         }
       }
       return null;
-    }
+    };
 
     // 快捷方法
     /**
@@ -317,11 +321,11 @@ angular.module('toHELL')
     $scope.renderActionItem = function (action) {
       var actionText = '';
       switch (action.type) {
-        case 'jumpto':
-          actionText += 'Go To: ';
-          break;
-        default:
-          actionText += 'Unknown Action: ';
+      case 'jumpto':
+        actionText += 'Go To: ';
+        break;
+      default:
+        actionText += 'Unknown Action: ';
       }
 
       var scene = this.findSceneById(action.target);
@@ -461,8 +465,6 @@ angular.module('toHELL')
         $event.target.style.cursor = 'move';
         var xT = sT.hotspotMovingOffset.x + $event.clientX - sT.hotspotMovingStart.x;
         var yT = sT.hotspotMovingOffset.y + $event.clientY - sT.hotspotMovingStart.y;
-        var wT = parseInt(sT.hotspotMovingTarget.width, 10);  // 小心单位
-        var hT = parseInt(sT.hotspotMovingTarget.height, 10);
         this.moveHotspotTo(sT.hotspotMovingTarget, xT, yT);
         // TODO: 热点移动时颜色可以发生变化
         // TODO: 热点移动时，如果热点移至屏幕另半侧，则应将线框转移
@@ -500,7 +502,7 @@ angular.module('toHELL')
       sT.expanderMovingOffset.x = parseInt(sT.expanderMovingTarget.width, 10);
     };
 
-    $scope.onExpanderUp = function ($event) {
+    $scope.onExpanderUp = function () {
       var sT = this.editStat.expanderStack;
       sT.expanderMovingTarget = null;
       // $event.target.style.cursor = 'auto'; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
@@ -513,8 +515,6 @@ angular.module('toHELL')
         // $event.target.style.cursor = 'move';
         var xT = eT.expanderMovingOffset.x + $event.clientX - eT.expanderMovingStart.x;
         var yT = eT.expanderMovingOffset.y + $event.clientY - eT.expanderMovingStart.y;
-        var wT = parseInt(target.width, 10);  // 小心单位
-        var hT = parseInt(target.height, 10);
         // 计算实际的移动距离
         var deltaY = eT.hotspot.height - yT;
         var deltaX = eT.hotspot.width - xT;
@@ -522,35 +522,35 @@ angular.module('toHELL')
         // TODO: 增加扩张范围限制
         // TODO: 控制线框的长短和位置
         switch (eT.expanderIndex) {
-          // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
-          case 1:
-            // 防止因无法resize而导致的move
-            if (eT.hotspotPos.x - deltaX < eT.hotspotPos.x + eT.hotspot.width) {
-              this.moveHotspotTo(target, eT.hotspotPos.x - deltaX, eT.hotspotPos.y);
-            }
-            // 防止因无法move而导致的resize
-            // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
-            if(parseInt(target.posX, 10) > 0) {
-              this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
-            }
-            break;
-          case 2:
-            if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
-              this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
-            }
-            if(parseInt(target.posY, 10) > 0) {
-              this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
-            }
-            break;
-          // 而右边侧与下边侧的移动则不会对整体位置造成影响
-          case 3:
-            this.resizeHotspotTo(target, eT.hotspot.width - deltaX, eT.hotspot.height);
-            break;
-          case 4:
-            this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height - deltaY);
-            break;
-          default:
-            break;
+        // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
+        case 1:
+          // 防止因无法resize而导致的move
+          if (eT.hotspotPos.x - deltaX < eT.hotspotPos.x + eT.hotspot.width) {
+            this.moveHotspotTo(target, eT.hotspotPos.x - deltaX, eT.hotspotPos.y);
+          }
+          // 防止因无法move而导致的resize
+          // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
+          if(parseInt(target.posX, 10) > 0) {
+            this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
+          }
+          break;
+        case 2:
+          if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
+            this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
+          }
+          if(parseInt(target.posY, 10) > 0) {
+            this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
+          }
+          break;
+        // 而右边侧与下边侧的移动则不会对整体位置造成影响
+        case 3:
+          this.resizeHotspotTo(target, eT.hotspot.width - deltaX, eT.hotspot.height);
+          break;
+        case 4:
+          this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height - deltaY);
+          break;
+        default:
+          break;
         }
       }
     };
