@@ -15,7 +15,7 @@
 
 <!-- ng-template: package.html -->
 <script type="text/ng-template" id="package.html">
-	<nav class="navbar navbar-default" role="navigation">
+	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#/">ToHELL</a>
 		</div>
@@ -54,7 +54,7 @@
 		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onHotspotMoved($event)"
 			 ng-mouseup="onHotspotUp($event)">
 			<div class="scene">
-				<div class="actor hotspot" ng-repeat="ele in findSceneById(editStat.selectedScene).elements"
+				<div class="actor hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements"
 					 ng-style="renderHotspotStyle(ele)" ng-click="selectElement($index);$event.stopPropagation()"
 					 ng-mousedown="onHotspotDown($index, ele, $event);$event.stopPropagation()"
 					 style="position: absolute">
@@ -191,7 +191,7 @@
 
 <!-- ng-template: package-list.html -->
 <script type="text/ng-template" id="package-list.html">
-	<nav class="navbar navbar-default" role="navigation">
+	<nav class="navbar navbar-default">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">ToHELL</a>
 		</div>
