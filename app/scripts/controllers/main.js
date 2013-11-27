@@ -7,7 +7,7 @@ angular.module('toHELL')
      * @var {Object}
      */
     $scope.editStat = {
-      selectedScene: 0, // NOTE: 这里是scene的id，不能直接作为索引使用
+      selectedScene: null, // NOTE: 这里是scene的id，不能直接作为索引使用
       selectedElement: null,
       selectedElementObj: null,
       selectedAction: null,
