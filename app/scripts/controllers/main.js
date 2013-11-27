@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageCTRL', ['$scope', '$http', function ($scope, $http) {
+  .controller('PackageCTRL', ['$scope', '$routeParams', '$http', 'Global', function ($scope, $routeParams, $http, Global) {
     /**
      * 存储当前的编辑状态
      * @var {Object}
@@ -55,56 +55,10 @@ angular.module('toHELL')
      * 存储整个工程的实时状态
      * @var {Object}
      */
-    $scope.package = {
-      appName: 'Demo HELL1',
-      appIcon: 'images/icon-app-120.png',
-      splash: {
-        image: 'splash.png',
-        delay: 500,
-        transferType: ''
-      },
-      scenes: [
-        {
-          id: 0,
-          order: 0,
-          name: 'Scene 1',
-          background: 'images/zzz-scene-thumb.png',
-          elements: [
-            {
-              type: 'hotspot',
-              posX: '100px',
-              posY: '300px',
-              width: '120px',
-              height: '42px',
-              actions: [
-                {
-                  type: 'jumpto',
-                  target: 1,
-                  transitionType: 'push',
-                  transitionDirection: 'up',
-                  transitionDelay: '0s',
-                  transitionDuration: '3.25s'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 1,
-          order: 1,
-          name: 'Scene 2',
-          background: 'images/zzz-scene-thumb.png',
-          elements: []
-        },
-        {
-          id: 2,
-          order: 2,
-          name: 'Scene 3',
-          background: '',
-          elements: []
-        }
-      ]
-    };
+    $http.get(Global.apiUrl + 'package/' + $routeParams['pkgId'] + '.json')
+      .success(function (data) {
+        $scope.package = data;
+      });
 
     /**
      * 选中一个场景
@@ -387,7 +341,7 @@ angular.module('toHELL')
      * @param {number|String} y - 纵坐标。同样可携带单位
      * @todo 屏幕应当可配置
      */
-    $scope.moveHotspotTo = function(ele, x, y) {
+    $scope.moveHotspotTo = function (ele, x, y) {
       // TODO: 屏幕的尺寸应当可配置
       var widthMax = 320 - parseInt(ele.width, 10);
       var heightMax = 568 - parseInt(ele.height, 10);
@@ -405,7 +359,7 @@ angular.module('toHELL')
      * @param {number|String} h - 高度。同样可携带单位
      * @todo 屏幕应当可配置
      */
-    $scope.resizeHotspotTo = function(ele, w, h) {
+    $scope.resizeHotspotTo = function (ele, w, h) {
       // TODO: 屏幕的尺寸应当可配置
       var widthMax = 320 - parseInt(ele.posX, 10);
       var heightMax = 568 - parseInt(ele.posY, 10);
@@ -531,20 +485,20 @@ angular.module('toHELL')
       switch (pos) {
       case 1:
         document.body.style.cursor = 'w-resize'; // TODO: 换用更angular的方法
-      break;
+        break;
       case 2:
         document.body.style.cursor = 'n-resize'; // TODO: 换用更angular的方法
-      break;
+        break;
       case 3:
         document.body.style.cursor = 'e-resize'; // TODO: 换用更angular的方法
-      break;
+        break;
       case 4:
         document.body.style.cursor = 's-resize'; // TODO: 换用更angular的方法
-      break;
+        break;
       default:
-      break;
+        break;
       }
-      
+
     };
 
     /**
@@ -578,7 +532,7 @@ angular.module('toHELL')
         // TODO: 增加扩张范围限制
         // TODO: 控制线框的长短和位置
         switch (eT.expanderIndex) {
-        // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
+          // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
         case 1:
           // 防止因无法resize而导致的move
           if (eT.hotspotPos.x - deltaX < eT.hotspotPos.x + eT.hotspot.width) {
@@ -586,7 +540,7 @@ angular.module('toHELL')
           }
           // 防止因无法move而导致的resize
           // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
-          if(parseInt(target.posX, 10) > 0) {
+          if (parseInt(target.posX, 10) > 0) {
             this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
           }
           break;
@@ -594,11 +548,11 @@ angular.module('toHELL')
           if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
             this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
           }
-          if(parseInt(target.posY, 10) > 0) {
+          if (parseInt(target.posY, 10) > 0) {
             this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
           }
           break;
-        // 而右边侧与下边侧的移动则不会对整体位置造成影响
+          // 而右边侧与下边侧的移动则不会对整体位置造成影响
         case 3:
           this.resizeHotspotTo(target, eT.hotspot.width - deltaX, eT.hotspot.height);
           break;
@@ -657,6 +611,7 @@ angular.module('toHELL')
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
     $scope.packageList = [
       {
+        id: 'zaq1xsw2',
         packageName: 'Jade',
         packageIcon: 'images/icon-app-120.png',
         modifyDate: '2013-10-27',
@@ -669,12 +624,14 @@ angular.module('toHELL')
         ]
       },
       {
+        id: 'zaq1xsw2',
         packageName: 'Jade',
         packageIcon: 'images/icon-app-120.png',
         modifyDate: '2013-10-27',
         changelog: []
       },
       {
+        id: 'zaq1xsw2',
         packageName: 'Mike',
         packageIcon: 'images/icon-app-120.png',
         modifyDate: '2013-10-27',
