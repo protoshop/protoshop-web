@@ -360,11 +360,12 @@ angular.module('toHELL')
      * @todo 处理px以外单位的情况
      */
     $scope.renderGotoSignStyle = function (ele) {
-      var widthT = parseInt(ele.width, 10);
-      var heightT = parseInt(ele.height, 10);
-      var o = calcGotoSignStyle(widthT, heightT);
+      var x = parseInt(ele.posX, 10);
+      var y = parseInt(ele.posY, 10);
+      var width = parseInt(ele.width, 10);
+      var height = parseInt(ele.height, 10);
+      var o = calcGotoSignStyle(x, y, width, height);
       return {
-        top: o.y + 'px',
         right: o.x + 'px'
       };
     };
@@ -682,21 +683,17 @@ angular.module('toHELL')
     }
 
     /**
-     * 计算线框整体的坐标值。
+     * 计算线框整体的坐标值。目前返回hotspot的左上角
      * @func calcGotoSignStyle
      * @param {number} width - 元素的宽度
      * @param {number} height - 元素的高度
      * @return {object} 返回计算出的x, y值，不含单位。
      * @private
-     * @todo 减少硬编码
      */
-    function calcGotoSignStyle(width, height) {
-      /* jshint -W016 */
+    function calcGotoSignStyle(x, y, width, height) {
       return {
-        x: width > 76 ? (width >> 1) + 40 : width, // NOTE: 使用右移实现快速除2
-        y: height > 24? -(60 - height / 3) : -52
+        x: width
       };
-      /* jshint +W016 */
     }
 
     /**
@@ -705,14 +702,12 @@ angular.module('toHELL')
      * @param {number} gotoSignX - 相应线框整体的x坐标
      * @param {number} gotoSignWidth - 相应线框整体的宽度
      * @private
-     * @todo 减少硬编码
+     * @todo 减少硬编码，去除对单位（px）的依赖
      */
     function calcGotoLineStyle(gotoSignX, gotoSignWidth) {
-      /* jshint -W016 */
       return {
-        width: (200 + gotoSignX) + (gotoSignWidth >> 1) // NOTE: 使用右移实现快速除2
+        width: (200 + gotoSignX) // 200表示goto thumb图距离设备的最小距离，目前单位实际为px
       };
-      /* jshint +W016 */
     }
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
