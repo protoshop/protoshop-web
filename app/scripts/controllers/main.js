@@ -356,21 +356,6 @@ angular.module('toHELL')
     };
 
     /**
-     * 返回一个场景的背景图。如果没有设置背景图则返回一张空白图。
-     * @func renderSceneThumbById
-     * @param {number} sid - 场景的id
-     * @return {string} 背景图的路径。
-     */
-    $scope.renderSceneThumbById = function (sid) {
-      var scene = this.findSceneById(sid);
-      if (scene && scene.background.length) {
-        return scene.background;
-      } else {
-        return 'images/dummy-scene-thumb.png';
-      }
-    };
-
-    /**
      * 测试Transition方向是否已禁用
      * @func isTransDirDisabled
      * @param {Action} action - 要测试的Action
