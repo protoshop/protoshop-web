@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageCTRL', ['$scope', '$http', function ($scope, $http) {
+  .controller('PackageCTRL', ['$scope', '$http', '$document', function ($scope, $http, $document) {
     /**
      * 存储当前的编辑状态
      * @var {Object}
@@ -117,6 +117,11 @@ angular.module('toHELL')
       this.selectElement(null);
     };
 
+    $scope.deselectScene = function () {
+      this.editStat.selectedScene = null;
+      this.deselectElement();
+    };
+
     /**
      * 增加一个场景。增加的场景将在所有场景之后。
      * @func addScene
@@ -156,6 +161,10 @@ angular.module('toHELL')
           this.package.scenes.splice(i, 1);
         }
       }
+      // 当删除的是选中场景时，释放对场景的选择
+      if (sid === this.editStat.selectedScene) {
+        this.deselectScene();
+      }
     };
 
     /**
@@ -171,6 +180,13 @@ angular.module('toHELL')
       if (this.editStat.selectedElementObj) {
         this.selectAction(0);
       }
+    };
+
+    $scope.deselectElement = function () {
+      this.editStat.selectedElement = null;
+      this.editStat.selectedElementObj = null;
+      // 连带释放Action的选中
+      this.deselectAction();
     };
 
     /**
@@ -211,6 +227,11 @@ angular.module('toHELL')
         aT.selectedActionObj = null;
         aT.selectedAction = null;
       }
+    };
+
+    $scope.deselectAction = function () {
+      this.editStat.selectedAction = null;
+      this.editStat.selectedActionObj = null;
     };
 
     /**
@@ -480,7 +501,7 @@ angular.module('toHELL')
       sT.hotspotDom = $event.target;
       sT.hotspotOldZindex = sT.hotspotDom.zIndex;
       sT.hotspotDom.zIndex = 10000;
-      document.body.style.cursor = 'move'; // TODO: 换用更angular的方法
+      $document[0].body.style.cursor = 'move';
     };
 
     /**
@@ -514,7 +535,7 @@ angular.module('toHELL')
       }
       sT.hotspotDom.zIndex = sT.hotspotOldZindex;
       // NOTE: 注意这里不要使用auto，以免覆盖CSS中的相应设置
-      document.body.style.cursor = ''; // TODO: 换用更angular的方法
+      $document[0].body.style.cursor = '';
     };
 
     /**
@@ -544,16 +565,16 @@ angular.module('toHELL')
       sT.expanderMovingOffset.x = parseInt(sT.expanderMovingTarget.width, 10);
       switch (pos) {
       case 1:
-        document.body.style.cursor = 'w-resize'; // TODO: 换用更angular的方法
+        $document[0].body.style.cursor = 'w-resize'; // TODO: 换用更angular的方法
         break;
       case 2:
-        document.body.style.cursor = 'n-resize'; // TODO: 换用更angular的方法
+        $document[0].body.style.cursor = 'n-resize'; // TODO: 换用更angular的方法
         break;
       case 3:
-        document.body.style.cursor = 'e-resize'; // TODO: 换用更angular的方法
+        $document[0].body.style.cursor = 'e-resize'; // TODO: 换用更angular的方法
         break;
       case 4:
-        document.body.style.cursor = 's-resize'; // TODO: 换用更angular的方法
+        $document[0].body.style.cursor = 's-resize'; // TODO: 换用更angular的方法
         break;
       default:
         break;

@@ -135,7 +135,7 @@
 		<!-- 右栏：场景修改工具区 -->
 		<div class="layout-tools">
 			<!-- tools: background -->
-			<div class="tools-box">
+			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
 					<img ng-src="{{renderSceneThumbById(editStat.selectedScene)}}" alt="" width="174" class="tools-bg-thumb" />
@@ -144,7 +144,7 @@
 				</div>
 			</div>
 			<!-- tools: actor -->
-			<div class="tools-box">
+			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Actors</div>
 				<ul class="tools-actor">
 					<li ng-show="null">
@@ -159,7 +159,7 @@
 				</ul>
 			</div>
 			<!-- tools: position -->
-			<div class="tools-box" ng-show="editStat.selectedElement != null">
+			<div class="tools-box" ng-show="editStat.selectedElement !== null">
 				<div class="tools-title">Position</div>
 				<ul class="tools-position">
 					<li><label>X</label><input type="text" ng-model="editStat.selectedElementObj.posX" /></li>
@@ -169,7 +169,7 @@
 				</ul>
 			</div>
 			<!-- tools: action -->
-			<div class="tools-box" ng-show="editStat.selectedElement != null">
+			<div class="tools-box" ng-show="editStat.selectedElement !== null">
 				<div class="tools-title">
 					<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
 					Actions
