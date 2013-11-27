@@ -53,7 +53,8 @@
 		<!-- 中栏：场景详情修改区 -->
 		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onSceneMoved($event)"
 			 ng-mouseup="onSceneUp($event)">
-			<div class="scene">
+			<div class="scene" style="background-image: url({{package.scenes[editStat.selectedScene].background}})">
+				<!-- Hotspot -->
 				<div class="actor hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements"
 					 ng-style="renderHotspotStyle(ele)" ng-click="selectElement($index);$event.stopPropagation()"
 					 ng-mousedown="onHotspotDown($index, ele, $event);$event.stopPropagation()"
@@ -69,7 +70,8 @@
 						 ng-show="$index == editStat.selectedElement && editStat.selectedAction != null"
 						 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
 						<div class="scene-goto-thumb">
-							<img class="scene-thumb-small" ng-src="{{package.scenes[editStat.selectedScene].background}}" />
+							<img class="scene-thumb-small"
+								 ng-src="{{package.scenes[editStat.selectedScene].background}}" />
 							<p ng-bind="findSceneById(editStat.selectedActionObj.target).name||'???'"></p>
 						</div>
 						<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
@@ -138,7 +140,10 @@
 			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
-					<button>Add</button>
+					<div class="tools-bg-thumb">
+						<img ng-src="{{package.scenes[editStat.selectedScene].background||'images/dummy-scene-thumb.png'}}"
+							 alt="Scene Thumb" />
+					</div>
 					<button>Remove</button>
 				</div>
 			</div>

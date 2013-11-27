@@ -11,7 +11,7 @@
       "id": 0,
       "order": 0,
       "name": "Scene 1",
-      "background": "images/zzz-scene-thumb.png",
+      "background": "images/zzz-scene.png",
       "elements": [
         {
           "type": "hotspot",
@@ -36,7 +36,7 @@
       "id": 1,
       "order": 1,
       "name": "Scene 2",
-      "background": "images/zzz-scene-thumb.png",
+      "background": "images/zzz-scene.png",
       "elements": []
     },
     {

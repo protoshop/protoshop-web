@@ -44,7 +44,7 @@ i { font-style: normal; }
  *  Stage ( layout - center stage )
  */
 
-.scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 0 auto; -webkit-transform: translate(-220px, -283px); }
+.scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 0 auto; -webkit-transform: translate(-220px, -283px); background-size: 100% 100%; }
 .hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -6px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i:nth-child(1) { left: 0; top: 50%; cursor: w-resize; }
@@ -88,8 +88,8 @@ i { font-style: normal; }
 .tools-box label { display: inline-block; width: 50px; padding: 0 10px; text-align: right; }
 .tools-box input[type="text"] { padding: 3px; background-color: #282828; border: 1px solid #000; font-size: 12px; color: #fff; vertical-align: middle; }
 .tools-position input[type="text"] { width: 58px; height: 18px; }
-.tools-background { padding: 10px; text-align: center; }
-.tools-bg-thumb { display: inline-block; background: transparent url(../images/dummy-scene-thumb.png) center no-repeat; width: 60px; height: 100px; vertical-align: top; text-align: center }
+.tools-background { padding: 10px; text-align: left; }
+.tools-bg-thumb { display: inline-block; margin-right: 5px; width: 60px; height: 100px; vertical-align: top; text-align: center; }
 .tools-bg-thumb img { height: 100% }
 .tools-background button { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 
