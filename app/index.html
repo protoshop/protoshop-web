@@ -34,19 +34,19 @@
 	<div class="layout-main">
 
 		<!-- 左栏：场景列表 -->
-		<div class="layout-scenes">
+		<div class="layout-scenes" ng-click="deselectScene()">
 			<div class="scenes-title" ng-bind="package.appName"></div>
 			<ul class="scenes-list">
 				<li class="scene-item" ng-repeat="scene in package.scenes"
 					ng-class="{'item-current': scene.id === editStat.selectedScene}"
-					ng-click="selectScene(scene)">
+					ng-click="selectScene(scene);$event.stopPropagation()">
 					<img class="scene-thumb" ng-src="{{scene.background}}" />
 					<input type="text" ng-model="scene.name" />
 				</li>
 			</ul>
 			<div class="scenes-edit">
-				<button ng-click="addScene()">+</button>
-				<button ng-click="removeScene(editStat.selectedScene)">-</button>
+				<button ng-click="addScene();$event.stopPropagation()">+</button>
+				<button ng-click="removeScene(editStat.selectedScene);$event.stopPropagation()">-</button>
 			</div>
 		</div>
 
