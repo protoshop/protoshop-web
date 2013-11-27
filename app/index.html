@@ -69,7 +69,7 @@
 						 ng-show="$index == editStat.selectedElement && editStat.selectedAction != null"
 						 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
 						<div class="scene-goto-thumb">
-							<img ng-src="{{renderSceneThumbById(editStat.selectedActionObj.target)}}" width="40" />
+							<img class="scene-thumb-small" ng-src="{{package.scenes[editStat.selectedScene].background}}" />
 							<p ng-bind="findSceneById(editStat.selectedActionObj.target).name||'???'"></p>
 						</div>
 						<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
@@ -138,7 +138,9 @@
 			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
-					<img ng-src="{{renderSceneThumbById(editStat.selectedScene)}}" alt="" width="174" class="tools-bg-thumb" />
+					<div class="tools-bg-thumb">
+						<img  ng-src="{{package.scenes[editStat.selectedScene].background}}" alt="Scene Thumb" />
+					</div>
 					<button>Add</button>
 					<button>Remove</button>
 				</div>
@@ -214,7 +216,7 @@
 					</div>
 					<img ng-src="{{pkg.packageIcon}}" width="27" height="27">
 					<div class="event-info">
-						<span class="author-name"><a href="#/package" ng-bind="pkg.packageName"></a></span>
+						<span class="author-name"><a href="#/package/{{pkg.id}}" ng-bind="pkg.packageName"></a></span>
 						<span class="pull-time" ng-bind="pkg.modifyDate"></span>
 					</div>
 					<ul class="event-body" ng-show="pkg.changelog">

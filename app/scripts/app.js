@@ -12,11 +12,16 @@ angular.module('toHELL', [
         templateUrl: 'package-list.html',
         controller: 'PackageListCTRL'
       })
-      .when('/package', {
+      .when('/package/:pkgId', {
         templateUrl: 'package.html',
         controller: 'PackageCTRL'
       })
       .otherwise({
         redirectTo: '/'
       });
-  }]);
+  }])
+  .factory('Global',function(){
+    return {
+      'apiUrl': '/api/'
+    };
+  });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageCTRL', ['$scope', '$http', '$document', function ($scope, $http, $document) {
+  .controller('PackageCTRL', ['$scope', '$routeParams', '$http', '$document', 'Global', function ($scope, $routeParams, $http, $document, Global) {
     /**
      * 存储当前的编辑状态
      * @var {Object}
@@ -62,56 +62,10 @@ angular.module('toHELL')
      * 存储整个工程的实时状态
      * @var {Object}
      */
-    $scope.package = {
-      appName: 'Demo HELL1',
-      appIcon: 'images/icon-app-120.png',
-      splash: {
-        image: 'splash.png',
-        delay: 500,
-        transferType: ''
-      },
-      scenes: [
-        {
-          id: 0,
-          order: 0,
-          name: 'Scene 1',
-          background: 'images/zzz-scene-thumb.png',
-          elements: [
-            {
-              type: 'hotspot',
-              posX: '100px',
-              posY: '300px',
-              width: '120px',
-              height: '42px',
-              actions: [
-                {
-                  type: 'jumpto',
-                  target: 1,
-                  transitionType: 'push',
-                  transitionDirection: 'up',
-                  transitionDelay: '0s',
-                  transitionDuration: '3.25s'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 1,
-          order: 1,
-          name: 'Scene 2',
-          background: 'images/zzz-scene-thumb.png',
-          elements: []
-        },
-        {
-          id: 2,
-          order: 2,
-          name: 'Scene 3',
-          background: '',
-          elements: []
-        }
-      ]
-    };
+    $http.get(Global.apiUrl + 'package/' + $routeParams['pkgId'] + '.json')
+      .success(function (data) {
+        $scope.package = data;
+      });
 
     /**
      * 选中一个场景
@@ -398,21 +352,6 @@ angular.module('toHELL')
     };
 
     /**
-     * 返回一个场景的背景图。如果没有设置背景图则返回一张空白图。
-     * @func renderSceneThumbById
-     * @param {number} sid - 场景的id
-     * @return {string} 背景图的路径。
-     */
-    $scope.renderSceneThumbById = function (sid) {
-      var scene = this.findSceneById(sid);
-      if (scene && scene.background.length) {
-        return scene.background;
-      } else {
-        return 'images/dummy-scene-thumb.png';
-      }
-    };
-
-    /**
      * 返回线框整体的CSS样式。线框整体指的是包裹线框指示器、线段、属性栏等物件的容器。
      * 通常来说，应当保持$scope.editStat.gotoSignStyle与本函数同步。
      * @func renderGotoSignStyle
@@ -477,7 +416,7 @@ angular.module('toHELL')
      * @param {number|String} y - 纵坐标。同样可携带单位
      * @todo 屏幕应当可配置
      */
-    $scope.moveHotspotTo = function(ele, x, y) {
+    $scope.moveHotspotTo = function (ele, x, y) {
       // TODO: 屏幕的尺寸应当可配置
       var widthMax = 320 - parseInt(ele.width, 10);
       var heightMax = 568 - parseInt(ele.height, 10);
@@ -497,7 +436,7 @@ angular.module('toHELL')
      * @param {number|String} h - 高度。同样可携带单位
      * @todo 屏幕应当可配置
      */
-    $scope.resizeHotspotTo = function(ele, w, h) {
+    $scope.resizeHotspotTo = function (ele, w, h) {
       // TODO: 屏幕的尺寸应当可配置
       var widthMax = 320 - parseInt(ele.posX, 10);
       var heightMax = 568 - parseInt(ele.posY, 10);
@@ -637,7 +576,7 @@ angular.module('toHELL')
       default:
         break;
       }
-      
+
     };
 
     /**
@@ -670,7 +609,7 @@ angular.module('toHELL')
 
         // TODO: 控制线框的长短
         switch (eT.expanderIndex) {
-        // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
+          // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
         case 1:
           // 防止因无法resize而导致的move
           if (eT.hotspotPos.x - deltaX < eT.hotspotPos.x + eT.hotspot.width) {
@@ -678,7 +617,7 @@ angular.module('toHELL')
           }
           // 防止因无法move而导致的resize
           // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
-          if(parseInt(target.posX, 10) > 0 || deltaX < 0) {
+          if (parseInt(target.posX, 10) > 0 || deltaX < 0) {
             this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
           }
           break;
@@ -686,11 +625,11 @@ angular.module('toHELL')
           if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
             this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
           }
-          if(parseInt(target.posY, 10) > 0 || deltaY < 0) {
+          if (parseInt(target.posY, 10) > 0 || deltaY < 0) {
             this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
           }
           break;
-        // 而右边侧与下边侧的移动则不会对整体位置造成影响
+          // 而右边侧与下边侧的移动则不会对整体位置造成影响
         case 3:
           this.resizeHotspotTo(target, eT.hotspot.width - deltaX, eT.hotspot.height);
           break;
@@ -751,11 +690,11 @@ angular.module('toHELL')
      * @private
      * @todo 减少硬编码
      */
-    function calcGotoSignStyle (width, height) {
+    function calcGotoSignStyle(width, height) {
       /* jshint -W016 */
       return {
         x: width > 76 ? (width >> 1) + 40 : width, // NOTE: 使用右移实现快速除2
-        y: height > 24? - (60 - height / 3) : -52
+        y: height > 24? -(60 - height / 3) : -52
       };
       /* jshint +W016 */
     }
@@ -768,7 +707,7 @@ angular.module('toHELL')
      * @private
      * @todo 减少硬编码
      */
-    function calcGotoLineStyle (gotoSignX, gotoSignWidth) {
+    function calcGotoLineStyle(gotoSignX, gotoSignWidth) {
       /* jshint -W016 */
       return {
         width: (200 + gotoSignX) + (gotoSignWidth >> 1) // NOTE: 使用右移实现快速除2
@@ -779,6 +718,7 @@ angular.module('toHELL')
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
     $scope.packageList = [
       {
+        id: 'zaq1xsw2',
         packageName: 'Jade',
         packageIcon: 'images/icon-app-120.png',
         modifyDate: '2013-10-27',
@@ -791,12 +731,14 @@ angular.module('toHELL')
         ]
       },
       {
+        id: 'zaq1xsw2',
         packageName: 'Jade',
         packageIcon: 'images/icon-app-120.png',
         modifyDate: '2013-10-27',
         changelog: []
       },
       {
+        id: 'zaq1xsw2',
         packageName: 'Mike',
         packageIcon: 'images/icon-app-120.png',
         modifyDate: '2013-10-27',
