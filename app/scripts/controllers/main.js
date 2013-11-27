@@ -412,6 +412,14 @@ angular.module('toHELL')
       }
     };
 
+    /**
+     * 返回线框整体的CSS样式。线框整体指的是包裹线框指示器、线段、属性栏等物件的容器。
+     * 通常来说，应当保持$scope.editStat.gotoSignStyle与本函数同步。
+     * @func renderGotoSignStyle
+     * @param {Element} ele - 对应的元素对象
+     * @return {style} 返回样式表对象
+     * @todo 处理px以外单位的情况
+     */
     $scope.renderGotoSignStyle = function (ele) {
       var widthT = parseInt(ele.width, 10);
       var heightT = parseInt(ele.height, 10);
@@ -422,6 +430,14 @@ angular.module('toHELL')
       };
     };
 
+    /**
+     * 返回线框中线段的CSS样式。
+     * 通常来说，应当保持$scope.editStat.gotoLineStyle与本函数同步。
+     * @func renderGotoLineStyle
+     * @param {Element} ele - 对应的元素对象
+     * @return {style} 返回样式表对象
+     * @todo 处理px以外单位的情况
+     */
     $scope.renderGotoLineStyle = function (ele) {
       var o = calcGotoLineStyle(parseInt(ele.posX, 10), parseInt(ele.width, 10));
       return {
@@ -726,16 +742,33 @@ angular.module('toHELL')
       return value;
     }
 
+    /**
+     * 计算线框整体的坐标值。
+     * @func calcGotoSignStyle
+     * @param {number} width - 元素的宽度
+     * @param {number} height - 元素的高度
+     * @return {object} 返回计算出的x, y值，不含单位。
+     * @private
+     * @todo 减少硬编码
+     */
     function calcGotoSignStyle (width, height) {
       return {
-        x: width > 76 ? (width>>1) + 40 : width,
+        x: width > 76 ? (width >> 1) + 40 : width,
         y: height > 24? - (60 - height / 3) : -52
       };
     }
 
+    /**
+     * 计算线框线段的宽度。
+     * @func calcGotoLineStyle
+     * @param {number} gotoSignX - 相应线框整体的x坐标
+     * @param {number} gotoSignWidth - 相应线框整体的宽度
+     * @private
+     * @todo 减少硬编码
+     */
     function calcGotoLineStyle (gotoSignX, gotoSignWidth) {
       return {
-        width: (200 + gotoSignX) + (gotoSignWidth>>1)
+        width: (200 + gotoSignX) + (gotoSignWidth >> 1)
       };
     }
   }])
