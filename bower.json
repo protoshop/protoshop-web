@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "dependencies": {
     "jquery": "~2.0.3",
-    "angular": "~1.2.1",
-    "angular-resource": "~1.2.1",
-    "angular-cookies": "~1.2.1",
-    "angular-sanitize": "~1.2.1",
-    "angular-route": "~1.2.1"
+    "angular": "~1.2.2",
+    "angular-resource": "~1.2.2",
+    "angular-cookies": "~1.2.2",
+    "angular-sanitize": "~1.2.2",
+    "angular-route": "~1.2.2"
   },
   "devDependencies": {}
 }
