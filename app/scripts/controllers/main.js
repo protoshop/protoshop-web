@@ -504,10 +504,9 @@ angular.module('toHELL')
     /**
      * 热点在鼠标抬起时触发此函数
      * @func onHotspotUp
-     * @param {event} $event - 点击事件
      * @private
      */
-    $scope.onHotspotUp = function ($event) {
+    $scope.onHotspotUp = function () {
       var sT = this.editStat.hotspotStack;
       sT.hotspotMovingTarget = null;
       if (!sT.hotspotDom) {
@@ -546,18 +545,18 @@ angular.module('toHELL')
       switch (pos) {
       case 1:
         document.body.style.cursor = 'w-resize'; // TODO: 换用更angular的方法
-      break;
+        break;
       case 2:
         document.body.style.cursor = 'n-resize'; // TODO: 换用更angular的方法
-      break;
+        break;
       case 3:
         document.body.style.cursor = 'e-resize'; // TODO: 换用更angular的方法
-      break;
+        break;
       case 4:
         document.body.style.cursor = 's-resize'; // TODO: 换用更angular的方法
-      break;
+        break;
       default:
-      break;
+        break;
       }
       
     };
