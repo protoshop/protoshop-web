@@ -12,9 +12,12 @@ angular.module('toHELL')
       selectedElementObj: null,
       selectedAction: null,
       selectedActionObj: null,
-      gotoSignPos: {
+      gotoSignStyle: {
         top: '',
         right: ''
+      },
+      gotoLineStyle: {
+        width: '264px'
       },
       /**
        * 移动hotspot时的临时存储栈
@@ -235,7 +238,8 @@ angular.module('toHELL')
       if (bT.actions.length > actionIndex) {
         aT.selectedActionObj = bT.actions[actionIndex];
         aT.selectedAction = actionIndex;
-        aT.gotoSignPos = this.renderGotoSignPos(bT);
+        aT.gotoSignStyle = this.renderGotoSignStyle(bT);
+        aT.gotoLineStyle = this.renderGotoLineStyle(bT);
       } else {
         aT.selectedActionObj = null;
         aT.selectedAction = null;
@@ -408,11 +412,20 @@ angular.module('toHELL')
       }
     };
 
-    $scope.renderGotoSignPos = function (ele) {
-      var o = calcGotoSignPos(ele.width, ele.height);
+    $scope.renderGotoSignStyle = function (ele) {
+      var widthT = parseInt(ele.width, 10);
+      var heightT = parseInt(ele.height, 10);
+      var o = calcGotoSignStyle(widthT, heightT);
       return {
         top: o.y + 'px',
         right: o.x + 'px'
+      };
+    };
+
+    $scope.renderGotoLineStyle = function (ele) {
+      var o = calcGotoLineStyle(parseInt(ele.posX, 10), parseInt(ele.width, 10));
+      return {
+        width: o.width + 'px'
       };
     };
 
@@ -456,7 +469,8 @@ angular.module('toHELL')
       var yValue = parseInt(y, 10);
       ele.posX = bound(0, xValue, widthMax) + 'px';
       ele.posY = bound(0, yValue, heightMax) + 'px';
-      this.editStat.gotoSignPos = this.renderGotoSignPos(ele);
+      this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
+      this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
     };
 
     /**
@@ -473,7 +487,8 @@ angular.module('toHELL')
       var heightMax = 568 - parseInt(ele.posY, 10);
       ele.width = bound(0, parseInt(w, 10), widthMax) + 'px';
       ele.height = bound(0, parseInt(h, 10), heightMax) + 'px';
-      this.editStat.gotoSignPos = this.renderGotoSignPos(ele);
+      this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
+      this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
     };
 
     /**
@@ -650,7 +665,6 @@ angular.module('toHELL')
           if(parseInt(target.posX, 10) > 0 || deltaX < 0) {
             this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
           }
-          console.log(deltaX);
           break;
         case 2:
           if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
@@ -712,12 +726,16 @@ angular.module('toHELL')
       return value;
     }
 
-    function calcGotoSignPos (width, height) {
-      var widthT = parseInt(width, 10);
-      var heightT = parseInt(height, 10);
+    function calcGotoSignStyle (width, height) {
       return {
-        x: widthT > 76 ? (widthT>>1) + 40 : widthT,
-        y: heightT > 24? - (60 - parseInt(height, 10) / 3) : -52
+        x: width > 76 ? (width>>1) + 40 : width,
+        y: height > 24? - (60 - height / 3) : -52
+      };
+    }
+
+    function calcGotoLineStyle (gotoSignX, gotoSignWidth) {
+      return {
+        width: (200 + gotoSignX) + (gotoSignWidth>>1)
       };
     }
   }])
