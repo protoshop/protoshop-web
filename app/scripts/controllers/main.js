@@ -637,8 +637,7 @@ angular.module('toHELL')
         var deltaY = eT.hotspot.height - yT;
         var deltaX = eT.hotspot.width - xT;
 
-        // TODO: 增加扩张范围限制
-        // TODO: 控制线框的长短和位置
+        // TODO: 控制线框的长短
         switch (eT.expanderIndex) {
         // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
         case 1:
@@ -648,15 +647,16 @@ angular.module('toHELL')
           }
           // 防止因无法move而导致的resize
           // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
-          if(parseInt(target.posX, 10) > 0) {
+          if(parseInt(target.posX, 10) > 0 || deltaX < 0) {
             this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
           }
+          console.log(deltaX);
           break;
         case 2:
           if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
             this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
           }
-          if(parseInt(target.posY, 10) > 0) {
+          if(parseInt(target.posY, 10) > 0 || deltaY < 0) {
             this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
           }
           break;
