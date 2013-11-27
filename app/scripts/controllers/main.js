@@ -117,6 +117,10 @@ angular.module('toHELL')
       this.selectElement(null);
     };
 
+    /**
+     * 释放选中的场景。连带释放选中的元素。
+     * @func deselectScene
+     */
     $scope.deselectScene = function () {
       this.editStat.selectedScene = null;
       this.deselectElement();
@@ -182,6 +186,10 @@ angular.module('toHELL')
       }
     };
 
+    /**
+     * 释放选中的元素。释放时会连带释放动作的选中。
+     * @func deselectElement
+     */
     $scope.deselectElement = function () {
       this.editStat.selectedElement = null;
       this.editStat.selectedElementObj = null;
@@ -229,6 +237,10 @@ angular.module('toHELL')
       }
     };
 
+    /**
+     * 释放选中的动作。
+     * @func deselectAction
+     */
     $scope.deselectAction = function () {
       this.editStat.selectedAction = null;
       this.editStat.selectedActionObj = null;
