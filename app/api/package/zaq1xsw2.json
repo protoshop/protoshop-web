@@ -15,10 +15,10 @@
       "elements": [
         {
           "type": "hotspot",
-          "posX": "100px",
-          "posY": "300px",
-          "width": "120px",
-          "height": "42px",
+          "posX": "12px",
+          "posY": "189px",
+          "width": "139px",
+          "height": "87px",
           "actions": [
             {
               "type": "jumpto",
