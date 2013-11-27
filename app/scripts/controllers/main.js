@@ -364,7 +364,7 @@ angular.module('toHELL')
       var y = parseInt(ele.posY, 10);
       var width = parseInt(ele.width, 10);
       var height = parseInt(ele.height, 10);
-      var o = calcGotoSignStyle(x, y, width, height);
+      var o = calcGotoSignStyle(width);
       return {
         right: o.x + 'px'
       };
@@ -686,11 +686,10 @@ angular.module('toHELL')
      * 计算线框整体的坐标值。目前返回hotspot的左上角
      * @func calcGotoSignStyle
      * @param {number} width - 元素的宽度
-     * @param {number} height - 元素的高度
-     * @return {object} 返回计算出的x, y值，不含单位。
+     * @return {object} 返回计算出的x值，不含单位。
      * @private
      */
-    function calcGotoSignStyle(x, y, width, height) {
+    function calcGotoSignStyle(width) {
       return {
         x: width
       };
