@@ -12,6 +12,10 @@ angular.module('toHELL')
       selectedElementObj: null,
       selectedAction: null,
       selectedActionObj: null,
+      gotoSignPos: {
+        top: '',
+        right: ''
+      },
       /**
        * 移动hotspot时的临时存储栈
        * @var hotspotStack
@@ -231,6 +235,7 @@ angular.module('toHELL')
       if (bT.actions.length > actionIndex) {
         aT.selectedActionObj = bT.actions[actionIndex];
         aT.selectedAction = actionIndex;
+        aT.gotoSignPos = this.renderGotoSignPos(bT);
       } else {
         aT.selectedActionObj = null;
         aT.selectedAction = null;
@@ -403,6 +408,14 @@ angular.module('toHELL')
       }
     };
 
+    $scope.renderGotoSignPos = function (ele) {
+      var o = calcGotoSignPos(ele.width, ele.height);
+      return {
+        top: o.y + 'px',
+        right: o.x + 'px'
+      };
+    };
+
     /**
      * 测试Transition方向是否已禁用
      * @func isTransDirDisabled
@@ -443,6 +456,7 @@ angular.module('toHELL')
       var yValue = parseInt(y, 10);
       ele.posX = bound(0, xValue, widthMax) + 'px';
       ele.posY = bound(0, yValue, heightMax) + 'px';
+      this.editStat.gotoSignPos = this.renderGotoSignPos(ele);
     };
 
     /**
@@ -459,6 +473,7 @@ angular.module('toHELL')
       var heightMax = 568 - parseInt(ele.posY, 10);
       ele.width = bound(0, parseInt(w, 10), widthMax) + 'px';
       ele.height = bound(0, parseInt(h, 10), heightMax) + 'px';
+      this.editStat.gotoSignPos = this.renderGotoSignPos(ele);
     };
 
     /**
@@ -697,9 +712,14 @@ angular.module('toHELL')
       return value;
     }
 
-    // TODO: 如果初始态不选中任何场景，则这里应该去掉
-    // $scope.selectScene($scope.package.scenes[0]);
-
+    function calcGotoSignPos (width, height) {
+      var widthT = parseInt(width, 10);
+      var heightT = parseInt(height, 10);
+      return {
+        x: widthT > 76 ? (widthT>>1) + 40 : widthT,
+        y: heightT > 24? - (60 - parseInt(height, 10) / 3) : -52
+      };
+    }
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
     $scope.packageList = [

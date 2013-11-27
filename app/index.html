@@ -67,7 +67,7 @@
 					</div>
 					<div class="scene-goto"
 						 ng-show="$index == editStat.selectedElement && editStat.selectedAction != null"
-						 ng-mousedown="$event.stopPropagation()">
+						 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignPos">
 						<div class="scene-goto-thumb">
 							<img ng-src="{{renderSceneThumbById(editStat.selectedActionObj.target)}}" width="40" />
 							<p ng-bind="findSceneById(editStat.selectedActionObj.target).name||'???'"></p>
