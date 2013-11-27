@@ -360,10 +360,10 @@ angular.module('toHELL')
      * @todo 处理px以外单位的情况
      */
     $scope.renderGotoSignStyle = function (ele) {
-      var x = parseInt(ele.posX, 10);
-      var y = parseInt(ele.posY, 10);
+      // var x = parseInt(ele.posX, 10);
+      // var y = parseInt(ele.posY, 10);
       var width = parseInt(ele.width, 10);
-      var height = parseInt(ele.height, 10);
+      // var height = parseInt(ele.height, 10);
       var o = calcGotoSignStyle(width);
       return {
         right: o.x + 'px'
@@ -379,7 +379,7 @@ angular.module('toHELL')
      * @todo 处理px以外单位的情况
      */
     $scope.renderGotoLineStyle = function (ele) {
-      var o = calcGotoLineStyle(parseInt(ele.posX, 10), parseInt(ele.width, 10));
+      var o = calcGotoLineStyle(parseInt(ele.posX, 10));
       return {
         width: o.width + 'px'
       };
@@ -699,11 +699,10 @@ angular.module('toHELL')
      * 计算线框线段的宽度。
      * @func calcGotoLineStyle
      * @param {number} gotoSignX - 相应线框整体的x坐标
-     * @param {number} gotoSignWidth - 相应线框整体的宽度
      * @private
      * @todo 减少硬编码，去除对单位（px）的依赖
      */
-    function calcGotoLineStyle(gotoSignX, gotoSignWidth) {
+    function calcGotoLineStyle(gotoSignX) {
       return {
         width: (200 + gotoSignX) // 200表示goto thumb图距离设备的最小距离，目前单位实际为px
       };
