@@ -34,19 +34,19 @@
 	<div class="layout-main">
 
 		<!-- 左栏：场景列表 -->
-		<div class="layout-scenes">
+		<div class="layout-scenes" ng-click="deselectScene()">
 			<div class="scenes-title" ng-bind="package.appName"></div>
 			<ul class="scenes-list">
 				<li class="scene-item" ng-repeat="scene in package.scenes"
-					ng-class="{'item-current': scene.id == editStat.selectedScene}"
-					ng-click="selectScene(scene)">
+					ng-class="{'item-current': scene.id === editStat.selectedScene}"
+					ng-click="selectScene(scene);$event.stopPropagation()">
 					<img class="scene-thumb" ng-src="{{scene.background}}" />
 					<input type="text" ng-model="scene.name" />
 				</li>
 			</ul>
 			<div class="scenes-edit">
-				<button ng-click="addScene()">+</button>
-				<button ng-click="removeScene(editStat.selectedScene)">-</button>
+				<button ng-click="addScene();$event.stopPropagation()">+</button>
+				<button ng-click="removeScene(editStat.selectedScene);$event.stopPropagation()">-</button>
 			</div>
 		</div>
 
@@ -67,12 +67,12 @@
 					</div>
 					<div class="scene-goto"
 						 ng-show="$index == editStat.selectedElement && editStat.selectedAction != null"
-						 ng-mousedown="$event.stopPropagation()">
+						 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
 						<div class="scene-goto-thumb">
 							<img class="scene-thumb-small" ng-src="{{package.scenes[editStat.selectedScene].background}}" />
 							<p ng-bind="findSceneById(editStat.selectedActionObj.target).name||'???'"></p>
 						</div>
-						<div class="scene-goto-line" style="width:264px;"></div>
+						<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
 						<div class="scene-goto-animation">
 							<dl>
 								<dt>JUMP TO</dt>
@@ -135,7 +135,7 @@
 		<!-- 右栏：场景修改工具区 -->
 		<div class="layout-tools">
 			<!-- tools: background -->
-			<div class="tools-box">
+			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
 					<div class="tools-bg-thumb">
@@ -146,7 +146,7 @@
 				</div>
 			</div>
 			<!-- tools: actor -->
-			<div class="tools-box">
+			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Actors</div>
 				<ul class="tools-actor">
 					<li ng-show="null">
@@ -161,7 +161,7 @@
 				</ul>
 			</div>
 			<!-- tools: position -->
-			<div class="tools-box" ng-show="editStat.selectedElement != null">
+			<div class="tools-box" ng-show="editStat.selectedElement !== null">
 				<div class="tools-title">Position</div>
 				<ul class="tools-position">
 					<li><label>X</label><input type="text" ng-model="editStat.selectedElementObj.posX" /></li>
@@ -171,7 +171,7 @@
 				</ul>
 			</div>
 			<!-- tools: action -->
-			<div class="tools-box" ng-show="editStat.selectedElement != null">
+			<div class="tools-box" ng-show="editStat.selectedElement !== null">
 				<div class="tools-title">
 					<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
 					Actions

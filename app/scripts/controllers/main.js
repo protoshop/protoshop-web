@@ -1,17 +1,24 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageCTRL', ['$scope', '$routeParams', '$http', 'Global', function ($scope, $routeParams, $http, Global) {
+  .controller('PackageCTRL', ['$scope', '$routeParams', '$http', '$document', 'Global', function ($scope, $routeParams, $http, $document, Global) {
     /**
      * 存储当前的编辑状态
      * @var {Object}
      */
     $scope.editStat = {
-      selectedScene: 0, // NOTE: 这里是scene的id，不能直接作为索引使用
+      selectedScene: null, // NOTE: 这里是scene的id，不能直接作为索引使用
       selectedElement: null,
       selectedElementObj: null,
       selectedAction: null,
       selectedActionObj: null,
+      gotoSignStyle: {
+        top: '',
+        right: ''
+      },
+      gotoLineStyle: {
+        width: '264px'
+      },
       /**
        * 移动hotspot时的临时存储栈
        * @var hotspotStack
@@ -72,6 +79,15 @@ angular.module('toHELL')
     };
 
     /**
+     * 释放选中的场景。连带释放选中的元素。
+     * @func deselectScene
+     */
+    $scope.deselectScene = function () {
+      this.editStat.selectedScene = null;
+      this.deselectElement();
+    };
+
+    /**
      * 增加一个场景。增加的场景将在所有场景之后。
      * @func addScene
      * @return {Scene} 返回新增的场景对象
@@ -110,6 +126,10 @@ angular.module('toHELL')
           this.package.scenes.splice(i, 1);
         }
       }
+      // 当删除的是选中场景时，释放对场景的选择
+      if (sid === this.editStat.selectedScene) {
+        this.deselectScene();
+      }
     };
 
     /**
@@ -125,6 +145,17 @@ angular.module('toHELL')
       if (this.editStat.selectedElementObj) {
         this.selectAction(0);
       }
+    };
+
+    /**
+     * 释放选中的元素。释放时会连带释放动作的选中。
+     * @func deselectElement
+     */
+    $scope.deselectElement = function () {
+      this.editStat.selectedElement = null;
+      this.editStat.selectedElementObj = null;
+      // 连带释放Action的选中
+      this.deselectAction();
     };
 
     /**
@@ -161,10 +192,21 @@ angular.module('toHELL')
       if (bT.actions.length > actionIndex) {
         aT.selectedActionObj = bT.actions[actionIndex];
         aT.selectedAction = actionIndex;
+        aT.gotoSignStyle = this.renderGotoSignStyle(bT);
+        aT.gotoLineStyle = this.renderGotoLineStyle(bT);
       } else {
         aT.selectedActionObj = null;
         aT.selectedAction = null;
       }
+    };
+
+    /**
+     * 释放选中的动作。
+     * @func deselectAction
+     */
+    $scope.deselectAction = function () {
+      this.editStat.selectedAction = null;
+      this.editStat.selectedActionObj = null;
     };
 
     /**
@@ -310,6 +352,39 @@ angular.module('toHELL')
     };
 
     /**
+     * 返回线框整体的CSS样式。线框整体指的是包裹线框指示器、线段、属性栏等物件的容器。
+     * 通常来说，应当保持$scope.editStat.gotoSignStyle与本函数同步。
+     * @func renderGotoSignStyle
+     * @param {Element} ele - 对应的元素对象
+     * @return {style} 返回样式表对象
+     * @todo 处理px以外单位的情况
+     */
+    $scope.renderGotoSignStyle = function (ele) {
+      var widthT = parseInt(ele.width, 10);
+      var heightT = parseInt(ele.height, 10);
+      var o = calcGotoSignStyle(widthT, heightT);
+      return {
+        top: o.y + 'px',
+        right: o.x + 'px'
+      };
+    };
+
+    /**
+     * 返回线框中线段的CSS样式。
+     * 通常来说，应当保持$scope.editStat.gotoLineStyle与本函数同步。
+     * @func renderGotoLineStyle
+     * @param {Element} ele - 对应的元素对象
+     * @return {style} 返回样式表对象
+     * @todo 处理px以外单位的情况
+     */
+    $scope.renderGotoLineStyle = function (ele) {
+      var o = calcGotoLineStyle(parseInt(ele.posX, 10), parseInt(ele.width, 10));
+      return {
+        width: o.width + 'px'
+      };
+    };
+
+    /**
      * 测试Transition方向是否已禁用
      * @func isTransDirDisabled
      * @param {Action} action - 要测试的Action
@@ -349,6 +424,8 @@ angular.module('toHELL')
       var yValue = parseInt(y, 10);
       ele.posX = bound(0, xValue, widthMax) + 'px';
       ele.posY = bound(0, yValue, heightMax) + 'px';
+      this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
+      this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
     };
 
     /**
@@ -365,6 +442,8 @@ angular.module('toHELL')
       var heightMax = 568 - parseInt(ele.posY, 10);
       ele.width = bound(0, parseInt(w, 10), widthMax) + 'px';
       ele.height = bound(0, parseInt(h, 10), heightMax) + 'px';
+      this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
+      this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
     };
 
     /**
@@ -419,7 +498,7 @@ angular.module('toHELL')
       sT.hotspotDom = $event.target;
       sT.hotspotOldZindex = sT.hotspotDom.zIndex;
       sT.hotspotDom.zIndex = 10000;
-      document.body.style.cursor = 'move'; // TODO: 换用更angular的方法
+      $document[0].body.style.cursor = 'move';
     };
 
     /**
@@ -443,10 +522,9 @@ angular.module('toHELL')
     /**
      * 热点在鼠标抬起时触发此函数
      * @func onHotspotUp
-     * @param {event} $event - 点击事件
      * @private
      */
-    $scope.onHotspotUp = function ($event) {
+    $scope.onHotspotUp = function () {
       var sT = this.editStat.hotspotStack;
       sT.hotspotMovingTarget = null;
       if (!sT.hotspotDom) {
@@ -454,7 +532,7 @@ angular.module('toHELL')
       }
       sT.hotspotDom.zIndex = sT.hotspotOldZindex;
       // NOTE: 注意这里不要使用auto，以免覆盖CSS中的相应设置
-      document.body.style.cursor = ''; // TODO: 换用更angular的方法
+      $document[0].body.style.cursor = '';
     };
 
     /**
@@ -484,16 +562,16 @@ angular.module('toHELL')
       sT.expanderMovingOffset.x = parseInt(sT.expanderMovingTarget.width, 10);
       switch (pos) {
       case 1:
-        document.body.style.cursor = 'w-resize'; // TODO: 换用更angular的方法
+        $document[0].body.style.cursor = 'w-resize'; // TODO: 换用更angular的方法
         break;
       case 2:
-        document.body.style.cursor = 'n-resize'; // TODO: 换用更angular的方法
+        $document[0].body.style.cursor = 'n-resize'; // TODO: 换用更angular的方法
         break;
       case 3:
-        document.body.style.cursor = 'e-resize'; // TODO: 换用更angular的方法
+        $document[0].body.style.cursor = 'e-resize'; // TODO: 换用更angular的方法
         break;
       case 4:
-        document.body.style.cursor = 's-resize'; // TODO: 换用更angular的方法
+        $document[0].body.style.cursor = 's-resize'; // TODO: 换用更angular的方法
         break;
       default:
         break;
@@ -529,8 +607,7 @@ angular.module('toHELL')
         var deltaY = eT.hotspot.height - yT;
         var deltaX = eT.hotspot.width - xT;
 
-        // TODO: 增加扩张范围限制
-        // TODO: 控制线框的长短和位置
+        // TODO: 控制线框的长短
         switch (eT.expanderIndex) {
           // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
         case 1:
@@ -540,7 +617,7 @@ angular.module('toHELL')
           }
           // 防止因无法move而导致的resize
           // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
-          if (parseInt(target.posX, 10) > 0) {
+          if (parseInt(target.posX, 10) > 0 || deltaX < 0) {
             this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
           }
           break;
@@ -548,7 +625,7 @@ angular.module('toHELL')
           if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
             this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
           }
-          if (parseInt(target.posY, 10) > 0) {
+          if (parseInt(target.posY, 10) > 0 || deltaY < 0) {
             this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
           }
           break;
@@ -604,9 +681,39 @@ angular.module('toHELL')
       return value;
     }
 
-    // TODO: 如果初始态不选中任何场景，则这里应该去掉
-    // $scope.selectScene($scope.package.scenes[0]);
+    /**
+     * 计算线框整体的坐标值。
+     * @func calcGotoSignStyle
+     * @param {number} width - 元素的宽度
+     * @param {number} height - 元素的高度
+     * @return {object} 返回计算出的x, y值，不含单位。
+     * @private
+     * @todo 减少硬编码
+     */
+    function calcGotoSignStyle(width, height) {
+      /* jshint -W016 */
+      return {
+        x: width > 76 ? (width >> 1) + 40 : width,
+        y: height > 24 ? -(60 - height / 3) : -52
+      };
+      /* jshint +W016 */
+    }
 
+    /**
+     * 计算线框线段的宽度。
+     * @func calcGotoLineStyle
+     * @param {number} gotoSignX - 相应线框整体的x坐标
+     * @param {number} gotoSignWidth - 相应线框整体的宽度
+     * @private
+     * @todo 减少硬编码
+     */
+    function calcGotoLineStyle(gotoSignX, gotoSignWidth) {
+      /* jshint -W016 */
+      return {
+        width: (200 + gotoSignX) + (gotoSignWidth >> 1)
+      };
+      /* jshint +W016 */
+    }
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
     $scope.packageList = [
