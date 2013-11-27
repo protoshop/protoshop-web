@@ -13,8 +13,8 @@ angular.module('toHELL', [
         controller: 'PackageListCTRL'
       })
       .when('/package/:pkgId', {
-        templateUrl: 'package.html',
-        controller: 'PackageCTRL'
+        templateUrl: 'package-edit.html',
+        controller: 'PackageEditCTRL'
       })
       .otherwise({
         redirectTo: '/'
