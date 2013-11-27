@@ -754,7 +754,7 @@ angular.module('toHELL')
     function calcGotoSignStyle (width, height) {
       /* jshint -W016 */
       return {
-        x: width > 76 ? (width >> 1) + 40 : width,
+        x: width > 76 ? (width >> 1) + 40 : width, // NOTE: 使用右移实现快速除2
         y: height > 24? - (60 - height / 3) : -52
       };
       /* jshint +W016 */
@@ -771,7 +771,7 @@ angular.module('toHELL')
     function calcGotoLineStyle (gotoSignX, gotoSignWidth) {
       /* jshint -W016 */
       return {
-        width: (200 + gotoSignX) + (gotoSignWidth >> 1)
+        width: (200 + gotoSignX) + (gotoSignWidth >> 1) // NOTE: 使用右移实现快速除2
       };
       /* jshint +W016 */
     }
