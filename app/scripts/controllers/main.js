@@ -752,10 +752,12 @@ angular.module('toHELL')
      * @todo 减少硬编码
      */
     function calcGotoSignStyle (width, height) {
+      /* jshint -W016 */
       return {
         x: width > 76 ? (width >> 1) + 40 : width,
         y: height > 24? - (60 - height / 3) : -52
       };
+      /* jshint +W016 */
     }
 
     /**
@@ -767,9 +769,11 @@ angular.module('toHELL')
      * @todo 减少硬编码
      */
     function calcGotoLineStyle (gotoSignX, gotoSignWidth) {
+      /* jshint -W016 */
       return {
         width: (200 + gotoSignX) + (gotoSignWidth >> 1)
       };
+      /* jshint +W016 */
     }
   }])
   .controller('PackageListCTRL', ['$scope', '$location', function ($scope, $location) {
