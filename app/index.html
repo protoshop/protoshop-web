@@ -237,17 +237,17 @@
 			<button class="closes" ng-click="toggleCreateDialog()">close</button>
 			<h3>New project</h3>
 		</div>
-		<form class="project-info">
+		<form class="project-info" ng-submit="createPackage()">
 			<div class="control-group">
 				<label>
 					<img ng-src="images/icon-app-120.png" width="27" height="27" src="images/icon-app-120.png">
 					Name:
 				</label>
-				<input type="text" name="projectName" placeholder="项目名称" class="project-text">
+				<input required type="text" ng-model="newPackage.name" name="projectName" placeholder="项目名称" class="project-text">
 			</div>
 			<div class="control-group">
 				<label>Details:</label>
-				<textarea cols="20" name="projectDetails" rows="5" class="large-input"></textarea>
+				<textarea ng-model="newPackage.desc" name="projectDetails" cols="20" rows="5" class="large-input"></textarea>
 			</div>
 			<div class="control-group">
 				<div class="submit-btn">
