@@ -2,21 +2,29 @@
 
 angular.module('toHELL')
   .controller('PackageListCTRL', ['$scope', '$http', '$location', 'Global', function ($scope, $http, $location, Global) {
-    $http.get(Global.apiHost + '/package/list.json')
-      .success(function (data) {
-        console.log(data);
-        $scope.packageList = data.list;
-      });
+    
+    // To get data & set list.
+    $scope.refreshList = function(){
+      $http.get(Global.apiHost + 'package/list.json')
+        .success(function (data) {
+          $scope.packageList = data.list;
+        });
+    };
+
+    // Init list
+    $scope.refreshList();
 
     $scope.editPackage = function (pkg) {
       $location.path('/package/' + pkg.id);
     };
 
     $scope.deletePackage = function (pkg) {
-      console.log('delete package:', pkg);
+      $http.delete(Global.apiHost + 'package/' + pkg.id)
+        .success(function(){
+          $scope.refreshList();
+        });
     };
 
-    $scope.showCreateDialog = false;
     $scope.toggleCreateDialog = function () {
       $scope.showCreateDialog = !$scope.showCreateDialog;
     };
