@@ -697,4 +697,15 @@ angular.module('toHELL')
           width: (200 + gotoSignX) // 200表示goto thumb图距离设备的最小距离，目前单位实际为px
         };
       }
+
+      /**
+       * 保存编辑好的项目数据
+       */
+      $scope.savePackage = function () {
+        $http.post(Global.apiHost + 'package/' + $scope.package.id)
+          .success(function () {
+            console.log('"' + $scope.package.id + '" saved!');
+          });
+      };
+      
     }]);
