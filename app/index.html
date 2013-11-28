@@ -57,8 +57,7 @@
 				<!-- Hotspot -->
 				<div class="actor hotspot" ng-repeat="ele in editStat.selectedScene.elements"
 					 ng-style="renderHotspotStyle(ele)" ng-click="selectElement(ele);$event.stopPropagation()"
-					 ng-mousedown="onHotspotDown(ele, $event);$event.stopPropagation()"
-					 style="position: absolute">
+					 ng-mousedown="onHotspotDown(ele, $event);$event.stopPropagation()">
 					<div class="anchor" ng-show="ele === editStat.selectedElement"
 						 ng-mousedown="$event.stopPropagation()">
 						<i ng-mousedown="onExpanderDown(ele, 1, $event);$event.stopPropagation()"></i>
