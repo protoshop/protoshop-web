@@ -23,7 +23,11 @@
     "grunt-svgmin": "~0.2.0",
     "grunt-concurrent": "~0.3.0",
     "load-grunt-tasks": "~0.1.0",
-    "time-grunt": "~0.1.1"
+    "time-grunt": "~0.1.1",
+    "karma-mocha": "~0.1.1",
+    "karma-chai": "0.0.2",
+    "requirejs": "~2.1.9",
+    "mocha": "~1.14.0"
   },
   "engines": {
     "node": ">=0.8.0"
