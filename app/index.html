@@ -38,7 +38,7 @@
 			<div class="scenes-title" ng-bind="package.appName"></div>
 			<ul class="scenes-list">
 				<li class="scene-item" ng-repeat="scene in package.scenes"
-					ng-class="{'item-current': scene.id === editStat.selectedScene}"
+					ng-class="{'item-current': scene === editStat.selectedScene}"
 					ng-click="selectScene(scene);$event.stopPropagation()">
 					<img class="scene-thumb" ng-src="{{scene.background}}" />
 					<input type="text" ng-model="scene.name" />
@@ -53,26 +53,26 @@
 		<!-- 中栏：场景详情修改区 -->
 		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onSceneMoved($event)"
 			 ng-mouseup="onSceneUp($event)">
-			<div class="scene" style="background-image: url({{package.scenes[editStat.selectedScene].background}})">
+			<div class="scene" style="background-image: url({{editStat.selectedScene.background}})">
 				<!-- Hotspot -->
-				<div class="actor hotspot" ng-repeat="ele in package.scenes[editStat.selectedScene].elements"
-					 ng-style="renderHotspotStyle(ele)" ng-click="selectElement($index);$event.stopPropagation()"
-					 ng-mousedown="onHotspotDown($index, ele, $event);$event.stopPropagation()"
+				<div class="actor hotspot" ng-repeat="ele in editStat.selectedScene.elements"
+					 ng-style="renderHotspotStyle(ele)" ng-click="selectElement(ele);$event.stopPropagation()"
+					 ng-mousedown="onHotspotDown(ele, $event);$event.stopPropagation()"
 					 style="position: absolute">
-					<div class="anchor" ng-show="$index == editStat.selectedElement"
+					<div class="anchor" ng-show="ele === editStat.selectedElement"
 						 ng-mousedown="$event.stopPropagation()">
-						<i ng-mousedown="onExpanderDown($index, ele, 1, $event);$event.stopPropagation()"></i>
-						<i ng-mousedown="onExpanderDown($index, ele, 2, $event);$event.stopPropagation()"></i>
-						<i ng-mousedown="onExpanderDown($index, ele, 3, $event);$event.stopPropagation()"></i>
-						<i ng-mousedown="onExpanderDown($index, ele, 4, $event);$event.stopPropagation()"></i>
+						<i ng-mousedown="onExpanderDown(ele, 1, $event);$event.stopPropagation()"></i>
+						<i ng-mousedown="onExpanderDown(ele, 2, $event);$event.stopPropagation()"></i>
+						<i ng-mousedown="onExpanderDown(ele, 3, $event);$event.stopPropagation()"></i>
+						<i ng-mousedown="onExpanderDown(ele, 4, $event);$event.stopPropagation()"></i>
 					</div>
 					<div class="scene-goto"
-						 ng-show="$index == editStat.selectedElement && editStat.selectedAction != null"
+						 ng-show="ele == editStat.selectedElement && editStat.selectedAction != null"
 						 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
 						<div class="scene-goto-thumb">
 							<img class="scene-thumb-small"
-								 ng-src="{{package.scenes[editStat.selectedScene].background}}" />
-							<p ng-bind="findSceneById(editStat.selectedActionObj.target).name||'???'"></p>
+								 ng-src="{{editStat.selectedScene.background}}" />
+							<p ng-bind="findSceneById(editStat.selectedAction.target).name||'???'"></p>
 						</div>
 						<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
 						<div class="scene-goto-animation">
@@ -80,7 +80,7 @@
 								<dt>JUMP TO</dt>
 								<dd>
 									<div class="goto-scenes">
-										<select ng-model="editStat.selectedActionObj.target"
+										<select ng-model="editStat.selectedAction.target"
 												ng-options="s.id as s.name for s in package.scenes">
 										</select>
 									</div>
@@ -88,42 +88,42 @@
 								<dt>TRANSITION</dt>
 								<dd class="goto-transition">
 									<div class="transition-name">
-										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType"
-													  ng-change="onTransitionTypeChanged(editStat.selectedActionObj)"
+										<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
+													  ng-change="onTransitionTypeChanged(editStat.selectedAction)"
 													  name="transition-name" value="none" /><i
 												class="icon-block"></i></label>
-										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType"
+										<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
 													  name="transition-name" value="push"
 													  checked="checked" /><i>Push</i></label>
-										<label><input type="radio" ng-model="editStat.selectedActionObj.transitionType"
+										<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
 													  name="transition-name" value="cover" /><i>Cover</i></label>
 									</div>
 									<div class="transition-direction">
 										<label><input type="radio"
-													  ng-disabled="isTransDirDisabled(editStat.selectedActionObj)"
-													  ng-model="editStat.selectedActionObj.transitionDirection"
+													  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
+													  ng-model="editStat.selectedAction.transitionDirection"
 													  name="transition-direction" value="up" /><i
 												class="icon-up-bold"></i></label>
 										<label><input type="radio"
-													  ng-disabled="isTransDirDisabled(editStat.selectedActionObj)"
-													  ng-model="editStat.selectedActionObj.transitionDirection"
+													  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
+													  ng-model="editStat.selectedAction.transitionDirection"
 													  name="transition-direction" value="right" /><i
 												class="icon-right-bold"></i></label>
 										<label><input type="radio"
-													  ng-disabled="isTransDirDisabled(editStat.selectedActionObj)"
-													  ng-model="editStat.selectedActionObj.transitionDirection"
+													  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
+													  ng-model="editStat.selectedAction.transitionDirection"
 													  name="transition-direction" value="down" /><i
 												class="icon-down-bold"></i></label>
 										<label><input type="radio"
-													  ng-disabled="isTransDirDisabled(editStat.selectedActionObj)"
-													  ng-model="editStat.selectedActionObj.transitionDirection"
+													  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
+													  ng-model="editStat.selectedAction.transitionDirection"
 													  name="transition-direction" value="left" /><i
 												class="icon-left-bold"></i></label>
 									</div>
 									<div class="transtion-time">
-										<input type="text" ng-model="editStat.selectedActionObj.transitionDelay" />
+										<input type="text" ng-model="editStat.selectedAction.transitionDelay" />
 										delay<br />
-										<input type="text" ng-model="editStat.selectedActionObj.transitionDuration" />
+										<input type="text" ng-model="editStat.selectedAction.transitionDuration" />
 										duration
 									</div>
 								</dd>
@@ -141,7 +141,7 @@
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
 					<div class="tools-bg-thumb">
-						<img ng-src="{{package.scenes[editStat.selectedScene].background||'images/dummy-scene-thumb.png'}}"
+						<img ng-src="{{editStat.selectedScene.background||'images/dummy-scene-thumb.png'}}"
 							 alt="Scene Thumb" />
 					</div>
 					<button>Remove</button>
@@ -166,10 +166,10 @@
 			<div class="tools-box" ng-show="editStat.selectedElement !== null">
 				<div class="tools-title">Position</div>
 				<ul class="tools-position">
-					<li><label>X</label><input type="text" ng-model="editStat.selectedElementObj.posX" /></li>
-					<li><label>Y</label><input type="text" ng-model="editStat.selectedElementObj.posY" /></li>
-					<li><label>W</label><input type="text" ng-model="editStat.selectedElementObj.width" /></li>
-					<li><label>H</label><input type="text" ng-model="editStat.selectedElementObj.height" /></li>
+					<li><label>X</label><input type="text" ng-model="editStat.selectedElement.posX" /></li>
+					<li><label>Y</label><input type="text" ng-model="editStat.selectedElement.posY" /></li>
+					<li><label>W</label><input type="text" ng-model="editStat.selectedElement.width" /></li>
+					<li><label>H</label><input type="text" ng-model="editStat.selectedElement.height" /></li>
 				</ul>
 			</div>
 			<!-- tools: action -->
@@ -179,7 +179,7 @@
 					Actions
 				</div>
 				<ul class="tools-action">
-					<li ng-repeat="action in editStat.selectedElementObj.actions"
+					<li ng-repeat="action in editStat.selectedElement.actions"
 						ng-bind="renderActionItem(action)"></li>
 				</ul>
 			</div>
