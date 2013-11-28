@@ -2,9 +2,9 @@
 
 angular.module('toHELL')
   .controller('PackageListCTRL', ['$scope', '$http', '$location', 'Global', function ($scope, $http, $location, Global) {
-    
+
     // To get data & set list.
-    $scope.refreshList = function(){
+    $scope.refreshList = function () {
       $http.get(Global.apiHost + 'package/list.json')
         .success(function (data) {
           $scope.packageList = data.list;
@@ -20,7 +20,7 @@ angular.module('toHELL')
 
     $scope.deletePackage = function (pkg) {
       $http.delete(Global.apiHost + 'package/' + pkg.id)
-        .success(function(){
+        .success(function () {
           $scope.refreshList();
         });
     };
@@ -29,16 +29,17 @@ angular.module('toHELL')
       $scope.showCreateDialog = !$scope.showCreateDialog;
     };
 
+    $scope.newPackageConfig = {
+      appName: '',
+      comment: ''
+    }
     $scope.createPackage = function () {
-      var pkg = $scope.newPackage;
-      $http.post(
-        Global.apiHost + 'package/new.json',
-        {
-          appname: pkg.name,
-          comment: pkg.desc
-        }
-      ).success(function (data) {
-          $location.path('/package/' + data.id);
+      var postData = {
+        context: $scope.newPackageConfig
+      };
+      $http.post('http://wxddb1.qa.nt.ctripcorp.com/tohell/createPoject/', postData)
+        .success(function (data) {
+          $location.path('/package/' + data.appID);
         });
     };
   }]);
