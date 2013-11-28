@@ -20,4 +20,17 @@ angular.module('toHELL')
     $scope.toggleCreateDialog = function () {
       $scope.showCreateDialog = !$scope.showCreateDialog;
     };
+
+    $scope.createPackage = function () {
+      var pkg = $scope.newPackage;
+      $http.post(
+        Global.apiHost + 'package/new.json',
+        {
+          appname: pkg.name,
+          comment: pkg.desc
+        }
+      ).success(function (data) {
+          $location.path('/package/' + data.id);
+        });
+    };
   }]);
