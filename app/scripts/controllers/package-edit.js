@@ -646,17 +646,6 @@ angular.module('toHELL')
         }
       };
 
-      // 简化模板中的复杂寻值
-      /**
-       * 返回当前选中的元素
-       * @private
-       * @func currentElementObj
-       * @return {Element|null} 如果存在被选中的，则返回该元素，否则返回null
-       */
-      function currentElementObj() {
-        return $scope.editStat.selectedElement;
-      }
-
       /**
        * 辅助函数，将值限定在某个区间之内
        * @func bound
