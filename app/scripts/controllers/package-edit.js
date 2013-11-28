@@ -77,6 +77,10 @@ angular.module('toHELL')
         this.selectElement(null);
       };
 
+      $scope.defaults = {
+        sceneBackground: 'images/dummy-scene-thumb.png'
+      };
+
       /**
        * 释放选中的场景。连带释放选中的元素。
        * @func deselectScene
