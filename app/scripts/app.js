@@ -22,6 +22,6 @@ angular.module('toHELL', [
   }])
   .factory('Global',function(){
     return {
-      'apiUrl': '/api/'
+      apiHost: '/api/'
     };
   });
