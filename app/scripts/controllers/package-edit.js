@@ -8,11 +8,9 @@ angular.module('toHELL')
        * @var {Object}
        */
       $scope.editStat = {
-        selectedScene: null, // NOTE: 这里是scene的id，不能直接作为索引使用
+        selectedScene: null,
         selectedElement: null,
-        selectedElementObj: null,
         selectedAction: null,
-        selectedActionObj: null,
         gotoSignStyle: {
           top: '',
           right: ''
@@ -74,7 +72,7 @@ angular.module('toHELL')
        * @param {Scene} scene - 被选中的场景
        */
       $scope.selectScene = function (scene) {
-        this.editStat.selectedScene = scene.id;
+        this.editStat.selectedScene = scene;
         // 清除掉之前可能有的其他元素、动作选择
         this.selectElement(null);
       };
@@ -95,14 +93,15 @@ angular.module('toHELL')
        */
       $scope.addScene = function () {
         var idTemp = findMaxSceneId() + 1;
-        this.package.scenes.push({
+        var newScene = {
           id: idTemp,
           order: findMaxSceneOrder() + 1,
           name: 'Scene ' + (idTemp + 1),
           background: '',
           elements: []
-        });
-        return this.package.scenes[this.package.scenes.length - 1];
+        };
+        this.package.scenes.push(newScene);
+        return newScene;
       };
 
       /**
@@ -119,16 +118,17 @@ angular.module('toHELL')
       /**
        * 删除一个场景。如果不存在满足条件的场景，则操作无效。
        * @func removeScene
-       * @param {number} sid - 所要删除的场景id
+       * @param {Scene} scene - 所要删除的场景对象
        */
-      $scope.removeScene = function (sid) {
-        for (var i = this.package.scenes.length - 1; i >= 0; i--) {
-          if (this.package.scenes[i].id === sid) {
-            this.package.scenes.splice(i, 1);
-          }
+      $scope.removeScene = function (scene) {
+        var scenes = this.package.scenes;
+        var index = scenes.indexOf(scene);
+        if (index < 0) {
+          return;
         }
+        scenes.splice(index, 1);
         // 当删除的是选中场景时，释放对场景的选择
-        if (sid === this.editStat.selectedScene) {
+        if (scene === this.editStat.selectedScene) {
           this.deselectScene();
         }
       };
@@ -139,12 +139,12 @@ angular.module('toHELL')
        * @param {number} elementIndex 该元素的索引值
        * @todo 目前考虑自动选中第一个action，时机成熟时移除
        */
-      $scope.selectElement = function (elementIndex) {
-        this.editStat.selectedElement = elementIndex;
-        this.editStat.selectedElementObj = currentElementObj();
+      $scope.selectElement = function (element) {
+        this.editStat.selectedElement = element;
         // FIXME: 目前考虑自动选中第一个action，时机成熟时移除
-        if (this.editStat.selectedElementObj) {
-          this.selectAction(0);
+        // TODO: 选择第一个Action。
+        if (this.editStat.selectedElement && element.actions.length > 0) {
+          this.selectAction(element.actions[0]);
         }
       };
 
@@ -154,7 +154,6 @@ angular.module('toHELL')
        */
       $scope.deselectElement = function () {
         this.editStat.selectedElement = null;
-        this.editStat.selectedElementObj = null;
         // 连带释放Action的选中
         this.deselectAction();
       };
@@ -164,8 +163,8 @@ angular.module('toHELL')
        * @func addHotspotElement
        */
       $scope.addHotspotElement = function () {
-        var scene = this.findSceneById(this.editStat.selectedScene);
-        scene.elements.push({
+        var scene = this.editStat.selectedScene;
+        var newElement = {
           // 默认参数
           type: 'hotspot',
           posX: '100px',
@@ -173,30 +172,29 @@ angular.module('toHELL')
           width: '120px',
           height: '42px',
           actions: []
-        });
-        this.selectElement(scene.elements.length - 1);
+        };
+        scene.elements.push(newElement);
+        this.selectElement(newElement);
       };
 
       /**
        * 选中一个动作
        * @func selectAction
-       * @param {number} actionIndex 该动作的索引值
+       * @param {Action} action 所要选中的动作对象
        */
-      $scope.selectAction = function (actionIndex) {
+      $scope.selectAction = function (action) {
         var aT = this.editStat;
-        var bT = aT.selectedElementObj;
-        if (actionIndex === null || bT === null) {
-          aT.selectActionObj = aT.selectAction = null;
+        var bT = aT.selectedElement;
+        if (action === null || bT === null) {
+          aT.selectedAction = null;
           return;
         }
 
-        if (bT.actions.length > actionIndex) {
-          aT.selectedActionObj = bT.actions[actionIndex];
-          aT.selectedAction = actionIndex;
+        if (bT.actions.indexOf(action) > -1) {
+          aT.selectedAction = action;
           aT.gotoSignStyle = this.renderGotoSignStyle(bT);
           aT.gotoLineStyle = this.renderGotoLineStyle(bT);
         } else {
-          aT.selectedActionObj = null;
           aT.selectedAction = null;
         }
       };
@@ -207,7 +205,6 @@ angular.module('toHELL')
        */
       $scope.deselectAction = function () {
         this.editStat.selectedAction = null;
-        this.editStat.selectedActionObj = null;
       };
 
       /**
@@ -215,20 +212,21 @@ angular.module('toHELL')
        * @func addAction
        */
       $scope.addAction = function () {
-        var actions = this.editStat.selectedElementObj.actions;
+        var actions = this.editStat.selectedElement.actions;
         if (actions.length > 0) {
           // 当前一个Element只能有一个Action
           return;
         }
-        actions.push({
+        var newAction = {
           type: 'jumpto',
           target: null,
           transitionType: 'push',
           transitionDirection: 'up',
           transitionDelay: '0s',
           transitionDuration: '3.25s'
-        });
-        this.selectAction(actions.length - 1);
+        };
+        actions.push(newAction);
+        this.selectAction(newAction);
       };
 
       /**
@@ -486,12 +484,12 @@ angular.module('toHELL')
        * @param {event} $event - 点击事件
        * @private
        */
-      $scope.onHotspotDown = function (index, ele, $event) {
+      $scope.onHotspotDown = function (ele, $event) {
         if ($event.which !== 1) {// 不接受非左键点击
           return;
         }
         var sT = this.editStat.hotspotStack;
-        this.selectElement(index);
+        this.selectElement(ele);
         sT.hotspotMovingTarget = ele;
         sT.hotspotMovingStart.x = $event.clientX;
         sT.hotspotMovingStart.y = $event.clientY;
@@ -546,12 +544,12 @@ angular.module('toHELL')
        * @param {event} $event - 鼠标事件
        * @private
        */
-      $scope.onExpanderDown = function (index, ele, pos, $event) {
+      $scope.onExpanderDown = function (ele, pos, $event) {
         if ($event.which !== 1) {// 不接受非左键点击
           return;
         }
         var sT = this.editStat.expanderStack;
-        this.selectElement(index);
+        this.selectElement(ele);
         sT.expanderIndex = pos;
         sT.expanderMovingTarget = ele;
         sT.expanderMovingStart.x = $event.clientX;
@@ -652,16 +650,7 @@ angular.module('toHELL')
        * @return {Element|null} 如果存在被选中的，则返回该元素，否则返回null
        */
       function currentElementObj() {
-        var scene = $scope.findSceneById($scope.editStat.selectedScene);
-        if (!scene) {
-          return null;
-        }
-        var elements = scene.elements;
-        if (elements.length) {
-          return elements[$scope.editStat.selectedElement];
-        } else {
-          return null;
-        }
+        return $scope.editStat.selectedElement;
       }
 
       /**
