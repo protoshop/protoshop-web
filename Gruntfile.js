@@ -113,6 +113,7 @@ module.exports = function (grunt) {
         autoWatch: false,
         singleRun: true
       },
+      // jshint -W106
       midway_auto: {
         configFile: './test/karma-midway.conf.js'
       }
