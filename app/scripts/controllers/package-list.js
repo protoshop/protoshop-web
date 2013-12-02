@@ -7,7 +7,7 @@ angular.module('toHELL')
     $scope.refreshList = function () {
       $http.get(Global.apiHost + 'fetchlist')
         .success(function (data) {
-          $scope.packageList = data.list;
+          $scope.packageList = data.projectList;
         });
     };
 
@@ -19,7 +19,7 @@ angular.module('toHELL')
      * @param pkg
      */
     $scope.editPackage = function (pkg) {
-      $location.path('/package/' + pkg.id);
+      $location.path('/package/' + pkg.appID);
     };
 
     /**
@@ -27,7 +27,7 @@ angular.module('toHELL')
      * @param pkg
      */
     $scope.deletePackage = function (pkg) {
-      $http.delete(Global.apiHost + 'package/' + pkg.id)
+      $http.delete(Global.apiHost + 'package/' + pkg.appID)
         .success(function () {
           $scope.refreshList();
         });
