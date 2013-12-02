@@ -107,15 +107,15 @@ module.exports = function (grunt) {
       // jshint -W106
       unit_auto: {
         configFile: './test/karma-unit.conf.js'
+      },
+      midway: {
+        configFile: './test/karma-midway.conf.js',
+        autoWatch: false,
+        singleRun: true
+      },
+      midway_auto: {
+        configFile: './test/karma-midway.conf.js'
       }
-      // midway: {
-      //   configFile: './test/karma-midway.conf.js',
-      //   autoWatch: false,
-      //   singleRun: true
-      // },
-      // midway_auto: {
-      //   configFile: './test/karma-midway.conf.js'
-      // },
       // e2e: {
       //   configFile: './test/karma-e2e.conf.js',
       //   autoWatch: false,
@@ -337,7 +337,8 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     // 'mocha'
-    'karma:unit'
+    'karma:unit',
+    'karma:midway'
   ]);
 
   grunt.registerTask('build', [
