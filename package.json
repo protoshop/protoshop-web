@@ -29,7 +29,8 @@
     "requirejs": "~2.1.9",
     "mocha": "~1.14.0",
     "karma-phantomjs-launcher": "~0.1.1",
-    "grunt-karma": "~0.6.2"
+    "grunt-karma": "~0.6.2",
+    "ng-midway-tester": "~2.0.5"
   },
   "engines": {
     "node": ">=0.8.0"

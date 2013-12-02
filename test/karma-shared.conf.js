@@ -54,6 +54,9 @@ module.exports = function() {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
+    // in case karma conflicts with our app
+    urlRoot: '/__karma__/',
+
 
     // Start these browsers, currently available:
     // - Chrome
