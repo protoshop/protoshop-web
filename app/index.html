@@ -244,11 +244,11 @@
 					<img ng-src="images/icon-app-120.png" width="27" height="27" src="images/icon-app-120.png">
 					Name:
 				</label>
-				<input required type="text" ng-model="newPackageConfig.name" name="projectName" placeholder="项目名称" class="project-text">
+				<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称" class="project-text">
 			</div>
 			<div class="control-group">
 				<label>Details:</label>
-				<textarea ng-model="newPackageConfig.desc" name="projectDetails" cols="20" rows="5" class="large-input"></textarea>
+				<textarea ng-model="newPackageConfig.comment" name="projectDetails" cols="20" rows="5" class="large-input"></textarea>
 			</div>
 			<div class="control-group">
 				<div class="submit-btn">
@@ -268,6 +268,7 @@
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/ngUpload/ng-upload.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

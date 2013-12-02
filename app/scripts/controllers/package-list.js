@@ -14,10 +14,18 @@ angular.module('toHELL')
     // Init list
     $scope.refreshList();
 
+    /**
+     * Package 编辑
+     * @param pkg
+     */
     $scope.editPackage = function (pkg) {
       $location.path('/package/' + pkg.id);
     };
 
+    /**
+     * Package 删除
+     * @param pkg
+     */
     $scope.deletePackage = function (pkg) {
       $http.delete(Global.apiHost + 'package/' + pkg.id)
         .success(function () {
@@ -25,14 +33,25 @@ angular.module('toHELL')
         });
     };
 
+    /**
+     * 显示/隐藏『创建Package』对话框
+     */
     $scope.toggleCreateDialog = function () {
       $scope.showCreateDialog = !$scope.showCreateDialog;
     };
 
+    /**
+     * 创建 Package 的默认配置
+     * @type {{appName: string, comment: string}}
+     */
     $scope.newPackageConfig = {
       appName: '',
       comment: ''
-    }
+    };
+
+    /**
+     * 创建 Package
+     */
     $scope.createPackage = function () {
       var postData = {
         context: $scope.newPackageConfig
