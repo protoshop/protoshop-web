@@ -115,6 +115,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .change-btn { float: right; }
 .change-btn button { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 22px; }
 .event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
+.event-description{ color:#afafaf; font-size: 18px; margin-left:47px; margin-top:5px; }
 .author-name {margin-right: 20px; }
 .author-name a { color: #1ba1eb; }
 .author-name a:hover { text-decoration: underline; }
