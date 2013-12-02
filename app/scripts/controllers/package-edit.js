@@ -61,7 +61,7 @@ angular.module('toHELL')
        * 存储整个工程的实时状态
        * @var {Object}
        */
-      $http.get(Global.apiHost + 'package/' + $routeParams.pkgId + '.json')
+      $http.get('/api/package/' + $routeParams.pkgId + '.json')
         .success(function (data) {
           $scope.package = data;
         });
@@ -695,7 +695,7 @@ angular.module('toHELL')
        * 保存编辑好的项目数据
        */
       $scope.savePackage = function () {
-        $http.post(Global.apiHost + 'package/' + $scope.package.id)
+        $http.post('/api/package/' + $scope.package.id)
           .success(function () {
             console.log('"' + $scope.package.id + '" saved!');
           });

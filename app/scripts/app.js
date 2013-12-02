@@ -26,6 +26,6 @@ angular.module('toHELL', [
   }])
   .factory('Global', function () {
     return {
-      apiHost: '/api/'
+      apiHost: 'http://wxddb1.qa.nt.ctripcorp.com/tohell/'
     };
   });
