@@ -104,6 +104,7 @@ module.exports = function (grunt) {
         autoWatch: false,
         singleRun: true
       },
+      // jshint -W106
       unit_auto: {
         configFile: './test/karma-unit.conf.js'
       }
