@@ -26,3 +26,16 @@
 - 代码*部署到应用服务器*之前要做的事情：
   1. 本地运行`grunt server:dist`命令，检查编译压缩后的应用是否功能完整、控制台无报错无调试记录  
   之后可将`dist`目录下的文件部署到 wxddb1 服务器上。
+
+## 前端测试
+
+目前使用[karma](http://karma-runner.github.io/0.10/index.html)进行测试，所参考的资料主要是[这篇博客](http://www.yearofmoo.com/2013/01/full-spectrum-testing-with-angularjs-and-karma.html#testing-modules)。
+
+### 安装karma
+karma需要全局安装：`npm install -g karma`
+
+目前karma的其他相关模块已写入了node的`package.json`。
+
+### 使用karma
+
+现在karma已和grunt集成，需要测试时可以直接运行`grunt test`。

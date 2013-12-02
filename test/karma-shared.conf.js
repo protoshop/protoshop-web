@@ -21,8 +21,9 @@ module.exports = function() {
       'app/bower_components/angular-resource/angular-resource.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/scripts/app.js',
-      'app/scripts/controllers/package-edit.js',
-      'app/scripts/controllers/package-list.js'
+      'app/scripts/controllers/package-edit.js'
+      // 'app/scripts/controllers/package-list.js',
+      
     ],
 
 
