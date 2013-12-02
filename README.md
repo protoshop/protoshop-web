@@ -38,4 +38,9 @@ karma需要全局安装：`npm install -g karma`
 
 ### 使用karma
 
-现在karma已和grunt集成，需要测试时可以直接运行`grunt test`。
+现在karma已和grunt集成，需要测试时可以直接运行`grunt test`，或单独选则某项测试：
+
+* 单元测试：`grunt karma:unit`
+  * 持续测试：`grunt karma:unit_auto`
+* Midway测试：`grunt karma:midway`
+  * 持续测试：`grunt karma:midway_auto`
