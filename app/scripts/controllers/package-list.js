@@ -5,7 +5,7 @@ angular.module('toHELL')
 
     // To get data & set list.
     $scope.refreshList = function () {
-      $http.get( Global.apiHost + 'fetchlist')
+      $http.get(Global.apiHost + 'fetchlist')
         .success(function (data) {
           $scope.packageList = data.list;
         });
@@ -56,7 +56,7 @@ angular.module('toHELL')
       var postData = {
         context: $scope.newPackageConfig
       };
-      $http.post( Global.apiHost + 'createPoject/', postData)
+      $http.post(Global.apiHost + 'createPoject/', postData)
         .success(function (data) {
           $location.path('/package/' + data.appID);
         });
