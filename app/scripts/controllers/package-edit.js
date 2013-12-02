@@ -59,7 +59,7 @@ angular.module('toHELL')
       };
       /**
        * 存储整个工程的实时状态
-       * @var {Object}
+       * @var {Object} $scope.package
        */
       $http.get(Global.apiHost + 'package/' + $routeParams.pkgId + '.json')
         .success(function (data) {

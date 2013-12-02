@@ -14,9 +14,9 @@ describe('Unit: Testing Controllers', function() {
     }));
 
     it('should have a editStat working in PackageEditCTRL controller',
-      inject(function($rootScope) {
+      function() {
         expect(scope.editStat).not.to.equal(undefined);
-    }));
+    });
 
   });
 
