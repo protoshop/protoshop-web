@@ -98,14 +98,32 @@ module.exports = function (grunt) {
         'test/spec/{,*/}*.js'
       ]
     },
-    // mocha: {
-    //   all: {
-    //     options: {
-    //       run: true,
-    //       urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-    //     }
-    //   }
-    // },
+    karma: {
+      unit: {
+        configFile: './test/karma-unit.conf.js',
+        autoWatch: false,
+        singleRun: true
+      },
+      unit_auto: {
+        configFile: './test/karma-unit.conf.js'
+      }
+      // midway: {
+      //   configFile: './test/karma-midway.conf.js',
+      //   autoWatch: false,
+      //   singleRun: true
+      // },
+      // midway_auto: {
+      //   configFile: './test/karma-midway.conf.js'
+      // },
+      // e2e: {
+      //   configFile: './test/karma-e2e.conf.js',
+      //   autoWatch: false,
+      //   singleRun: true
+      // },
+      // e2e_auto: {
+      //   configFile: './test/karma-e2e.conf.js'
+      // }
+    },
     compass: {
       options: {
         sassDir: '<%= yeoman.app %>/styles',
@@ -318,6 +336,7 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     // 'mocha'
+    'karma:unit'
   ]);
 
   grunt.registerTask('build', [

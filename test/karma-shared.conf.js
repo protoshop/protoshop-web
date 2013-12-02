@@ -1,11 +1,11 @@
 // Karma configuration
 // Generated on Thu Nov 28 2013 17:03:11 GMT+0800 (CST)
 
-module.exports = function(config) {
-  config.set({
+module.exports = function() {
+  return {
 
     // base path, that will be used to resolve files and exclude
-    basePath: '',
+    basePath: '../',
 
 
     // frameworks to use
@@ -15,7 +15,14 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // 'app/scripts/*.js',
-      'test/unit/*.js'
+      'app/bower_components/angular/angular.js',
+      'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/angular-cookies/angular-cookies.js',
+      'app/bower_components/angular-resource/angular-resource.js',
+      'app/bower_components/angular-sanitize/angular-sanitize.js',
+      'app/scripts/app.js',
+      'app/scripts/controllers/package-edit.js',
+      'app/scripts/controllers/package-list.js'
     ],
 
 
@@ -40,7 +47,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    // logLevel: config.LOG_INFO,
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -55,8 +62,9 @@ module.exports = function(config) {
     // - Safari (only Mac; has to be installed with `npm install karma-safari-launcher`)
     // - PhantomJS
     // - IE (only Windows; has to be installed with `npm install karma-ie-launcher`)
-    // browsers: ['PhantomJS'],
-    browsers: ['Chrome'],
+    // browsers: ['PhantomJS', 'Chrome'],
+    // browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // If browser does not capture in given timeout [ms], kill it
@@ -66,5 +74,5 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false
-  });
+  };
 };
