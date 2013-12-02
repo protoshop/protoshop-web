@@ -59,7 +59,7 @@ angular.module('toHELL')
       };
       /**
        * 存储整个工程的实时状态
-       * @var {Object}
+       * @var {Object} $scope.package
        */
       $http.get('/api/package/' + $routeParams.pkgId + '.json')
         .success(function (data) {
@@ -359,7 +359,7 @@ angular.module('toHELL')
        * 通常来说，应当保持$scope.editStat.gotoSignStyle与本函数同步。
        * @func renderGotoSignStyle
        * @param {Element} ele - 对应的元素对象
-       * @return {style} 返回样式表对象
+       * @return {Object} 返回样式表对象
        * @todo 处理px以外单位的情况
        */
       $scope.renderGotoSignStyle = function (ele) {
@@ -378,7 +378,7 @@ angular.module('toHELL')
        * 通常来说，应当保持$scope.editStat.gotoLineStyle与本函数同步。
        * @func renderGotoLineStyle
        * @param {Element} ele - 对应的元素对象
-       * @return {style} 返回样式表对象
+       * @return {Object} 返回样式表对象
        * @todo 处理px以外单位的情况
        */
       $scope.renderGotoLineStyle = function (ele) {
@@ -700,5 +700,5 @@ angular.module('toHELL')
             console.log('"' + $scope.package.id + '" saved!');
           });
       };
-      
+
     }]);

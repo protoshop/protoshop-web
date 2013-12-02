@@ -218,8 +218,8 @@
 					</div>
 					<img ng-src="{{pkg.packageIcon}}" width="27" height="27">
 					<div class="event-info">
-						<span class="author-name"><a href="#/package/{{pkg.id}}" ng-bind="pkg.packageName"></a></span>
-						<span class="pull-time" ng-bind="pkg.modifyDate"></span>
+						<span class="author-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
+						<span class="pull-time" ng-bind="pkg.createTime"></span>
 					</div>
 					<div class="event-description">Jade - robust, elegant, feature rich</div>
 					<ul class="event-body" ng-show="pkg.changelog">
