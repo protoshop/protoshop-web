@@ -6,7 +6,8 @@ angular.module('toHELL', [
     'ngSanitize',
     'ngRoute'
   ])
-  .config(['$routeProvider',function ($routeProvider) {
+  .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+
     $routeProvider
       .when('/', {
         templateUrl: 'package-list.html',
@@ -19,8 +20,11 @@ angular.module('toHELL', [
       .otherwise({
         redirectTo: '/'
       });
+
+    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
   }])
-  .factory('Global',function(){
+  .factory('Global', function () {
     return {
       apiHost: '/api/'
     };
