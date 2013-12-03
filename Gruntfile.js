@@ -116,15 +116,16 @@ module.exports = function (grunt) {
       // jshint -W106
       midway_auto: {
         configFile: './test/karma-midway.conf.js'
+      },
+      e2e: {
+        configFile: './test/karma-e2e.conf.js',
+        autoWatch: false,
+        singleRun: true
+      },
+      // jshint -W106
+      e2e_auto: {
+        configFile: './test/karma-e2e.conf.js'
       }
-      // e2e: {
-      //   configFile: './test/karma-e2e.conf.js',
-      //   autoWatch: false,
-      //   singleRun: true
-      // },
-      // e2e_auto: {
-      //   configFile: './test/karma-e2e.conf.js'
-      // }
     },
     compass: {
       options: {
@@ -339,7 +340,8 @@ module.exports = function (grunt) {
     'connect:test',
     // 'mocha'
     'karma:unit',
-    'karma:midway'
+    'karma:midway',
+    'karma:e2e'
   ]);
 
   grunt.registerTask('build', [
