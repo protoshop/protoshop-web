@@ -65,7 +65,7 @@ angular.module('toHELL')
         .success(function (data) {
           $scope.package = data;
         })
-        .error(function (data, status, headers, config){
+        .error(function (data, status, headers, config) {
           alert('Error: ' + status + '\n' + data);
           console.log(data, status, config);
         });
@@ -699,9 +699,9 @@ angular.module('toHELL')
        * 保存编辑好的项目数据
        */
       $scope.savePackage = function () {
-        $http.post('/api/package/' + $scope.package.id)
+        $http.post('/api/package/' + $scope.package.appID)
           .success(function () {
-            console.log('"' + $scope.package.id + '" saved!');
+            console.log('"' + $scope.package.appID + '" saved!');
           });
       };
 

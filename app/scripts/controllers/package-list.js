@@ -10,7 +10,7 @@ angular.module('toHELL')
         .success(function (data) {
           $scope.packageList = data.projectList;
         })
-        .error(function (data, status, headers, config){
+        .error(function (data, status, headers, config) {
           alert('Error: ' + status + '\n' + data);
           console.log(data, status, config);
         });
