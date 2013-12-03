@@ -64,6 +64,10 @@ angular.module('toHELL')
       $http.get('/api/package/' + $routeParams.pkgId + '.json')
         .success(function (data) {
           $scope.package = data;
+        })
+        .error(function (data, status, headers, config){
+          alert('Error: ' + status + '\n' + data);
+          console.log(data, status, config);
         });
 
       /**
