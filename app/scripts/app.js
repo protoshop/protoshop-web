@@ -22,6 +22,10 @@ angular.module('toHELL', [
       });
 
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+    
+    // for CORS, http://www.tuicool.com/articles/eQbq2e
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
   }])
   .factory('Global', function () {
