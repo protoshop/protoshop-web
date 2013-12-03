@@ -1,47 +1,48 @@
 {
-  "appID": "zaq1xsw2",
+  "appID": "1d9abf59bfade93c71fbb260b6dc7390",
   "appName": "Demo HELL1",
   "appIcon": "images/icon-app-120.png",
   "splash": {
     "image": "splash.png",
     "delay": 500,
+    "duration": 500,
     "transferType": ""
   },
   "scenes": [
     {
-      "id": 0,
+      "id": 1386064627839,
       "order": 0,
       "name": "Scene 1",
       "background": "images/zzz-scene.png",
       "elements": [
         {
           "type": "hotspot",
-          "posX": "12px",
-          "posY": "189px",
-          "width": "139px",
-          "height": "87px",
+          "posX": 12,
+          "posY": 189,
+          "width": 139,
+          "height": 87,
           "actions": [
             {
               "type": "jumpto",
               "target": 1,
               "transitionType": "push",
               "transitionDirection": "up",
-              "transitionDelay": "0s",
-              "transitionDuration": "3.25s"
+              "transitionDelay": 0,
+              "transitionDuration": 0
             }
           ]
         }
       ]
     },
     {
-      "id": 1,
+      "id": 1386064607748,
       "order": 1,
       "name": "Scene 2",
       "background": "images/zzz-scene.png",
       "elements": []
     },
     {
-      "id": 2,
+      "id": 1386064607758,
       "order": 2,
       "name": "Scene 3",
       "background": "",

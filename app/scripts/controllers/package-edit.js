@@ -2,7 +2,7 @@
 
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'Global',
-    function ($scope, $routeParams, $http, $document, Global) {
+    function ($scope, $routeParams, $http, $document) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -66,7 +66,7 @@ angular.module('toHELL')
           $scope.package = data;
         })
         .error(function (data, status, headers, config) {
-          alert('Error: ' + status + '\n' + data);
+          window.alert('Error: ' + status + '\n' + data);
           console.log(data, status, config);
         });
 

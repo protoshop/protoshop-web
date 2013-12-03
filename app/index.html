@@ -216,7 +216,7 @@
 						<button ng-click="editPackage(pkg)">edit</button>
 						<button ng-click="deletePackage(pkg)">delete</button>
 					</div>
-					<img ng-src="{{pkg.packageIcon}}" width="27" height="27">
+					<img ng-src="{{pkg.appIcon}}" width="27" height="27">
 					<div class="event-info">
 						<span class="author-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
 						<span class="pull-time" ng-bind="pkg.createTime"></span>
@@ -245,11 +245,13 @@
 					<img ng-src="images/icon-app-120.png" width="27" height="27" src="images/icon-app-120.png">
 					Name:
 				</label>
-				<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称" class="project-text">
+				<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称"
+					   class="project-text">
 			</div>
 			<div class="control-group">
 				<label>Details:</label>
-				<textarea ng-model="newPackageConfig.comment" name="projectDetails" cols="20" rows="5" class="large-input"></textarea>
+				<textarea ng-model="newPackageConfig.comment" name="projectDetails" cols="20" rows="5"
+						  class="large-input"></textarea>
 			</div>
 			<div class="control-group">
 				<div class="submit-btn">
