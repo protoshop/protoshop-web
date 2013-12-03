@@ -175,10 +175,10 @@ angular.module('toHELL')
         var newElement = {
           // 默认参数
           type: 'hotspot',
-          posX: '100px',
-          posY: '300px',
-          width: '120px',
-          height: '42px',
+          posX: '100',
+          posY: '300',
+          width: '120',
+          height: '42',
           actions: []
         };
         scene.elements.push(newElement);
@@ -430,8 +430,8 @@ angular.module('toHELL')
         var heightMax = 568 - parseInt(ele.height, 10);
         var xValue = parseInt(x, 10);
         var yValue = parseInt(y, 10);
-        ele.posX = bound(0, xValue, widthMax) + 'px';
-        ele.posY = bound(0, yValue, heightMax) + 'px';
+        ele.posX = bound(0, xValue, widthMax);
+        ele.posY = bound(0, yValue, heightMax);
         this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
         this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
       };
@@ -448,8 +448,8 @@ angular.module('toHELL')
         // TODO: 屏幕的尺寸应当可配置
         var widthMax = 320 - parseInt(ele.posX, 10);
         var heightMax = 568 - parseInt(ele.posY, 10);
-        ele.width = bound(0, parseInt(w, 10), widthMax) + 'px';
-        ele.height = bound(0, parseInt(h, 10), heightMax) + 'px';
+        ele.width = bound(0, parseInt(w, 10), widthMax);
+        ele.height = bound(0, parseInt(h, 10), heightMax);
         this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
         this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
       };
