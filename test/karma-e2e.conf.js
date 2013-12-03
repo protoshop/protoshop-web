@@ -4,13 +4,9 @@ module.exports = function(config) {
   var conf = sharedConfig();
 
   conf.files = conf.files.concat([
-    //extra testing code
-    './app/bower_components/angular-mocks/angular-mocks.js',
-    './node_modules/ng-midway-tester/src/ngMidwayTester.js',
-
     //test files
-    './test/midway/*.js',
-    './test/midway/**/*.js'
+    './test/e2e/*.js',
+    './test/e2e/**/*.js'
   ]);
 
   // level of logging
@@ -21,7 +17,9 @@ module.exports = function(config) {
     '/': 'http://localhost:9999/'
   };
 
-  conf.port = 9877;
+  conf.frameworks = ['ng-scenario'];
+
+  conf.port = 9878;
 
   config.set(conf);
   return conf;
