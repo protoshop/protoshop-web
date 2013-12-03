@@ -5,7 +5,8 @@ angular.module('toHELL')
 
     // To get data & set list.
     $scope.refreshList = function () {
-      $http.get(Global.apiHost + 'fetchlist')
+//      $http.get(Global.apiHost + 'fetchlist')
+      $http.get('/api/package/list.json')
         .success(function (data) {
           $scope.packageList = data.projectList;
         });

@@ -141,7 +141,7 @@
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
 					<div class="tools-bg-thumb">
-						<img ng-src="{{editStat.selectedScene.background ==''?defaults.sceneBackground:editStat.selectedScene.background}}"
+						<img ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}"
 							 alt="Scene Thumb" />
 					</div>
 					<button>Remove</button>
@@ -221,7 +221,7 @@
 						<span class="author-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
 						<span class="pull-time" ng-bind="pkg.createTime"></span>
 					</div>
-					<div class="event-description">Jade - robust, elegant, feature rich</div>
+					<div class="event-description" ng-bind="pkg.comment"></div>
 					<ul class="event-body" ng-show="pkg.changelog">
 						<li class="commit" ng-repeat="log in pkg.changelog">
 							<div class="commit-info">

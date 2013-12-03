@@ -1,10 +1,12 @@
 {
-  "list": [
+  "projectList": [
     {
-      "id": "zaq1xsw2",
-      "packageName": "Jade",
-      "packageIcon": "images/icon-app-120.png",
-      "modifyDate": "2013-10-27",
+      "appID": "zaq1xsw2",
+      "appName": "Jade",
+      "icon": "images/icon-app-120.png",
+      "comment": "robust, elegant, feature rich",
+      "createTime": "2013-10-27",
+      "editTime": "2013-10-27",
       "changelog": [
         {
           "by": "guolei",
@@ -14,17 +16,21 @@
       ]
     },
     {
-      "id": "zaq1xsw2",
-      "packageName": "Jade",
-      "packageIcon": "images/icon-app-120.png",
-      "modifyDate": "2013-10-27",
+      "appID": "zaq1xsw2",
+      "appName": "Jade",
+      "icon": "images/icon-app-120.png",
+      "comment": "robust, elegant, feature rich",
+      "createTime": "2013-10-27",
+      "editTime": "2013-10-27",
       "changelog": []
     },
     {
-      "id": "zaq1xsw2",
-      "packageName": "Mike",
-      "packageIcon": "images/icon-app-120.png",
-      "modifyDate": "2013-10-27",
+      "appID": "zaq1xsw2",
+      "appName": "Mike",
+      "icon": "images/icon-app-120.png",
+      "comment": "robust, elegant, feature rich",
+      "createTime": "2013-10-27",
+      "editTime": "2013-10-27",
       "changelog": [
         {
           "by": "guolei",
@@ -44,9 +50,11 @@
       ]
     },
     {
-      "packageName": "Jade",
-      "packageIcon": "images/icon-app-120.png",
-      "modifyDate": "2013-10-27",
+      "appName": "Jade",
+      "icon": "images/icon-app-120.png",
+      "comment": "tohell comment",
+      "createTime": "2013-10-27",
+      "editTime": "2013-10-27",
       "changelog": [
         {
           "by": "guolei",
