@@ -44,3 +44,5 @@ karma需要全局安装：`npm install -g karma`
   * 持续测试：`grunt karma:unit_auto`
 * Midway测试：`grunt karma:midway`
   * 持续测试：`grunt karma:midway_auto`
+* 端对端测试：`grunt karma:e2e`
+  * 持续测试：`grunt karma:e2e_auto`
