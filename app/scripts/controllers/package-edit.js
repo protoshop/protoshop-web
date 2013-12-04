@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 
+  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document',
     'GLOBAL', 'sceneService', 'elementService', 'actionService',
     function ($scope, $routeParams, $http, $document, GLOBAL, sceneService, elementService, actionService) {
       /**
@@ -74,7 +74,6 @@ angular.module('toHELL')
       sceneService.setStat($scope.editStat);
       elementService.setStat($scope.editStat);
       actionService.setStat($scope.editStat);
-      
 
       /**
        * 选中一个场景
@@ -535,14 +534,15 @@ angular.module('toHELL')
         }
       };
 
-
       /**
-       * 保存编辑好的项目数据
+       * 保存编辑好的项目JSON数据
        */
       $scope.savePackage = function () {
-        $http.post('/api/package/' + $scope.package.appID)
+        $http.post(GLOBAL.apiHost + 'saveProject/', {
+          context: $scope.package
+        })
           .success(function () {
-            console.log('"' + $scope.package.appID + '" saved!');
+            console.log('Package "' + $scope.package.appID + '" saved!');
           });
       };
 
