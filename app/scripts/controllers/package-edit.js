@@ -2,8 +2,8 @@
 
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 
-    'GLOBAL', 'sceneService', 'elementService',
-    function ($scope, $routeParams, $http, $document, GLOBAL, sceneService, elementService) {
+    'GLOBAL', 'sceneService', 'elementService', 'actionService',
+    function ($scope, $routeParams, $http, $document, GLOBAL, sceneService, elementService, actionService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -67,11 +67,13 @@ angular.module('toHELL')
           $scope.package = data;
           sceneService.setPackage($scope.package);
           elementService.setPackage($scope.package);
+          actionService.setPackage($scope.package);
         })
         .error(GLOBAL.errLogger);
 
       sceneService.setStat($scope.editStat);
       elementService.setStat($scope.editStat);
+      actionService.setStat($scope.editStat);
       
 
       /**
@@ -166,20 +168,7 @@ angular.module('toHELL')
        * @param {Action} action 所要选中的动作对象
        */
       $scope.selectAction = function (action) {
-        var aT = this.editStat;
-        var bT = aT.selectedElement;
-        if (action === null || bT === null) {
-          aT.selectedAction = null;
-          return;
-        }
-
-        if (bT.actions.indexOf(action) > -1) {
-          aT.selectedAction = action;
-          aT.gotoSignStyle = this.renderGotoSignStyle(bT);
-          aT.gotoLineStyle = this.renderGotoLineStyle(bT);
-        } else {
-          aT.selectedAction = null;
-        }
+        actionService.selectAction(action);
       };
 
       /**
@@ -187,7 +176,7 @@ angular.module('toHELL')
        * @func deselectAction
        */
       $scope.deselectAction = function () {
-        this.editStat.selectedAction = null;
+        actionService.deselectAction();
       };
 
       /**
@@ -195,21 +184,7 @@ angular.module('toHELL')
        * @func addAction
        */
       $scope.addAction = function () {
-        var actions = this.editStat.selectedElement.actions;
-        if (actions.length > 0) {
-          // 当前一个Element只能有一个Action
-          return;
-        }
-        var newAction = {
-          type: 'jumpto',
-          target: null,
-          transitionType: 'push',
-          transitionDirection: 'up',
-          transitionDelay: '0s',
-          transitionDuration: '3.25s'
-        };
-        actions.push(newAction);
-        this.selectAction(newAction);
+        actionService.addAction();
       };
 
       /**
@@ -279,24 +254,7 @@ angular.module('toHELL')
        * @return {string} 文本信息
        */
       $scope.renderActionItem = function (action) {
-        var actionText = '';
-        switch (action.type) {
-        case 'jumpto':
-          actionText += 'Go To: ';
-          break;
-        default:
-          actionText += 'Unknown Action: ';
-        }
-
-        var scene = this.findSceneById(action.target);
-
-        if (scene) {
-          actionText += scene.name;
-        } else {
-          actionText += '???';
-        }
-
-        return actionText;
+        return actionService.renderActionItem(action);
       };
 
       /**
@@ -306,12 +264,7 @@ angular.module('toHELL')
        * @return {Object} 样式信息，需包含left、top、width、height
        */
       $scope.renderHotspotStyle = function (element) {
-        return {
-          left: element.posX,
-          top: element.posY,
-          width: element.width,
-          height: element.height
-        };
+        return actionService.renderHotspotStyle(element);
       };
 
       /**
@@ -323,14 +276,7 @@ angular.module('toHELL')
        * @todo 处理px以外单位的情况
        */
       $scope.renderGotoSignStyle = function (ele) {
-        // var x = parseInt(ele.posX, 10);
-        // var y = parseInt(ele.posY, 10);
-        var width = parseInt(ele.width, 10);
-        // var height = parseInt(ele.height, 10);
-        var o = calcGotoSignStyle(width);
-        return {
-          right: o.x + 'px'
-        };
+        return actionService.renderGotoSignStyle(ele);
       };
 
       /**
@@ -342,10 +288,7 @@ angular.module('toHELL')
        * @todo 处理px以外单位的情况
        */
       $scope.renderGotoLineStyle = function (ele) {
-        var o = calcGotoLineStyle(parseInt(ele.posX, 10));
-        return {
-          width: o.width + 'px'
-        };
+        return actionService.renderGotoLineStyle(ele);
       };
 
       /**
@@ -355,7 +298,7 @@ angular.module('toHELL')
        * @return {bool}
        */
       $scope.isTransDirDisabled = function (action) {
-        return action ? (action.transitionType === 'none') : false;
+        return actionService.isTransDirDisabled(action);
       };
 
       /**
@@ -381,15 +324,7 @@ angular.module('toHELL')
        * @todo 屏幕应当可配置
        */
       $scope.moveHotspotTo = function (ele, x, y) {
-        // TODO: 屏幕的尺寸应当可配置
-        var widthMax = 320 - parseInt(ele.width, 10);
-        var heightMax = 568 - parseInt(ele.height, 10);
-        var xValue = parseInt(x, 10);
-        var yValue = parseInt(y, 10);
-        ele.posX = bound(0, xValue, widthMax);
-        ele.posY = bound(0, yValue, heightMax);
-        this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
-        this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
+        return actionService.moveHotspotTo(ele, x, y);
       };
 
       /**
@@ -401,13 +336,7 @@ angular.module('toHELL')
        * @todo 屏幕应当可配置
        */
       $scope.resizeHotspotTo = function (ele, w, h) {
-        // TODO: 屏幕的尺寸应当可配置
-        var widthMax = 320 - parseInt(ele.posX, 10);
-        var heightMax = 568 - parseInt(ele.posY, 10);
-        ele.width = bound(0, parseInt(w, 10), widthMax);
-        ele.height = bound(0, parseInt(h, 10), heightMax);
-        this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
-        this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
+        return actionService.resizeHotspotTo(ele, w, h);
       };
 
       /**
@@ -606,50 +535,6 @@ angular.module('toHELL')
         }
       };
 
-      /**
-       * 辅助函数，将值限定在某个区间之内
-       * @func bound
-       * @param {number} min - 最小值
-       * @param {number} value - 需要进行限定的值
-       * @param {number} max - 最大值
-       * @return {number} 若value在区间内，则返回value；否则最小为min，最大为max，
-       * @private
-       */
-      function bound(min, value, max) {
-        if (value < min) {
-          return min;
-        }
-        if (value > max) {
-          return max;
-        }
-        return value;
-      }
-
-      /**
-       * 计算线框整体的坐标值。目前返回hotspot的左上角
-       * @func calcGotoSignStyle
-       * @param {number} width - 元素的宽度
-       * @return {object} 返回计算出的x值，不含单位。
-       * @private
-       */
-      function calcGotoSignStyle(width) {
-        return {
-          x: width
-        };
-      }
-
-      /**
-       * 计算线框线段的宽度。
-       * @func calcGotoLineStyle
-       * @param {number} gotoSignX - 相应线框整体的x坐标
-       * @private
-       * @todo 减少硬编码，去除对单位（px）的依赖
-       */
-      function calcGotoLineStyle(gotoSignX) {
-        return {
-          width: (200 + gotoSignX) // 200表示goto thumb图距离设备的最小距离，目前单位实际为px
-        };
-      }
 
       /**
        * 保存编辑好的项目数据
