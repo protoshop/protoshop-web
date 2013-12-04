@@ -12,6 +12,7 @@ i { font-style: normal; }
 .layout { width: 100%; height: 100%; }
 
 .navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; background-color: #383838; border-bottom: 1px solid #000; z-index: 9; }
+.navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
 .navbar-header { float: left; padding: 0 10px; }
 .navbar-brand { line-height: 50px; font-size: 18px; font-weight: normal; cursor: default; color: #fafafa; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
@@ -20,12 +21,12 @@ i { font-style: normal; }
 .menu-main button, .menu-modeswitch button, .scenes-edit button { display: inline-block; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 16px; color: #afafaf; background: transparent; cursor: pointer; }
 .menu-modeswitch .current { background-color: #162a3a; color: #178dd4; }
 
-.layout-main { position: relative; margin-top: 51px; display: -webkit-box; display: box; width: 100%; height: 100%; }
+.layout-main { position: relative; display: -webkit-box; display: box; width: 100%; height: 100%; }
 
-.layout-scenes { position: relative; width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; }
+.layout-scenes { position: relative; width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; margin-top: 51px; }
 .layout-scenes ul{ margin-bottom: 60px; }
-.layout-tools { width: 300px; background-color: #202020; color: #7f7f7f; overflow-x: hidden; overflow-y: auto; }
-.layout-stage { -webkit-box-flex: 1; box-flex: 1; border-left: 1px solid #000; border-right: 1px solid #000; background: #292929 url(../images/bg-stage-iphone5.png) center center no-repeat; }
+.layout-tools { width: 300px; background-color: #202020; color: #7f7f7f; overflow-x: hidden; overflow-y: auto; margin-top:51px; }
+.layout-stage { -webkit-box-flex: 1; box-flex: 1; border-left: 1px solid #000; border-right: 1px solid #000; background: #292929 url(../images/bg-stage-iphone5.png) center center no-repeat; margin-top:51px; }
 
 /* ==================================================
  *  Scenes ( layout - left sidebar )
@@ -120,7 +121,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .author-name a { color: #1ba1eb; }
 .author-name a:hover { text-decoration: underline; }
 .pull-time { color: #afafaf; }
-.event-body { padding-left: 48px; margin-top: 15px; }
+.event-body { padding-left: 48px; margin-top: 10px; }
 .commit { padding-bottom: 10px; overflow: hidden; }
 .commit:last-child{ padding-bottom: 0; }
 .commit img { float: left; margin-right: 10px; }
