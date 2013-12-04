@@ -1,19 +1,16 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'Global', function ($scope, $http, $location, Global) {
+  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', function ($scope, $http, $location, GLOBAL) {
 
     // To get data & set list.
     $scope.refreshList = function () {
-//      $http.get(Global.apiHost + 'fetchlist')
-      $http.get('/api/package/list.json')
+      $http.get(GLOBAL.apiHost + 'fetchlist/')
+//      $http.get('/api/package/list.json')
         .success(function (data) {
           $scope.packageList = data.projectList;
         })
-        .error(function (data, status, headers, config) {
-          window.alert('Error: ' + status + '\n' + data);
-          console.log(data, status, config);
-        });
+        .error(GLOBAL.errLogger);
     };
 
     // Init list
@@ -32,7 +29,7 @@ angular.module('toHELL')
      * @param pkg
      */
     $scope.deletePackage = function (pkg) {
-      $http.delete(Global.apiHost + 'package/' + pkg.appID)
+      $http.delete(GLOBAL.apiHost + 'package/' + pkg.appID)
         .success(function () {
           $scope.refreshList();
         });
@@ -61,9 +58,10 @@ angular.module('toHELL')
       var postData = {
         context: $scope.newPackageConfig
       };
-      $http.post(Global.apiHost + 'createPoject/', postData)
+      $http.post(GLOBAL.apiHost + 'createPoject/', postData)
         .success(function (data) {
           $location.path('/package/' + data.appID);
-        });
+        })
+        .error(GLOBAL.errLogger);
     };
   }]);

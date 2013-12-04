@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'Global',
-    function ($scope, $routeParams, $http, $document) {
+  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'GLOBAL',
+    function ($scope, $routeParams, $http, $document, GLOBAL) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -65,10 +65,7 @@ angular.module('toHELL')
         .success(function (data) {
           $scope.package = data;
         })
-        .error(function (data, status, headers, config) {
-          window.alert('Error: ' + status + '\n' + data);
-          console.log(data, status, config);
-        });
+        .error(GLOBAL.errLogger);
 
       /**
        * 选中一个场景
