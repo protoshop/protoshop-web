@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'GLOBAL',
-    function ($scope, $routeParams, $http, $document, GLOBAL) {
+  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'GLOBAL', 'sceneService',
+    function ($scope, $routeParams, $http, $document, GLOBAL, sceneService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -64,8 +64,12 @@ angular.module('toHELL')
       $http.get('/api/package/' + $routeParams.pkgId + '.json')
         .success(function (data) {
           $scope.package = data;
+          sceneService.setPackage($scope.package);
         })
         .error(GLOBAL.errLogger);
+
+      sceneService.setStat($scope.editStat);
+      
 
       /**
        * 选中一个场景
@@ -73,7 +77,7 @@ angular.module('toHELL')
        * @param {Scene} scene - 被选中的场景
        */
       $scope.selectScene = function (scene) {
-        this.editStat.selectedScene = scene;
+        sceneService.selectScene(scene);
         // 清除掉之前可能有的其他元素、动作选择
         this.selectElement(null);
       };
@@ -87,7 +91,7 @@ angular.module('toHELL')
        * @func deselectScene
        */
       $scope.deselectScene = function () {
-        this.editStat.selectedScene = null;
+        sceneService.deselectScene();
         this.deselectElement();
       };
 
@@ -97,16 +101,7 @@ angular.module('toHELL')
        * @return {Scene} 返回新增的场景对象
        */
       $scope.addScene = function () {
-        var idTemp = findMaxSceneId() + 1;
-        var newScene = {
-          id: idTemp,
-          order: findMaxSceneOrder() + 1,
-          name: 'Scene ' + (idTemp + 1),
-          background: '',
-          elements: []
-        };
-        this.package.scenes.push(newScene);
-        return newScene;
+        return sceneService.addScene();
       };
 
       /**
@@ -126,16 +121,7 @@ angular.module('toHELL')
        * @param {Scene} scene - 所要删除的场景对象
        */
       $scope.removeScene = function (scene) {
-        var scenes = this.package.scenes;
-        var index = scenes.indexOf(scene);
-        if (index < 0) {
-          return;
-        }
-        scenes.splice(index, 1);
-        // 当删除的是选中场景时，释放对场景的选择
-        if (scene === this.editStat.selectedScene) {
-          this.deselectScene();
-        }
+        return sceneService.removeScene(scene);
       };
 
       /**
@@ -252,13 +238,7 @@ angular.module('toHELL')
        * @return {number|null} 如果找到则返回该场景的id，否则返回null
        */
       $scope.findScene = function (key, value) {
-        var scenes = this.package.scenes;
-        for (var i = scenes.length - 1; i >= 0; i--) {
-          if (scenes[i][key] === value) {
-            return scenes[i];
-          }
-        }
-        return null;
+        return sceneService.findScene(key, value);
       };
 
       // 快捷方法
@@ -288,12 +268,7 @@ angular.module('toHELL')
        * @return {number} 返回该id。如果不存在任何一个场景，返回-1。
        */
       function findMaxSceneId() {
-        var maxId = -1;
-        var sT = $scope.package.scenes;
-        for (var i = sT.length - 1; i >= 0; i--) {
-          maxId = sT[i].id > maxId ? sT[i].id : maxId;
-        }
-        return maxId;
+        return sceneService.findMaxSceneId();
       }
 
       /**
@@ -302,15 +277,7 @@ angular.module('toHELL')
        * @return {number} 返回找到的最大order，如果不存在任何一个场景则返回-1。
        */
       function findMaxSceneOrder() {
-        return $scope.package.scenes.length - 1;
-
-        // NOTE: 当order可能超出length-1时，使用以下实现
-        // var maxOrder = -1;
-        // var sT = $scope.package.scenes;
-        // for (var i = sT.length - 1; i >= 0; i--) {
-        //   maxOrder = sT[i].order > maxOrder ? sT[i].order : maxOrder;
-        // };
-        // return maxOrder;
+        return sceneService.findMaxSceneOrder();
       }
 
       /**
