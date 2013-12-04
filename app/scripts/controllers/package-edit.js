@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'GLOBAL', 'sceneService',
-    function ($scope, $routeParams, $http, $document, GLOBAL, sceneService) {
+  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 
+    'GLOBAL', 'sceneService', 'elementService',
+    function ($scope, $routeParams, $http, $document, GLOBAL, sceneService, elementService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -65,10 +66,12 @@ angular.module('toHELL')
         .success(function (data) {
           $scope.package = data;
           sceneService.setPackage($scope.package);
+          elementService.setPackage($scope.package);
         })
         .error(GLOBAL.errLogger);
 
       sceneService.setStat($scope.editStat);
+      elementService.setStat($scope.editStat);
       
 
       /**
@@ -131,7 +134,7 @@ angular.module('toHELL')
        * @todo 目前考虑自动选中第一个action，时机成熟时移除
        */
       $scope.selectElement = function (element) {
-        this.editStat.selectedElement = element;
+        elementService.selectElement(element);
         // FIXME: 目前考虑自动选中第一个action，时机成熟时移除
         // TODO: 选择第一个Action。
         if (this.editStat.selectedElement && element.actions.length > 0) {
@@ -144,7 +147,7 @@ angular.module('toHELL')
        * @func deselectElement
        */
       $scope.deselectElement = function () {
-        this.editStat.selectedElement = null;
+        elementService.deselectElement();
         // 连带释放Action的选中
         this.deselectAction();
       };
@@ -154,18 +157,7 @@ angular.module('toHELL')
        * @func addHotspotElement
        */
       $scope.addHotspotElement = function () {
-        var scene = this.editStat.selectedScene;
-        var newElement = {
-          // 默认参数
-          type: 'hotspot',
-          posX: '100',
-          posY: '300',
-          width: '120',
-          height: '42',
-          actions: []
-        };
-        scene.elements.push(newElement);
-        this.selectElement(newElement);
+        elementService.addHotspotElement();
       };
 
       /**
