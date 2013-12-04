@@ -121,9 +121,9 @@
 												class="icon-left-bold"></i></label>
 									</div>
 									<div class="transtion-time">
-										<input type="text" ng-model="editStat.selectedAction.transitionDelay" />
+										<input type="text" ng-model="editStat.selectedAction.transitionDelay" time-unit/>
 										s delay<br />
-										<input type="text" ng-model="editStat.selectedAction.transitionDuration" />
+										<input type="text" ng-model="editStat.selectedAction.transitionDuration" time-unit/>
 										s duration
 									</div>
 								</dd>
@@ -166,10 +166,10 @@
 			<div class="tools-box" ng-show="editStat.selectedElement !== null">
 				<div class="tools-title">Position</div>
 				<ul class="tools-position">
-					<li><label>X</label><input type="text" ng-model="editStat.selectedElement.posX" /> px</li>
-					<li><label>Y</label><input type="text" ng-model="editStat.selectedElement.posY" /> px</li>
-					<li><label>W</label><input type="text" ng-model="editStat.selectedElement.width" /> px</li>
-					<li><label>H</label><input type="text" ng-model="editStat.selectedElement.height" /> px</li>
+					<li><label>X</label><input type="text" ng-model="editStat.selectedElement.posX" px-unit/> px</li>
+					<li><label>Y</label><input type="text" ng-model="editStat.selectedElement.posY" px-unit/> px</li>
+					<li><label>W</label><input type="text" ng-model="editStat.selectedElement.width" px-unit/> px</li>
+					<li><label>H</label><input type="text" ng-model="editStat.selectedElement.height" px-unit/> px</li>
 				</ul>
 			</div>
 			<!-- tools: action -->
@@ -279,6 +279,7 @@
 <script src="scripts/app.js"></script>
 <script src="scripts/controllers/package-list.js"></script>
 <script src="scripts/controllers/package-edit.js"></script>
+<script src="scripts/directives/directives.js"></script>
 <!-- endbuild -->
 </body>
 </html>
