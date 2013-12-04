@@ -29,7 +29,7 @@ angular.module('toHELL')
      * @param pkg
      */
     $scope.deletePackage = function (pkg) {
-      $http.delete(GLOBAL.apiHost + 'package/' + pkg.appID)
+      $http.get(GLOBAL.apiHost + 'deleteProject/?appid=' + pkg.appID)
         .success(function () {
           $scope.refreshList();
         });
