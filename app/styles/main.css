@@ -104,7 +104,7 @@ i { font-style: normal; }
  *  Package List (previously 'project')
  */
 
-.project-box { width: 1200px; margin: 0 auto; }
+.project-box { width: 1200px; margin: 51px auto 0; }
 .p-top { padding-top: 25px; padding-bottom: 8px; height: 40px; border-bottom: #000 solid 1px; }
 h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px; color: #afafaf; }
 .add-btn { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
