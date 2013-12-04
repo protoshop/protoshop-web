@@ -27,4 +27,16 @@
       }
     };
   });
+
+  module.directive('editorHotspot', function() {
+    return {
+      restrict: 'AE',
+      transclude: true,
+      templateUrl: 'partials/hotspot.html',
+      link: function(scope, elm, attrs, ctrl) {
+        console.log(scope, elm, attrs, ctrl);
+      }
+    };
+  });
+
 })();
