@@ -62,7 +62,10 @@ angular.module('toHELL')
        * 存储整个工程的实时状态
        * @var {Object} $scope.package
        */
-      $http.get('/api/package/' + $routeParams.pkgId + '.json')
+//      $http.get('/api/package/' + $routeParams.pkgId + '.json')
+      $http.post(GLOBAL.apiHost + 'fetchProject/', {
+        appid: $routeParams.pkgId
+      })
         .success(function (data) {
           $scope.package = data;
           sceneService.setPackage($scope.package);
