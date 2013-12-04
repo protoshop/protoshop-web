@@ -28,8 +28,10 @@ angular.module('toHELL', [
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
   }])
-  .factory('Global', function () {
-    return {
-      apiHost: 'http://wxddb1.qa.nt.ctripcorp.com/tohell/'
-    };
-  });
+  .constant('GLOBAL', {
+    apiHost: 'http://wxddb1.qa.nt.ctripcorp.com/tohell/',
+    errLogger: function (data, status, headers, config) {
+      console.log('Status:', status, '\nData  :', data, '\nConfig:', config);
+    }
+  }
+);

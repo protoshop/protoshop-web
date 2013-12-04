@@ -24,7 +24,7 @@
           "actions": [
             {
               "type": "jumpto",
-              "target": 1,
+              "target": 1386064607748,
               "transitionType": "push",
               "transitionDirection": "up",
               "transitionDelay": 0,
