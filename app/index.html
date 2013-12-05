@@ -121,10 +121,10 @@
 												class="icon-left-bold"></i></label>
 									</div>
 									<div class="transtion-time">
-										<input type="text" ng-model="editStat.selectedAction.transitionDelay" />
-										delay<br />
-										<input type="text" ng-model="editStat.selectedAction.transitionDuration" />
-										duration
+										<input type="text" ng-model="editStat.selectedAction.transitionDelay" time-unit/>
+										s delay<br />
+										<input type="text" ng-model="editStat.selectedAction.transitionDuration" time-unit/>
+										s duration
 									</div>
 								</dd>
 							</dl>
@@ -166,10 +166,10 @@
 			<div class="tools-box" ng-show="editStat.selectedElement !== null">
 				<div class="tools-title">Position</div>
 				<ul class="tools-position">
-					<li><label>X</label><input type="text" ng-model="editStat.selectedElement.posX" /></li>
-					<li><label>Y</label><input type="text" ng-model="editStat.selectedElement.posY" /></li>
-					<li><label>W</label><input type="text" ng-model="editStat.selectedElement.width" /></li>
-					<li><label>H</label><input type="text" ng-model="editStat.selectedElement.height" /></li>
+					<li><label>X</label><input type="text" ng-model="editStat.selectedElement.posX" px-unit/> px</li>
+					<li><label>Y</label><input type="text" ng-model="editStat.selectedElement.posY" px-unit/> px</li>
+					<li><label>W</label><input type="text" ng-model="editStat.selectedElement.width" px-unit/> px</li>
+					<li><label>H</label><input type="text" ng-model="editStat.selectedElement.height" px-unit/> px</li>
 				</ul>
 			</div>
 			<!-- tools: action -->
@@ -188,7 +188,7 @@
 				<div class="tools-title">Settings</div>
 				<ul class="tools-setting">
 					<li><label>Name:</label><input type="text" ng-model="package.appName" /></li>
-					<li><label>Icon:</label><img ng-src="{{package.appIcon}}" width="60" /></li>
+					<li><label>Icon:</label><img ng-src="{{package.appIcon}}" /></li>
 				</ul>
 			</div>
 		</div>
@@ -216,7 +216,7 @@
 						<button ng-click="editPackage(pkg)">edit</button>
 						<button ng-click="deletePackage(pkg)">delete</button>
 					</div>
-					<img ng-src="{{pkg.appIcon}}" width="27" height="27">
+					<img ng-src="{{pkg.appIcon}}">
 					<div class="event-info">
 						<span class="author-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
 						<span class="pull-time" ng-bind="pkg.createTime"></span>
@@ -242,7 +242,7 @@
 		<form class="project-info" ng-submit="createPackage()">
 			<div class="control-group">
 				<label>
-					<img ng-src="images/icon-app-120.png" width="27" height="27" src="images/icon-app-120.png">
+					<img ng-src="images/icon-app-120.png" src="images/icon-app-120.png">
 					Name:
 				</label>
 				<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称"
@@ -277,8 +277,12 @@
 
 <!-- build:js scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/services/scene.js"></script>
+<script src="scripts/services/element.js"></script>
+<script src="scripts/services/action.js"></script>
 <script src="scripts/controllers/package-list.js"></script>
 <script src="scripts/controllers/package-edit.js"></script>
+<script src="scripts/directives/directives.js"></script>
 <!-- endbuild -->
 </body>
 </html>

@@ -12,11 +12,13 @@ describe('Midway: Testing Controllers', function() {
     tester = null;
   });
 
+  var packageName = '1d9abf59bfade93c71fbb260b6dc7390';
+
   describe('Midway: Testing PackageEditCTRL', function() {
-    it('should load the PackageEditCTRL controller properly when /package/zaq1xsw2 route is accessed', 
+    it('should load the PackageEditCTRL controller properly when /package/' + packageName + ' route is accessed', 
       function(done) {
-        tester.visit('/package/zaq1xsw2', function() {
-          tester.path().should.eq('/package/zaq1xsw2');
+        tester.visit('/package/' + packageName, function() {
+          tester.path().should.eq('/package/' + packageName);
           var current = tester.inject('$route').current;
           var controller = current.controller;
           var scope = current.scope;

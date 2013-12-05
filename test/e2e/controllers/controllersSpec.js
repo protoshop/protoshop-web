@@ -4,14 +4,18 @@ describe('E2E: Testing Controllers', function() {
     browser().navigateTo('/');
   });
 
+  // element('.author-name a:eq(0)').click();
+  // var packageName = browser().location().path(); // 1d9abf59bfade93c71fbb260b6dc7390
+  var packageName = '1d9abf59bfade93c71fbb260b6dc7390';
+
   describe('Testing PackageEditCTRL', function() {
 
     beforeEach(function() {
-      browser().navigateTo('#/package/zaq1xsw2');
+      browser().navigateTo('#/package/' + packageName);
     });
 
     it('should have a stage when entering editor', function() {
-      expect(browser().location().path()).toBe("/package/zaq1xsw2");
+      expect(browser().location().path()).toBe('/package/' + packageName);
       expect(element('.layout-stage').count()).toBe(1);
     });
 

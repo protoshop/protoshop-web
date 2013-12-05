@@ -12,6 +12,7 @@ i { font-style: normal; }
 .layout { width: 100%; height: 100%; }
 
 .navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; background-color: #383838; border-bottom: 1px solid #000; z-index: 9; }
+.navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
 .navbar-header { float: left; padding: 0 10px; }
 .navbar-brand { line-height: 50px; font-size: 18px; font-weight: normal; cursor: default; color: #fafafa; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
@@ -20,12 +21,12 @@ i { font-style: normal; }
 .menu-main button, .menu-modeswitch button, .scenes-edit button { display: inline-block; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 16px; color: #afafaf; background: transparent; cursor: pointer; }
 .menu-modeswitch .current { background-color: #162a3a; color: #178dd4; }
 
-.layout-main { position: relative; margin-top: 51px; display: -webkit-box; display: box; width: 100%; height: 100%; }
+.layout-main { position: relative; display: -webkit-box; display: box; width: 100%; height: 100%; }
 
-.layout-scenes { position: relative; width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; }
+.layout-scenes { position: relative; width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; margin-top: 51px; }
 .layout-scenes ul{ margin-bottom: 60px; }
-.layout-tools { width: 300px; background-color: #202020; color: #7f7f7f; overflow-x: hidden; overflow-y: auto; }
-.layout-stage { -webkit-box-flex: 1; box-flex: 1; border-left: 1px solid #000; border-right: 1px solid #000; background: #292929 url(../images/bg-stage-iphone5.png) center center no-repeat; }
+.layout-tools { width: 300px; background-color: #202020; color: #7f7f7f; overflow-x: hidden; overflow-y: auto; margin-top:51px; }
+.layout-stage { -webkit-box-flex: 1; box-flex: 1; border-left: 1px solid #000; border-right: 1px solid #000; background: #292929 url(../images/bg-stage-iphone5.png) center center no-repeat; margin-top:51px; }
 
 /* ==================================================
  *  Scenes ( layout - left sidebar )
@@ -45,7 +46,7 @@ i { font-style: normal; }
  *  Stage ( layout - center stage )
  */
 
-.scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 0 auto; -webkit-transform: translate(-220px, -283px); background-size: 100% 100%; }
+.scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 25px auto 0; -webkit-transform: translate(-220px, -283px); background-size: 100% 100%;}
 .hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; position: absolute; }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -6px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i:nth-child(1) { left: 0; top: 50%; cursor: w-resize; }
@@ -88,7 +89,7 @@ i { font-style: normal; }
 .tools-position li { float: left; width: 50%; padding: 5px 0; }
 .tools-box label { display: inline-block; width: 50px; padding: 0 10px; text-align: right; }
 .tools-box input[type="text"] { padding: 3px; background-color: #282828; border: 1px solid #000; font-size: 12px; color: #fff; vertical-align: middle; }
-.tools-position input[type="text"] { width: 58px; height: 18px; }
+.tools-position input[type="text"] { width: 35px; height: 18px; }
 .tools-background { padding: 10px; text-align: left; }
 .tools-bg-thumb { display: inline-block; margin-right: 5px; width: 60px; height: 100px; vertical-align: top; text-align: center; }
 .tools-bg-thumb img { height: 100% }
@@ -97,13 +98,13 @@ i { font-style: normal; }
 .tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
 .tools-actor button { color: #178dd4; }
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
-.tools-setting img { border-radius: 10px; vertical-align: middle; }
+.tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
 
 /* ==================================================
  *  Package List (previously 'project')
  */
 
-.project-box { width: 1200px; margin: 0 auto; }
+.project-box { width: 1200px; margin: 51px auto 0; }
 .p-top { padding-top: 25px; padding-bottom: 8px; height: 40px; border-bottom: #000 solid 1px; }
 h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px; color: #afafaf; }
 .add-btn { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
@@ -111,7 +112,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .add-btn i{ font-style: normal; padding-right: 5px; }
 .p-activity { padding-top: 15px; }
 .event-item { border-bottom: #424242 solid 1px; padding: 25px; }
-.event-item img{ float: left; margin-right: 20px; }
+.event-item img{ float: left; margin-right: 20px; width:27px; height:27px; }
 .change-btn { float: right; }
 .change-btn button { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 22px; }
 .event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
@@ -120,7 +121,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .author-name a { color: #1ba1eb; }
 .author-name a:hover { text-decoration: underline; }
 .pull-time { color: #afafaf; }
-.event-body { padding-left: 48px; margin-top: 15px; }
+.event-body { padding-left: 48px; margin-top: 10px; }
 .commit { padding-bottom: 10px; overflow: hidden; }
 .commit:last-child{ padding-bottom: 0; }
 .commit img { float: left; margin-right: 10px; }
@@ -134,7 +135,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .project-info{ padding: 20px 0; }
 .control-group{ padding: 15px 10px; }
 .control-group label{ width: 100px; text-align: right; display: inline-block; margin-right: 10px; color: #fafafa; font-weight: 100; line-height: 28px; margin-bottom: 0; float:left;  font-size: 16px; }
-.control-group img{ margin-right: 10px; vertical-align:middle; }
+.control-group img{ margin-right: 10px; vertical-align:middle; width:27px; }
 .project-text{ width: 300px; padding: 6px 10px; -webkit-border-radius: 5px; background: #efefef; font-size: 14px; }
 .large-input{ width: 300px; padding: 6px 10px; border:#333 solid 1px; -webkit-border-radius: 5px; background: #efefef; font-size: 14px; }
 .submit-btn{ margin-left:110px; }

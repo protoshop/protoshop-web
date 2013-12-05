@@ -2,6 +2,7 @@
   "appID": "1d9abf59bfade93c71fbb260b6dc7390",
   "appName": "Demo HELL1",
   "appIcon": "images/icon-app-120.png",
+  "comment": "demo project",
   "splash": {
     "image": "splash.png",
     "delay": 500,
@@ -24,7 +25,7 @@
           "actions": [
             {
               "type": "jumpto",
-              "target": 1,
+              "target": 1386064607748,
               "transitionType": "push",
               "transitionDirection": "up",
               "transitionDelay": 0,

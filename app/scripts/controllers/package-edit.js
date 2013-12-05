@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'Global',
-    function ($scope, $routeParams, $http, $document) {
+  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document',
+    'GLOBAL', 'sceneService', 'elementService', 'actionService',
+    function ($scope, $routeParams, $http, $document, GLOBAL, sceneService, elementService, actionService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -57,18 +58,25 @@ angular.module('toHELL')
           expanderIndex: null
         }
       };
+
+      $scope.package = {};
       /**
        * 存储整个工程的实时状态
        * @var {Object} $scope.package
        */
-      $http.get('/api/package/' + $routeParams.pkgId + '.json')
+//      $http.get('/api/package/' + $routeParams.pkgId + '.json')
+      $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' +$routeParams.pkgId)
         .success(function (data) {
           $scope.package = data;
+          sceneService.setPackage($scope.package);
+          elementService.setPackage($scope.package);
+          actionService.setPackage($scope.package);
         })
-        .error(function (data, status, headers, config) {
-          window.alert('Error: ' + status + '\n' + data);
-          console.log(data, status, config);
-        });
+        .error(GLOBAL.errLogger);
+
+      sceneService.setStat($scope.editStat);
+      elementService.setStat($scope.editStat);
+      actionService.setStat($scope.editStat);
 
       /**
        * 选中一个场景
@@ -76,7 +84,7 @@ angular.module('toHELL')
        * @param {Scene} scene - 被选中的场景
        */
       $scope.selectScene = function (scene) {
-        this.editStat.selectedScene = scene;
+        sceneService.selectScene(scene);
         // 清除掉之前可能有的其他元素、动作选择
         this.selectElement(null);
       };
@@ -90,7 +98,7 @@ angular.module('toHELL')
        * @func deselectScene
        */
       $scope.deselectScene = function () {
-        this.editStat.selectedScene = null;
+        sceneService.deselectScene();
         this.deselectElement();
       };
 
@@ -100,16 +108,7 @@ angular.module('toHELL')
        * @return {Scene} 返回新增的场景对象
        */
       $scope.addScene = function () {
-        var idTemp = findMaxSceneId() + 1;
-        var newScene = {
-          id: idTemp,
-          order: findMaxSceneOrder() + 1,
-          name: 'Scene ' + (idTemp + 1),
-          background: '',
-          elements: []
-        };
-        this.package.scenes.push(newScene);
-        return newScene;
+        return sceneService.addScene();
       };
 
       /**
@@ -129,16 +128,7 @@ angular.module('toHELL')
        * @param {Scene} scene - 所要删除的场景对象
        */
       $scope.removeScene = function (scene) {
-        var scenes = this.package.scenes;
-        var index = scenes.indexOf(scene);
-        if (index < 0) {
-          return;
-        }
-        scenes.splice(index, 1);
-        // 当删除的是选中场景时，释放对场景的选择
-        if (scene === this.editStat.selectedScene) {
-          this.deselectScene();
-        }
+        return sceneService.removeScene(scene);
       };
 
       /**
@@ -148,7 +138,7 @@ angular.module('toHELL')
        * @todo 目前考虑自动选中第一个action，时机成熟时移除
        */
       $scope.selectElement = function (element) {
-        this.editStat.selectedElement = element;
+        elementService.selectElement(element);
         // FIXME: 目前考虑自动选中第一个action，时机成熟时移除
         // TODO: 选择第一个Action。
         if (this.editStat.selectedElement && element.actions.length > 0) {
@@ -161,7 +151,7 @@ angular.module('toHELL')
        * @func deselectElement
        */
       $scope.deselectElement = function () {
-        this.editStat.selectedElement = null;
+        elementService.deselectElement();
         // 连带释放Action的选中
         this.deselectAction();
       };
@@ -171,18 +161,7 @@ angular.module('toHELL')
        * @func addHotspotElement
        */
       $scope.addHotspotElement = function () {
-        var scene = this.editStat.selectedScene;
-        var newElement = {
-          // 默认参数
-          type: 'hotspot',
-          posX: '100px',
-          posY: '300px',
-          width: '120px',
-          height: '42px',
-          actions: []
-        };
-        scene.elements.push(newElement);
-        this.selectElement(newElement);
+        elementService.addHotspotElement();
       };
 
       /**
@@ -191,20 +170,7 @@ angular.module('toHELL')
        * @param {Action} action 所要选中的动作对象
        */
       $scope.selectAction = function (action) {
-        var aT = this.editStat;
-        var bT = aT.selectedElement;
-        if (action === null || bT === null) {
-          aT.selectedAction = null;
-          return;
-        }
-
-        if (bT.actions.indexOf(action) > -1) {
-          aT.selectedAction = action;
-          aT.gotoSignStyle = this.renderGotoSignStyle(bT);
-          aT.gotoLineStyle = this.renderGotoLineStyle(bT);
-        } else {
-          aT.selectedAction = null;
-        }
+        actionService.selectAction(action);
       };
 
       /**
@@ -212,7 +178,7 @@ angular.module('toHELL')
        * @func deselectAction
        */
       $scope.deselectAction = function () {
-        this.editStat.selectedAction = null;
+        actionService.deselectAction();
       };
 
       /**
@@ -220,21 +186,7 @@ angular.module('toHELL')
        * @func addAction
        */
       $scope.addAction = function () {
-        var actions = this.editStat.selectedElement.actions;
-        if (actions.length > 0) {
-          // 当前一个Element只能有一个Action
-          return;
-        }
-        var newAction = {
-          type: 'jumpto',
-          target: null,
-          transitionType: 'push',
-          transitionDirection: 'up',
-          transitionDelay: '0s',
-          transitionDuration: '3.25s'
-        };
-        actions.push(newAction);
-        this.selectAction(newAction);
+        actionService.addAction();
       };
 
       /**
@@ -255,13 +207,7 @@ angular.module('toHELL')
        * @return {number|null} 如果找到则返回该场景的id，否则返回null
        */
       $scope.findScene = function (key, value) {
-        var scenes = this.package.scenes;
-        for (var i = scenes.length - 1; i >= 0; i--) {
-          if (scenes[i][key] === value) {
-            return scenes[i];
-          }
-        }
-        return null;
+        return sceneService.findScene(key, value);
       };
 
       // 快捷方法
@@ -291,12 +237,7 @@ angular.module('toHELL')
        * @return {number} 返回该id。如果不存在任何一个场景，返回-1。
        */
       function findMaxSceneId() {
-        var maxId = -1;
-        var sT = $scope.package.scenes;
-        for (var i = sT.length - 1; i >= 0; i--) {
-          maxId = sT[i].id > maxId ? sT[i].id : maxId;
-        }
-        return maxId;
+        return sceneService.findMaxSceneId();
       }
 
       /**
@@ -305,15 +246,7 @@ angular.module('toHELL')
        * @return {number} 返回找到的最大order，如果不存在任何一个场景则返回-1。
        */
       function findMaxSceneOrder() {
-        return $scope.package.scenes.length - 1;
-
-        // NOTE: 当order可能超出length-1时，使用以下实现
-        // var maxOrder = -1;
-        // var sT = $scope.package.scenes;
-        // for (var i = sT.length - 1; i >= 0; i--) {
-        //   maxOrder = sT[i].order > maxOrder ? sT[i].order : maxOrder;
-        // };
-        // return maxOrder;
+        return sceneService.findMaxSceneOrder();
       }
 
       /**
@@ -323,24 +256,7 @@ angular.module('toHELL')
        * @return {string} 文本信息
        */
       $scope.renderActionItem = function (action) {
-        var actionText = '';
-        switch (action.type) {
-        case 'jumpto':
-          actionText += 'Go To: ';
-          break;
-        default:
-          actionText += 'Unknown Action: ';
-        }
-
-        var scene = this.findSceneById(action.target);
-
-        if (scene) {
-          actionText += scene.name;
-        } else {
-          actionText += '???';
-        }
-
-        return actionText;
+        return actionService.renderActionItem(action);
       };
 
       /**
@@ -350,12 +266,7 @@ angular.module('toHELL')
        * @return {Object} 样式信息，需包含left、top、width、height
        */
       $scope.renderHotspotStyle = function (element) {
-        return {
-          left: element.posX,
-          top: element.posY,
-          width: element.width,
-          height: element.height
-        };
+        return actionService.renderHotspotStyle(element);
       };
 
       /**
@@ -367,14 +278,7 @@ angular.module('toHELL')
        * @todo 处理px以外单位的情况
        */
       $scope.renderGotoSignStyle = function (ele) {
-        // var x = parseInt(ele.posX, 10);
-        // var y = parseInt(ele.posY, 10);
-        var width = parseInt(ele.width, 10);
-        // var height = parseInt(ele.height, 10);
-        var o = calcGotoSignStyle(width);
-        return {
-          right: o.x + 'px'
-        };
+        return actionService.renderGotoSignStyle(ele);
       };
 
       /**
@@ -386,10 +290,7 @@ angular.module('toHELL')
        * @todo 处理px以外单位的情况
        */
       $scope.renderGotoLineStyle = function (ele) {
-        var o = calcGotoLineStyle(parseInt(ele.posX, 10));
-        return {
-          width: o.width + 'px'
-        };
+        return actionService.renderGotoLineStyle(ele);
       };
 
       /**
@@ -399,7 +300,7 @@ angular.module('toHELL')
        * @return {bool}
        */
       $scope.isTransDirDisabled = function (action) {
-        return action ? (action.transitionType === 'none') : false;
+        return actionService.isTransDirDisabled(action);
       };
 
       /**
@@ -425,15 +326,7 @@ angular.module('toHELL')
        * @todo 屏幕应当可配置
        */
       $scope.moveHotspotTo = function (ele, x, y) {
-        // TODO: 屏幕的尺寸应当可配置
-        var widthMax = 320 - parseInt(ele.width, 10);
-        var heightMax = 568 - parseInt(ele.height, 10);
-        var xValue = parseInt(x, 10);
-        var yValue = parseInt(y, 10);
-        ele.posX = bound(0, xValue, widthMax) + 'px';
-        ele.posY = bound(0, yValue, heightMax) + 'px';
-        this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
-        this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
+        return actionService.moveHotspotTo(ele, x, y);
       };
 
       /**
@@ -445,13 +338,7 @@ angular.module('toHELL')
        * @todo 屏幕应当可配置
        */
       $scope.resizeHotspotTo = function (ele, w, h) {
-        // TODO: 屏幕的尺寸应当可配置
-        var widthMax = 320 - parseInt(ele.posX, 10);
-        var heightMax = 568 - parseInt(ele.posY, 10);
-        ele.width = bound(0, parseInt(w, 10), widthMax) + 'px';
-        ele.height = bound(0, parseInt(h, 10), heightMax) + 'px';
-        this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
-        this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
+        return actionService.resizeHotspotTo(ele, w, h);
       };
 
       /**
@@ -651,57 +538,14 @@ angular.module('toHELL')
       };
 
       /**
-       * 辅助函数，将值限定在某个区间之内
-       * @func bound
-       * @param {number} min - 最小值
-       * @param {number} value - 需要进行限定的值
-       * @param {number} max - 最大值
-       * @return {number} 若value在区间内，则返回value；否则最小为min，最大为max，
-       * @private
-       */
-      function bound(min, value, max) {
-        if (value < min) {
-          return min;
-        }
-        if (value > max) {
-          return max;
-        }
-        return value;
-      }
-
-      /**
-       * 计算线框整体的坐标值。目前返回hotspot的左上角
-       * @func calcGotoSignStyle
-       * @param {number} width - 元素的宽度
-       * @return {object} 返回计算出的x值，不含单位。
-       * @private
-       */
-      function calcGotoSignStyle(width) {
-        return {
-          x: width
-        };
-      }
-
-      /**
-       * 计算线框线段的宽度。
-       * @func calcGotoLineStyle
-       * @param {number} gotoSignX - 相应线框整体的x坐标
-       * @private
-       * @todo 减少硬编码，去除对单位（px）的依赖
-       */
-      function calcGotoLineStyle(gotoSignX) {
-        return {
-          width: (200 + gotoSignX) // 200表示goto thumb图距离设备的最小距离，目前单位实际为px
-        };
-      }
-
-      /**
-       * 保存编辑好的项目数据
+       * 保存编辑好的项目JSON数据
        */
       $scope.savePackage = function () {
-        $http.post('/api/package/' + $scope.package.appID)
+        $http.post(GLOBAL.apiHost + 'saveProject/', {
+          context: $scope.package
+        })
           .success(function () {
-            console.log('"' + $scope.package.appID + '" saved!');
+            console.log('Package "' + $scope.package.appID + '" saved!');
           });
       };
 
