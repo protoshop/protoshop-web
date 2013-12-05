@@ -58,6 +58,8 @@ angular.module('toHELL')
           expanderIndex: null
         }
       };
+
+      $scope.package = {};
       /**
        * 存储整个工程的实时状态
        * @var {Object} $scope.package
