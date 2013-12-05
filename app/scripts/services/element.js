@@ -43,10 +43,10 @@
         var newElement = {
           // 默认参数
           type: 'hotspot',
-          posX: '100',
-          posY: '300',
-          width: '120',
-          height: '42',
+          posX: 100,
+          posY: 300,
+          width: 120,
+          height: 42,
           actions: []
         };
         scene.elements.push(newElement);
