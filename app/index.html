@@ -52,10 +52,9 @@
 		</div>
 
 		<!-- 中栏：场景详情修改区 -->
-		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onSceneMoved($event)"
-			 ng-mouseup="onSceneUp($event)">
-			<div editor-hotspot class="scene" style="background-image: url({{editStat.selectedScene.background}})">
-				<!-- Hotspot -->
+		<div class="layout-stage" ng-click="onBackgroundClick()">
+			<div class="scene" style="background-image: url({{editStat.selectedScene.background}})">
+				<div editor-hotspot-group></div>
 			</div>
 		</div>
 

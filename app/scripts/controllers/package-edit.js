@@ -88,7 +88,7 @@ angular.module('toHELL')
       $scope.selectScene = function (scene) {
         sceneService.selectScene(scene);
         // 清除掉之前可能有的其他元素、动作选择
-        this.selectElement(null);
+        elementService.deselectElement();
       };
 
       $scope.defaults = {
@@ -101,7 +101,7 @@ angular.module('toHELL')
        */
       $scope.deselectScene = function () {
         sceneService.deselectScene();
-        this.deselectElement();
+        elementService.deselectElement();
       };
 
       /**
@@ -134,31 +134,6 @@ angular.module('toHELL')
       };
 
       /**
-       * 选中一个元素
-       * @func selectElement
-       * @param {number} elementIndex 该元素的索引值
-       * @todo 目前考虑自动选中第一个action，时机成熟时移除
-       */
-      $scope.selectElement = function (element) {
-        elementService.selectElement(element);
-        // FIXME: 目前考虑自动选中第一个action，时机成熟时移除
-        // TODO: 选择第一个Action。
-        if (this.editStat.selectedElement && element.actions.length > 0) {
-          this.selectAction(element.actions[0]);
-        }
-      };
-
-      /**
-       * 释放选中的元素。释放时会连带释放动作的选中。
-       * @func deselectElement
-       */
-      $scope.deselectElement = function () {
-        elementService.deselectElement();
-        // 连带释放Action的选中
-        this.deselectAction();
-      };
-
-      /**
        * 增加一个hotspot元素
        * @func addHotspotElement
        */
@@ -172,7 +147,7 @@ angular.module('toHELL')
        * @param {Action} action 所要选中的动作对象
        */
       $scope.selectAction = function (action) {
-        actionService.selectAction(action);
+        // actionService.selectAction(action);
       };
 
       /**
@@ -197,59 +172,8 @@ angular.module('toHELL')
        * @private
        */
       $scope.onBackgroundClick = function () {
-        this.selectElement(null);
+        elementService.deselectElement();
       };
-
-      /**
-       * 搜索符合条件的场景
-       * @private
-       * @func findScene
-       * @param {string} key - 要搜索的键
-       * @param {string|number} value - 要搜索的值
-       * @return {number|null} 如果找到则返回该场景的id，否则返回null
-       */
-      $scope.findScene = function (key, value) {
-        return sceneService.findScene(key, value);
-      };
-
-      // 快捷方法
-      /**
-       * 搜索特定id的场景
-       * @func findSceneById
-       * @param {number} id - 要搜索的id
-       * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
-       */
-      $scope.findSceneById = function (id) {
-        return this.findScene('id', id);
-      };
-
-      /**
-       * 搜索特定order的场景
-       * @func findSceneByOrder
-       * @param {number} order - 要搜索的order
-       * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
-       */
-      $scope.findSceneByOrder = function (order) {
-        return this.findScene('order', order);
-      };
-
-      /**
-       * 搜索最大的场景id
-       * @func findMaxSceneId
-       * @return {number} 返回该id。如果不存在任何一个场景，返回-1。
-       */
-      function findMaxSceneId() {
-        return sceneService.findMaxSceneId();
-      }
-
-      /**
-       * 搜索最大的场景order
-       * @func findSceneByOrder
-       * @return {number} 返回找到的最大order，如果不存在任何一个场景则返回-1。
-       */
-      function findMaxSceneOrder() {
-        return sceneService.findMaxSceneOrder();
-      }
 
       /**
        * 将一条Action渲染为文本信息
@@ -259,18 +183,6 @@ angular.module('toHELL')
        */
       $scope.renderActionItem = function (action) {
         return actionService.renderActionItem(action);
-      };
-
-      /**
-       * 将热点平移至指定位置。函数保证热点不会超出屏幕。
-       * @func moveHotspotTo
-       * @param {Element} ele - 关联的热点对象
-       * @param {number|String} x - 横坐标。可携带单位，比如10px
-       * @param {number|String} y - 纵坐标。同样可携带单位
-       * @todo 屏幕应当可配置
-       */
-      $scope.moveHotspotTo = function (ele, x, y) {
-        return actionService.moveHotspotTo(ele, x, y);
       };
 
       /**
@@ -311,11 +223,9 @@ angular.module('toHELL')
        * @private
        */
       $scope.onSceneUp = function ($event) {
-        this.onHotspotUp($event);
-        this.onExpanderUp($event);
+        // this.onHotspotUp($event);
+        // this.onExpanderUp($event);
       };
-
-
 
       /**
        * 保存编辑好的项目JSON数据

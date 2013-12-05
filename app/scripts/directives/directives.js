@@ -27,13 +27,17 @@
     };
   });
 
-  module.directive('editorHotspot', function($document, actionService) {
+  module.directive('editorHotspot', function($document, actionService, elementService) {
     return {
       restrict: 'AE',
-      transclude: true,
+      scope: {
+        targetElement: '=',
+        editStat: '=stat'
+      },
       templateUrl: 'partials/hotspot.html',
       link: function(scope, elm, attrs, ctrl) {
-        // console.log(scope, elm, attrs, ctrl);
+        var hotspotStack = scope.editStat.hotspotStack;
+
         /**
          * 返回一个元素的坐标样式信息
          * @func renderHotspotStyle
@@ -104,8 +108,8 @@
           if ($event.which !== 1) {// 不接受非左键点击
             return;
           }
-          var sT = this.editStat.hotspotStack;
-          this.selectElement(ele);
+          var sT = hotspotStack;
+
           sT.hotspotMovingTarget = ele;
           sT.hotspotMovingStart.x = $event.clientX;
           sT.hotspotMovingStart.y = $event.clientY;
@@ -115,6 +119,19 @@
           sT.hotspotOldZindex = sT.hotspotDom.zIndex;
           sT.hotspotDom.zIndex = 10000;
           $document[0].body.style.cursor = 'move';
+          elementService.selectElement(ele);
+        };
+
+        /**
+         * 将热点平移至指定位置。函数保证热点不会超出屏幕。
+         * @func moveHotspotTo
+         * @param {Element} ele - 关联的热点对象
+         * @param {number|String} x - 横坐标。可携带单位，比如10px
+         * @param {number|String} y - 纵坐标。同样可携带单位
+         * @todo 屏幕应当可配置
+         */
+        scope.moveHotspotTo = function (ele, x, y) {
+          return actionService.moveHotspotTo(ele, x, y);
         };
 
         /**
@@ -124,12 +141,17 @@
          * @private
          */
         scope.onHotspotMoved = function ($event) {
-          var sT = this.editStat.hotspotStack;
+          var sT = hotspotStack;
           // 返回范围内的数值
           if (sT.hotspotMovingTarget !== null) {
             var xT = sT.hotspotMovingOffset.x + $event.clientX - sT.hotspotMovingStart.x;
             var yT = sT.hotspotMovingOffset.y + $event.clientY - sT.hotspotMovingStart.y;
-            this.moveHotspotTo(sT.hotspotMovingTarget, xT, yT);
+            scope.moveHotspotTo(sT.hotspotMovingTarget, xT, yT);
+            scope.$apply(function() {
+              elm.css(scope.renderHotspotStyle(scope.targetElement));
+            });
+            
+            $event.stopPropagation();
             // TODO: 热点移动时颜色可以发生变化
             // TODO: 热点移动时，如果热点移至屏幕另半侧，则应将线框转移
           }
@@ -140,8 +162,8 @@
          * @func onHotspotUp
          * @private
          */
-        scope.onHotspotUp = function () {
-          var sT = this.editStat.hotspotStack;
+        scope.onHotspotUp = function (event) {
+          var sT = hotspotStack;
           sT.hotspotMovingTarget = null;
           if (!sT.hotspotDom) {
             return;
@@ -149,6 +171,10 @@
           sT.hotspotDom.zIndex = sT.hotspotOldZindex;
           // NOTE: 注意这里不要使用auto，以免覆盖CSS中的相应设置
           $document[0].body.style.cursor = '';
+
+          $document.unbind('mousemove', scope.onHotspotMoved);
+          $document.unbind('mouseup', scope.onHotspotUp);
+          event.stopPropagation();
         };
 
         /**
@@ -164,8 +190,9 @@
           if ($event.which !== 1) {// 不接受非左键点击
             return;
           }
+          console.log('onExpanderDown');
           var sT = this.editStat.expanderStack;
-          this.selectElement(ele);
+          elementService.selectElement(ele);
           sT.expanderIndex = pos;
           sT.expanderMovingTarget = ele;
           sT.expanderMovingStart.x = $event.clientX;
@@ -203,7 +230,7 @@
         scope.onExpanderUp = function () {
           var sT = this.editStat.expanderStack;
           sT.expanderMovingTarget = null;
-          document.body.style.cursor = ''; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
+          $document.body.style.cursor = ''; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
         };
 
         /**
@@ -257,7 +284,31 @@
             }
           }
         };
+
+        elm.on('mousedown', function(event) {
+          
+          scope.$apply(function() {
+            scope.onHotspotDown(scope.targetElement, event);
+          });
+          $document.on('mousemove', scope.onHotspotMoved);
+          $document.on('mouseup', scope.onHotspotUp);
+          event.stopPropagation();
+        });
+
+        elm.on('click', function(event) {
+          event.stopPropagation();
+        });
+
+        elm.css(scope.renderHotspotStyle(scope.targetElement));
       }
+    };
+  });
+
+  module.directive('editorHotspotGroup', function() {
+    return {
+      restrict: 'AE',
+      transclude: true,
+      templateUrl: 'partials/hotspotgroup.html'
     };
   });
 

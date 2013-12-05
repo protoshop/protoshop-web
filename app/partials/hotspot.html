@@ -1,76 +1,70 @@
 <!-- Hotspot -->
-<div class="actor hotspot" ng-repeat="ele in editStat.selectedScene.elements"
-	 ng-style="renderHotspotStyle(ele)" ng-click="selectElement(ele);$event.stopPropagation()"
-	 ng-mousedown="onHotspotDown(ele, $event);$event.stopPropagation()">
-	<div class="anchor" ng-show="ele === editStat.selectedElement"
-		 ng-mousedown="$event.stopPropagation()">
-		<i ng-mousedown="onExpanderDown(ele, 1, $event);$event.stopPropagation()"></i>
-		<i ng-mousedown="onExpanderDown(ele, 2, $event);$event.stopPropagation()"></i>
-		<i ng-mousedown="onExpanderDown(ele, 3, $event);$event.stopPropagation()"></i>
-		<i ng-mousedown="onExpanderDown(ele, 4, $event);$event.stopPropagation()"></i>
+<div class="anchor" ng-show="targetElement === editStat.selectedElement">
+	<i></i>
+	<i></i>
+	<i></i>
+	<i></i>
+</div>
+<div class="scene-goto"
+	 ng-show="targetElement === editStat.selectedElement && editStat.selectedAction != null">
+	<div class="scene-goto-thumb">
+		<img class="scene-thumb-small"
+			 ng-src="{{findSceneById(editStat.selectedAction.target).background==''?defaults.sceneBackground:editStat.selectedScene.background}}" />
+		<p ng-bind="findSceneById(editStat.selectedAction.target).name||'???'"></p>
 	</div>
-	<div class="scene-goto"
-		 ng-show="ele == editStat.selectedElement && editStat.selectedAction != null"
-		 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
-		<div class="scene-goto-thumb">
-			<img class="scene-thumb-small"
-				 ng-src="{{findSceneById(editStat.selectedAction.target).background==''?defaults.sceneBackground:editStat.selectedScene.background}}" />
-			<p ng-bind="findSceneById(editStat.selectedAction.target).name||'???'"></p>
-		</div>
-		<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
-		<div class="scene-goto-animation">
-			<dl>
-				<dt>JUMP TO</dt>
-				<dd>
-					<div class="goto-scenes">
-						<select ng-model="editStat.selectedAction.target"
-								ng-options="s.id as s.name for s in package.scenes">
-						</select>
-					</div>
-				</dd>
-				<dt>TRANSITION</dt>
-				<dd class="goto-transition">
-					<div class="transition-name">
-						<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
-									  ng-change="onTransitionTypeChanged(editStat.selectedAction)"
-									  name="transition-name" value="none" /><i
-								class="icon-block"></i></label>
-						<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
-									  name="transition-name" value="push"
-									  checked="checked" /><i>Push</i></label>
-						<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
-									  name="transition-name" value="cover" /><i>Cover</i></label>
-					</div>
-					<div class="transition-direction">
-						<label><input type="radio"
-									  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
-									  ng-model="editStat.selectedAction.transitionDirection"
-									  name="transition-direction" value="up" /><i
-								class="icon-up-bold"></i></label>
-						<label><input type="radio"
-									  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
-									  ng-model="editStat.selectedAction.transitionDirection"
-									  name="transition-direction" value="right" /><i
-								class="icon-right-bold"></i></label>
-						<label><input type="radio"
-									  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
-									  ng-model="editStat.selectedAction.transitionDirection"
-									  name="transition-direction" value="down" /><i
-								class="icon-down-bold"></i></label>
-						<label><input type="radio"
-									  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
-									  ng-model="editStat.selectedAction.transitionDirection"
-									  name="transition-direction" value="left" /><i
-								class="icon-left-bold"></i></label>
-					</div>
-					<div class="transtion-time">
-						<input type="text" ng-model="editStat.selectedAction.transitionDelay" time-unit/>
-						s delay<br />
-						<input type="text" ng-model="editStat.selectedAction.transitionDuration" time-unit/>
-						s duration
-					</div>
-				</dd>
-			</dl>
-		</div>
+	<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
+	<div class="scene-goto-animation">
+		<dl>
+			<dt>JUMP TO</dt>
+			<dd>
+				<div class="goto-scenes">
+					<select ng-model="editStat.selectedAction.target"
+							ng-options="s.id as s.name for s in package.scenes">
+					</select>
+				</div>
+			</dd>
+			<dt>TRANSITION</dt>
+			<dd class="goto-transition">
+				<div class="transition-name">
+					<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
+								  ng-change="onTransitionTypeChanged(editStat.selectedAction)"
+								  name="transition-name" value="none" /><i
+							class="icon-block"></i></label>
+					<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
+								  name="transition-name" value="push"
+								  checked="checked" /><i>Push</i></label>
+					<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
+								  name="transition-name" value="cover" /><i>Cover</i></label>
+				</div>
+				<div class="transition-direction">
+					<label><input type="radio"
+								  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
+								  ng-model="editStat.selectedAction.transitionDirection"
+								  name="transition-direction" value="up" /><i
+							class="icon-up-bold"></i></label>
+					<label><input type="radio"
+								  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
+								  ng-model="editStat.selectedAction.transitionDirection"
+								  name="transition-direction" value="right" /><i
+							class="icon-right-bold"></i></label>
+					<label><input type="radio"
+								  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
+								  ng-model="editStat.selectedAction.transitionDirection"
+								  name="transition-direction" value="down" /><i
+							class="icon-down-bold"></i></label>
+					<label><input type="radio"
+								  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
+								  ng-model="editStat.selectedAction.transitionDirection"
+								  name="transition-direction" value="left" /><i
+							class="icon-left-bold"></i></label>
+				</div>
+				<div class="transtion-time">
+					<input type="text" ng-model="editStat.selectedAction.transitionDelay" time-unit/>
+					s delay<br />
+					<input type="text" ng-model="editStat.selectedAction.transitionDuration" time-unit/>
+					s duration
+				</div>
+			</dd>
+		</dl>
 	</div>
 </div>
