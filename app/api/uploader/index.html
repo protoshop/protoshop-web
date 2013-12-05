@@ -2,21 +2,25 @@
 <html>
 <head>
 	<title>Uploader</title>
+	<style>
+		html, body, form, label { display: block; height: 100%; width: 100%; margin: 0; text-align: center; line-height: 30px }
+		label { background-color: lightyellow }
+		sup { opacity: 0.6; position: relative; top: 0.2em; font-size: 0.7em }
+		label span { display: inline-block; margin: 75px 0 }
+	</style>
 </head>
 <body>
 <form enctype="multipart/form-data" method="POST" action="http://wxddb1.qa.nt.ctripcorp.com/tohell/uploadImage/"
 	  target="_self">
-	<br />
-	<br />
-	<br />
-	<table id=control width="100%" border="0" cellspacing="0" cellpadding="0" class="borderon">
-		<input type="hidden" name="title" value="{{ cfn.columnid}}-{{ cfi.columnid }}"></p>
-
-		<td align="center">
-			<input type="file" name="file"  onchange="this.form.submit()" /><br />
-			<input type="text" id="appid" name="appid" />
-		</td>
-	</table>
+	<input type="hidden" name="title" value="{{ cfn.columnid}}-{{ cfi.columnid }}">
+	<input type="hidden" id="appid" name="appid" />
+	<input style="display: none" id="file" type="file" name="file" onchange="this.form.submit()" />
+	<label for="file">
+		<span>
+		点击上传图片<br/>
+		（或拖放图片至此 <sup>还没做</sup>）
+		</span>
+	</label>
 </form>
 <script>
 	var appid = window.location.href.replace(/^\S+#/, '');

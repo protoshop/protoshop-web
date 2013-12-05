@@ -542,13 +542,14 @@ angular.module('toHELL')
           var imgSrc = GLOBAL.host + 'packages/' + $routeParams.pkgId + '/' + imageName + '.png';
           $scope.editStat.selectedScene.background = imgSrc;
         };
-
+        var x = screen.width / 2 - 700 / 2;
+        var y = screen.height / 2 - 450 / 2;
         window.open(
-//          '/api/uploader/#' + $routeParams.pkgId, //test
+          '/api/uploader/#' + $routeParams.pkgId, //test
 //          '/api/uploader/success.html#aaa' + $routeParams.pkgId, //test
-          'http://wxddb1.qa.nt.ctripcorp.com/api/uploader/#' + $routeParams.pkgId,
+//          'http://wxddb1.qa.nt.ctripcorp.com/api/uploader/#' + $routeParams.pkgId,
           'DescriptiveWindowName',
-          'width=420,height=230,resizable,scrollbars=yes,status=1'
+          'width=420,height=230,resizable,scrollbars=no,status=1,left=' + x + ',top=' + y
         );
       };
 
