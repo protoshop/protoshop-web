@@ -5,6 +5,7 @@
 
   module.factory('sceneService', function() {
     function sceneServiceInstance() {
+      var self = this;
       this.editStat = {};
       this.package = {};
 
@@ -130,7 +131,7 @@
        */
       function findMaxSceneId() {
         var maxId = -1;
-        var sT = $scope.package.scenes;
+        var sT = self.package.scenes;
         for (var i = sT.length - 1; i >= 0; i--) {
           maxId = sT[i].id > maxId ? sT[i].id : maxId;
         }
@@ -143,7 +144,7 @@
        * @return {number} 返回找到的最大order，如果不存在任何一个场景则返回-1。
        */
       function findMaxSceneOrder() {
-        return $scope.package.scenes.length - 1;
+        return self.package.scenes.length - 1;
 
         // NOTE: 当order可能超出length-1时，使用以下实现
         // var maxOrder = -1;

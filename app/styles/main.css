@@ -98,13 +98,13 @@ i { font-style: normal; }
 .tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
 .tools-actor button { color: #178dd4; }
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
-.tools-setting img { border-radius: 10px; vertical-align: middle; }
+.tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
 
 /* ==================================================
  *  Package List (previously 'project')
  */
 
-.project-box { width: 1200px; margin: 0 auto; }
+.project-box { width: 1200px; margin: 51px auto 0; }
 .p-top { padding-top: 25px; padding-bottom: 8px; height: 40px; border-bottom: #000 solid 1px; }
 h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px; color: #afafaf; }
 .add-btn { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
@@ -112,7 +112,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .add-btn i{ font-style: normal; padding-right: 5px; }
 .p-activity { padding-top: 15px; }
 .event-item { border-bottom: #424242 solid 1px; padding: 25px; }
-.event-item img{ float: left; margin-right: 20px; }
+.event-item img{ float: left; margin-right: 20px; width:27px; height:27px; }
 .change-btn { float: right; }
 .change-btn button { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 22px; }
 .event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
@@ -135,7 +135,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .project-info{ padding: 20px 0; }
 .control-group{ padding: 15px 10px; }
 .control-group label{ width: 100px; text-align: right; display: inline-block; margin-right: 10px; color: #fafafa; font-weight: 100; line-height: 28px; margin-bottom: 0; float:left;  font-size: 16px; }
-.control-group img{ margin-right: 10px; vertical-align:middle; }
+.control-group img{ margin-right: 10px; vertical-align:middle; width:27px; }
 .project-text{ width: 300px; padding: 6px 10px; -webkit-border-radius: 5px; background: #efefef; font-size: 14px; }
 .large-input{ width: 300px; padding: 6px 10px; border:#333 solid 1px; -webkit-border-radius: 5px; background: #efefef; font-size: 14px; }
 .submit-btn{ margin-left:110px; }
