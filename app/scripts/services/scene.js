@@ -44,11 +44,10 @@
        * @return {Scene} 返回新增的场景对象
        */
       this.addScene = function () {
-        var idTemp = findMaxSceneId() + 1;
         var newScene = {
-          id: idTemp,
+          id: Date.now(),
           order: findMaxSceneOrder() + 1,
-          name: 'Scene ' + (idTemp + 1),
+          name: 'Scene ' + this.package.scenes.length,
           background: '',
           elements: []
         };
@@ -123,20 +122,6 @@
       this.findSceneByOrder = function (order) {
         return this.findScene('order', order);
       };
-
-      /**
-       * 搜索最大的场景id
-       * @func findMaxSceneId
-       * @return {number} 返回该id。如果不存在任何一个场景，返回-1。
-       */
-      function findMaxSceneId() {
-        var maxId = -1;
-        var sT = self.package.scenes;
-        for (var i = sT.length - 1; i >= 0; i--) {
-          maxId = sT[i].id > maxId ? sT[i].id : maxId;
-        }
-        return maxId;
-      }
 
       /**
        * 搜索最大的场景order
