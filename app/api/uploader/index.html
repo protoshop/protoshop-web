@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Uploader</title>
+</head>
+<body>
+<form enctype="multipart/form-data" method="POST" action="http://wxddb1.qa.nt.ctripcorp.com/tohell/uploadImage/"
+	  target="_self">
+	<br />
+	<br />
+	<br />
+	<table id=control width="100%" border="0" cellspacing="0" cellpadding="0" class="borderon">
+		<input type="hidden" name="title" value="{{ cfn.columnid}}-{{ cfi.columnid }}"></p>
+
+		<td align="center">
+			<input type="file" name="file"  onchange="this.form.submit()" /><br />
+			<input type="text" id="appid" name="appid" />
+		</td>
+	</table>
+</form>
+<script>
+	var appid = window.location.href.replace(/^\S+#/, '');
+	var appIdInput = document.getElementById('appid');
+	appIdInput.value = appid;
+</script>
+</body>
+</html>

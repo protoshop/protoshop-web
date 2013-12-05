@@ -65,7 +65,7 @@ angular.module('toHELL')
        * @var {Object} $scope.package
        */
 //      $http.get('/api/package/' + $routeParams.pkgId + '.json')
-      $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' +$routeParams.pkgId)
+      $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
         .success(function (data) {
           $scope.package = data;
           sceneService.setPackage($scope.package);
@@ -535,6 +535,23 @@ angular.module('toHELL')
             break;
           }
         }
+      };
+
+      $scope.openUploaderWindow = function () {
+        window.uploadSuccess = function (imageName) {
+          console.log(imageName);
+        };
+        window.winRef = window.open(
+//          '/api/uploader/#' + $routeParams.pkgId, //test
+//          '/api/uploader/success.html#aaa' + $routeParams.pkgId, //test
+          'http://wxddb1.qa.nt.ctripcorp.com/upload/#' + appId,
+          'DescriptiveWindowName',
+          'width=420,height=230,resizable,scrollbars=yes,status=1'
+        );
+        window.winRef.onload = function () {
+          console.log(Date.now());
+        }
+
       };
 
       /**
