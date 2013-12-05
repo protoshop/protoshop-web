@@ -544,7 +544,7 @@ angular.module('toHELL')
         window.winRef = window.open(
 //          '/api/uploader/#' + $routeParams.pkgId, //test
 //          '/api/uploader/success.html#aaa' + $routeParams.pkgId, //test
-          'http://wxddb1.qa.nt.ctripcorp.com/upload/#' + appId,
+          'http://wxddb1.qa.nt.ctripcorp.com/api/uploader/#' + $routeParams.pkgId,
           'DescriptiveWindowName',
           'width=420,height=230,resizable,scrollbars=yes,status=1'
         );
