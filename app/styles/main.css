@@ -46,7 +46,7 @@ i { font-style: normal; }
  *  Stage ( layout - center stage )
  */
 
-.scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 0 auto; -webkit-transform: translate(-220px, -283px); background-size: 100% 100%; }
+.scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 25px auto 0; -webkit-transform: translate(-220px, -283px); background-size: 100% 100%;}
 .hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; position: absolute; }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -6px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i:nth-child(1) { left: 0; top: 50%; cursor: w-resize; }
