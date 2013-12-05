@@ -539,19 +539,17 @@ angular.module('toHELL')
 
       $scope.openUploaderWindow = function () {
         window.uploadSuccess = function (imageName) {
-          console.log(imageName);
+          var imgSrc = GLOBAL.host + 'packages/' + $routeParams.pkgId + '/' + imageName + '.png';
+          $scope.editStat.selectedScene.background = imgSrc;
         };
-        window.winRef = window.open(
+
+        window.open(
 //          '/api/uploader/#' + $routeParams.pkgId, //test
 //          '/api/uploader/success.html#aaa' + $routeParams.pkgId, //test
           'http://wxddb1.qa.nt.ctripcorp.com/api/uploader/#' + $routeParams.pkgId,
           'DescriptiveWindowName',
           'width=420,height=230,resizable,scrollbars=yes,status=1'
         );
-        window.winRef.onload = function () {
-          console.log(Date.now());
-        }
-
       };
 
       /**

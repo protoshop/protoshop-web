@@ -29,6 +29,7 @@ angular.module('toHELL', [
 
   }])
   .constant('GLOBAL', {
+    host: 'http://wxddb1.qa.nt.ctripcorp.com/',
     apiHost: 'http://wxddb1.qa.nt.ctripcorp.com/tohell/',
     errLogger: function (data, status, headers, config) {
       console.log('Status:', status, '\nData  :', data, '\nConfig:', config);
