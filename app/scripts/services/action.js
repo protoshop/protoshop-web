@@ -69,6 +69,46 @@
       };
 
       /**
+       * 搜索符合条件的场景
+       * @private
+       * @func findScene
+       * @param {string} key - 要搜索的键
+       * @param {string|number} value - 要搜索的值
+       * @return {number|null} 如果找到则返回该场景的id，否则返回null
+       * @todo 与sceneService的相关代码合并
+       */
+      this.findScene = function (key, value) {
+        var scenes = this.package.scenes;
+        for (var i = scenes.length - 1; i >= 0; i--) {
+          if (scenes[i][key] === value) {
+            return scenes[i];
+          }
+        }
+        return null;
+      };
+
+      // 快捷方法
+      /**
+       * 搜索特定id的场景
+       * @func findSceneById
+       * @param {number} id - 要搜索的id
+       * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
+       */
+      this.findSceneById = function (id) {
+        return this.findScene('id', id);
+      };
+
+      /**
+       * 搜索特定order的场景
+       * @func findSceneByOrder
+       * @param {number} order - 要搜索的order
+       * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
+       */
+      this.findSceneByOrder = function (order) {
+        return this.findScene('order', order);
+      };
+
+      /**
        * 将一条Action渲染为文本信息
        * @func renderActionItem
        * @param {Action} action - 要渲染的action
@@ -190,46 +230,6 @@
         ele.height = bound(0, parseInt(h, 10), heightMax);
         this.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
         this.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
-      };
-
-      /**
-       * 搜索符合条件的场景
-       * @private
-       * @func findScene
-       * @param {string} key - 要搜索的键
-       * @param {string|number} value - 要搜索的值
-       * @return {number|null} 如果找到则返回该场景的id，否则返回null
-       * @todo 与sceneService的相关代码合并
-       */
-      this.findScene = function (key, value) {
-        var scenes = this.package.scenes;
-        for (var i = scenes.length - 1; i >= 0; i--) {
-          if (scenes[i][key] === value) {
-            return scenes[i];
-          }
-        }
-        return null;
-      };
-
-      // 快捷方法
-      /**
-       * 搜索特定id的场景
-       * @func findSceneById
-       * @param {number} id - 要搜索的id
-       * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
-       */
-      this.findSceneById = function (id) {
-        return this.findScene('id', id);
-      };
-
-      /**
-       * 搜索特定order的场景
-       * @func findSceneByOrder
-       * @param {number} order - 要搜索的order
-       * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
-       */
-      this.findSceneByOrder = function (order) {
-        return this.findScene('order', order);
       };
 
       /**

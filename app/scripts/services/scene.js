@@ -47,7 +47,7 @@
         var newScene = {
           id: Date.now(),
           order: findMaxSceneOrder() + 1,
-          name: 'Scene ' + this.package.scenes.length,
+          name: 'New Scene',
           background: '',
           elements: []
         };

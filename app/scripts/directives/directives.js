@@ -27,12 +27,11 @@
     };
   });
 
-  module.directive('editorHotspot', function($document, actionService, elementService, sceneService) {
+  module.directive('editorHotspot', function($document, actionService, elementService) {
     return {
       restrict: 'AE',
       scope: {
-        targetElement: '=',
-        // editStat: '=stat'
+        targetElement: '='
       },
       transclude: true,
       templateUrl: 'partials/hotspot.html',
@@ -42,46 +41,13 @@
         scope.defaults = {
           sceneBackground: 'images/dummy-scene-thumb.png'
         };
-        scope.moveHotspotTo = actionService.moveHotspotTo;
-        scope.resizeHotspotTo = actionService.resizeHotspotTo;
-        scope.findSceneById = sceneService.findSceneById.bind(actionService);
+        scope.moveHotspotTo = actionService.moveHotspotTo.bind(actionService);
+        scope.resizeHotspotTo = actionService.resizeHotspotTo.bind(actionService);
+        scope.findSceneById = actionService.findSceneById.bind(actionService);
+        scope.renderGotoSignStyle = actionService.renderGotoSignStyle.bind(actionService);
+        scope.renderGotoLineStyle = actionService.renderGotoLineStyle.bind(actionService);
+        scope.isTransDirDisabled = actionService.isTransDirDisabled.bind(actionService);
         var hotspotStack = scope.editStat.hotspotStack;
-
-        /**
-         * 返回线框整体的CSS样式。线框整体指的是包裹线框指示器、线段、属性栏等物件的容器。
-         * 通常来说，应当保持scope.editStat.gotoSignStyle与本函数同步。
-         * @func renderGotoSignStyle
-         * @param {Element} ele - 对应的元素对象
-         * @return {Object} 返回样式表对象
-         * @todo 处理px以外单位的情况
-         */
-        scope.renderGotoSignStyle = function (ele) {
-          var a = actionService.renderGotoSignStyle(ele);
-          return a;
-        };
-
-        /**
-         * 返回线框中线段的CSS样式。
-         * 通常来说，应当保持scope.editStat.gotoLineStyle与本函数同步。
-         * @func renderGotoLineStyle
-         * @param {Element} ele - 对应的元素对象
-         * @return {Object} 返回样式表对象
-         * @todo 处理px以外单位的情况
-         */
-        scope.renderGotoLineStyle = function (ele) {
-          var a = actionService.renderGotoLineStyle(ele);
-          return a;
-        };
-
-        /**
-         * 测试Transition方向是否已禁用
-         * @func isTransDirDisabled
-         * @param {Action} action - 要测试的Action
-         * @return {bool}
-         */
-        scope.isTransDirDisabled = function (action) {
-          return actionService.isTransDirDisabled(action);
-        };
 
         /**
          * transition的方式发生变化时调用此函数
@@ -123,6 +89,8 @@
           elementService.selectElement(ele);
           if (ele.actions.length > 0) {
             actionService.selectAction(ele.actions[0]);
+          } else {
+            actionService.deselectAction();
           }
         };
 
@@ -160,7 +128,6 @@
           sT.hotspotDom.zIndex = sT.hotspotOldZindex;
           // NOTE: 注意这里不要使用auto，以免覆盖CSS中的相应设置
           $document[0].body.style.cursor = '';
-
           $document.unbind('mousemove', scope.onHotspotMoved);
           $document.unbind('mouseup', scope.onHotspotUp);
           event.stopPropagation();
@@ -191,7 +158,7 @@
       transclude: true,
       templateUrl: 'partials/hotspotgroup.html',
       link: function(scope) {
-        scope.renderHotspotStyle = actionService.renderHotspotStyle;
+        scope.renderHotspotStyle = actionService.renderHotspotStyle.bind(actionService);
       }
     };
   });
@@ -202,8 +169,8 @@
       templateUrl: 'partials/hotspothandle.html',
       link: function(scope, ele) {
         scope.editStat = actionService.editStat;
-        scope.moveHotspotTo = actionService.moveHotspotTo;
-        scope.resizeHotspotTo = actionService.resizeHotspotTo;
+        scope.moveHotspotTo = actionService.moveHotspotTo.bind(actionService);
+        scope.resizeHotspotTo = actionService.resizeHotspotTo.bind(actionService);
         
         /**
          * 元素缩放触头在鼠标按下时触发此函数
@@ -221,7 +188,6 @@
           $document.on('mousemove', scope.onExpanderMove);
           $document.on('mouseup', scope.onExpanderUp);
           var sT = scope.editStat.expanderStack;
-          // elementService.selectElement(ele);
           sT.expanderIndex = pos;
           sT.expanderMovingTarget = ele;
           sT.expanderMovingStart.x = $event.clientX;

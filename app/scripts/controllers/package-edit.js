@@ -79,6 +79,28 @@ angular.module('toHELL')
       elementService.setStat($scope.editStat);
       actionService.setStat($scope.editStat);
 
+      $scope.addScene = function() {
+        sceneService.addScene();
+        elementService.deselectScene();
+        actionService.deselectAction();
+      };
+      $scope.removeScene = function() {
+        sceneService.removeScene();
+        elementService.deselectScene();
+        actionService.deselectAction();
+      };
+
+      $scope.selectAction = actionService.selectAction.bind(actionService);
+      $scope.deselectAction = actionService.deselectAction.bind(actionService);
+      $scope.addAction = actionService.addAction.bind(actionService);
+      $scope.resizeHotspotTo = actionService.resizeHotspotTo.bind(actionService);
+      $scope.renderActionItem = actionService.renderActionItem.bind(actionService);
+
+      $scope.addHotspotElement = function() {
+        elementService.addHotspotElement();
+        actionService.deselectAction();
+      };
+
       /**
        * 选中一个场景
        * @func selectScene
@@ -88,6 +110,7 @@ angular.module('toHELL')
         sceneService.selectScene(scene);
         // 清除掉之前可能有的其他元素、动作选择
         elementService.deselectElement();
+        actionService.deselectAction();
       };
 
       $scope.defaults = {
@@ -101,68 +124,7 @@ angular.module('toHELL')
       $scope.deselectScene = function () {
         sceneService.deselectScene();
         elementService.deselectElement();
-      };
-
-      /**
-       * 增加一个场景。增加的场景将在所有场景之后。
-       * @func addScene
-       * @return {Scene} 返回新增的场景对象
-       */
-      $scope.addScene = function () {
-        return sceneService.addScene();
-      };
-
-      /**
-       * 增加一个场景并插入在所给order之后。
-       * @func insertScene
-       * @param {number} lastOrder - 新场景所要跟随的order
-       * @return {Scene} 返回新增的场景对象
-       * @todo
-       */
-      // $scope.insertScene = function (lastOrder) {
-      //   // TODO
-      // };
-
-      /**
-       * 删除一个场景。如果不存在满足条件的场景，则操作无效。
-       * @func removeScene
-       * @param {Scene} scene - 所要删除的场景对象
-       */
-      $scope.removeScene = function (scene) {
-        return sceneService.removeScene(scene);
-      };
-
-      /**
-       * 增加一个hotspot元素
-       * @func addHotspotElement
-       */
-      $scope.addHotspotElement = function () {
-        elementService.addHotspotElement();
-      };
-
-      /**
-       * 选中一个动作
-       * @func selectAction
-       * @param {Action} action 所要选中的动作对象
-       */
-      $scope.selectAction = function (action) {
-        actionService.selectAction(action);
-      };
-
-      /**
-       * 释放选中的动作。
-       * @func deselectAction
-       */
-      $scope.deselectAction = function () {
         actionService.deselectAction();
-      };
-
-      /**
-       * 增加一个动作。该动作会直接增加在当前元素中。
-       * @func addAction
-       */
-      $scope.addAction = function () {
-        actionService.addAction();
       };
 
       /**
@@ -172,58 +134,6 @@ angular.module('toHELL')
        */
       $scope.onBackgroundClick = function () {
         elementService.deselectElement();
-      };
-
-      /**
-       * 将一条Action渲染为文本信息
-       * @func renderActionItem
-       * @param {Action} action - 要渲染的action
-       * @return {string} 文本信息
-       */
-      $scope.renderActionItem = function (action) {
-        return actionService.renderActionItem(action);
-      };
-
-      /**
-       * 将热点缩放至特定尺寸。函数保证热点不会超出屏幕。
-       * @func resizeHotspotTo
-       * @param {Element} ele - 关联的热点对象
-       * @param {number|String} w - 宽度。可携带单位，比如10px
-       * @param {number|String} h - 高度。同样可携带单位
-       * @todo 屏幕应当可配置
-       */
-      $scope.resizeHotspotTo = function (ele, w, h) {
-        return actionService.resizeHotspotTo(ele, w, h);
-      };
-
-      /**
-       * 场景中鼠标移动时触发此函数。由于热点区域有多个可点击、拖动的对象，这个函数用来将其分发。
-       * @func onSceneMoved
-       * @param {event} $event - 点击事件
-       * @private
-       */
-      $scope.onSceneMoved = function ($event) {
-        var eT = this.editStat;
-        var sT = eT.hotspotStack;
-        var expT = eT.expanderStack;
-
-        if (sT.hotspotMovingTarget !== null) {
-          this.onHotspotMoved($event);
-        }
-        if (expT.expanderMovingTarget !== null) {
-          this.onExpanderMove($event);
-        }
-      };
-
-      /**
-       * 场景中鼠标抬起时触发此函数。由于热点区域有多个可点击、拖动的对象，这个函数用来将其分发。
-       * @func onSceneUp
-       * @param {event} $event - 点击事件
-       * @private
-       */
-      $scope.onSceneUp = function ($event) {
-        // this.onHotspotUp($event);
-        // this.onExpanderUp($event);
       };
 
       $scope.openUploaderWindow = function () {
