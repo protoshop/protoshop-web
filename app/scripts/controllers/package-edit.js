@@ -2,8 +2,9 @@
 
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document',
-    'GLOBAL', 'sceneService', 'elementService', 'actionService',
-    function ($scope, $routeParams, $http, $document, GLOBAL, sceneService, elementService, actionService) {
+    'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService',
+    function ($scope, $routeParams, $http, $document, GLOBAL, 
+      sceneService, elementService, actionService, packageService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -18,44 +19,6 @@ angular.module('toHELL')
         },
         gotoLineStyle: {
           width: '264px'
-        },
-        /**
-         * 移动hotspot时的临时存储栈
-         * @var hotspotStack
-         * @private
-         */
-        hotspotStack: {
-          hotspotMovingTarget: null,
-          hotspotDom: null,
-          hotspotMovingStart: {
-            x: 0,
-            y: 0
-          },
-          hotspotMovingOffset: {
-            x: 0,
-            y: 0
-          },
-          hotspotOldZindex: null
-        },
-        expanderStack: {
-          expanderMovingTarget: null,
-          expanderMovingStart: {
-            x: 0,
-            y: 0
-          },
-          expanderMovingOffset: {
-            x: 0,
-            y: 0
-          },
-          hotspotPos: {
-            x: 0,
-            y: 0
-          },
-          hotspot: {
-            width: 0,
-            height: 0
-          },
-          expanderIndex: null
         }
       };
 
@@ -69,15 +32,12 @@ angular.module('toHELL')
       // $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
         .success(function (data) {
           $scope.package = data;
-          sceneService.setPackage($scope.package);
-          elementService.setPackage($scope.package);
-          actionService.setPackage($scope.package);
+          packageService.setPackage($scope.package);
+          packageService.setStat($scope.editStat);
         })
         .error(GLOBAL.errLogger);
 
-      sceneService.setStat($scope.editStat);
-      elementService.setStat($scope.editStat);
-      actionService.setStat($scope.editStat);
+      packageService.setStat($scope.editStat);
 
       $scope.addScene = function() {
         sceneService.addScene();

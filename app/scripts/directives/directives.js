@@ -27,7 +27,7 @@
     };
   });
 
-  module.directive('editorHotspot', function($document, actionService, elementService) {
+  module.directive('editorHotspot', function($document, actionService, elementService, packageService) {
     return {
       restrict: 'AE',
       scope: {
@@ -36,8 +36,8 @@
       transclude: true,
       templateUrl: 'partials/hotspot.html',
       link: function(scope, elm) {
-        scope.scenes = elementService.package.scenes;
-        scope.editStat = elementService.editStat;
+        scope.scenes = packageService.package.scenes;
+        scope.editStat = packageService.editStat;
         scope.defaults = {
           sceneBackground: 'images/dummy-scene-thumb.png'
         };
@@ -59,7 +59,28 @@
         scope.isTransDirDisabled = function(action) {
           actionService.isTransDirDisabled(action);
         };
-        var hotspotStack = scope.editStat.hotspotStack;
+
+        var hotspotStack = {
+          hotspotMovingTarget: null,
+          hotspotDom: null,
+          hotspotMovingStart: {
+            x: 0,
+            y: 0
+          },
+          hotspotMovingOffset: {
+            x: 0,
+            y: 0
+          },
+          hotspotOldZindex: null
+        };
+
+        scope.gotoSignStyle = {
+          top: '',
+          right: ''
+        };
+        scope.gotoLineStyle = {
+          width: '264px'
+        };
 
         /**
          * transition的方式发生变化时调用此函数
@@ -180,6 +201,7 @@
   module.directive('editorHotspotHandle', function($document, actionService) {
     return {
       restrict: 'AE',
+      transclude: true,
       templateUrl: 'partials/hotspothandle.html',
       link: function(scope) {
         scope.editStat = actionService.editStat;
@@ -188,6 +210,27 @@
         };
         scope.resizeHotspotTo = function(ele, w, h) {
           actionService.resizeHotspotTo(ele, w, h);
+        };
+
+        var expanderStack = {
+          expanderMovingTarget: null,
+          expanderMovingStart: {
+            x: 0,
+            y: 0
+          },
+          expanderMovingOffset: {
+            x: 0,
+            y: 0
+          },
+          hotspotPos: {
+            x: 0,
+            y: 0
+          },
+          hotspot: {
+            width: 0,
+            height: 0
+          },
+          expanderIndex: null
         };
         
         /**
@@ -205,7 +248,7 @@
           }
           $document.on('mousemove', scope.onExpanderMove);
           $document.on('mouseup', scope.onExpanderUp);
-          var sT = scope.editStat.expanderStack;
+          var sT = expanderStack;
           sT.expanderIndex = pos;
           sT.expanderMovingTarget = ele;
           sT.expanderMovingStart.x = $event.clientX;
@@ -241,7 +284,7 @@
          * @private
          */
         scope.onExpanderUp = function () {
-          var sT = scope.editStat.expanderStack;
+          var sT = expanderStack;
           sT.expanderMovingTarget = null;
           $document[0].body.style.cursor = ''; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
           scope.$apply();
@@ -254,7 +297,7 @@
          * @private
          */
         scope.onExpanderMove = function ($event) {
-          var eT = scope.editStat.expanderStack;
+          var eT = expanderStack;
           if (eT.expanderMovingTarget !== null) {
             var target = eT.expanderMovingTarget;
             // $event.target.style.cursor = 'move';
