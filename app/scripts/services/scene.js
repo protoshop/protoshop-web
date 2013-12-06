@@ -3,7 +3,7 @@
 (function () {
   var module = angular.module('toHELL');
 
-  module.factory('sceneService', ['packageService', function(packageService) {  
+  module.factory('sceneService', ['packageService', function(packageService) {
       /**
        * 搜索最大的场景order
        * @func findSceneByOrder
@@ -13,7 +13,7 @@
         return packageService.package.scenes.length - 1;
       }
   
-      function SceneServiceInstance() {  
+      function SceneServiceInstance() {
         this.defaults = {
           sceneBackground: 'images/dummy-scene-thumb.png'
         };

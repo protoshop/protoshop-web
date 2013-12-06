@@ -3,7 +3,7 @@
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document',
     'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService',
-    function ($scope, $routeParams, $http, $document, GLOBAL, 
+    function ($scope, $routeParams, $http, $document, GLOBAL,
       sceneService, elementService, actionService, packageService) {
       /**
        * 存储当前的编辑状态
@@ -28,8 +28,8 @@ angular.module('toHELL')
        * @var {Object} $scope.package
        */
      // $http.get('/api/package/' + $routeParams.pkgId + '.json')
-     $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
-      // $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
+     // $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
+      $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
         .success(function (data) {
           $scope.package = data;
           packageService.setPackage($scope.package);

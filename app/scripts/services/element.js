@@ -4,7 +4,7 @@
   var module = angular.module('toHELL');
 
   module.factory('elementService', ['packageService', function(packageService) {
-      function ElementServiceInstance() {  
+      function ElementServiceInstance() {
         /**
          * 选中一个元素
          * @func selectElement
