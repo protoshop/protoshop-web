@@ -73,16 +73,17 @@
 			</div>
 			<!-- tools: actor -->
 			<div class="tools-box" ng-show="editStat.selectedScene !== null">
-				<div class="tools-title">Actors</div>
+				<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button>
+				</div>
 				<ul class="tools-actor">
 					<li ng-show="null">
-						<button class="icon-plus-circled">New Button Actor</button>
+						<span></span>
 					</li>
 					<li ng-show="null">
-						<button class="icon-plus-circled">New Text Actor</button>
+						<span></span>
 					</li>
 					<li>
-						<button class="icon-plus-circled" ng-click="addHotspotElement()">New Hotspot Actor</button>
+						<span></span>
 					</li>
 				</ul>
 			</div>
@@ -104,7 +105,9 @@
 				</div>
 				<ul class="tools-action">
 					<li ng-repeat="action in editStat.selectedElement.actions"
-						ng-bind="renderActionItem(action)"></li>
+						ng-bind="renderActionItem(action)">
+						<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
+					</li>
 				</ul>
 			</div>
 			<!-- tools: setting -->

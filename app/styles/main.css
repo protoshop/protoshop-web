@@ -36,7 +36,7 @@ i { font-style: normal; }
 .scenes-title { padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
 .scene-item { position: relative; padding: 20px 0; }
 .item-current { background-color: #393939; }
-.item-current:before { position: absolute; content: ""; left: 12px; top: 10px; width: 156px; height: 252px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); }
+.item-current:before { position: absolute; content: ""; left: 10px; top: 10px; width: 156px; height: 252px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); }
 .scene-thumb { position: relative; display: block; width: 120px; height: 213px; margin: 0 auto 5px; background-color: #FFF; }
 .scene-item input[type="text"] { position: relative; width: 100%; height: 24px; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; }
 .scenes-edit { position: fixed; left: 0; bottom: 0; width: 180px; height: 40px; background-color: #383838; text-align: center; }
@@ -84,6 +84,7 @@ i { font-style: normal; }
 
 .tools-title { padding: 0 10px; height: 30px; line-height: 30px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
 .tools-title a { display: block; height: 30px; line-height: 30px; color: #afafaf; }
+.tools-title button{ float: right; width: 30px; height: 30px; color: #178dd4; }
 .tools-title .tools-title-action { float: right; width: 30px; height: 30px; color: #178dd4; }
 .tools-position { padding: 10px; overflow: hidden; }
 .tools-position li { float: left; width: 50%; padding: 5px 0; }
@@ -96,7 +97,7 @@ i { font-style: normal; }
 .tools-background button { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 
 .tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
-.tools-actor button { color: #178dd4; }
+.tools-action li button { float: right; width: 30px; color: #178dd4;}
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
 .tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
 
