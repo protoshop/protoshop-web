@@ -104,8 +104,8 @@
 					Actions
 				</div>
 				<ul class="tools-action">
-					<li ng-repeat="action in editStat.selectedElement.actions"
-						ng-bind="renderActionItem(action)">
+					<li ng-repeat="action in editStat.selectedElement.actions">
+						{{renderActionItem(action)}}
 						<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
 					</li>
 				</ul>

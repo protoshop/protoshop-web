@@ -57,6 +57,24 @@
           actions.push(newAction);
           this.selectAction(newAction);
         };
+
+        /**
+         * 删除一个动作。如果该动作被选中，首先会被取消选中。
+         * @func addAction
+         * @param {Action} action - 要移除的动作对象
+         */
+        this.removeAction = function(action) {
+          var actions = packageService.editStat.selectedElement.actions;
+          var index = actions.indexOf(action);
+          if (index < 0) {
+            return;
+          }
+          // 当删除的是选中场景时，释放对场景的选择
+          if (action === packageService.editStat.selectedAction) {
+            this.deselectAction();
+          }
+          actions.splice(index, 1);
+        };
   
         /**
          * 搜索符合条件的场景
