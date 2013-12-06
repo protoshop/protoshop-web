@@ -59,6 +59,9 @@ angular.module('toHELL')
       $scope.addAction = function() {
         actionService.addAction();
       };
+      $scope.removeAction = function(action) {
+        actionService.removeAction(action);
+      };
       $scope.resizeHotspotTo = function(ele, w, h) {
         actionService.resizeHotspotTo(ele, w, h);
       };
@@ -69,6 +72,11 @@ angular.module('toHELL')
       $scope.addHotspotElement = function() {
         elementService.addHotspotElement();
         actionService.deselectAction();
+      };
+
+      $scope.removeElement = function(ele) {
+        console.log(ele);
+        elementService.removeElement(ele);
       };
 
       /**

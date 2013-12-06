@@ -29,7 +29,7 @@
          * @param {Action} action - 要移除的动作对象
          */
         this.removeElement = function(element) {
-          var elements = packageService.package.selectedScene.elements;
+          var elements = packageService.editStat.selectedScene.elements;
           var index = elements.indexOf(element);
           if (index < 0) {
             return;
@@ -38,7 +38,7 @@
           if (element === packageService.editStat.selectedElement) {
             this.deselectElement();
           }
-          actions.splice(index, 1);
+          elements.splice(index, 1);
         };
   
         /**

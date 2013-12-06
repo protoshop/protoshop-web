@@ -98,7 +98,7 @@ i { font-style: normal; }
 .tools-background button { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 
 .tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
-.tools-action li button { float: right; width: 30px; color: #178dd4;}
+.tools-action li button, .tools-actor-action { float: right; width: 30px; color: #178dd4;}
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
 .tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
 

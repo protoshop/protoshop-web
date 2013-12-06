@@ -75,15 +75,10 @@
 			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button>
 				</div>
-				<ul class="tools-actor">
-					<li ng-show="null">
-						<span></span>
-					</li>
-					<li ng-show="null">
-						<span></span>
-					</li>
+				<ul class="tools-actor" ng-repeat="ele in editStat.selectedScene.elements">
 					<li>
-						<span></span>
+						<span>Actor: {{ele.type}}</span>
+						<button class="tools-actor-action icon-plus-circled" ng-click="removeElement(ele)"></button>
 					</li>
 				</ul>
 			</div>
@@ -106,7 +101,7 @@
 				<ul class="tools-action">
 					<li ng-repeat="action in editStat.selectedElement.actions">
 						{{renderActionItem(action)}}
-						<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
+						<button class="tools-title-action icon-plus-circled" ng-click="removeAction(action)"></button>
 					</li>
 				</ul>
 			</div>
