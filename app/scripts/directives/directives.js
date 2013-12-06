@@ -27,26 +27,25 @@
     };
   });
 
-  module.directive('editorHotspot', function($document, actionService, elementService) {
+  module.directive('editorHotspot', function($document, actionService, elementService, sceneService) {
     return {
       restrict: 'AE',
       scope: {
         targetElement: '=',
-        editStat: '=stat'
+        // editStat: '=stat'
       },
+      transclude: true,
       templateUrl: 'partials/hotspot.html',
       link: function(scope, elm, attrs, ctrl) {
-        var hotspotStack = scope.editStat.hotspotStack;
-
-        /**
-         * 返回一个元素的坐标样式信息
-         * @func renderHotspotStyle
-         * @param {Element} element - 要处理的元素
-         * @return {Object} 样式信息，需包含left、top、width、height
-         */
-        scope.renderHotspotStyle = function (element) {
-          return actionService.renderHotspotStyle(element);
+        scope.scenes = elementService.package.scenes;
+        scope.editStat = elementService.editStat;
+        scope.defaults = {
+          sceneBackground: 'images/dummy-scene-thumb.png'
         };
+        scope.moveHotspotTo = actionService.moveHotspotTo;
+        scope.resizeHotspotTo = actionService.resizeHotspotTo;
+        scope.findSceneById = sceneService.findSceneById.bind(actionService);
+        var hotspotStack = scope.editStat.hotspotStack;
 
         /**
          * 返回线框整体的CSS样式。线框整体指的是包裹线框指示器、线段、属性栏等物件的容器。
@@ -57,7 +56,8 @@
          * @todo 处理px以外单位的情况
          */
         scope.renderGotoSignStyle = function (ele) {
-          return actionService.renderGotoSignStyle(ele);
+          var a = actionService.renderGotoSignStyle(ele);
+          return a;
         };
 
         /**
@@ -69,7 +69,8 @@
          * @todo 处理px以外单位的情况
          */
         scope.renderGotoLineStyle = function (ele) {
-          return actionService.renderGotoLineStyle(ele);
+          var a = actionService.renderGotoLineStyle(ele);
+          return a;
         };
 
         /**
@@ -120,18 +121,9 @@
           sT.hotspotDom.zIndex = 10000;
           $document[0].body.style.cursor = 'move';
           elementService.selectElement(ele);
-        };
-
-        /**
-         * 将热点平移至指定位置。函数保证热点不会超出屏幕。
-         * @func moveHotspotTo
-         * @param {Element} ele - 关联的热点对象
-         * @param {number|String} x - 横坐标。可携带单位，比如10px
-         * @param {number|String} y - 纵坐标。同样可携带单位
-         * @todo 屏幕应当可配置
-         */
-        scope.moveHotspotTo = function (ele, x, y) {
-          return actionService.moveHotspotTo(ele, x, y);
+          if (ele.actions.length > 0) {
+            actionService.selectAction(ele.actions[0]);
+          }
         };
 
         /**
@@ -147,11 +139,8 @@
             var xT = sT.hotspotMovingOffset.x + $event.clientX - sT.hotspotMovingStart.x;
             var yT = sT.hotspotMovingOffset.y + $event.clientY - sT.hotspotMovingStart.y;
             scope.moveHotspotTo(sT.hotspotMovingTarget, xT, yT);
-            scope.$apply(function() {
-              elm.css(scope.renderHotspotStyle(scope.targetElement));
-            });
-            
             $event.stopPropagation();
+            scope.$apply(); // NOTE: 由于onHotspotMoved是事件绑定触发的，需要手动调用$apply以通知angular更新变量
             // TODO: 热点移动时颜色可以发生变化
             // TODO: 热点移动时，如果热点移至屏幕另半侧，则应将线框转移
           }
@@ -175,8 +164,47 @@
           $document.unbind('mousemove', scope.onHotspotMoved);
           $document.unbind('mouseup', scope.onHotspotUp);
           event.stopPropagation();
+          scope.$apply();
         };
 
+        elm.on('mousedown', function(event) {
+          
+          scope.onHotspotDown(scope.targetElement, event);
+          
+          $document.on('mousemove', scope.onHotspotMoved);
+          $document.on('mouseup', scope.onHotspotUp);
+          event.stopPropagation();
+
+          scope.$apply();
+        });
+
+        elm.on('click', function(event) {
+          event.stopPropagation();
+        });
+      }
+    };
+  });
+
+  module.directive('editorHotspotGroup', function(actionService) {
+    return {
+      restrict: 'AE',
+      transclude: true,
+      templateUrl: 'partials/hotspotgroup.html',
+      link: function(scope) {
+        scope.renderHotspotStyle = actionService.renderHotspotStyle;
+      }
+    };
+  });
+
+  module.directive('editorHotspotHandle', function($document, actionService) {
+    return {
+      restrict: 'AE',
+      templateUrl: 'partials/hotspothandle.html',
+      link: function(scope, ele) {
+        scope.editStat = actionService.editStat;
+        scope.moveHotspotTo = actionService.moveHotspotTo;
+        scope.resizeHotspotTo = actionService.resizeHotspotTo;
+        
         /**
          * 元素缩放触头在鼠标按下时触发此函数
          * @func onExpanderDown
@@ -190,9 +218,10 @@
           if ($event.which !== 1) {// 不接受非左键点击
             return;
           }
-          console.log('onExpanderDown');
-          var sT = this.editStat.expanderStack;
-          elementService.selectElement(ele);
+          $document.on('mousemove', scope.onExpanderMove);
+          $document.on('mouseup', scope.onExpanderUp);
+          var sT = scope.editStat.expanderStack;
+          // elementService.selectElement(ele);
           sT.expanderIndex = pos;
           sT.expanderMovingTarget = ele;
           sT.expanderMovingStart.x = $event.clientX;
@@ -228,9 +257,10 @@
          * @private
          */
         scope.onExpanderUp = function () {
-          var sT = this.editStat.expanderStack;
+          var sT = scope.editStat.expanderStack;
           sT.expanderMovingTarget = null;
-          $document.body.style.cursor = ''; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
+          $document[0].body.style.cursor = ''; // TODO: 这里可能应该将光标之前的状态存储，而不是直接使用auto
+          scope.$apply();
         };
 
         /**
@@ -240,7 +270,7 @@
          * @private
          */
         scope.onExpanderMove = function ($event) {
-          var eT = this.editStat.expanderStack;
+          var eT = scope.editStat.expanderStack;
           if (eT.expanderMovingTarget !== null) {
             var target = eT.expanderMovingTarget;
             // $event.target.style.cursor = 'move';
@@ -256,59 +286,36 @@
             case 1:
               // 防止因无法resize而导致的move
               if (eT.hotspotPos.x - deltaX < eT.hotspotPos.x + eT.hotspot.width) {
-                this.moveHotspotTo(target, eT.hotspotPos.x - deltaX, eT.hotspotPos.y);
+                scope.moveHotspotTo(target, eT.hotspotPos.x - deltaX, eT.hotspotPos.y);
               }
               // 防止因无法move而导致的resize
               // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
               if (parseInt(target.posX, 10) > 0 || deltaX < 0) {
-                this.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
+                scope.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
               }
               break;
             case 2:
               if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
-                this.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
+                scope.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
               }
               if (parseInt(target.posY, 10) > 0 || deltaY < 0) {
-                this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
+                scope.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
               }
               break;
               // 而右边侧与下边侧的移动则不会对整体位置造成影响
             case 3:
-              this.resizeHotspotTo(target, eT.hotspot.width - deltaX, eT.hotspot.height);
+              scope.resizeHotspotTo(target, eT.hotspot.width - deltaX, eT.hotspot.height);
               break;
             case 4:
-              this.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height - deltaY);
+              scope.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height - deltaY);
               break;
             default:
               break;
             }
+            scope.$apply();
           }
         };
-
-        elm.on('mousedown', function(event) {
-          
-          scope.$apply(function() {
-            scope.onHotspotDown(scope.targetElement, event);
-          });
-          $document.on('mousemove', scope.onHotspotMoved);
-          $document.on('mouseup', scope.onHotspotUp);
-          event.stopPropagation();
-        });
-
-        elm.on('click', function(event) {
-          event.stopPropagation();
-        });
-
-        elm.css(scope.renderHotspotStyle(scope.targetElement));
       }
-    };
-  });
-
-  module.directive('editorHotspotGroup', function() {
-    return {
-      restrict: 'AE',
-      transclude: true,
-      templateUrl: 'partials/hotspotgroup.html'
     };
   });
 

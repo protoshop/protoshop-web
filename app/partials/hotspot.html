@@ -1,13 +1,10 @@
 <!-- Hotspot -->
-<div class="anchor" ng-show="targetElement === editStat.selectedElement">
-	<i></i>
-	<i></i>
-	<i></i>
-	<i></i>
+<div class="anchor" ng-show="targetElement === editStat.selectedElement" editor-hotspot-handle>
 </div>
 <div class="scene-goto"
-	 ng-show="targetElement === editStat.selectedElement && editStat.selectedAction != null">
-	<div class="scene-goto-thumb">
+	 ng-show="targetElement === editStat.selectedElement && editStat.selectedAction"
+	 ng-mousedown="$event.stopPropagation()">
+	<div class="scene-goto-thumb" ng-style="editStat.gotoSignStyle">
 		<img class="scene-thumb-small"
 			 ng-src="{{findSceneById(editStat.selectedAction.target).background==''?defaults.sceneBackground:editStat.selectedScene.background}}" />
 		<p ng-bind="findSceneById(editStat.selectedAction.target).name||'???'"></p>
@@ -19,7 +16,7 @@
 			<dd>
 				<div class="goto-scenes">
 					<select ng-model="editStat.selectedAction.target"
-							ng-options="s.id as s.name for s in package.scenes">
+							ng-options="s.id as s.name for s in scenes">
 					</select>
 				</div>
 			</dd>

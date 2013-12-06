@@ -64,8 +64,9 @@ angular.module('toHELL')
        * 存储整个工程的实时状态
        * @var {Object} $scope.package
        */
-//      $http.get('/api/package/' + $routeParams.pkgId + '.json')
-      $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
+     // $http.get('/api/package/' + $routeParams.pkgId + '.json')
+     $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
+      // $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
         .success(function (data) {
           $scope.package = data;
           sceneService.setPackage($scope.package);
@@ -145,7 +146,7 @@ angular.module('toHELL')
        * @param {Action} action 所要选中的动作对象
        */
       $scope.selectAction = function (action) {
-        // actionService.selectAction(action);
+        actionService.selectAction(action);
       };
 
       /**
