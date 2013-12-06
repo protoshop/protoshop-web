@@ -16,6 +16,8 @@
         this.package = pkg;
       };
 
+      // var this = this;
+
       /**
        * 选中一个动作
        * @func selectAction
@@ -276,8 +278,7 @@
           width: (200 + gotoSignX) // 200表示goto thumb图距离设备的最小距离，目前单位实际为px
         };
       }
-
-    };
+    }
     return new actionServiceInstance();
   });
 })();

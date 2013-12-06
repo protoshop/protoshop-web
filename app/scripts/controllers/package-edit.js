@@ -81,20 +81,30 @@ angular.module('toHELL')
 
       $scope.addScene = function() {
         sceneService.addScene();
-        elementService.deselectScene();
+        elementService.deselectElement();
         actionService.deselectAction();
       };
-      $scope.removeScene = function() {
-        sceneService.removeScene();
-        elementService.deselectScene();
+      $scope.removeScene = function(scene) {
+        elementService.deselectElement();
         actionService.deselectAction();
+        sceneService.removeScene(scene);
       };
 
-      $scope.selectAction = actionService.selectAction.bind(actionService);
-      $scope.deselectAction = actionService.deselectAction.bind(actionService);
-      $scope.addAction = actionService.addAction.bind(actionService);
-      $scope.resizeHotspotTo = actionService.resizeHotspotTo.bind(actionService);
-      $scope.renderActionItem = actionService.renderActionItem.bind(actionService);
+      $scope.selectAction = function(action) {
+        return actionService.selectAction(action);
+      };
+      $scope.deselectAction = function() {
+        actionService.deselectAction();
+      };
+      $scope.addAction = function() {
+        actionService.addAction();
+      };
+      $scope.resizeHotspotTo = function(ele, w, h) {
+        actionService.resizeHotspotTo(ele, w, h);
+      };
+      $scope.renderActionItem = function(action) {
+        return actionService.renderActionItem(action);
+      };
 
       $scope.addHotspotElement = function() {
         elementService.addHotspotElement();

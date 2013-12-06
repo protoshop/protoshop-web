@@ -35,18 +35,30 @@
       },
       transclude: true,
       templateUrl: 'partials/hotspot.html',
-      link: function(scope, elm, attrs, ctrl) {
+      link: function(scope, elm, attrs) {
         scope.scenes = elementService.package.scenes;
         scope.editStat = elementService.editStat;
         scope.defaults = {
           sceneBackground: 'images/dummy-scene-thumb.png'
         };
-        scope.moveHotspotTo = actionService.moveHotspotTo.bind(actionService);
-        scope.resizeHotspotTo = actionService.resizeHotspotTo.bind(actionService);
-        scope.findSceneById = actionService.findSceneById.bind(actionService);
-        scope.renderGotoSignStyle = actionService.renderGotoSignStyle.bind(actionService);
-        scope.renderGotoLineStyle = actionService.renderGotoLineStyle.bind(actionService);
-        scope.isTransDirDisabled = actionService.isTransDirDisabled.bind(actionService);
+        scope.moveHotspotTo = function(ele, x, y) {
+          actionService.moveHotspotTo(ele, x, y);
+        };
+        scope.resizeHotspotTo = function(ele, w, h) {
+          actionService.resizeHotspotTo(ele, w, h);
+        }
+        scope.findSceneById = function(id) {
+          return actionService.findSceneById(id);
+        };
+        scope.renderGotoSignStyle = function() {
+          actionService.renderGotoSignStyle();
+        };
+        scope.renderGotoLineStyle = function() {
+          actionService.renderGotoLineStyle();
+        };
+        scope.isTransDirDisabled = function(action) {
+          actionService.isTransDirDisabled(action);
+        };
         var hotspotStack = scope.editStat.hotspotStack;
 
         /**
@@ -158,7 +170,9 @@
       transclude: true,
       templateUrl: 'partials/hotspotgroup.html',
       link: function(scope) {
-        scope.renderHotspotStyle = actionService.renderHotspotStyle.bind(actionService);
+        scope.renderHotspotStyle = function(element) {
+          return actionService.renderHotspotStyle(element);
+        };
       }
     };
   });
@@ -167,10 +181,14 @@
     return {
       restrict: 'AE',
       templateUrl: 'partials/hotspothandle.html',
-      link: function(scope, ele) {
+      link: function(scope) {
         scope.editStat = actionService.editStat;
-        scope.moveHotspotTo = actionService.moveHotspotTo.bind(actionService);
-        scope.resizeHotspotTo = actionService.resizeHotspotTo.bind(actionService);
+        scope.moveHotspotTo = function(ele, x, y) {
+          actionService.moveHotspotTo(ele, x, y);
+        };
+        scope.resizeHotspotTo = function(ele, w, h) {
+          actionService.resizeHotspotTo(ele, w, h);
+        };
         
         /**
          * 元素缩放触头在鼠标按下时触发此函数

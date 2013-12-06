@@ -4,7 +4,7 @@
   var module = angular.module('toHELL');
 
   module.factory('elementService', function() {
-    function elementServiceInstance() {
+    function ElementServiceInstance() {
       this.editStat = {};
       this.package = {};
 
@@ -54,6 +54,6 @@
       };
 
     };
-    return new elementServiceInstance();
+    return new ElementServiceInstance();
   });
 })();

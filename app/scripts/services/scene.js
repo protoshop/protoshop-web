@@ -4,7 +4,7 @@
   var module = angular.module('toHELL');
 
   module.factory('sceneService', function() {
-    function sceneServiceInstance() {
+    function SceneServiceInstance() {
       var self = this;
       this.editStat = {};
       this.package = {};
@@ -17,6 +17,10 @@
         this.package = pkg;
       };
 
+      this.defaults = {
+        sceneBackground: 'images/dummy-scene-thumb.png'
+      };
+
       /**
        * 选中一个场景
        * @func selectScene
@@ -25,11 +29,7 @@
       this.selectScene = function (scene) {
         this.editStat.selectedScene = scene;
       };
-
-      this.defaults = {
-        sceneBackground: 'images/dummy-scene-thumb.png'
-      };
-
+      
       /**
        * 释放选中的场景。连带释放选中的元素。
        * @func deselectScene
@@ -77,11 +77,11 @@
         if (index < 0) {
           return;
         }
-        scenes.splice(index, 1);
         // 当删除的是选中场景时，释放对场景的选择
         if (scene === this.editStat.selectedScene) {
           this.deselectScene();
         }
+        scenes.splice(index, 1);
       };
 
       /**
@@ -141,7 +141,7 @@
       }
 
     };
-    return new sceneServiceInstance();
+    return new SceneServiceInstance();
   });
 })();
 
