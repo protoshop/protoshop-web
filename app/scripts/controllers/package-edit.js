@@ -232,24 +232,6 @@ angular.module('toHELL')
       };
 
       /**
-       * 搜索最大的场景id
-       * @func findMaxSceneId
-       * @return {number} 返回该id。如果不存在任何一个场景，返回-1。
-       */
-      function findMaxSceneId() {
-        return sceneService.findMaxSceneId();
-      }
-
-      /**
-       * 搜索最大的场景order
-       * @func findSceneByOrder
-       * @return {number} 返回找到的最大order，如果不存在任何一个场景则返回-1。
-       */
-      function findMaxSceneOrder() {
-        return sceneService.findMaxSceneOrder();
-      }
-
-      /**
        * 将一条Action渲染为文本信息
        * @func renderActionItem
        * @param {Action} action - 要渲染的action
