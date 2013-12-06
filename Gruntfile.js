@@ -316,6 +316,21 @@ module.exports = function (grunt) {
         'svgmin',
         'htmlmin'
       ]
+    },
+    rsync: {
+      options: {
+        args: ["--verbose"],
+        exclude: [".git*","*.scss","node_modules"],
+        recursive: true
+      },
+      prod: {
+        options: {
+          src: "dist/",
+          dest: "/usr/local/httpd/htdocs/tohell/html/",
+          host: "sxxie@wxddb1.qa.nt.ctripcorp.com",
+          syncDestIgnoreExcl: true
+        }
+      }
     }
   });
 
@@ -356,6 +371,16 @@ module.exports = function (grunt) {
     'rev',
     'usemin'
   ]);
+  
+  grunt.registerTask('dist', function (target) {
+    if (target === 'b') {
+      return grunt.task.run(['build']);
+    }
+
+    grunt.task.run([
+    'rsync:prod'
+    ]);
+  });
 
   grunt.registerTask('default', [
     'jshint',
