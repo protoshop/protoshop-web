@@ -140,7 +140,7 @@
         // return maxOrder;
       }
 
-    };
+    }
     return new SceneServiceInstance();
   });
 })();

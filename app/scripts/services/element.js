@@ -53,7 +53,7 @@
         this.selectElement(newElement);
       };
 
-    };
+    }
     return new ElementServiceInstance();
   });
 })();

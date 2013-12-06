@@ -35,7 +35,7 @@
       },
       transclude: true,
       templateUrl: 'partials/hotspot.html',
-      link: function(scope, elm, attrs) {
+      link: function(scope, elm) {
         scope.scenes = elementService.package.scenes;
         scope.editStat = elementService.editStat;
         scope.defaults = {
@@ -46,7 +46,7 @@
         };
         scope.resizeHotspotTo = function(ele, w, h) {
           actionService.resizeHotspotTo(ele, w, h);
-        }
+        };
         scope.findSceneById = function(id) {
           return actionService.findSceneById(id);
         };
