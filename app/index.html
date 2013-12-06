@@ -76,8 +76,11 @@
 				<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button>
 				</div>
 				<ul class="tools-actor" ng-repeat="ele in editStat.selectedScene.elements">
-					<li>
-						<span>Actor: {{ele.type}}</span>
+					<li class="tools-actor-item" ng-click="onActorItemClick(ele)"
+					 ng-class="{'tools-actor-item-selected': ele === editStat.selectedElement}">
+						<span>Actor: {{ele.type}}
+						<span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
+						  W: {{ele.width}}  H: {{ele.height}}</span></span>
 						<button class="tools-actor-action icon-plus-circled" ng-click="removeElement(ele)"></button>
 					</li>
 				</ul>

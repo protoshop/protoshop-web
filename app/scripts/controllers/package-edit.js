@@ -74,8 +74,11 @@ angular.module('toHELL')
         actionService.deselectAction();
       };
 
+      // $scope.selectElement = function(ele) {
+      //   elementService.selectElement(ele);
+      // };
+
       $scope.removeElement = function(ele) {
-        console.log(ele);
         elementService.removeElement(ele);
       };
 
@@ -112,6 +115,10 @@ angular.module('toHELL')
        */
       $scope.onBackgroundClick = function () {
         elementService.deselectElement();
+      };
+
+      $scope.onActorItemClick = function (element) {
+        elementService.selectElement(element);
       };
 
       $scope.openUploaderWindow = function () {
