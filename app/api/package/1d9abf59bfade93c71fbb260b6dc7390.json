@@ -19,9 +19,9 @@
         {
           "type": "hotspot",
           "posX": 12,
-          "posY": 189,
+          "posY": 202,
           "width": 139,
-          "height": 87,
+          "height": 86,
           "actions": [
             {
               "type": "jumpto",

@@ -52,85 +52,9 @@
 		</div>
 
 		<!-- 中栏：场景详情修改区 -->
-		<div class="layout-stage" ng-click="onBackgroundClick()" ng-mousemove="onSceneMoved($event)"
-			 ng-mouseup="onSceneUp($event)">
+		<div class="layout-stage" ng-click="onBackgroundClick()">
 			<div class="scene" style="background-image: url({{editStat.selectedScene.background}})">
-				<!-- Hotspot -->
-				<div class="actor hotspot" ng-repeat="ele in editStat.selectedScene.elements"
-					 ng-style="renderHotspotStyle(ele)" ng-click="selectElement(ele);$event.stopPropagation()"
-					 ng-mousedown="onHotspotDown(ele, $event);$event.stopPropagation()">
-					<div class="anchor" ng-show="ele === editStat.selectedElement"
-						 ng-mousedown="$event.stopPropagation()">
-						<i ng-mousedown="onExpanderDown(ele, 1, $event);$event.stopPropagation()"></i>
-						<i ng-mousedown="onExpanderDown(ele, 2, $event);$event.stopPropagation()"></i>
-						<i ng-mousedown="onExpanderDown(ele, 3, $event);$event.stopPropagation()"></i>
-						<i ng-mousedown="onExpanderDown(ele, 4, $event);$event.stopPropagation()"></i>
-					</div>
-					<div class="scene-goto"
-						 ng-show="ele == editStat.selectedElement && editStat.selectedAction != null"
-						 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
-						<div class="scene-goto-thumb">
-							<img class="scene-thumb-small"
-								 ng-src="{{findSceneById(editStat.selectedAction.target).background==''?defaults.sceneBackground:editStat.selectedScene.background}}" />
-							<p ng-bind="findSceneById(editStat.selectedAction.target).name||'???'"></p>
-						</div>
-						<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
-						<div class="scene-goto-animation">
-							<dl>
-								<dt>JUMP TO</dt>
-								<dd>
-									<div class="goto-scenes">
-										<select ng-model="editStat.selectedAction.target"
-												ng-options="s.id as s.name for s in package.scenes">
-										</select>
-									</div>
-								</dd>
-								<dt>TRANSITION</dt>
-								<dd class="goto-transition">
-									<div class="transition-name">
-										<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
-													  ng-change="onTransitionTypeChanged(editStat.selectedAction)"
-													  name="transition-name" value="none" /><i
-												class="icon-block"></i></label>
-										<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
-													  name="transition-name" value="push"
-													  checked="checked" /><i>Push</i></label>
-										<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
-													  name="transition-name" value="cover" /><i>Cover</i></label>
-									</div>
-									<div class="transition-direction">
-										<label><input type="radio"
-													  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
-													  ng-model="editStat.selectedAction.transitionDirection"
-													  name="transition-direction" value="up" /><i
-												class="icon-up-bold"></i></label>
-										<label><input type="radio"
-													  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
-													  ng-model="editStat.selectedAction.transitionDirection"
-													  name="transition-direction" value="right" /><i
-												class="icon-right-bold"></i></label>
-										<label><input type="radio"
-													  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
-													  ng-model="editStat.selectedAction.transitionDirection"
-													  name="transition-direction" value="down" /><i
-												class="icon-down-bold"></i></label>
-										<label><input type="radio"
-													  ng-disabled="isTransDirDisabled(editStat.selectedAction)"
-													  ng-model="editStat.selectedAction.transitionDirection"
-													  name="transition-direction" value="left" /><i
-												class="icon-left-bold"></i></label>
-									</div>
-									<div class="transtion-time">
-										<input type="text" ng-model="editStat.selectedAction.transitionDelay" time-unit/>
-										s delay<br />
-										<input type="text" ng-model="editStat.selectedAction.transitionDuration" time-unit/>
-										s duration
-									</div>
-								</dd>
-							</dl>
-						</div>
-					</div>
-				</div>
+				<div editor-hotspot-group></div>
 			</div>
 		</div>
 
@@ -151,15 +75,13 @@
 			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button>
 				</div>
-				<ul class="tools-actor">
-					<li ng-show="null">
-						<span></span>
-					</li>
-					<li ng-show="null">
-						<span></span>
-					</li>
-					<li>
-						<span></span>
+				<ul class="tools-actor" ng-repeat="ele in editStat.selectedScene.elements">
+					<li class="tools-actor-item" ng-click="onActorItemClick(ele)"
+					 ng-class="{'tools-actor-item-selected': ele === editStat.selectedElement}">
+						<span>Actor: {{ele.type}}
+						<span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
+						  W: {{ele.width}}  H: {{ele.height}}</span></span>
+						<button class="tools-actor-action icon-plus-circled" ng-click="removeElement(ele)"></button>
 					</li>
 				</ul>
 			</div>
@@ -180,9 +102,9 @@
 					Actions
 				</div>
 				<ul class="tools-action">
-					<li ng-repeat="action in editStat.selectedElement.actions"
-						ng-bind="renderActionItem(action)">
-						<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
+					<li ng-repeat="action in editStat.selectedElement.actions">
+						{{renderActionItem(action)}}
+						<button class="tools-title-action icon-plus-circled" ng-click="removeAction(action)"></button>
 					</li>
 				</ul>
 			</div>
@@ -280,6 +202,7 @@
 
 <!-- build:js scripts/scripts.js -->
 <script src="scripts/app.js"></script>
+<script src="scripts/services/package.js"></script>
 <script src="scripts/services/scene.js"></script>
 <script src="scripts/services/element.js"></script>
 <script src="scripts/services/action.js"></script>
