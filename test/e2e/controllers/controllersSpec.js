@@ -1,14 +1,12 @@
-describe('E2E: Testing Controllers', function() {
+describe('E2E: Testing Controllers:', function() {
 
   beforeEach(function() {
     browser().navigateTo('/');
   });
 
-  // element('.author-name a:eq(0)').click();
-  // var packageName = browser().location().path(); // 1d9abf59bfade93c71fbb260b6dc7390
-  var packageName = '1d9abf59bfade93c71fbb260b6dc7390';
+  var packageName = 'cb5947eebab907988c0a158a99237781';
 
-  describe('Testing PackageEditCTRL', function() {
+  describe('PackageEditCTRL', function() {
 
     beforeEach(function() {
       browser().navigateTo('#/package/' + packageName);
@@ -31,7 +29,7 @@ describe('E2E: Testing Controllers', function() {
     });
 
     it('should have hotspot shown only when first scene is selected', function() {
-      element('.scene-item:eq(1)').click();
+      element('.scene-item:eq(3)').click();
       expect(element('.actor.hotspot').count()).toBe(0);
       element('.scene-item:eq(0)').click();
       expect(element('.actor.hotspot').count()).toBe(1);
@@ -49,6 +47,18 @@ describe('E2E: Testing Controllers', function() {
       element('.actor.hotspot:eq(0)').click();
       expect(element('.scene-goto').count()).toBe(1);
     });
+
+    // it('should show the correct value in Position panel', function() {
+    //   element('.scene-item:eq(0)').click();
+    //   element('.actor.hotspot:eq(0)').click();
+      
+    //   element('.actor.hotspot:eq(0)').query(function (ele, done) {
+    //     var xInDevice = ele.position().left;
+    //     var x = element('.tools-position input:eq(0)').val();
+    //     expect(x).toEqual(xInDevice);
+    //     done();
+    //   });      
+    // });
 
 
   });

@@ -6,6 +6,11 @@ module.exports = function(config) {
   conf.files = conf.files.concat([
     //extra testing code
     './app/bower_components/angular-mocks/angular-mocks.js',
+    'app/scripts/services/package.js',
+    'app/scripts/services/scene.js',
+    'app/scripts/services/element.js',
+    'app/scripts/services/action.js',
+    'app/scripts/directives/directives.js',
 
     //test files
     './test/unit/**/*.js'
