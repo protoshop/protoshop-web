@@ -75,7 +75,7 @@ i { font-style: normal; }
 .goto-target { float: right; font-size: 16px; }
 .goto-scenes { position: relative; margin-bottom: 2px; }
 .goto-scenes:after { position: absolute; content: ""; right: 10px; top: 10px; width: 0; height: 0; border-width: 6px; border-style: solid; border-color: #666 transparent transparent; }
-.goto-scenes select { width: 148px; height: 28px; padding: 0 25px 0 5px; background: #000; border-radius: 0; border: 1px solid #333; color: #fff; }
+.goto-scenes select { width: 150px; height: 28px; padding: 0 23px 0 5px; background: #000; border-radius: 0; border: 1px solid #333; color: #fff; }
 .goto-transition label { color: #424242; cursor: pointer; }
 .goto-transition input[type="radio"] { visibility: hidden; width: 0; height: 0; }
 .goto-transition input[type="radio"]:checked + i { color: #b7b7b7; }
@@ -100,6 +100,7 @@ i { font-style: normal; }
 
 .tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
 .tools-action li button, .tools-actor-action { float: right; width: 30px; color: #178dd4;}
+.tools-action li span{ display: inline-block; width: 240px; height: 13px; overflow: hidden; }
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
 .tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
 .tools-actor-item { cursor: pointer; position: relative; text-overflow: ellipsis; }

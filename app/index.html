@@ -103,7 +103,7 @@
 				</div>
 				<ul class="tools-action">
 					<li ng-repeat="action in editStat.selectedElement.actions">
-						{{renderActionItem(action)}}
+						<span>{{renderActionItem(action)}}</span>
 						<button class="tools-title-action icon-plus-circled" ng-click="removeAction(action)"></button>
 					</li>
 				</ul>
@@ -141,7 +141,7 @@
 						<button ng-click="editPackage(pkg)">edit</button>
 						<button ng-click="deletePackage(pkg)">delete</button>
 					</div>
-					<img ng-src="{{pkg.icon}}">
+					<img ng-src="{{pkg.appIcon}}">
 					<div class="event-info">
 						<span class="author-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
 						<span class="pull-time" ng-bind="pkg.createTime"></span>
