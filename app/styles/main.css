@@ -126,7 +126,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .author-name {margin-right: 20px; }
 .author-name a { color: #1ba1eb; }
 .author-name a:hover { text-decoration: underline; }
-.pull-time { color: #afafaf; }
+.pull-time { color: #afafaf; font-weight: 100;}
 .event-body { padding-left: 48px; margin-top: 10px; }
 .commit { padding-bottom: 10px; overflow: hidden; }
 .commit:last-child{ padding-bottom: 0; }
