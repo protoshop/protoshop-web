@@ -82,7 +82,7 @@
 						<span>Actor: {{ele.type}}
 						<span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
 						  W: {{ele.width}}  H: {{ele.height}}</span></span>
-						<button class="tools-actor-action icon-plus-circled" ng-click="removeElement(ele)"></button>
+						<button class="tools-actor-action icon-minus-sign" ng-click="removeElement(ele)"></button>
 					</li>
 				</ul>
 			</div>
@@ -105,7 +105,7 @@
 				<ul class="tools-action">
 					<li ng-repeat="action in editStat.selectedElement.actions">
 						<span>{{renderActionItem(action)}}</span>
-						<button class="tools-title-action icon-plus-circled" ng-click="removeAction(action)"></button>
+						<button class="tools-title-action icon-minus-sign" ng-click="removeAction(action)"></button>
 					</li>
 				</ul>
 			</div>

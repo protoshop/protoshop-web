@@ -147,3 +147,4 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .large-input{ width: 300px; padding: 6px 10px; border:#333 solid 1px; -webkit-border-radius: 5px; background: #efefef; font-size: 14px; }
 .submit-btn{ margin-left:110px; }
 .submit-btn button{ padding: 0 10px; font-size: 16px; color: #fff; line-height: 30px; background: #1ba1eb; margin-right:20px; }
+.tools-title button.icon-minus-sign{ color: red; }
