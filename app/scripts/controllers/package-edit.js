@@ -46,7 +46,6 @@ angular.module('toHELL')
         sceneService.selectScene(newOne);
         // NOTE: 由于angular的HTML刷新是在整个函数运行结束之后，这里需要用异步的方式来延后得到新增的HTML
         setTimeout(function() {
-          scrollToScene(newOne);
           triggerSceneNameEditor(newOne);
         }, 0);
       };
@@ -144,18 +143,6 @@ angular.module('toHELL')
       };
 
       // WARN: 注意，这里和UI结合的过于紧密，在UI的改造中极易失效
-      function scrollToScene(scene) {
-        if(!(scene && scene.id)) {
-          return;
-        }
-
-        var item = angular.element('.scene-item[data-scene-id="' + scene.id + '"] input');
-        if(item.length) {
-          item[0].scrollIntoView();
-        }
-      }
-
-      // WARN: 注意，这里和UI结合的过于紧密，在UI的改造中极易失效
       function triggerSceneNameEditor(scene) {
         if(!(scene && scene.id)) {
           return;
@@ -174,6 +161,7 @@ angular.module('toHELL')
           context: $scope.package
         })
           .success(function () {
+            window.alert('已保存！');
             console.log('Package "' + $scope.package.appID + '" saved!');
           });
       };
