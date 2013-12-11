@@ -6,7 +6,8 @@
 	 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
 	<div class="scene-goto-thumb">
 		<img class="scene-thumb-small"
-			 ng-src="{{findSceneById(editStat.selectedAction.target).background==''?defaults.sceneBackground:editStat.selectedScene.background}}" />
+			 ng-src="{{findSceneById(editStat.selectedAction.target).background==''
+			 ?defaults.sceneBackground:findSceneById(editStat.selectedAction.target).background}}" />
 		<p ng-bind="findSceneById(editStat.selectedAction.target).name||'???'"></p>
 	</div>
 	<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
