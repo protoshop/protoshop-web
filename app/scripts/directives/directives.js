@@ -56,9 +56,6 @@
         scope.renderGotoLineStyle = function() {
           actionService.renderGotoLineStyle();
         };
-        scope.isTransDirDisabled = function(action) {
-          actionService.isTransDirDisabled(action);
-        };
 
         var hotspotStack = {
           hotspotMovingTarget: null,

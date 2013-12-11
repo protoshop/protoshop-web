@@ -193,16 +193,6 @@
         };
   
         /**
-         * 测试Transition方向是否已禁用
-         * @func isTransDirDisabled
-         * @param {Action} action - 要测试的Action
-         * @return {bool}
-         */
-        this.isTransDirDisabled = function (action) {
-          return action ? (action.transitionType === 'none') : false;
-        };
-  
-        /**
          * 将热点平移至指定位置。函数保证热点不会超出屏幕。
          * @func moveHotspotTo
          * @param {Element} ele - 关联的热点对象
