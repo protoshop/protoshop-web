@@ -80,20 +80,6 @@
         };
 
         /**
-         * transition的方式发生变化时调用此函数
-         * @func onTransitionTypeChanged
-         * @param {Action} action - 发生变化的的Action
-         * @todo 目前没有transition从无到有的默认值，同时也就意味着没有“记忆”能力
-         */
-        scope.onTransitionTypeChanged = function (action) {
-          if (action.transitionType === 'none') {
-            action.transitionDirection = 'none';
-          } else {
-            // TODO: 目前没有默认值，同时也就意味着没有“记忆”能力
-          }
-        };
-
-        /**
          * 热点被鼠标按下时触发此函数
          * @func onHotspotDown
          * @param {number} index - 被点击的元素的索引值
