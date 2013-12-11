@@ -57,6 +57,22 @@
           scope.renderGotoLineStyle = function () {
             actionService.renderGotoLineStyle();
           };
+          scope.renderThumbBackground = function () {
+            var defaultOne = scope.defaults.sceneBackground;
+            var action = scope.editStat.selectedAction;
+            if (!action) {
+              return defaultOne;
+            }
+
+            var scene = scope.findSceneById(action.target);
+
+            if (!scene) {
+              return defaultOne;
+            }
+
+            var target = scene.background;
+            return (target === '' || !target) ? defaultOne : target;
+          };
 
           var hotspotStack = {
             hotspotMovingTarget: null,
