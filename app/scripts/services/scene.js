@@ -21,7 +21,7 @@
       /**
        * 选中一个场景
        * @func selectScene
-       * @param {Scene} scene - 被选中的场景
+       * @param {Object} scene - 被选中的场景
        */
       this.selectScene = function (scene) {
         packageService.editStat.selectedScene = scene;
@@ -38,7 +38,7 @@
       /**
        * 增加一个场景。增加的场景将在所有场景之后。
        * @func addScene
-       * @return {Scene} 返回新增的场景对象
+       * @return {Object} 返回新增的场景对象
        */
       this.addScene = function () {
         var newScene = {
@@ -55,7 +55,7 @@
       /**
        * 删除一个场景。如果不存在满足条件的场景，则操作无效。
        * @func removeScene
-       * @param {Scene} scene - 所要删除的场景对象
+       * @param {Object} scene - 所要删除的场景对象
        */
       this.removeScene = function (scene) {
         var scenes = packageService.package.scenes;
@@ -93,7 +93,7 @@
        * 搜索特定id的场景
        * @func findSceneById
        * @param {number} id - 要搜索的id
-       * @return {Scene|null} 如果找到则返回该场景对象，否则返回null
+       * @return {Object|null} 如果找到则返回该场景对象，否则返回null
        */
       this.findSceneById = function (id) {
         return this.findScene('id', id);

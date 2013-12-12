@@ -109,7 +109,7 @@
       /**
        * 将一条Action渲染为文本信息
        * @func renderActionItem
-       * @param {Action} action - 要渲染的action
+       * @param {Object} action - 要渲染的action
        * @return {string} 文本信息
        */
       this.renderActionItem = function (action) {
@@ -136,7 +136,7 @@
       /**
        * 返回一个元素的坐标样式信息
        * @func renderHotspotStyle
-       * @param {Element} element - 要处理的元素
+       * @param {Object} element - 要处理的元素
        * @return {Object} 样式信息，需包含left、top、width、height
        */
       this.renderHotspotStyle = function (element) {
@@ -152,7 +152,7 @@
        * 返回线框整体的CSS样式。线框整体指的是包裹线框指示器、线段、属性栏等物件的容器。
        * 通常来说，应当保持$scope.editStat.gotoSignStyle与本函数同步。
        * @func renderGotoSignStyle
-       * @param {Element} ele - 对应的元素对象
+       * @param {Object} ele - 对应的元素对象
        * @return {Object} 返回样式表对象
        * @todo 处理px以外单位的情况
        */
@@ -171,7 +171,7 @@
        * 返回线框中线段的CSS样式。
        * 通常来说，应当保持$scope.editStat.gotoLineStyle与本函数同步。
        * @func renderGotoLineStyle
-       * @param {Element} ele - 对应的元素对象
+       * @param {Object} ele - 对应的元素对象
        * @return {Object} 返回样式表对象
        * @todo 处理px以外单位的情况
        */
@@ -185,7 +185,7 @@
       /**
        * 将热点平移至指定位置。函数保证热点不会超出屏幕。
        * @func moveHotspotTo
-       * @param {Element} ele - 关联的热点对象
+       * @param {Object} ele - 关联的热点对象
        * @param {number|String} x - 横坐标。可携带单位，比如10px
        * @param {number|String} y - 纵坐标。同样可携带单位
        * @todo 屏幕应当可配置
@@ -205,7 +205,7 @@
       /**
        * 将热点缩放至特定尺寸。函数保证热点不会超出屏幕。
        * @func resizeHotspotTo
-       * @param {Element} ele - 关联的热点对象
+       * @param {Object} ele - 关联的热点对象
        * @param {number|String} w - 宽度。可携带单位，比如10px
        * @param {number|String} h - 高度。同样可携带单位
        * @todo 屏幕应当可配置
