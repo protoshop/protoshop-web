@@ -205,7 +205,8 @@
     };
   }]);
 
-  module.directive('editorHotspotHandle', ['$document', 'actionService', function ($document, actionService) {
+  module.directive('editorHotspotHandle', ['$document', 'actionService',
+    function ($document, actionService) {
     return {
       restrict: 'AE',
       transclude: true,
@@ -350,5 +351,21 @@
       }
     };
   }]);
+  
+  module.directive('sceneListItem', ['packageService', function (packageService) {
+    return {
+      restrict: 'A',
+      link: function(scope, element) {
+        // 只有真正属于增加场景的时候才需要聚焦。由于包的内容是异步加载的，
+        // 如果缺少这样的判断，directive并不知道自己是包中已有的场景渲染出来的，
+        // 还是由于后期手动添加的
+        if(packageService.editStat.sceneHasAdded) {
+          var item = element.find('input');
+          item.focus();
+        }
+      }
+    }
+  }]);
+
 
 })();

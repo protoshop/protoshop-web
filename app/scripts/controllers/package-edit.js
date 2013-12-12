@@ -19,7 +19,8 @@ angular.module('toHELL')
         },
         gotoLineStyle: {
           width: '264px'
-        }
+        },
+        sceneHasAdded: false // 表示场景列表中是否有后添加的场景。这个变量与新增场景自动聚焦相关。
       };
 
       $scope.package = {};
@@ -41,13 +42,10 @@ angular.module('toHELL')
 
       $scope.addScene = function() {
         var newOne = sceneService.addScene();
+        $scope.editStat.sceneHasAdded = true;
         elementService.deselectElement();
         actionService.deselectAction();
         sceneService.selectScene(newOne);
-        // NOTE: 由于angular的HTML刷新是在整个函数运行结束之后，这里需要用异步的方式来延后得到新增的HTML
-        $timeout(function() {
-          triggerSceneNameEditor(newOne);
-        }, 0);
       };
       $scope.removeScene = function(scene) {
         elementService.deselectElement();
@@ -78,10 +76,6 @@ angular.module('toHELL')
         elementService.addHotspotElement();
         actionService.deselectAction();
       };
-
-      // $scope.selectElement = function(ele) {
-      //   elementService.selectElement(ele);
-      // };
 
       $scope.removeElement = function(ele) {
         elementService.removeElement(ele);
@@ -141,17 +135,6 @@ angular.module('toHELL')
           'width=420,height=230,resizable,scrollbars=no,status=1,left=' + x + ',top=' + y
         );
       };
-
-      // WARN: 注意，这里和UI结合的过于紧密，在UI的改造中极易失效
-      function triggerSceneNameEditor(scene) {
-        if(!(scene && scene.id)) {
-          return;
-        }
-
-        var jq = angular.element;
-        var item = jq('.scene-item[data-scene-id="' + scene.id + '"] input');
-        item.focus();
-      }
 
       /**
        * 保存编辑好的项目JSON数据

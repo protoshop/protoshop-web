@@ -41,7 +41,7 @@
 				<li class="scene-item" ng-repeat="scene in package.scenes"
 					ng-class="{'item-current': scene === editStat.selectedScene}"
 					ng-click="selectScene(scene);$event.stopPropagation()"
-					data-scene-id="{{scene.id}}">
+					scene-list-item>
 					<img class="scene-thumb" ng-src="{{scene.background}}" />
 					<input type="text" ng-model="scene.name" />
 				</li>
