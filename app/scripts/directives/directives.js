@@ -57,6 +57,13 @@
           scope.renderGotoLineStyle = function () {
             actionService.renderGotoLineStyle();
           };
+
+          /**
+           * 渲染当前选中Action所对应的Scene背景图
+           * @func renderThumbBackground
+           * @return {String} 如果存在相应Action及对应Scene背景图，则返回该背景图的相对路径，否则返回一个默认背景图的相对路径
+           * @private
+           */
           scope.renderThumbBackground = function () {
             var defaultOne = scope.defaults.sceneBackground;
             var action = scope.editStat.selectedAction;
@@ -300,14 +307,12 @@
           var eT = expanderStack;
           if (eT.expanderMovingTarget !== null) {
             var target = eT.expanderMovingTarget;
-            // $event.target.style.cursor = 'move';
             var xT = eT.expanderMovingOffset.x + $event.clientX - eT.expanderMovingStart.x;
             var yT = eT.expanderMovingOffset.y + $event.clientY - eT.expanderMovingStart.y;
             // 计算实际的移动距离
             var deltaY = eT.hotspot.height - yT;
             var deltaX = eT.hotspot.width - xT;
 
-            // TODO: 控制线框的长短
             switch (eT.expanderIndex) {
               // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
             case 1:

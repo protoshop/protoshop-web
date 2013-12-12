@@ -2,9 +2,9 @@
 
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document',
-    'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService',
+    'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService', '$timeout',
     function ($scope, $routeParams, $http, $document, GLOBAL,
-      sceneService, elementService, actionService, packageService) {
+      sceneService, elementService, actionService, packageService, $timeout) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -45,7 +45,7 @@ angular.module('toHELL')
         actionService.deselectAction();
         sceneService.selectScene(newOne);
         // NOTE: 由于angular的HTML刷新是在整个函数运行结束之后，这里需要用异步的方式来延后得到新增的HTML
-        setTimeout(function() {
+        $timeout(function() {
           triggerSceneNameEditor(newOne);
         }, 0);
       };
