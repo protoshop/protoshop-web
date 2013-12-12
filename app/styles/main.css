@@ -104,8 +104,8 @@ i { font-style: normal; }
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
 .tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
 .tools-actor-item { cursor: pointer; position: relative; text-overflow: ellipsis; }
-.tools-actor-item-selected:before { position: absolute; content: ""; left: 4px; top: 4px; width: 288px; height: 20px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); pointer-events: none; }
-.tools-actor-comment { font-size: 10px; font-style: italic; margin-left: 6px; }
+.tools-actor-item-selected:before { position: absolute; content: ""; left: 4px; top: 4px; width: 288px; height: 20px; border: 1px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); pointer-events: none; }
+.tools-actor-comment { font-size: 10px; margin-left: 6px; }
 
 /* ==================================================
  *  Package List (previously 'project')
