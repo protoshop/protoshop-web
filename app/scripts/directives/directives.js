@@ -5,7 +5,7 @@
   module.directive('pxUnit', function () {
     return {
       require: 'ngModel',
-      link: function (scope, elm, attrs, ctrl) {
+      link   : function (scope, elm, attrs, ctrl) {
         ctrl.$parsers.unshift(function (viewValue) {
           ctrl.$setValidity('integer', true);
           // NOTE: value considered to be integer only.
@@ -18,7 +18,7 @@
   module.directive('timeUnit', function () {
     return {
       require: 'ngModel',
-      link: function (scope, elm, attrs, ctrl) {
+      link   : function (scope, elm, attrs, ctrl) {
         ctrl.$parsers.unshift(function (viewValue) {
           // NOTE: value considered to be float only.
           return parseFloat(viewValue);
@@ -30,13 +30,13 @@
   module.directive('editorHotspot', ['$document', 'actionService', 'elementService', 'packageService',
     function ($document, actionService, elementService, packageService) {
       return {
-        restrict: 'AE',
-        scope: {
+        restrict   : 'AE',
+        scope      : {
           targetElement: '='
         },
-        transclude: true,
+        transclude : true,
         templateUrl: 'partials/hotspot.html',
-        link: function (scope, elm) {
+        link       : function (scope, elm) {
           scope.scenes = packageService.package.scenes;
           scope.editStat = packageService.editStat;
           scope.defaults = {
@@ -76,8 +76,8 @@
 
           var hotspotStack = {
             hotspotMovingTarget: null,
-            hotspotDom: null,
-            hotspotMovingStart: {
+            hotspotDom         : null,
+            hotspotMovingStart : {
               x: 0,
               y: 0
             },
@@ -85,11 +85,11 @@
               x: 0,
               y: 0
             },
-            hotspotOldZindex: null
+            hotspotOldZindex   : null
           };
 
           scope.gotoSignStyle = {
-            top: '',
+            top  : '',
             right: ''
           };
           scope.gotoLineStyle = {
@@ -99,7 +99,6 @@
           /**
            * 热点被鼠标按下时触发此函数
            * @func onHotspotDown
-           * @param {number} index - 被点击的元素的索引值
            * @param {Element} ele - 被点击的元素对象
            * @param {event} $event - 点击事件
            * @private
@@ -187,10 +186,10 @@
 
   module.directive('editorHotspotGroup', ['actionService', function (actionService) {
     return {
-      restrict: 'AE',
-      transclude: true,
+      restrict   : 'AE',
+      transclude : true,
       templateUrl: 'partials/hotspotgroup.html',
-      link: function (scope) {
+      link       : function (scope) {
         scope.renderHotspotStyle = function (element) {
           return actionService.renderHotspotStyle(element);
         };
@@ -200,10 +199,10 @@
 
   module.directive('editorHotspotHandle', ['$document', 'actionService', function ($document, actionService) {
     return {
-      restrict: 'AE',
-      transclude: true,
+      restrict   : 'AE',
+      transclude : true,
       templateUrl: 'partials/hotspothandle.html',
-      link: function (scope) {
+      link       : function (scope) {
         scope.editStat = actionService.editStat;
         scope.moveHotspotTo = function (ele, x, y) {
           actionService.moveHotspotTo(ele, x, y);
@@ -214,7 +213,7 @@
 
         var expanderStack = {
           expanderMovingTarget: null,
-          expanderMovingStart: {
+          expanderMovingStart : {
             x: 0,
             y: 0
           },
@@ -222,21 +221,20 @@
             x: 0,
             y: 0
           },
-          hotspotPos: {
+          hotspotPos          : {
             x: 0,
             y: 0
           },
-          hotspot: {
-            width: 0,
+          hotspot             : {
+            width : 0,
             height: 0
           },
-          expanderIndex: null
+          expanderIndex       : null
         };
 
         /**
          * 元素缩放触头在鼠标按下时触发此函数
          * @func onExpanderDown
-         * @param {number} index - 元素的索引
          * @param {Element} ele - 元素对象
          * @param {number} pos - 触头的索引，用来区分是哪个触头。从左开始顺时针依次为1、2、3、4
          * @param {event} $event - 鼠标事件

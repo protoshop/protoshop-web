@@ -42,11 +42,11 @@
        */
       this.addScene = function () {
         var newScene = {
-          id: Date.now(),
-          order: findMaxSceneOrder() + 1,
-          name: 'New Scene',
+          id        : Date.now(),
+          order     : findMaxSceneOrder() + 1,
+          name      : 'New Scene',
           background: '',
-          elements: []
+          elements  : []
         };
         packageService.package.scenes.push(newScene);
         return newScene;

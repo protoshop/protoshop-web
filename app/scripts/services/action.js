@@ -47,12 +47,12 @@
           return;
         }
         var newAction = {
-          type: 'jumpto',
-          target: null,
-          transitionType: 'push',
+          type               : 'jumpto',
+          target             : null,
+          transitionType     : 'push',
           transitionDirection: 'up',
-          transitionDelay: 0,
-          transitionDuration: 3.25
+          transitionDelay    : 0,
+          transitionDuration : 3.25
         };
         actions.push(newAction);
         this.selectAction(newAction);
@@ -141,9 +141,9 @@
        */
       this.renderHotspotStyle = function (element) {
         return {
-          left: element.posX,
-          top: element.posY,
-          width: element.width,
+          left  : element.posX,
+          top   : element.posY,
+          width : element.width,
           height: element.height
         };
       };

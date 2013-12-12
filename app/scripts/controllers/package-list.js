@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', function ($scope, $http, $location, GLOBAL) {
+  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', function ($scope, $http, $location,
+    GLOBAL) {
 
     // To get data & set list.
     $scope.refreshList = function () {
+      // $http.get('/api/package/list.json')
       $http.get(GLOBAL.apiHost + 'fetchlist/')
-//      $http.get('/api/package/list.json')
         .success(function (data) {
           $scope.packageList = data.projectList;
         })

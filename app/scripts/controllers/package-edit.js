@@ -3,21 +3,21 @@
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document',
     'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService',
-    function ($scope, $routeParams, $http, $document, GLOBAL,
-      sceneService, elementService, actionService, packageService) {
+    function ($scope, $routeParams, $http, $document, GLOBAL, sceneService, elementService, actionService,
+      packageService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
        */
       $scope.editStat = {
-        selectedScene: null,
+        selectedScene  : null,
         selectedElement: null,
-        selectedAction: null,
-        gotoSignStyle: {
-          top: '',
+        selectedAction : null,
+        gotoSignStyle  : {
+          top  : '',
           right: ''
         },
-        gotoLineStyle: {
+        gotoLineStyle  : {
           width: '264px'
         }
       };
@@ -27,8 +27,8 @@ angular.module('toHELL')
        * 存储整个工程的实时状态
        * @var {Object} $scope.package
        */
-     // $http.get('/api/package/' + $routeParams.pkgId + '.json')
-     // $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
+        // $http.get('/api/package/' + $routeParams.pkgId + '.json')
+        // $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
       $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
         .success(function (data) {
           $scope.package = data;
@@ -39,42 +39,42 @@ angular.module('toHELL')
 
       packageService.setStat($scope.editStat);
 
-      $scope.addScene = function() {
+      $scope.addScene = function () {
         var newOne = sceneService.addScene();
         elementService.deselectElement();
         actionService.deselectAction();
         sceneService.selectScene(newOne);
         // NOTE: 由于angular的HTML刷新是在整个函数运行结束之后，这里需要用异步的方式来延后得到新增的HTML
-        setTimeout(function() {
+        setTimeout(function () {
           triggerSceneNameEditor(newOne);
         }, 0);
       };
-      $scope.removeScene = function(scene) {
+      $scope.removeScene = function (scene) {
         elementService.deselectElement();
         actionService.deselectAction();
         sceneService.removeScene(scene);
       };
 
-      $scope.selectAction = function(action) {
+      $scope.selectAction = function (action) {
         return actionService.selectAction(action);
       };
-      $scope.deselectAction = function() {
+      $scope.deselectAction = function () {
         actionService.deselectAction();
       };
-      $scope.addAction = function() {
+      $scope.addAction = function () {
         actionService.addAction();
       };
-      $scope.removeAction = function(action) {
+      $scope.removeAction = function (action) {
         actionService.removeAction(action);
       };
-      $scope.resizeHotspotTo = function(ele, w, h) {
+      $scope.resizeHotspotTo = function (ele, w, h) {
         actionService.resizeHotspotTo(ele, w, h);
       };
-      $scope.renderActionItem = function(action) {
+      $scope.renderActionItem = function (action) {
         return actionService.renderActionItem(action);
       };
 
-      $scope.addHotspotElement = function() {
+      $scope.addHotspotElement = function () {
         elementService.addHotspotElement();
         actionService.deselectAction();
       };
@@ -83,14 +83,14 @@ angular.module('toHELL')
       //   elementService.selectElement(ele);
       // };
 
-      $scope.removeElement = function(ele) {
+      $scope.removeElement = function (ele) {
         elementService.removeElement(ele);
       };
 
       /**
        * 选中一个场景
        * @func selectScene
-       * @param {Scene} scene - 被选中的场景
+       * @param {Object} scene - 被选中的场景
        */
       $scope.selectScene = function (scene) {
         sceneService.selectScene(scene);
@@ -134,8 +134,8 @@ angular.module('toHELL')
         var x = screen.width / 2 - 700 / 2;
         var y = screen.height / 2 - 450 / 2;
         window.open(
-//          '/api/uploader/#' + $routeParams.pkgId, //test
-//          '/api/uploader/success.html#aaa' + $routeParams.pkgId, //test
+          // '/api/uploader/#' + $routeParams.pkgId, //test
+          // '/api/uploader/success.html#aaa' + $routeParams.pkgId, //test
           GLOBAL.host + 'api/uploader/#' + $routeParams.pkgId,
           'DescriptiveWindowName',
           'width=420,height=230,resizable,scrollbars=no,status=1,left=' + x + ',top=' + y
@@ -144,7 +144,7 @@ angular.module('toHELL')
 
       // WARN: 注意，这里和UI结合的过于紧密，在UI的改造中极易失效
       function triggerSceneNameEditor(scene) {
-        if(!(scene && scene.id)) {
+        if (!(scene && scene.id)) {
           return;
         }
 
