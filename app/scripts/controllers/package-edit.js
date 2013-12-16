@@ -35,6 +35,9 @@ angular.module('toHELL')
           $scope.package = data;
           packageService.setPackage($scope.package);
           packageService.setStat($scope.editStat);
+          // 默认选中第一个场景
+          var sceneId = sceneService.findScene('order', '0');
+          $scope.selectScene(sceneId);
         })
         .error(GLOBAL.errLogger);
 
