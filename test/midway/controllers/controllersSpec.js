@@ -12,7 +12,7 @@ describe('Midway: Testing Controllers', function() {
     tester = null;
   });
 
-  var packageName = '1d9abf59bfade93c71fbb260b6dc7390';
+  var packageName = 'cd1b1f5f09cce72183e0470e26673b21';
 
   describe('Midway: Testing PackageEditCTRL', function() {
     it('should load the PackageEditCTRL controller properly when /package/' + packageName + ' route is accessed', 
