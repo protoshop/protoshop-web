@@ -120,7 +120,9 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .event-item { border-bottom: #424242 solid 1px; padding: 25px; }
 .event-item img{ float: left; margin-right: 20px; width:27px; height:27px; }
 .change-btn { float: right; }
-.change-btn button { display: inline-block; padding: 0 10px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 22px; }
+.change-btn button { display: inline-block; width: 80px; height: 50px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 22px; }
+/*.change-btn button:first-child{ background:#008a01; }
+.change-btn button:last-child{ background:#e61501; }*/
 .event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
 .event-description{ color:#afafaf; font-size: 18px; margin-left:47px; margin-top:5px; }
 .author-name {margin-right: 20px; }
@@ -138,6 +140,7 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .project-title h3{ font-weight: 100; color: #fafafa; font-size: 20px; line-height: 30px; }
 .closes{ float: right; color: #fafafa; cursor: pointer; line-height: 30px; font-size: 18px; }
 .closes:hover{ color: #b7b7b7; text-decoration: none; }
+.closes
 .project-info{ padding: 20px 0; }
 .control-group{ padding: 15px 10px; }
 .control-group label{ width: 100px; text-align: right; display: inline-block; margin-right: 10px; color: #fafafa; font-weight: 100; line-height: 28px; margin-bottom: 0; float:left;  font-size: 16px; }
