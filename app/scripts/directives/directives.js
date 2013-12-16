@@ -358,8 +358,13 @@
         // 如果缺少这样的判断，directive并不知道自己是包中已有的场景渲染出来的，
         // 还是由于后期手动添加的
         if(packageService.editStat.sceneHasAdded) {
-          var item = element.find('input');
-          item.focus();
+          var item = element.find('input:eq(0)');
+          // FIXME: 很奇怪这里如果不延时则不能选中文字，只能聚焦
+          // 可能是因为在函数执行后其他DOM元素的操作影响了文字的选中
+          item.focus().select();
+          setTimeout(function() {
+            item.focus().select();
+          }, 0);
         }
       }
     }
