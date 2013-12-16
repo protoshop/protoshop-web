@@ -33,7 +33,7 @@ i { font-style: normal; }
  */
 
 .scenes-list { padding: 0; }
-.scenes-title { padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
+.scenes-title { padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; word-break: break-all; }
 .scene-item { position: relative; padding: 20px 0; }
 .item-current { background-color: #393939; }
 .item-current:before { position: absolute; content: ""; left: 10px; top: 10px; width: 156px; height: 252px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); }
@@ -87,7 +87,6 @@ i { font-style: normal; }
 .tools-title { padding: 0 10px; height: 30px; line-height: 30px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
 .tools-title a { display: block; height: 30px; line-height: 30px; color: #afafaf; }
 .tools-title button{ float: right; width: 30px; height: 30px; color: #178dd4; }
-.tools-title .tools-title-action { float: right; width: 30px; height: 30px; color: #178dd4; }
 .tools-position { padding: 10px; overflow: hidden; }
 .tools-position li { float: left; width: 50%; padding: 5px 0; }
 .tools-box label { display: inline-block; width: 50px; padding: 0 10px; text-align: right; }
@@ -100,11 +99,11 @@ i { font-style: normal; }
 
 .tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
 .tools-action li button, .tools-actor-action { float: right; width: 30px; color: #178dd4;}
-.tools-action li span{ display: inline-block; width: 240px; height: 13px; overflow: hidden; }
+.tools-action li span{ display: inline-block; width: 240px; overflow: hidden; word-break: break-all; }
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
 .tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
 .tools-actor-item { cursor: pointer; position: relative; text-overflow: ellipsis; }
-.tools-actor-item-selected:before { position: absolute; content: ""; left: 4px; top: 4px; width: 288px; height: 20px; border: 1px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); pointer-events: none; }
+.tools-actor-item-selected:before { position: absolute; content: ""; left: 4px; top: 6px; width: 288px; height: 20px; border: 1px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); pointer-events: none; }
 .tools-actor-comment { font-size: 10px; margin-left: 6px; }
 
 /* ==================================================
