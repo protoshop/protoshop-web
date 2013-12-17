@@ -1,0 +1,66 @@
+<ul class="notify">
+	<li class="notify-item" ng-repeat="item in items" ng-bind="item.content"
+	 ng-class="{'notify-item-info': item.nType == 'info', 'notify-item-warn': item.nType == 'warn', 'notify-item-error': item.nType == 'error'}"
+	 item-target="item"
+	 notify-item></li>
+	<!-- <li class="notify-item notify-item-warn" notify-item>Warn!</li> -->
+	<!-- <li class="notify-item notify-item-error" notify-item>Error!</li> -->
+</ul>
+<style>
+.notify {
+	position: relative;
+	z-index: 20;
+	display: table;
+	margin: 0;
+	padding: 5;
+	min-width: 250px;
+	min-height: 18px;
+	color: #afafaf;
+	list-style: none;
+	background-color: transparent;
+}
+.notify-item {
+	margin: 0;
+	padding: 5px;
+	border-radius: 6px;
+	border: solid 2px black;
+	border-top: none;
+	background-color: #383838;
+	cursor: pointer;
+	text-align: center;
+}
+.notify-item:first-of-type {
+	border-top: solid 2px black;
+}
+.notify-item-info {
+	color: green;
+}
+.notify-item-warn {
+	color: #c47529;
+}
+.notify-item-error {
+	color: red;
+}
+/* 动画相关代码 */
+.notify-item.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+.notify-item.ng-hide-add.ng-hide-add-active,
+.notify-item.ng-hide-remove {
+  opacity:0;
+}
+.notify-item.ng-hide-add,
+.notify-item.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}
+.notify-item.ng-enter-stagger {
+  /* this will have a 100ms delay between each successive leave animation */
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+
+</style>

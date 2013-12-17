@@ -33,7 +33,7 @@
 
 	<!-- 布局主体 -->
 	<div class="layout-main">
-
+	<notify />
 		<!-- 左栏：场景列表 -->
 		<div class="layout-scenes" ng-click="deselectScene()">
 			<div class="scenes-title" ng-bind="package.appName"></div>
@@ -197,6 +197,7 @@
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/ngUpload/ng-upload.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
@@ -207,6 +208,7 @@
 <script src="scripts/services/scene.js"></script>
 <script src="scripts/services/element.js"></script>
 <script src="scripts/services/action.js"></script>
+<script src="scripts/services/notify.js"></script>
 <script src="scripts/controllers/package-list.js"></script>
 <script src="scripts/controllers/package-edit.js"></script>
 <script src="scripts/directives/directives.js"></script>

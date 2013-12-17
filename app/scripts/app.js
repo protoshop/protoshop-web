@@ -4,7 +4,8 @@ angular.module('toHELL', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'ngAnimate'
   ])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 

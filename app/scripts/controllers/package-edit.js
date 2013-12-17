@@ -2,9 +2,9 @@
 
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document',
-    'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService', '$timeout',
+    'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService', '$timeout', 'notifyService',
     function ($scope, $routeParams, $http, $document, GLOBAL,
-      sceneService, elementService, actionService, packageService, $timeout) {
+      sceneService, elementService, actionService, packageService, $timeout, notifyService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -147,7 +147,8 @@ angular.module('toHELL')
           context: $scope.package
         })
           .success(function () {
-            window.alert('已保存！');
+            // window.alert('已保存！');
+            notifyService.notify('已保存！');
             console.log('Package "' + $scope.package.appID + '" saved!');
           });
       };
