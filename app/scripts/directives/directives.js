@@ -370,5 +370,43 @@
     }
   }]);
 
+  module.directive('notify', ['$document', 'notifyService', function ($document, notifyService) {
+    function positionCenter (ele) {
+      ele.css({
+        position: 'absolute',
+        top: '10px',
+        left: ($document.width() - ele.width())/2
+      });
+    }
+    return {
+      restrict: 'AE',
+      templateUrl: 'partials/notify.html',
+      scope: {
+        //
+      },
+      link: function (scope, element) {
+        positionCenter(element);
+        scope.items = notifyService.items;
+      }
+    }
+  }]);
+
+  module.directive('notifyItem', ['notifyService', function (notifyService) {
+    return {
+      restrict: 'AE',
+      scope: {
+        target: '=itemTarget'
+      },
+      link: function (scope, element) {
+        function dismiss () {
+          notifyService.remove(scope.target);
+          scope.$apply();
+        }
+
+        element.on('click', dismiss);
+      }
+    }
+  }]);
+
 
 })();

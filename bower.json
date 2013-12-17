@@ -8,7 +8,11 @@
     "angular-cookies": "~1.2.3",
     "angular-sanitize": "~1.2.3",
     "angular-route": "~1.2.3",
-    "ngUpload": "~0.5.1"
+    "ngUpload": "~0.5.1",
+    "angular-animate": "~1.2.5"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "1.2.3"
+  }
 }
