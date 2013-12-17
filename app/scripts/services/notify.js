@@ -3,15 +3,16 @@
 (function () {
   var module = angular.module('toHELL');
 
-  module.factory('notifyService', [function () {
+  module.factory('notifyService', ['$timeout', function ($timeout) {
     function NotifyServiceInstance () {
+      var self = this;
       /**
        * 表示一个通知项
        * @typedef {Object} NotifyItem
        * @property {string} nType - 通知项所属的类别。目前只能是info、warn、error三者之一。
        * @property {string} content - 通知项内容。
        */
-      this.items = [];
+      self.items = [];
       // this.items = [
       //   {
       //     nType: "info",
@@ -21,45 +22,53 @@
       //     content: "abcde"
       //   }
       // ];
-      this.last = null; // 总是指向最后增加的NotifyItem，方便链式调用，如：NotifyService.notify().xxx()
+      self.last = null; // 总是指向最后增加的NotifyItem，方便链式调用，如：NotifyService.notify().xxx()
 
-      this.notify = function (c) {
+      self.notify = function (c) {
         var newNotify = {
           nType: 'info',
           content: c
         };
-        this.items.push(newNotify);
-        this.last = newNotify;
-        return this;
+        self.items.push(newNotify);
+        self.last = newNotify;
+        $timeout(function() {
+          self.remove(newNotify);
+        }, 2000);
+        return self;
       };
 
-      this.warn = function (c) {
+      self.warn = function (c) {
         var newNotify = {
           nType: 'warn',
           content: c
         };
-        this.items.push(newNotify);
-        this.last = newNotify;
-        return this;
+        self.items.push(newNotify);
+        self.last = newNotify;
+        // 警告应当比普通的通知有更多时间，给用户充足时间阅读
+        $timeout(function() {
+          self.remove(newNotify);
+        }, 4000); 
+        return self;
       };
 
-      this.error = function (c) {
+      self.error = function (c) {
         var newNotify = {
           nType: 'error',
           content: c
         };
-        this.items.push(newNotify);
-        this.last = newNotify;
-        return this;
+        self.items.push(newNotify);
+        self.last = newNotify;
+        // 错误不应该自动消失
+        return self;
       };
 
-      this.remove = function (ele) {
+      self.remove = function (ele) {
         if (ele) {
-          this.items.splice(this.items.indexOf(ele), 1);
-          this.last = null;
+          self.items.splice(self.items.indexOf(ele), 1);
+          self.last = null;
         } else {
-          this.items.splice(this.items.indexOf(this.last), 1);
-          this.last = null;
+          self.items.splice(self.items.indexOf(self.last), 1);
+          self.last = null;
         }
       };
     }
