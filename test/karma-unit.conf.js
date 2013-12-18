@@ -10,6 +10,7 @@ module.exports = function(config) {
     'app/scripts/services/scene.js',
     'app/scripts/services/element.js',
     'app/scripts/services/action.js',
+    'app/scripts/services/notify.js',
     'app/scripts/directives/directives.js',
 
     //test files
