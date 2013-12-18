@@ -3,7 +3,7 @@
 (function () {
   var module = angular.module('toHELL');
 
-  module.factory('packageService', function() {
+  module.factory('packageService', function () {
     var packageLoaded = false;
     function PackageServiceInstance() {
       this.package = {
@@ -16,11 +16,11 @@
         sceneHasAdded: false
       };
 
-      this.setPackage = function(pkg) {
+      this.setPackage = function (pkg) {
         this.package = pkg;
         packageLoaded = true;
       };
-      this.setStat = function(es) {
+      this.setStat = function (es) {
         this.editStat = es;
       };
 

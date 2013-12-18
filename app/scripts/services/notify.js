@@ -4,7 +4,7 @@
   var module = angular.module('toHELL');
 
   module.factory('notifyService', ['$timeout', function ($timeout) {
-    function NotifyServiceInstance () {
+    function NotifyServiceInstance() {
       var self = this;
       /**
        * 表示一个通知项
@@ -31,7 +31,7 @@
         };
         self.items.push(newNotify);
         self.last = newNotify;
-        $timeout(function() {
+        $timeout(function () {
           self.remove(newNotify);
         }, 2000);
         return self;
@@ -45,9 +45,9 @@
         self.items.push(newNotify);
         self.last = newNotify;
         // 警告应当比普通的通知有更多时间，给用户充足时间阅读
-        $timeout(function() {
+        $timeout(function () {
           self.remove(newNotify);
-        }, 4000); 
+        }, 4000);
         return self;
       };
 

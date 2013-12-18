@@ -43,44 +43,44 @@ angular.module('toHELL')
 
       packageService.setStat($scope.editStat);
 
-      $scope.addScene = function() {
+      $scope.addScene = function () {
         var newOne = sceneService.addScene();
         $scope.editStat.sceneHasAdded = true;
         elementService.deselectElement();
         actionService.deselectAction();
         sceneService.selectScene(newOne);
       };
-      $scope.removeScene = function(scene) {
+      $scope.removeScene = function (scene) {
         elementService.deselectElement();
         actionService.deselectAction();
         sceneService.removeScene(scene);
       };
 
-      $scope.selectAction = function(action) {
+      $scope.selectAction = function (action) {
         return actionService.selectAction(action);
       };
-      $scope.deselectAction = function() {
+      $scope.deselectAction = function () {
         actionService.deselectAction();
       };
-      $scope.addAction = function() {
+      $scope.addAction = function () {
         actionService.addAction();
       };
-      $scope.removeAction = function(action) {
+      $scope.removeAction = function (action) {
         actionService.removeAction(action);
       };
-      $scope.resizeHotspotTo = function(ele, w, h) {
+      $scope.resizeHotspotTo = function (ele, w, h) {
         actionService.resizeHotspotTo(ele, w, h);
       };
-      $scope.renderActionItem = function(action) {
+      $scope.renderActionItem = function (action) {
         return actionService.renderActionItem(action);
       };
 
-      $scope.addHotspotElement = function() {
+      $scope.addHotspotElement = function () {
         elementService.addHotspotElement();
         actionService.deselectAction();
       };
 
-      $scope.removeElement = function(ele) {
+      $scope.removeElement = function (ele) {
         elementService.removeElement(ele);
       };
 

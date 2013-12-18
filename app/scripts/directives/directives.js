@@ -353,29 +353,29 @@
   module.directive('sceneListItem', ['packageService', function (packageService) {
     return {
       restrict: 'A',
-      link: function(scope, element) {
+      link: function (scope, element) {
         // 只有真正属于增加场景的时候才需要聚焦。由于包的内容是异步加载的，
         // 如果缺少这样的判断，directive并不知道自己是包中已有的场景渲染出来的，
         // 还是由于后期手动添加的
-        if(packageService.editStat.sceneHasAdded) {
+        if (packageService.editStat.sceneHasAdded) {
           var item = element.find('input:eq(0)');
           // FIXME: 很奇怪这里如果不延时则不能选中文字，只能聚焦
           // 可能是因为在函数执行后其他DOM元素的操作影响了文字的选中
           item.focus().select();
-          setTimeout(function() {
+          setTimeout(function () {
             item.focus().select();
           }, 0);
         }
       }
-    }
+    };
   }]);
 
   module.directive('notify', ['$document', 'notifyService', function ($document, notifyService) {
-    function positionCenter (ele) {
+    function positionCenter(ele) {
       ele.css({
         position: 'absolute',
         top: '10px',
-        left: ($document.width() - ele.width())/2
+        left: ($document.width() - ele.width()) / 2
       });
     }
     return {
@@ -388,7 +388,7 @@
         positionCenter(element);
         scope.items = notifyService.items;
       }
-    }
+    };
   }]);
 
   module.directive('notifyItem', ['notifyService', function (notifyService) {
@@ -398,14 +398,14 @@
         target: '=itemTarget'
       },
       link: function (scope, element) {
-        function dismiss () {
+        function dismiss() {
           notifyService.remove(scope.target);
           scope.$apply();
         }
 
         element.on('click', dismiss);
       }
-    }
+    };
   }]);
 
 
