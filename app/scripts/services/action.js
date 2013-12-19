@@ -127,7 +127,7 @@
         if (scene) {
           actionText += scene.name;
         } else {
-          actionText += '???';
+          actionText += '';
         }
 
         return actionText;

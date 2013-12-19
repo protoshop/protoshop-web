@@ -61,6 +61,7 @@ i { font-style: normal; }
 .scene-goto-thumb { width: 45px; padding: 8px 10px; border: 2px solid #7d7d7d; border-radius: 5px; font-size: 12px; color: #fff; text-align: center; }
 .scene-goto-thumb img { width:45px; height: 70px }
 .scene-goto-thumb p{display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.scene-goto-thumb p:empty{display:inline-block;}
 .scene-goto-line { position: relative; height: 2px; margin-left:36px; margin-top:-54px; background-color: #4fc9f0; }
 .scene-goto-line:before, .scene-goto-line:after { position: absolute; content: ""; width: 12px; height: 12px; border-radius: 6px; background-color: #4fc9f0; }
 .scene-goto-line:before { left: -5px; top: -5px; }
