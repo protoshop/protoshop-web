@@ -12,40 +12,56 @@ describe('E2E: Testing Controllers:', function() {
       browser().navigateTo('#/package/' + packageName);
     });
 
-    it('should have a stage when entering editor', function() {
+    it('should have a stage when entering editor', function () {
       expect(browser().location().path()).toBe('/package/' + packageName);
       expect(element('.layout-stage').count()).toBe(1);
     });
 
-    it('should have a settings panel shown when no scene is selected', function() {
+    it('should have a settings panel shown when no scene is selected', function () {
+      element('.layout-scenes').click();
       expect(element('.tools-box:not(.ng-hide)').count()).toBe(1);
       expect(element('.tools-box:not(.ng-hide) .tools-setting').count()).toBe(1);
     });
 
-    it('should have settings panel hidden when any scene is selected', function() {
+    it('should have settings panel hidden when any scene is selected', function () {
       element('.layout-scenes').click();
       element('.scene-item:first').click();
       expect(element('.tools-box:not(.ng-hide) .tools-setting').count()).toBe(0);
     });
 
-    it('should have hotspot shown when second scene is selected', function() {
+    it('should have hotspot shown when second scene is selected', function () {
       element('.scene-item:eq(1)').click();
       expect(element('.actor.hotspot').count()).toBe(1);
     });
 
-    it('should have anchor shown only when hotspot is selected', function() {
+    it('should have anchor shown only when hotspot is selected', function () {
       element('.scene-item:eq(1)').click();
       expect(element('.anchor.ng-hide').count()).toBe(1);
       element('.actor.hotspot:eq(0)').click();
       expect(element('.actor.ng-hide').count()).toBe(0);
     });
 
-    it('should have goto sign shown only when hotspot is selected', function() {
+    it('should have goto sign shown only when hotspot is selected', function () {
       element('.scene-item:eq(2)').click();
       element('.actor.hotspot:eq(0)').click();
       expect(element('.scene-goto').count()).toBe(1);
     });
 
+    it('should have 4 scenes when add one scene', function () {
+      element('.scenes-edit button:eq(0)').click();
+      expect(element('.scene-item').count()).toBe(4);
+    });
+
+    it('should have 3 scenes when remove one scene', function () {
+      element('.scenes-edit button:eq(1)').click();
+      expect(element('.scene-item').count()).toBe(2);
+    });
+
+    it('should have focus on last scene when add new one', function () {
+      element('.scenes-edit button:eq(0)').click();
+      expect(element('.scene-item').count()).toBe(4);
+      expect(element('.scene-item.item-current').count()).toBe(1);
+    });
 
   });
 
