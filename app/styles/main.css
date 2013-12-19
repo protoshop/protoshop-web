@@ -122,11 +122,11 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
 .event-item img{ float: left; margin-right: 20px; width:27px; height:27px; }
 .change-btn { float: right; }
 .change-btn button { display: inline-block; width: 80px; height: 50px; line-height: 26px; border: 1px solid #000; color: #afafaf; background-color:#2f2f2f; font-size: 22px; }
-.change-btn button:first-child:hover{ background:#008a01; color:#fff; }
+.change-btn button:first-child:hover{ background:#15d817; color:#fff; }
 .change-btn button:last-child:hover{ background:#e61501; color:#fff; }
 .event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
 .event-description{ color:#afafaf; font-size: 18px; margin-left:47px; margin-top:5px; }
-.author-name {margin-right: 20px; }
+.author-name { margin-right: 20px; }
 .author-name a { color: #1ba1eb; }
 .author-name a:hover { text-decoration: underline; }
 .pull-time { color: #afafaf; font-weight: 100;}
@@ -136,7 +136,12 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
 .commit img { float: left; margin-right: 10px; }
 .commit-info { float: left; font-size: 18px; line-height: 24px; color: #afafaf; }
 .commit-info span:first-child { color:#6a6a6a; margin-right:10px; }
-.layer{ position: fixed; top: 200px; left: 50%; margin-left: -250px; width: 500px; background: #383838; box-shadow: 0 0 0 10000px rgba(0,0,0,0.2), inset 0 0 1px #ccc; border-radius: 5px; padding: 10px; }
+.layer { position: fixed; top: 200px; left: 50%; margin-left: -250px; width: 500px; box-shadow: 0 0 0 10000px rgba(0,0,0,0.2), inset 0 0 1px #ccc; border-radius: 5px; padding: 10px; opacity: 0; -webkit-animation:f1 0.3s ease-in forwards;
+}
+@-webkit-keyframes f1 { 
+   0%{ opacity: 0; background: #666;}
+   100%{ opacity: 1; background: #383838;}
+}
 .project-title{ border-bottom: 1px solid #454545; height: 34px;  padding:0 10px; margin-bottom:30px; }
 .project-title h3{ font-weight: 100; color: #fafafa; font-size: 20px; line-height: 30px; }
 .closes{ float: right; color: #fafafa; cursor: pointer; line-height: 30px; font-size: 18px; }

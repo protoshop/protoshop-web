@@ -24,6 +24,11 @@
       // ];
       self.last = null; // 总是指向最后增加的NotifyItem，方便链式调用，如：NotifyService.notify().xxx()
 
+      /**
+       * 新增一个消息通知项
+       * @func notify
+       * @param {NotifyItem} c - 输出文本
+       */
       self.notify = function (c) {
         var newNotify = {
           nType: 'info',
@@ -37,6 +42,11 @@
         return self;
       };
 
+      /**
+       * 新增一个警告通知项
+       * @func warn
+       * @param {NotifyItem} c - 输出文本
+       */
       self.warn = function (c) {
         var newNotify = {
           nType: 'warn',
@@ -51,6 +61,11 @@
         return self;
       };
 
+      /**
+       * 新增一个错误通知项
+       * @func error
+       * @param {NotifyItem} c - 输出文本
+       */
       self.error = function (c) {
         var newNotify = {
           nType: 'error',
@@ -62,12 +77,19 @@
         return self;
       };
 
+      /**
+       * 删除一个通知项。如果给出参数则删除该通知项，否则删除最后增加的通知项。
+       * @func error
+       * @param {NotifyItem|undefined} ele - 需要删除的通知项。如果不提供则删除最后增加的通知项。
+       */
       self.remove = function (ele) {
         if (ele) {
           self.items.splice(self.items.indexOf(ele), 1);
           self.last = null;
         } else {
-          self.items.splice(self.items.indexOf(self.last), 1);
+          if (self.last) {
+            self.items.splice(self.items.indexOf(self.last), 1);
+          }
           self.last = null;
         }
       };
