@@ -7,7 +7,7 @@
 	<div class="scene-goto-thumb">
 		<img class="scene-thumb-small"
 			 ng-src="{{renderThumbBackground()}}" />
-		<p ng-bind="findSceneById(editStat.selectedAction.target).name||'???'"></p>
+		<p ng-bind="findSceneById(editStat.selectedAction.target).name||''"></p>
 	</div>
 	<div class="scene-goto-line" ng-style="editStat.gotoLineStyle"></div>
 	<div class="scene-goto-animation">
