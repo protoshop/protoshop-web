@@ -362,7 +362,8 @@
           };
         }
       };
-  }]);
+    }
+  ]);
   
   module.directive('sceneListItem', ['packageService', function (packageService) {
     return {
