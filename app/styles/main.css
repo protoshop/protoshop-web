@@ -86,7 +86,7 @@ i { font-style: normal; }
 
 .tools-title { padding: 0 10px; height: 30px; line-height: 30px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
 .tools-title a { display: block; height: 30px; line-height: 30px; color: #afafaf; }
-.tools-title button{ float: right; width: 30px; height: 30px; color: #178dd4; }
+.tools-title button{ float: right; margin-top:8px; margin-right:7px; color: #178dd4; }
 .tools-position { padding: 10px; overflow: hidden; }
 .tools-position li { float: left; width: 50%; padding: 5px 0; }
 .tools-box label { display: inline-block; width: 50px; padding: 0 10px; text-align: right; }
@@ -98,7 +98,7 @@ i { font-style: normal; }
 .tools-background button { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 
 .tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; background-color: #2b2b2b; border-bottom: 1px solid #000; }
-.tools-action li button, .tools-actor-action { float: right; width: 30px; color: #178dd4;}
+.tools-action li button, .tools-actor-action { float: right; color: #178dd4; margin-right:7px; }
 .tools-action li span{ display: inline-block; width: 240px; overflow: hidden; word-break: break-all; }
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
 .tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
@@ -150,3 +150,4 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px;
 .submit-btn{ margin-left:110px; }
 .submit-btn button{ padding: 0 10px; font-size: 16px; color: #fff; line-height: 30px; background: #1ba1eb; margin-right:20px; }
 .tools-title button.icon-minus-sign{ color: red; }
+
