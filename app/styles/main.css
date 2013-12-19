@@ -112,16 +112,16 @@ i { font-style: normal; }
  */
 
 .project-box { width: 1200px; margin: 51px auto 0; }
-.p-top { padding-top: 25px; padding-bottom: 8px; height: 40px; border-bottom: #000 solid 1px; }
-h1.p-title { float: left; font-size: 30px; font-weight: 100; padding-left: 24px; color: #afafaf; }
+.p-top { padding: 25px 10px 0; padding-bottom: 8px; height: 40px; border-bottom: #000 solid 1px; }
+h1.p-title { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
 .add-btn { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
 .add-btn:hover{ color: #fff; background: #46b6f4; text-decoration: none; }
 .add-btn i{ font-style: normal; padding-right: 5px; }
 .p-activity { padding-top: 15px; }
-.event-item { border-bottom: #424242 solid 1px; padding: 25px; }
+.event-item { border-bottom: #424242 solid 1px; padding: 25px 10px; }
 .event-item img{ float: left; margin-right: 20px; width:27px; height:27px; }
 .change-btn { float: right; }
-.change-btn button { display: inline-block; width: 80px; height: 50px; line-height: 26px; border: 1px solid #000; color: #afafaf; font-size: 22px; }
+.change-btn button { display: inline-block; width: 80px; height: 50px; line-height: 26px; border: 1px solid #000; color: #afafaf; background-color:#2f2f2f; font-size: 22px; }
 /*.change-btn button:first-child{ background:#008a01; }
 .change-btn button:last-child{ background:#e61501; }*/
 .event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
