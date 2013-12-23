@@ -70,6 +70,10 @@
 							 ng-click="openUploaderWindow()" alt="Scene Thumb" />
 					</div>
 					<button>Remove</button>
+					<label style="float:right">
+						<input type="file" ng-file="backgroundImage" ng-file-change="fileChange" style="display:none">
+						<img style="height: 100px" ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}" />
+					</label>
 				</div>
 			</div>
 			<!-- tools: actor -->
@@ -209,6 +213,7 @@
 <script src="scripts/services/element.js"></script>
 <script src="scripts/services/action.js"></script>
 <script src="scripts/services/notify.js"></script>
+<script src="scripts/services/formdata.js"></script>
 <script src="scripts/controllers/package-list.js"></script>
 <script src="scripts/controllers/package-edit.js"></script>
 <script src="scripts/directives/directives.js"></script>
