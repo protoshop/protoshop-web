@@ -362,9 +362,10 @@
           };
         }
       };
-  }]);
+    }
+  ]);
   
-  module.directive('sceneListItem', ['packageService', function (packageService) {
+  module.directive('sceneListItem', ['$timeout', 'packageService', function ($timeout, packageService) {
     return {
       restrict: 'A',
       link: function (scope, element) {
@@ -376,7 +377,7 @@
           // FIXME: 很奇怪这里如果不延时则不能选中文字，只能聚焦
           // 可能是因为在函数执行后其他DOM元素的操作影响了文字的选中
           item.focus().select();
-          setTimeout(function () {
+          $timeout(function () {
             item.focus().select();
           }, 0);
         }
@@ -414,10 +415,12 @@
       link: function (scope, element) {
         function dismiss() {
           notifyService.remove(scope.target);
-          scope.$apply();
         }
 
-        element.on('click', dismiss);
+        element.on('click', function () {
+          dismiss();
+          scope.$apply();
+        });
       }
     };
   }]);
