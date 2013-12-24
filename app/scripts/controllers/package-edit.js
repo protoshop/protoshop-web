@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document',
+  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'formDataObject',
     'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService', '$timeout', 'notifyService',
-    function ($scope, $routeParams, $http, $document, GLOBAL,
-      sceneService, elementService, actionService, packageService, $timeout, notifyService) {
+    function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL, sceneService, elementService,
+      actionService, packageService, $timeout, notifyService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -28,8 +28,8 @@ angular.module('toHELL')
        * 存储整个工程的实时状态
        * @var {Object} $scope.package
        */
-     // $http.get('/api/package/' + $routeParams.pkgId + '.json')
-     // $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
+        // $http.get('/api/package/' + $routeParams.pkgId + '.json')
+        // $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
       $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
         .success(function (data) {
           $scope.package = data;
@@ -137,6 +137,27 @@ angular.module('toHELL')
           'DescriptiveWindowName',
           'width=420,height=230,resizable,scrollbars=no,status=1,left=' + x + ',top=' + y
         );
+      };
+
+      $scope.fileChange = function (files) {
+        $http({
+          method: 'POST',
+          url: GLOBAL.apiHost + 'uploadImage/',
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          transformRequest: formDataObject,
+          data: {
+            appid: $scope.package.appID,
+            file: files[0]
+          }
+        })
+          .success(function (data) {
+            console.log('suc: ', data);
+          })
+          .error(function (err) {
+            console.log('err: ', err)
+          });
       };
 
       /**
