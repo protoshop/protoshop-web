@@ -43,45 +43,34 @@ angular.module('toHELL')
 
       packageService.setStat($scope.editStat);
 
+      for(var attr in actionService) {
+        $scope[attr] = actionService[attr];
+      }
+
+      for(var attr in elementService) {
+        $scope[attr] = elementService[attr];
+      }
+
       $scope.addScene = function () {
         var newOne = sceneService.addScene();
         $scope.editStat.sceneHasAdded = true;
-        elementService.deselectElement();
-        actionService.deselectAction();
+        $scope.deselectElement();
+        $scope.deselectAction();
         sceneService.selectScene(newOne);
       };
       $scope.removeScene = function (scene) {
-        elementService.deselectElement();
-        actionService.deselectAction();
+        $scope.deselectElement();
+        $scope.deselectAction();
         sceneService.removeScene(scene);
       };
 
-      $scope.selectAction = function (action) {
-        return actionService.selectAction(action);
-      };
-      $scope.deselectAction = function () {
-        actionService.deselectAction();
-      };
-      $scope.addAction = function () {
-        actionService.addAction();
-      };
-      $scope.removeAction = function (action) {
-        actionService.removeAction(action);
-      };
-      $scope.resizeHotspotTo = function (ele, w, h) {
-        actionService.resizeHotspotTo(ele, w, h);
-      };
-      $scope.renderActionItem = function (action) {
-        return actionService.renderActionItem(action);
-      };
-
       $scope.addHotspotElement = function () {
-        elementService.addHotspotElement();
-        actionService.deselectAction();
+        $scope.addHotspotElement();
+        $scope.deselectAction();
       };
 
       $scope.removeElement = function (ele) {
-        elementService.removeElement(ele);
+        $scope.removeElement(ele);
       };
 
       /**
@@ -92,8 +81,8 @@ angular.module('toHELL')
       $scope.selectScene = function (scene) {
         sceneService.selectScene(scene);
         // 清除掉之前可能有的其他元素、动作选择
-        elementService.deselectElement();
-        actionService.deselectAction();
+        $scope.deselectElement();
+        $scope.deselectAction();
       };
 
       $scope.defaults = {
@@ -106,8 +95,8 @@ angular.module('toHELL')
        */
       $scope.deselectScene = function () {
         sceneService.deselectScene();
-        elementService.deselectElement();
-        actionService.deselectAction();
+        $scope.deselectElement();
+        $scope.deselectAction();
       };
 
       /**
@@ -116,11 +105,11 @@ angular.module('toHELL')
        * @private
        */
       $scope.onBackgroundClick = function () {
-        elementService.deselectElement();
+        $scope.deselectElement();
       };
 
       $scope.onActorItemClick = function (element) {
-        elementService.selectElement(element);
+        $scope.selectElement(element);
       };
 
       $scope.openUploaderWindow = function () {
