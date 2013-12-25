@@ -26,7 +26,9 @@ i { font-style: normal; }
 .layout-scenes { position: relative; width: 180px; background-color: #232323; overflow-x: hidden; overflow-y: auto; margin-top: 51px; }
 .layout-scenes ul{ margin-bottom: 60px; }
 .layout-tools { width: 300px; background-color: #202020; color: #7f7f7f; overflow-x: hidden; overflow-y: auto; margin-top:51px; }
-.layout-stage { -webkit-box-flex: 1; box-flex: 1; border-left: 1px solid #000; border-right: 1px solid #000; background: #292929 url(../images/bg-stage-iphone5.png) center center no-repeat; margin-top:51px; }
+.layout-stage { -webkit-box-flex: 1; box-flex: 1; margin-top: 51px; border-left: 1px solid #000; border-right: 1px solid #000; background-color: #292929; background-position: center center; background-repeat: no-repeat; }
+.iphone5 { background-image: url(../images/bg-stage-iphone5.png); }
+.s4 { background-image: url(../images/bg-stage-s4.png); }
 
 /* ==================================================
  *  Scenes ( layout - left sidebar )
@@ -47,7 +49,9 @@ i { font-style: normal; }
  *  Stage ( layout - center stage )
  */
 
-.scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 26px auto 0; -webkit-transform: translate(-220px, -283px); background-size: 100% 100%;}
+.scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 26px auto 0; background-size: 100% 100%; }
+.iphone5 .scene { width: 320px; height: 568px; -webkit-transform: translate(-220px, -283px); }
+.s4 .scene { width: 400px; height: 640px; -webkit-transform: translate(-260px, -322px); }
 .hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; position: absolute; }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -6px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i:nth-child(1) { left: 0; top: 50%; cursor: w-resize; }
