@@ -2,7 +2,7 @@
 <div class="anchor" ng-show="targetElement === editStat.selectedElement" editor-hotspot-handle>
 </div>
 <div class="scene-goto"
-	 ng-show="targetElement === editStat.selectedElement && editStat.selectedAction"
+	 ng-show="targetElement === editStat.selectedElement && editStat.selectedAction != null"
 	 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
 	<div class="scene-goto-thumb">
 		<img class="scene-thumb-small"
