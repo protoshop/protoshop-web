@@ -3,8 +3,197 @@
 (function () {
   var module = angular.module('toHELL');
 
-  module.factory('actionService', ['packageService', function (packageService) {
-    function ActionServiceInstance() {
+  module.factory('editService', [function () {
+    var packageLoaded = false;
+    function EditServiceInstance() {
+      var self = this;
+
+      this.package = {
+        scenes: []
+      };
+      this.editStat = {
+        selectedScene: null,
+        selectedElement: null,
+        selectedAction: null,
+        sceneHasAdded: false
+      };
+
+      this.setPackage = function (pkg) {
+        this.package = pkg;
+        packageLoaded = true;
+      };
+      this.setStat = function (es) {
+        this.editStat = es;
+      };
+
+      /**
+       * 搜索最大的场景order
+       * @func findSceneByOrder
+       * @return {number} 返回找到的最大order，如果不存在任何一个场景则返回-1。
+       */
+      function findMaxSceneOrder() {
+        return self.package.scenes.length - 1;
+      }
+
+      this.defaults = {
+        sceneBackground: 'images/dummy-scene-thumb.png'
+      };
+
+      /**
+       * 选中一个场景
+       * @func selectScene
+       * @param {Object} scene - 被选中的场景
+       */
+      this.selectScene = function (scene) {
+        self.editStat.selectedScene = scene;
+        // 清除掉之前可能有的其他元素、动作选择
+        self.deselectElement();
+        self.deselectAction();
+      };
+
+      /**
+       * 释放选中的场景。连带释放选中的元素。
+       * @func deselectScene
+       */
+      this.deselectScene = function () {
+        self.editStat.selectedScene = null;
+        self.deselectElement();
+        self.deselectAction();
+      };
+
+      /**
+       * 增加一个场景。增加的场景将在所有场景之后。
+       * @func addScene
+       * @return {Object} 返回新增的场景对象
+       */
+      this.addScene = function () {
+        var newScene = {
+          id        : Date.now(),
+          order     : findMaxSceneOrder() + 1,
+          name      : 'New Scene',
+          background: '',
+          elements  : []
+        };
+        self.package.scenes.push(newScene);
+
+        self.editStat.sceneHasAdded = true;
+        self.deselectElement();
+        self.deselectAction();
+        self.selectScene(newOne);
+        return newScene;
+      };
+
+      /**
+       * 删除一个场景。如果不存在满足条件的场景，则操作无效。
+       * @func removeScene
+       * @param {Object} scene - 所要删除的场景对象
+       */
+      this.removeScene = function (scene) {
+        var scenes = self.package.scenes;
+        var index = scenes.indexOf(scene);
+        if (index < 0) {
+          return;
+        }
+        // 当删除的是选中场景时，释放对场景的选择
+        if (scene === self.editStat.selectedScene) {
+          self.deselectScene();
+          self.deselectElement();
+          self.deselectAction();
+        }
+        scenes.splice(index, 1);
+      };
+
+      /**
+       * 搜索符合条件的场景
+       * @private
+       * @func findScene
+       * @param {string} key - 要搜索的键
+       * @param {string|number} value - 要搜索的值
+       * @return {number|null} 如果找到则返回该场景的id，否则返回null
+       */
+      this.findScene = function (key, value) {
+        var scenes = self.package.scenes;
+        for (var i = scenes.length - 1; i >= 0; i--) {
+          if (scenes[i][key] === value) {
+            return scenes[i];
+          }
+        }
+        return null;
+      };
+
+      // 快捷方法
+      /**
+       * 搜索特定id的场景
+       * @func findSceneById
+       * @param {number} id - 要搜索的id
+       * @return {Object|null} 如果找到则返回该场景对象，否则返回null
+       */
+      this.findSceneById = function (id) {
+        return this.findScene('id', id);
+      };
+
+      /**
+       * 选中一个元素
+       * @func selectElement
+       * @param {number} elementIndex 该元素的索引值
+       * @todo 目前考虑自动选中第一个action，时机成熟时移除
+       */
+      this.selectElement = function (element) {
+        self.deselectAction();
+        self.deselectElement();
+        self.editStat.selectedElement = element;
+        
+        if (element.actions.length > 0) {
+          self.selectAction(element.actions[0]);
+        }
+      };
+
+      /**
+       * 释放选中的元素。释放时会连带释放动作的选中。
+       * @func deselectElement
+       */
+      this.deselectElement = function () {
+        self.deselectAction();
+        self.editStat.selectedElement = null;
+      };
+
+      /**
+       * 删除一个动作。如果该动作被选中，首先会被取消选中。
+       * @func addAction
+       * @param {Action} action - 要移除的动作对象
+       */
+      this.removeElement = function (element) {
+        var elements = self.editStat.selectedScene.elements;
+        var index = elements.indexOf(element);
+        if (index < 0) {
+          return;
+        }
+        // 当删除的是选中场景时，释放对场景的选择
+        if (element === self.editStat.selectedElement) {
+          this.deselectElement();
+        }
+        elements.splice(index, 1);
+      };
+
+      /**
+       * 增加一个hotspot元素
+       * @func addHotspotElement
+       */
+      this.addHotspotElement = function () {
+        var scene = self.editStat.selectedScene;
+        var newElement = {
+          // 默认参数
+          type   : 'hotspot',
+          posX   : 100,
+          posY   : 300,
+          width  : 120,
+          height : 42,
+          actions: []
+        };
+        scene.elements.push(newElement);
+        this.selectElement(newElement);
+        self.deselectAction();
+      };
 
       /**
        * 选中一个动作
@@ -12,7 +201,7 @@
        * @param {Object} action 所要选中的动作对象
        */
       this.selectAction = function (action) {
-        var aT = packageService.editStat;
+        var aT = self.editStat;
         var bT = aT.selectedElement;
         if (action === null || bT === null) {
           aT.selectedAction = null;
@@ -21,8 +210,8 @@
 
         if (bT.actions.indexOf(action) > -1) {
           aT.selectedAction = action;
-          packageService.editStat.gotoSignStyle = this.renderGotoSignStyle(bT);
-          packageService.editStat.gotoLineStyle = this.renderGotoLineStyle(bT);
+          self.editStat.gotoSignStyle = this.renderGotoSignStyle(bT);
+          self.editStat.gotoLineStyle = this.renderGotoLineStyle(bT);
         } else {
           aT.selectedAction = null;
         }
@@ -33,7 +222,7 @@
        * @func deselectAction
        */
       this.deselectAction = function () {
-        packageService.editStat.selectedAction = null;
+        self.editStat.selectedAction = null;
       };
 
       /**
@@ -41,7 +230,7 @@
        * @func addAction
        */
       this.addAction = function () {
-        var actions = packageService.editStat.selectedElement.actions;
+        var actions = self.editStat.selectedElement.actions;
         if (actions.length > 0) {
           // 当前一个Element只能有一个Action
           return;
@@ -64,46 +253,16 @@
        * @param {Action} action - 要移除的动作对象
        */
       this.removeAction = function (action) {
-        var actions = packageService.editStat.selectedElement.actions;
+        var actions = self.editStat.selectedElement.actions;
         var index = actions.indexOf(action);
         if (index < 0) {
           return;
         }
         // 当删除的是选中场景时，释放对场景的选择
-        if (action === packageService.editStat.selectedAction) {
+        if (action === self.editStat.selectedAction) {
           this.deselectAction();
         }
         actions.splice(index, 1);
-      };
-
-      /**
-       * 搜索符合条件的场景
-       * @private
-       * @func findScene
-       * @param {string} key - 要搜索的键
-       * @param {string|number} value - 要搜索的值
-       * @return {number|null} 如果找到则返回该场景的id，否则返回null
-       * @todo 与sceneService的相关代码合并
-       */
-      this.findScene = function (key, value) {
-        var scenes = packageService.package.scenes;
-        for (var i = scenes.length - 1; i >= 0; i--) {
-          if (scenes[i][key] === value) {
-            return scenes[i];
-          }
-        }
-        return null;
-      };
-
-      // 快捷方法
-      /**
-       * 搜索特定id的场景
-       * @func findSceneById
-       * @param {number} id - 要搜索的id
-       * @return {Object|null} 如果找到则返回该场景对象，否则返回null
-       */
-      this.findSceneById = function (id) {
-        return this.findScene('id', id);
       };
 
       /**
@@ -198,8 +357,8 @@
         var yValue = parseInt(y, 10);
         ele.posX = bound(0, xValue, widthMax);
         ele.posY = bound(0, yValue, heightMax);
-        packageService.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
-        packageService.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
+        self.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
+        self.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
       };
 
       /**
@@ -216,8 +375,8 @@
         var heightMax = 568 - parseInt(ele.posY, 10);
         ele.width = bound(0, parseInt(w, 10), widthMax);
         ele.height = bound(0, parseInt(h, 10), heightMax);
-        packageService.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
-        packageService.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
+        self.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
+        self.editStat.gotoLineStyle = this.renderGotoLineStyle(ele);
       };
 
       /**
@@ -266,6 +425,6 @@
       }
     }
 
-    return new ActionServiceInstance();
+    return new EditServiceInstance();
   }]);
 })();

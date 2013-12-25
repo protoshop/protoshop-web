@@ -2,9 +2,9 @@
 
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'formDataObject',
-    'GLOBAL', 'sceneService', 'elementService', 'actionService', 'packageService', '$timeout', 'notifyService',
-    function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL, sceneService, elementService,
-      actionService, packageService, $timeout, notifyService) {
+    'GLOBAL', 'editService', '$timeout', 'notifyService',
+    function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL, 
+      editService, $timeout, notifyService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -33,82 +33,19 @@ angular.module('toHELL')
       $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
         .success(function (data) {
           $scope.package = data;
-          packageService.setPackage($scope.package);
-          packageService.setStat($scope.editStat);
+          editService.setPackage($scope.package);
+          editService.setStat($scope.editStat);
           // 默认选中第一个场景
-          var sceneId = sceneService.findScene('order', '0');
+          var sceneId = editService.findScene('order', '0');
           $scope.selectScene(sceneId);
         })
         .error(GLOBAL.errLogger);
 
-      packageService.setStat($scope.editStat);
+      editService.setStat($scope.editStat);
 
-      $scope.addScene = function () {
-        var newOne = sceneService.addScene();
-        $scope.editStat.sceneHasAdded = true;
-        elementService.deselectElement();
-        actionService.deselectAction();
-        sceneService.selectScene(newOne);
-      };
-      $scope.removeScene = function (scene) {
-        elementService.deselectElement();
-        actionService.deselectAction();
-        sceneService.removeScene(scene);
-      };
-
-      $scope.selectAction = function (action) {
-        return actionService.selectAction(action);
-      };
-      $scope.deselectAction = function () {
-        actionService.deselectAction();
-      };
-      $scope.addAction = function () {
-        actionService.addAction();
-      };
-      $scope.removeAction = function (action) {
-        actionService.removeAction(action);
-      };
-      $scope.resizeHotspotTo = function (ele, w, h) {
-        actionService.resizeHotspotTo(ele, w, h);
-      };
-      $scope.renderActionItem = function (action) {
-        return actionService.renderActionItem(action);
-      };
-
-      $scope.addHotspotElement = function () {
-        elementService.addHotspotElement();
-        actionService.deselectAction();
-      };
-
-      $scope.removeElement = function (ele) {
-        elementService.removeElement(ele);
-      };
-
-      /**
-       * 选中一个场景
-       * @func selectScene
-       * @param {Scene} scene - 被选中的场景
-       */
-      $scope.selectScene = function (scene) {
-        sceneService.selectScene(scene);
-        // 清除掉之前可能有的其他元素、动作选择
-        elementService.deselectElement();
-        actionService.deselectAction();
-      };
-
-      $scope.defaults = {
-        sceneBackground: 'images/dummy-scene-thumb.png'
-      };
-
-      /**
-       * 释放选中的场景。连带释放选中的元素。
-       * @func deselectScene
-       */
-      $scope.deselectScene = function () {
-        sceneService.deselectScene();
-        elementService.deselectElement();
-        actionService.deselectAction();
-      };
+      for(var attr in editService) {
+        $scope[attr] = editService[attr];
+      }
 
       /**
        * 编辑区空白区域点击时调用此函数，用以清除已选元素、动作
@@ -116,11 +53,11 @@ angular.module('toHELL')
        * @private
        */
       $scope.onBackgroundClick = function () {
-        elementService.deselectElement();
+        editService.deselectElement();
       };
 
       $scope.onActorItemClick = function (element) {
-        elementService.selectElement(element);
+        editService.selectElement(element);
       };
 
       $scope.openUploaderWindow = function () {
