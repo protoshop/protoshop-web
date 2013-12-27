@@ -79,7 +79,47 @@
         self.editStat.sceneHasAdded = true;
         self.deselectElement();
         self.deselectAction();
-        self.selectScene(newOne);
+        self.selectScene(newScene);
+        return newScene;
+      };
+
+      /**
+       * 新增插入一个场景。
+       * @func insertScene
+       * @param {Object} scene - 新增的场景将在该scene之后
+       * @return {Object} 返回新增的场景对象
+       */
+      this.insertScene = function (scene) {
+        if (!scene) {
+          return this.addScene();
+        }
+        var newScene = {
+          id        : Date.now(),
+          order     : parseInt(scene.order, 10) + 1,
+          name      : 'New Scene',
+          background: '',
+          elements  : []
+        };
+        self.package.scenes.push(newScene);
+
+        function adjustOrderAfter(newScene) {
+          var scenes = self.package.scenes;
+          var n = parseInt(newScene.order, 10);
+          for(var s in scenes) {
+            var rOrder = parseInt(scenes[s].order, 10);
+            scenes[s].order = rOrder;
+            if (rOrder >= n && newScene != scenes[s]) {
+              scenes[s].order = rOrder + 1;
+            }
+          }
+        }
+
+        adjustOrderAfter(newScene);
+
+        self.editStat.sceneHasAdded = true;
+        self.deselectElement();
+        self.deselectAction();
+        self.selectScene(newScene);
         return newScene;
       };
 
