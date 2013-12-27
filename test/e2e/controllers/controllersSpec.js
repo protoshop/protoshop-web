@@ -53,6 +53,8 @@ describe('E2E: Testing Controllers:', function() {
     });
 
     it('should have 3 scenes when remove one scene', function () {
+      expect(element('.scene-item').count()).toBe(3);
+      element('.scene-item:eq(2)').click();
       element('.scenes-edit button:eq(1)').click();
       expect(element('.scene-item').count()).toBe(2);
     });
