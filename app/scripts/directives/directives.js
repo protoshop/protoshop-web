@@ -183,9 +183,7 @@
     return {
       restrict   : 'AE',
       transclude : true,
-      templateUrl: 'partials/hotspotgroup.html',
-      link       : function (scope) {
-      }
+      templateUrl: 'partials/hotspotgroup.html'
     };
   }]);
 

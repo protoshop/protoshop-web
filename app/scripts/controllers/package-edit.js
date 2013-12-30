@@ -3,8 +3,8 @@
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'formDataObject',
     'GLOBAL', 'editService', '$timeout', 'notifyService',
-    function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL, 
-      editService, $timeout, notifyService) {
+    function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL,
+          editService, $timeout, notifyService) {
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -43,7 +43,7 @@ angular.module('toHELL')
 
       editService.setStat($scope.editStat);
 
-      for(var attr in editService) {
+      for (var attr in editService) {
         $scope[attr] = editService[attr];
       }
 

@@ -115,10 +115,10 @@
         function adjustOrderAfter(newScene) {
           var scenes = self.package.scenes;
           var n = parseInt(newScene.order, 10);
-          for(var s in scenes) {
+          for (var s in scenes) {
             var rOrder = parseInt(scenes[s].order, 10);
             scenes[s].order = rOrder;
-            if (rOrder >= n && newScene != scenes[s]) {
+            if (rOrder >= n && newScene !== scenes[s]) {
               scenes[s].order = rOrder + 1;
             }
           }
