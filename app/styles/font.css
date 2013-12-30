@@ -50,8 +50,9 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-note:before { content: '\e818'; } /* '' */
-.icon-flow-tree:before { content: '\e806'; } /* '' */
+.icon-apple:before { content: '\e849'; } /* '' */
+.icon-android:before { content: '\e848'; } /* '' */
+.icon-search:before { content: '\e822'; } /* '' */
 .icon-mail:before { content: '\e823'; } /* '' */
 .icon-heart:before { content: '\e81e'; } /* '' */
 .icon-heart-empty:before { content: '\e81f'; } /* '' */
@@ -86,7 +87,7 @@
 .icon-direction:before { content: '\e841'; } /* '' */
 .icon-compass:before { content: '\e845'; } /* '' */
 .icon-cog:before { content: '\e816'; } /* '' */
-.icon-search:before { content: '\e822'; } /* '' */
+.icon-note:before { content: '\e818'; } /* '' */
 .icon-block:before { content: '\e804'; } /* '' */
 .icon-down-open:before { content: '\e82b'; } /* '' */
 .icon-left-open:before { content: '\e82c'; } /* '' */
@@ -121,4 +122,5 @@
 .icon-mobile:before { content: '\e805'; } /* '' */
 .icon-flight:before { content: '\e83e'; } /* '' */
 .icon-floppy:before { content: '\e807'; } /* '' */
+.icon-flow-tree:before { content: '\e806'; } /* '' */
 .icon-tools:before { content: '\e817'; } /* '' */

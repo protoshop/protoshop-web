@@ -166,29 +166,29 @@
 	</div>
 	<div class="layer" ng-show="showCreateDialog">
 		<div class="project-title">
-			<button class="closes" ng-click="toggleCreateDialog()">close</button>
+			<button class="close" ng-click="toggleCreateDialog()">close</button>
 			<h3>New project</h3>
 		</div>
 		<form class="project-info" ng-submit="createPackage()">
-			<div class="control-group">
-				<label>
-					<img ng-src="images/icon-app-120.png" src="images/icon-app-120.png">
-					Name:
-				</label>
-				<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称"
-					   class="project-text">
-			</div>
-			<div class="control-group">
-				<label>Details:</label>
-				<textarea ng-model="newPackageConfig.comment" name="projectDetails" cols="20" rows="5"
-						  class="large-input"></textarea>
-			</div>
-			<div class="control-group">
-				<div class="submit-btn">
-					<button class="cancel" type="reset" ng-click="toggleCreateDialog()">Cancel</button>
-					<button class="save">Save</button>
-				</div>
-			</div>
+			<ul class="control-group">
+				<li>
+					<label>Devices:</label>
+					<button class="icon-apple" title="iOS">iOS</button>
+					<button class="icon-android" title="Android">Android</button>
+				</li>
+				<li>
+					<label><!--<img ng-src="images/icon-app-120.png" src="images/icon-app-120.png" /> -->Name:</label>
+					<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称" />
+				</li>
+				<li>
+					<label>Details:</label>
+					<textarea ng-model="newPackageConfig.comment" name="projectDetails" cols="20" rows="5"></textarea>
+				</li>
+				<li>
+					<button class="btn-form">Save</button>
+					<button class="btn-form" type="reset" ng-click="toggleCreateDialog()">Cancel</button>
+				</li>
+			</ul>
 		</form>
 	</div>
 </script>
