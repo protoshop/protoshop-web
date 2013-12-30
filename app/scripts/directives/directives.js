@@ -109,11 +109,11 @@
             lastCursor = jBody.css('cursor');
             jBody.css('cursor', 'move');
             scope.selectElement(ele);
-            if (ele.actions.length > 0) {
-              scope.selectAction(ele.actions[0]);
-            } else {
-              scope.deselectAction();
-            }
+            // if (ele.actions.length > 0) {
+            //   scope.selectAction(ele.actions[0]);
+            // } else {
+            //   scope.deselectAction();
+            // }
           };
 
           /**
