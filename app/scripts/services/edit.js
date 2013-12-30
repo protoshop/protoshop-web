@@ -5,6 +5,16 @@
 
   module.factory('editService', [function () {
     var packageLoaded = false;
+    var deviceDescription = {
+      android: {
+        width: 400,
+        height: 640
+      },
+      ios: {
+        width: 320,
+        height: 568
+      }
+    };
     function EditServiceInstance() {
       var self = this;
 
@@ -391,8 +401,8 @@
        */
       this.moveHotspotTo = function (ele, x, y) {
         // TODO: 屏幕的尺寸应当可配置
-        var widthMax = 320 - parseInt(ele.width, 10);
-        var heightMax = 568 - parseInt(ele.height, 10);
+        var widthMax = deviceDescription.android.width - parseInt(ele.width, 10);
+        var heightMax = deviceDescription.android.height - parseInt(ele.height, 10);
         var xValue = parseInt(x, 10);
         var yValue = parseInt(y, 10);
         ele.posX = bound(0, xValue, widthMax);
@@ -411,8 +421,8 @@
        */
       this.resizeHotspotTo = function (ele, w, h) {
         // TODO: 屏幕的尺寸应当可配置
-        var widthMax = 320 - parseInt(ele.posX, 10);
-        var heightMax = 568 - parseInt(ele.posY, 10);
+        var widthMax = deviceDescription.android.width - parseInt(ele.posX, 10);
+        var heightMax = deviceDescription.android.height - parseInt(ele.posY, 10);
         ele.width = bound(0, parseInt(w, 10), widthMax);
         ele.height = bound(0, parseInt(h, 10), heightMax);
         self.editStat.gotoSignStyle = this.renderGotoSignStyle(ele);
