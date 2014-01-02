@@ -146,7 +146,7 @@
 						<button ng-click="editPackage(pkg)">edit</button>
 						<button ng-click="deletePackage(pkg)">delete</button>
 					</div>
-					<img ng-src="{{pkg.icon}}">
+					<img ng-src="{{pkg.icon}}" />
 					<div class="event-info">
 						<span class="author-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
 						<span class="pull-time" ng-bind="pkg.createTime"></span>
@@ -166,15 +166,21 @@
 	</div>
 	<div class="layer" ng-show="showCreateDialog">
 		<div class="project-title">
-			<button class="close" ng-click="toggleCreateDialog()">close</button>
+			<button class="close" ng-click="toggleCreateDialog()">Close</button>
 			<h3>New project</h3>
 		</div>
 		<form class="project-info" ng-submit="createPackage()">
 			<ul class="control-group">
 				<li>
 					<label>Devices:</label>
-					<button class="icon-apple" title="iOS">iOS</button>
-					<button class="icon-android" title="Android">Android</button>
+					<label class="devices" for="apple">
+						<input type="radio" name="devices" id="apple" />
+						<i class="icon-apple" title="Apple">Apple</i>
+					</label>
+					<label class="devices" for="android">
+						<input type="radio" name="devices" id="android" />
+						<i class="icon-android" title="Android">Android</i>
+					</label>
 				</li>
 				<li>
 					<label><!--<img ng-src="images/icon-app-120.png" src="images/icon-app-120.png" /> -->Name:</label>

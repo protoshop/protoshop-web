@@ -151,11 +151,14 @@ h1.p-title { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
 .close { float: right; line-height: 30px; font-size: 18px; color: #fafafa; cursor: pointer; }
 .close:hover { color: #b7b7b7; text-decoration: none; }
 .control-group li { padding: 0 10px 20px 110px; }
-.control-group label { float: left; width: 100px; margin-left: -110px; color: #fafafa; font-weight: 100; line-height: 28px;  font-size: 16px; text-align: right; }
-.control-group img { margin-right: 10px; width:28px; vertical-align:middle; }
-.control-group .icon-apple, .control-group .icon-android { width: 36px; height: 32px; overflow: hidden; font-size: 28px; }
-.control-group .icon-apple { color: #fff; }
-.control-group .icon-android { color: #a4ca39; }
+.control-group label:first-child { float: left; width: 100px; margin-left: -110px; color: #fafafa; font-weight: 100; line-height: 28px;  font-size: 16px; text-align: right; }
+/*.control-group img { margin-right: 10px; width:28px; vertical-align:middle; }*/
+.control-group .devices { cursor: pointer; }
+.control-group .icon-apple, .control-group .icon-android { display: inline-block; width: 36px; height: 32px; overflow: hidden; font-size: 28px; }
+.control-group .icon-apple { color: rgba(255,255,255,0.4); }
+.control-group .icon-android { color: rgba(164,202,57,0.4); }
+.control-group input[type="radio"]:checked + .icon-apple { color: rgba(255,255,255,1); }
+.control-group input[type="radio"]:checked + .icon-android { color: rgba(164,202,57,1); }
 .control-group input[type="text"], .control-group textarea { width: 300px; padding: 6px 10px; background: #efefef; font-size: 14px; }
 .control-group .btn-form { margin-right:20px; padding: 0 10px; line-height: 30px; background: #1ba1eb; font-size: 16px; color: #fff; }
 .tools-title button.icon-minus-sign{ color: red; }
