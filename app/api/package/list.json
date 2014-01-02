@@ -4,7 +4,8 @@
       "appID": "1d9abf59bfade93c71fbb260b6dc7390",
       "appName": "Jade",
       "appIcon": "images/icon-app-120.png",
-      "comment": "robust, elegant, feature rich",
+      "appDesc": "robust, elegant, feature rich",
+      "appPlatform": "ios",
       "createTime": "2013-10-27",
       "editTime": "2013-10-27",
       "changelog": [
@@ -19,7 +20,8 @@
       "appID": "1d9abf59bfade93c71fbb260b6dc7390",
       "appName": "Jade",
       "appIcon": "images/icon-app-120.png",
-      "comment": "robust, elegant, feature rich",
+      "appDesc": "robust, elegant, feature rich",
+      "appPlatform": "ios",
       "createTime": "2013-10-27",
       "editTime": "2013-10-27",
       "changelog": []
@@ -28,7 +30,8 @@
       "appID": "1d9abf59bfade93c71fbb260b6dc7390",
       "appName": "Mike",
       "appIcon": "images/icon-app-120.png",
-      "comment": "robust, elegant, feature rich",
+      "appDesc": "robust, elegant, feature rich",
+      "appPlatform": "android",
       "createTime": "2013-10-27",
       "editTime": "2013-10-27",
       "changelog": [
@@ -53,7 +56,8 @@
       "appID": "1d9abf59bfade93c71fbb260b6dc7390",
       "appName": "Jade",
       "appIcon": "images/icon-app-120.png",
-      "comment": "tohell comment",
+      "appDesc": "tohell comment",
+      "appPlatform": "android",
       "createTime": "2013-10-27",
       "editTime": "2013-10-27",
       "changelog": [
