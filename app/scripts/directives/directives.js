@@ -334,7 +334,6 @@
   module.directive('sceneListItem', [function () {
     return {
       restrict: 'A',
-      // transclude: true,
       link: function (scope, element) {
         // 只有真正属于增加场景的时候才需要聚焦。由于包的内容是异步加载的，
         // 如果缺少这样的判断，directive并不知道自己是包中已有的场景渲染出来的，
@@ -348,6 +347,57 @@
             item.focus().select();
           }, 0);
         }
+
+        // 增加拖拽排序 
+        var dom = element[0];
+
+        dom.draggable = true;
+
+        dom.addEventListener('dragstart', function (e) {
+          scope.deselectScene();
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('scene', scope.scene.order);
+          dom.classList.add('item-drag');
+          return false;
+        }, false);
+
+        dom.addEventListener('dragend', function (e) {
+          dom.classList.remove('item-drag');
+          scope.selectScene(scope.scene);
+          scope.$apply(); // NOTE: 迫使angular刷新DOM
+          return false;
+        }, false);
+
+        dom.addEventListener('dragover', function (e) {
+          // 迫使浏览器一定会产生drop事件
+          // TODO: 如果在这里重排序，则有可能可以实时预览移动效果
+          e.preventDefault();
+          return false;
+        }, false);
+
+        dom.addEventListener('dragenter', function (e) {
+          dom.classList.add('item-drag');
+          scope.$apply();
+          return false;
+        }, false);
+
+        dom.addEventListener('dragleave', function (e) {
+          dom.classList.remove('item-drag');
+          scope.$apply();
+          return false;
+        }, false);
+
+        dom.addEventListener('drop', function (e) {
+          // 禁用某些浏览器的默认行为
+          if (e.stopPropagation) e.stopPropagation();
+
+          var fromScene = e.dataTransfer.getData('scene');
+          scope.orderScene(fromScene, scope.scene.order);
+          dom.classList.remove('item-drag');
+          
+          scope.$apply(); // NOTE: 迫使angular刷新DOM
+          return false;
+        }, false);
       }
     };
   }]);

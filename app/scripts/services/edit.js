@@ -134,6 +134,36 @@
       };
 
       /**
+       * 使位于from的场景现在调整至to。在移动过程中，from和to之间的场景之间的关系不变，会被一同挪动。
+       * 若from小于to，则表现为后移；
+       * 若from大于to，则表现为前移；
+       * 若from和to相等，不发生任何移动。
+       * @func orderScene
+       * @param {Object} from - 原始位置
+       * @param {Object} to - 目标位置
+       */
+      this.orderScene = function (from, to) {
+        var scenes = self.package.scenes;
+        if (from > to) {
+          for(var s=0;s<scenes.length;++s) {
+            if( scenes[s].order < from && scenes[s].order >= to) {
+              scenes[s].order += 1;
+            } else if (scenes[s].order - from === 0) {
+              scenes[s].order = to;
+            }
+          }
+        } else if (from < to) {
+          for(var s=0;s<scenes.length;++s) {
+            if( scenes[s].order > from && scenes[s].order <= to) {
+              scenes[s].order -= 1;
+            }else if(scenes[s].order - from === 0) {
+              scenes[s].order = to;
+            }
+          }
+        }
+      };
+
+      /**
        * 删除一个场景。如果不存在满足条件的场景，则操作无效。
        * @func removeScene
        * @param {Object} scene - 所要删除的场景对象
