@@ -1,21 +1,25 @@
-describe('Unit: Testing Controllers', function() {
+describe('单元测试: 控制器测试', function() {
 
   beforeEach(module('toHELL'));
 
-  describe('Unit: Testing PackageEditCTRL', function() {
+  describe('单元测试: 测试PackageEditCTRL', function() {
     var scope = {};
     var PackageEditCTRL = null;
 
-    it('should have a PackageEditCTRL controller', inject(function($controller) {
+    it('应当存在一个PackageEditCTRL控制器', inject(function($controller) {
       var PackageEditCTRL = $controller('PackageEditCTRL', {
         $scope: scope
       });
       expect(PackageEditCTRL).not.to.equal(null);
     }));
 
-    it('should have a editStat working in PackageEditCTRL controller',
+    it('控制器中应当存在一个非空的editStat',
       function() {
         expect(scope.editStat).not.to.equal(undefined);
+    });
+
+    it('控制器中应当存在一个非空的package', function () {
+      expect(scope.package).not.to.equal(undefined);
     });
 
   });
