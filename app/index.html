@@ -134,42 +134,34 @@
 		</div>
 	</nav>
 	<div class="layout-main">
-		<div class="project-box">
-			<div class="p-top">
-				<button class="add-btn" ng-click="toggleCreateDialog()"><i>+</i>New</button>
-				<h1 class="p-title">Packages</h1>
+		<div class="pkg-box">
+			<div class="pkg-title">
+				<button class="pkg-new" ng-click="toggleCreateDialog()"><i>+</i>New</button>
+				<div class="pkg-name">Packages</div>
 			</div>
-			<div class="p-activity">
-				<!-- Package 列表项目 -->
-				<div class="event-item" ng-repeat="pkg in packageList">
-					<div class="change-btn">
+			<!-- Package List -->
+			<ul class="pkg-list">
+				<li ng-repeat="pkg in packageList">
+					<span class="icon-apple"></span>
+					<div class="pkg-info">
+						<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-author"></a>
+						<span class="pkg-createtime" ng-bind="pkg.createTime"></span>
+						<div class="pkg-desc" ng-bind="pkg.comment"></div>
+					</div>
+					<div class="pkg-btn">
 						<button ng-click="editPackage(pkg)">Edit</button>
 						<button ng-click="deletePackage(pkg)">Delete</button>
 					</div>
-					<img ng-src="{{pkg.icon}}" />
-					<div class="event-info">
-						<span class="author-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
-						<span class="pull-time" ng-bind="pkg.createTime"></span>
-					</div>
-					<div class="event-description" ng-bind="pkg.comment"></div>
-					<ul class="event-body" ng-show="pkg.changelog">
-						<li class="commit" ng-repeat="log in pkg.changelog">
-							<div class="commit-info">
-								<span ng-bind="log.date"></span>
-								<span ng-bind="log.by + ' - ' + log.note"></span>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div class="layer" ng-show="showCreateDialog">
-		<div class="project-title">
+		<div class="layer-title">
 			<button class="close" ng-click="toggleCreateDialog()">Close</button>
-			<h3>New project</h3>
+			<h3>New Package</h3>
 		</div>
-		<form class="project-info" ng-submit="createPackage()">
+		<form class="layer-info" ng-submit="createPackage()">
 			<ul class="control-group">
 				<li>
 					<label>Devices:</label>

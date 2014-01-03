@@ -113,42 +113,38 @@ i { font-style: normal; }
 .tools-actor-comment { font-size: 10px; margin-left: 6px; }
 
 /* ==================================================
- *  Package List (previously 'project')
+ *  Package List (previously 'pkg')
  */
 
-.project-box { width: 1200px; margin: 51px auto 0; }
-.p-top { padding: 25px 10px 0; padding-bottom: 8px; height: 40px; border-bottom: #000 solid 1px; }
-h1.p-title { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
-.add-btn { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
-.add-btn:hover{ color: #fff; background: #46b6f4; text-decoration: none; }
-.add-btn i{ font-style: normal; padding-right: 5px; }
-.p-activity { padding-top: 15px; }
-.event-item { border-bottom: #424242 solid 1px; padding: 25px 10px; min-height:55px; }
-.event-item img{ float: left; margin-right: 20px; width:27px; height:27px; }
-.change-btn { float: right; }
-.change-btn button { display: inline-block; width: 80px; height: 50px; line-height: 26px; border: 1px solid #000; color: #afafaf; background-color:#2f2f2f; font-size: 22px; }
-.change-btn button:first-child:hover{ background:#15d817; color:#fff; }
-.change-btn button:last-child:hover{ background:#e61501; color:#fff; }
-.event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
-.event-description{ color:#afafaf; font-size: 18px; margin-left:47px; margin-top:5px; }
-.author-name { margin-right: 20px; }
-.author-name a { color: #1ba1eb; }
-.author-name a:hover { text-decoration: underline; }
-.pull-time { color: #afafaf; font-weight: 100;}
-.event-body { padding-left: 48px; margin-top: 10px; }
-.commit { padding-bottom: 10px; overflow: hidden; }
-.commit:last-child{ padding-bottom: 0; }
-.commit img { float: left; margin-right: 10px; }
-.commit-info { float: left; font-size: 18px; line-height: 24px; color: #afafaf; }
-.commit-info span:first-child { color:#6a6a6a; margin-right:10px; }
+.pkg-box { width: 1200px; margin: 50px auto 0; }
+.pkg-title { padding: 25px 10px 0; padding-bottom: 8px; height: 40px; border-bottom: #000 solid 1px; }
+.pkg-title .pkg-name { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
+.pkg-title .pkg-new { float: right; padding: 0 10px; font-size: 18px; color: #fff; line-height: 32px; background: #1ba1eb; }
+.pkg-title .pkg-new:hover { background: #46b6f4; }
+.pkg-title .pkg-new i { font-style: normal; padding-right: 5px; }
+.pkg-list { margin-top: 15px; }
+.pkg-list li { min-height: 56px; padding: 25px 10px 25px 50px; border-bottom: 1px solid #424242; overflow: hidden; }
+.pkg-list .icon-apple, .pkg-list .icon-android { float: left; margin-left: -50px; margin-top: -3px; width: 32px; height: 32px; font-size: 28px; }
+.pkg-list .icon-apple { color: #fff; }
+.pkg-list .icon-android { color: rgb(164,202,57); }
+.pkg-info { float: left; width: 920px; line-height: 26px; }
+.pkg-info .pkg-author { margin-right: 20px; font-size: 22px; color: #1ba1eb; }
+.pkg-info .pkg-author:hover { text-decoration: underline; }
+.pkg-info .pkg-createtime { font-size: 18px; font-weight: 100; color: rgba(255,255,255,0.4); }
+.pkg-info .pkg-desc { padding: 5px 0; font-size: 18px; color: rgba(255,255,255,0.6); }
+.pkg-btn { float: right; }
+.pkg-btn button { width: 80px; height: 50px; line-height: 26px; border: 1px solid #000; background-color:#2f2f2f; font-size: 22px; color: #afafaf; }
+.pkg-btn button:first-child:hover { background:#15d817; color:#fff; }
+.pkg-btn button:last-child:hover { background:#e61501; color:#fff; }
+
 .layer { position: fixed; top: 200px; left: 50%; margin-left: -250px; width: 500px; box-shadow: 0 0 0 10000px rgba(0,0,0,0.2), inset 0 0 1px #ccc; border-radius: 5px; padding: 10px; opacity: 0; -webkit-animation:f1 0.3s ease-in forwards;
 }
 @-webkit-keyframes f1 { 
    0%{ opacity: 0; background: #666;}
    100%{ opacity: 1; background: #383838;}
 }
-.project-title{ border-bottom: 1px solid #454545; height: 34px;  padding:0 10px; margin-bottom:30px; }
-.project-title h3 { line-height: 30px; font-weight: 100; color: #fafafa; font-size: 20px; }
+.layer-title{ border-bottom: 1px solid #454545; height: 34px;  padding:0 10px; margin-bottom:30px; }
+.layer-title h3 { line-height: 30px; font-weight: 100; color: #fafafa; font-size: 20px; }
 .close { float: right; line-height: 30px; font-size: 18px; color: #fafafa; cursor: pointer; }
 .close:hover { color: #b7b7b7; text-decoration: none; }
 .control-group li { padding: 0 10px 20px 110px; }
