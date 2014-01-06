@@ -146,9 +146,11 @@
 						<button ng-click="editPackage(pkg)">edit</button>
 						<button ng-click="deletePackage(pkg)">delete</button>
 					</div>
-					<img ng-src="{{pkg.icon}}" />
+					<div class="package-icon">
+						<i class="icon-{{pkg.appPlatform === 'android' ? 'android' : 'apple'}}"></i>
+					</div>
 					<div class="event-info">
-						<span class="author-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
+						<span class="app-name"><a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName"></a></span>
 						<span class="pull-time" ng-bind="pkg.createTime"></span>
 					</div>
 					<div class="event-description" ng-bind="pkg.comment"></div>
