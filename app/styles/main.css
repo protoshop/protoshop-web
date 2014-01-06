@@ -128,8 +128,8 @@ i { font-style: normal; }
 .pkg-list .icon-apple { color: #fff; }
 .pkg-list .icon-android { color: rgb(164,202,57); }
 .pkg-info { float: left; width: 920px; line-height: 26px; }
-.pkg-info .pkg-author { margin-right: 20px; font-size: 22px; color: #1ba1eb; }
-.pkg-info .pkg-author:hover { text-decoration: underline; }
+.pkg-info .pkg-appname { margin-right: 20px; font-size: 22px; color: #1ba1eb; }
+.pkg-info .pkg-appname:hover { text-decoration: underline; }
 .pkg-info .pkg-createtime { font-size: 18px; font-weight: 100; color: rgba(255,255,255,0.4); }
 .pkg-info .pkg-desc { padding: 5px 0; font-size: 18px; color: rgba(255,255,255,0.6); }
 .pkg-btn { float: right; }
