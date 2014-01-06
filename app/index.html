@@ -172,9 +172,9 @@
 		<form class="project-info" ng-submit="createPackage()">
 			<ul class="control-group">
 				<li>
-					<label>Devices:</label>
+					<label>Devices</label>
 					<label class="devices">
-						<input type="radio" ng-model="newPackageConfig.appPlatform" value="ios" />
+						<input type="radio" ng-model="newPackageConfig.appPlatform" value="ios" required />
 						<i class="icon-apple" title="Apple">Apple</i>
 					</label>
 					<label class="devices">
@@ -183,11 +183,11 @@
 					</label>
 				</li>
 				<li>
-					<label><!--<img ng-src="images/icon-app-120.png" src="images/icon-app-120.png" /> -->Name:</label>
+					<label>Name</label>
 					<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称" />
 				</li>
 				<li>
-					<label>Details:</label>
+					<label>Description</label>
 					<textarea ng-model="newPackageConfig.appDesc" name="projectDetails" cols="20" rows="5"></textarea>
 				</li>
 				<li>
