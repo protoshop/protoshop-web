@@ -49,6 +49,8 @@ angular.module('toHELL')
      */
     $scope.newPackageConfig = {
       appName: '',
+      appDesc: '',
+      appPlatform: '',  // 'android' or 'ios'
       comment: ''
     };
 
