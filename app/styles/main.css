@@ -134,31 +134,6 @@ i { font-style: normal; }
 .pkg-btn button:first-child:hover { background:#0a2; color:#fff; }
 .pkg-btn button:last-child:hover { background:#c21; color:#fff; }
 
-/*.project-box { width: 1200px; margin: 51px auto 0; }
-.p-top { padding: 20px 6px; height: 40px; border-bottom: #444 solid 2px; }
-h1.p-title { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
-.add-btn { float: right; padding: 0 14px; font-size: 18px; color: #fff; line-height: 40px; background: #1ba1eb; }
-.add-btn:hover{ color: #fff; background: #46b6f4; text-decoration: none; }
-.add-btn i{ font-style: normal; padding-right: 5px; }
-.event-item { border-bottom: #424242 dashed 1px; padding: 20px 6px; min-height:55px; }
-.package-icon { float: left; margin-right: 20px; width:27px; height:27px; }
-.change-btn { float: right; }
-.change-btn button { display: inline-block; width: 80px; height: 50px; line-height: 26px; border: 1px solid #000; color: #afafaf; background-color:#2f2f2f; font-size: 22px; }
-.change-btn button:first-child:hover{ background:#0A2; color:#fff; }
-.change-btn button:last-child:hover{ background:#C21; color:#fff; }
-.event-info { overflow: hidden; height: 28px; line-height: 28px; font-size: 22px;}
-.event-description{ color:#afafaf; font-size: 18px; margin-left:47px; margin-top:5px; }
-.app-name { margin-right: 10px; letter-spacing: 0.03em }
-.app-name a { color: #1ba1eb; }
-.app-name a:hover { text-decoration: underline; }
-.pull-time { color: #777; font-size: 14px}
-.event-body { padding-left: 48px; margin-top: 10px; }
-.commit { padding-bottom: 10px; overflow: hidden; }
-.commit:last-child{ padding-bottom: 0; }
-.commit img { float: left; margin-right: 10px; }
-.commit-info { float: left; font-size: 18px; line-height: 24px; color: #afafaf; }
-.commit-info span:first-child { color:#6a6a6a; margin-right:10px; }*/
-
 .layer { position: fixed; top: 200px; left: 50%; margin-left: -250px; width: 500px; box-shadow: 0 0 0 10000px rgba(0,0,0,0.2), inset 0 0 1px #ccc; border-radius: 5px; padding: 10px; opacity: 0; -webkit-animation:f1 0.3s ease-in forwards;
 }
 @-webkit-keyframes f1 { 
