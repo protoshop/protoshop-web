@@ -90,6 +90,7 @@
         self.deselectElement();
         self.deselectAction();
         self.selectScene(newScene);
+        smoothSceneOrder(self.package.scenes);
         return newScene;
       };
 
@@ -130,6 +131,7 @@
         self.deselectElement();
         self.deselectAction();
         self.selectScene(newScene);
+        smoothSceneOrder(self.package.scenes);
         return newScene;
       };
 
@@ -181,6 +183,7 @@
           self.deselectAction();
         }
         scenes.splice(index, 1);
+        smoothSceneOrder(self.package.scenes);
       };
 
       /**
@@ -211,6 +214,20 @@
       this.findSceneById = function (id) {
         return this.findScene('id', id);
       };
+
+      /**
+       * 平滑场景order。函数保证将一个合法的scene数组，处理为order从0起始且严格递增的scene数组
+       * @func smoothSceneOrder
+       * @param {Array} scenes - scene组成的数组
+       */
+      function smoothSceneOrder(scenes) {
+        scenes.sort(function (a, b) {
+          return parseInt(a.order, 10) - parseInt(b.order, 10);
+        });
+        for(var i=0;i<scenes.length;++i) {
+          scenes[i].order = i;
+        }
+      }
 
       /**
        * 选中一个元素
