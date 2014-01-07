@@ -90,6 +90,7 @@
         self.deselectElement();
         self.deselectAction();
         self.selectScene(newScene);
+        smoothSceneOrder(self.package.scenes);
         return newScene;
       };
 
@@ -130,7 +131,38 @@
         self.deselectElement();
         self.deselectAction();
         self.selectScene(newScene);
+        smoothSceneOrder(self.package.scenes);
         return newScene;
+      };
+
+      /**
+       * 使位于from的场景现在调整至to。在移动过程中，from和to之间的场景之间的关系不变，会被一同挪动。
+       * 若from小于to，则表现为后移；
+       * 若from大于to，则表现为前移；
+       * 若from和to相等，不发生任何移动。
+       * @func orderScene
+       * @param {Object} from - 原始位置
+       * @param {Object} to - 目标位置
+       */
+      this.orderScene = function (from, to) {
+        var scenes = self.package.scenes;
+        if (from > to) {
+          for(var s=0;s<scenes.length;++s) {
+            if( scenes[s].order < from && scenes[s].order >= to) {
+              scenes[s].order += 1;
+            } else if (scenes[s].order - from === 0) {
+              scenes[s].order = to;
+            }
+          }
+        } else if (from < to) {
+          for(var s=0;s<scenes.length;++s) {
+            if( scenes[s].order > from && scenes[s].order <= to) {
+              scenes[s].order -= 1;
+            }else if(scenes[s].order - from === 0) {
+              scenes[s].order = to;
+            }
+          }
+        }
       };
 
       /**
@@ -151,6 +183,7 @@
           self.deselectAction();
         }
         scenes.splice(index, 1);
+        smoothSceneOrder(self.package.scenes);
       };
 
       /**
@@ -181,6 +214,20 @@
       this.findSceneById = function (id) {
         return this.findScene('id', id);
       };
+
+      /**
+       * 平滑场景order。函数保证将一个合法的scene数组，处理为order从0起始且严格递增的scene数组
+       * @func smoothSceneOrder
+       * @param {Array} scenes - scene组成的数组
+       */
+      function smoothSceneOrder(scenes) {
+        scenes.sort(function (a, b) {
+          return parseInt(a.order, 10) - parseInt(b.order, 10);
+        });
+        for(var i=0;i<scenes.length;++i) {
+          scenes[i].order = i;
+        }
+      }
 
       /**
        * 选中一个元素
