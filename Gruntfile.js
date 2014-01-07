@@ -322,14 +322,19 @@ module.exports = function (grunt) {
       options: {
         args: ['--verbose'],
         exclude: ['.git*', '*.scss', 'node_modules'],
-        recursive: true
+        recursive: true,
+        src: 'dist/',
+        host: 'sxxie@wxddb1.qa.nt.ctripcorp.com',
+        syncDestIgnoreExcl: true
       },
       prod: {
         options: {
-          src: 'dist/',
-          dest: '/usr/local/httpd/htdocs/tohell/html/',
-          host: 'sxxie@wxddb1.qa.nt.ctripcorp.com',
-          syncDestIgnoreExcl: true
+          dest: '/usr/local/httpd/htdocs/tohell/html/'
+        }
+      },
+      beta: {
+        options: {
+          dest: '/usr/local/httpd/htdocs/tohell/beta/'
         }
       }
     }
@@ -354,7 +359,6 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    // 'mocha'
     'karma:unit',
     'karma:midway',
     'karma:e2e'
@@ -374,13 +378,14 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('dist', function (target) {
-    if (target === 'b') {
-      return grunt.task.run(['build']);
-    }
+    grunt.task.run(['build']);
 
-    grunt.task.run([
-      'rsync:prod'
-    ]);
+    switch (target) {
+    case 'beta':
+      return grunt.task.run(['rsync:beta']);
+    default:
+      return grunt.task.run(['rsync:prod']);
+    }
   });
 
   grunt.registerTask('default', [
