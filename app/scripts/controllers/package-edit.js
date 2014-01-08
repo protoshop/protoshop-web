@@ -5,6 +5,8 @@ angular.module('toHELL')
     'GLOBAL', 'editService', '$timeout', 'notifyService',
     function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL,
           editService, $timeout, notifyService) {
+      $scope.GLOBAL = GLOBAL;
+      
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -60,22 +62,6 @@ angular.module('toHELL')
         editService.selectElement(element);
       };
 
-      $scope.openUploaderWindow = function () {
-        window.uploadSuccess = function (imageName) {
-          var imgSrc = GLOBAL.host + 'packages/' + $routeParams.pkgId + '/' + imageName + '.png';
-          $scope.editStat.selectedScene.background = imgSrc;
-        };
-        var x = screen.width / 2 - 700 / 2;
-        var y = screen.height / 2 - 450 / 2;
-        window.open(
-//          '/api/uploader/#' + $routeParams.pkgId, //test
-//          '/api/uploader/success.html#aaa' + $routeParams.pkgId, //test
-          GLOBAL.host + 'api/uploader/#' + $routeParams.pkgId,
-          'DescriptiveWindowName',
-          'width=420,height=230,resizable,scrollbars=no,status=1,left=' + x + ',top=' + y
-        );
-      };
-
       $scope.fileChange = function (files) {
         $http({
           method: 'POST',
@@ -88,12 +74,13 @@ angular.module('toHELL')
             appid: $scope.package.appID,
             file: files[0]
           }
-        })
-          .success(function (data) {
+        }).success(function (data) {
+            var pkgHost = GLOBAL.host + 'packages/' + $scope.package.appID + '/';
+            $scope.editStat.selectedScene.background = pkgHost + data.fileName;
             console.log('suc: ', data);
           })
           .error(function (err) {
-            console.log('err: ', err)
+            console.log('err: ', err);
           });
       };
 

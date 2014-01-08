@@ -65,14 +65,12 @@
 			<div class="tools-box" ng-show="editStat.selectedScene !== null">
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
-					<div class="tools-bg-thumb">
-						<img ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}"
-							 ng-click="openUploaderWindow()" alt="Scene Thumb" />
-					</div>
-					<button>Remove</button>
-					<label style="float:right">
+					<label class="tools-bg-thumb">
 						<input type="file" ng-file="backgroundImage" ng-file-change="fileChange" style="display:none">
 						<img style="height: 100px" ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}" />
+					</label>
+					<button ng-click="editStat.selectedScene.background=''">Remove</button>
+					<label style="float:right">
 					</label>
 				</div>
 			</div>
