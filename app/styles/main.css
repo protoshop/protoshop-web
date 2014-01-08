@@ -140,7 +140,7 @@ i { font-style: normal; }
    0%{ opacity: 0; background: #666;}
    100%{ opacity: 1; background: #383838;}
 }
-.layer-title{ border-bottom: 1px solid #454545; height: 34px;  padding:0 10px; margin-bottom:30px; }
+.layer-title{ border-bottom: 1px solid #454545; height: 34px; padding:0 0 0 10px; margin-bottom:30px; }
 .layer-title h3 { line-height: 30px; font-weight: 100; color: #fafafa; font-size: 20px; }
 .close { float: right; line-height: 30px; font-size: 18px; color: #fafafa; cursor: pointer; }
 .close:hover { color: #b7b7b7; text-decoration: none; }
