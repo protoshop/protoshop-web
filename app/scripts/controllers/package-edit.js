@@ -38,7 +38,7 @@ angular.module('toHELL')
           editService.setPackage($scope.package);
           editService.setStat($scope.editStat);
           // 默认选中第一个场景
-          var sceneId = editService.findScene('order', '0');
+          var sceneId = editService.findScene('order', 0);
           $scope.selectScene(sceneId);
         })
         .error(GLOBAL.errLogger);
@@ -46,7 +46,9 @@ angular.module('toHELL')
       editService.setStat($scope.editStat);
 
       for (var attr in editService) {
-        $scope[attr] = editService[attr];
+        if(editService.hasOwnProperty(attr)){
+          $scope[attr] = editService[attr];
+        }
       }
 
       /**

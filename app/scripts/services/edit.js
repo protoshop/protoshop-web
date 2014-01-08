@@ -197,7 +197,7 @@
       this.findScene = function (key, value) {
         var scenes = self.package.scenes;
         for (var i = scenes.length - 1; i >= 0; i--) {
-          if (scenes[i][key] === value) {
+          if (scenes[i][key] == value) {
             return scenes[i];
           }
         }
