@@ -334,7 +334,7 @@ module.exports = function (grunt) {
       },
       beta: {
         options: {
-          dest: '/usr/local/httpd/htdocs/tohell/beta/'
+          dest: '/usr/local/httpd/htdocs/beta/html/'
         }
       }
     }
