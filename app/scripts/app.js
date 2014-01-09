@@ -1,5 +1,7 @@
 'use strict';
 
+var isBeta = /\/beta/.test(window.location.href);
+
 angular.module('toHELL', [
     'ngCookies',
     'ngResource',
@@ -31,7 +33,10 @@ angular.module('toHELL', [
   }])
   .constant('GLOBAL', {
     host: 'http://wxddb1.qa.nt.ctripcorp.com/',
-    apiHost: /\/beta/.test(window.location.href)
+    pkgHost: isBeta
+      ? 'http://wxddb1.qa.nt.ctripcorp.com/betapackages/'
+      : 'http://wxddb1.qa.nt.ctripcorp.com/packages/',
+    apiHost: isBeta
       ? 'http://wxddb1.qa.nt.ctripcorp.com/tohellbeta/'
       : 'http://wxddb1.qa.nt.ctripcorp.com/tohell/',
     errLogger: function (data, status, headers, config) {

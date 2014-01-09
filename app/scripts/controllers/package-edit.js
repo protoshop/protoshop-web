@@ -77,8 +77,8 @@ angular.module('toHELL')
             file: files[0]
           }
         }).success(function (data) {
-            var pkgHost = GLOBAL.host + 'packages/' + $scope.package.appID + '/';
-            $scope.editStat.selectedScene.background = pkgHost + data.fileName;
+            var pkgURI = GLOBAL.pkgHost + $scope.package.appID + '/';
+            $scope.editStat.selectedScene.background = pkgURI + data.fileName;
             console.log('suc: ', data);
           })
           .error(function (err) {
