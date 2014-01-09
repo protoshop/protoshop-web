@@ -1,7 +1,7 @@
 /* To Hell by xll */
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, form, input,select, textarea, button, header, nav, menu, section, aside, footer { margin: 0; padding: 0; }
 body { min-width: 1280px; min-height: 804px; background:#292929; font-size:14px; font-family: "Open Sans", Helvetica, Arial, sans-serif; -webkit-user-select:none; -webkit-text-size-adjust:none; overflow-x:hidden; color: #333; }
-html, body { height: 100%; }
+html, body { height: 100%; overflow: hidden }
 ul, li { list-style:none; }
 a { color:#000; text-decoration:none; -webkit-tap-highlight-color:rgba(0,0,0,0); }
 
