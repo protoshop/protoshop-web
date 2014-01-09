@@ -338,7 +338,7 @@
           transitionType     : 'push',
           transitionDirection: 'up',
           transitionDelay    : 0,
-          transitionDuration : 3.25
+          transitionDuration : 0.25
         };
         actions.push(newAction);
         this.selectAction(newAction);
