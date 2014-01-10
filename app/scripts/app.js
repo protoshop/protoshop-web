@@ -1,6 +1,6 @@
 'use strict';
 
-var isBeta = /\/beta/.test(window.location.href);
+var isBeta = /(\/beta|:9999)/.test(window.location.href);
 
 angular.module('toHELL', [
     'ngCookies',
