@@ -20,9 +20,9 @@
 			<a class="navbar-brand" href="#/">ToHELL</a>
 		</div>
 		<div class="menu-main">
-			<button class="icon-play" title="Run"></button>
+			<!--<button class="icon-play" title="Run"></button>
 			<button class="icon-eye" title="Preview"></button>
-			<button class="icon-export" title="Export"></button>
+			<button class="icon-export" title="Export"></button>-->
 			<button class="icon-save" title="Save" ng-click="savePackage()">Save</button>
 		</div>
 		<div class="menu-modeswitch">
@@ -144,6 +144,7 @@
 					<div class="pkg-platform icon-{{pkg.appPlatform === 'android' ? 'android' : 'apple'}}"></div>
 					<div class="pkg-info">
 						<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
+						<i class="icon-lock"></i><!-- 如果是私密项目，显示带锁图标 -->
 						<span class="pkg-createtime" ng-bind="pkg.createTime"></span>
 						<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
 					</div>
@@ -163,31 +164,45 @@
 		<form class="layer-info" ng-submit="createPackage()">
 			<ul class="control-group">
 				<li>
-					<label>Devices</label>
-					<label class="devices">
-						<input type="radio" ng-model="newPackageConfig.appPlatform" name="platform" value="ios" required />
-						<i class="icon-apple" title="Apple">Apple</i>
-					</label>
-					<label class="devices">
-						<input type="radio" ng-model="newPackageConfig.appPlatform" name="platform" value="android" />
-						<i class="icon-android" title="Android">Android</i>
-					</label>
+					<div class="layer-item">Devices</div>
+					<div class="neat-form">
+						<label>
+							<input type="radio" ng-model="newPackageConfig.appPlatform" name="platform" value="ios" required />
+							<i class="icon-apple" title="Apple">Apple</i>
+						</label>
+						<label>
+							<input type="radio" ng-model="newPackageConfig.appPlatform" name="platform" value="android" />
+							<i class="icon-android" title="Android">Android</i>
+						</label>
+					</div>
 				</li>
 				<li>
-					<label>Name</label>
+					<div class="layer-item">Name</div>
 					<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称" />
 				</li>
 				<li>
-					<label>Description</label>
+					<div class="layer-item">Description</div>
 					<textarea ng-model="newPackageConfig.appDesc" name="projectDetails" cols="20" rows="5"></textarea>
 				</li>
 				<li>
-					<button class="btn-form">Save</button>
-					<button class="btn-form" type="reset" ng-click="toggleCreateDialog()">Cancel</button>
+					<div class="neat-form">
+						<label>
+							<input type="checkbox" />
+							<span class="privilege">
+								<i class="icon-lock-open"></i>
+								<i class="icon-lock"></i>
+							</span>
+						</label>
+					</div>
+					<div class="item-btn">
+						<button>Save</button>
+						<button type="reset" ng-click="toggleCreateDialog()">Cancel</button>
+					</div>
 				</li>
 			</ul>
 		</form>
 	</div>
+	<div class="layer-mask"></div>
 </script>
 
 <!-- ng-template: login.html -->
