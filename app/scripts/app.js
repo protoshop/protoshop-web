@@ -13,6 +13,10 @@ angular.module('toHELL', [
 
     $routeProvider
       .when('/', {
+        templateUrl: 'login.html',
+        controller: 'LoginCTRL'
+      })
+      .when('/list/', {
         templateUrl: 'package-list.html',
         controller: 'PackageListCTRL'
       })

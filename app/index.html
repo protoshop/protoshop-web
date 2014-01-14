@@ -190,6 +190,13 @@
 	</div>
 </script>
 
+<!-- ng-template: login.html -->
+<script type="text/ng-template" id="login.html">
+	<form class="login-form" ng-submit="doSignin()">
+		<button style="color: white; font-size: 2em">Sign in</button>
+	</form>
+</script>
+
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/jquery.js"></script>
@@ -207,6 +214,7 @@
 <script src="scripts/services/edit.js"></script>
 <script src="scripts/services/notify.js"></script>
 <script src="scripts/services/formdata.js"></script>
+<script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/package-list.js"></script>
 <script src="scripts/controllers/package-edit.js"></script>
 <script src="scripts/directives/directives.js"></script>
