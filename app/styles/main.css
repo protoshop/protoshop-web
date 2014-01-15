@@ -173,7 +173,7 @@ i { font-style: normal; }
 .login-box { margin: 160px auto; padding: 10px; }
 .login-box li { padding: 15px 0; }
 .login-box input[type="text"], .login-box input[type="password"] { width: 360px; padding: 10px; font-size: 18px; }
-.login-box input[type="button"] { float: right; width: 180px; height: 40px; background: #1ba1eb; font-size: 18px; color: #fff; }
+.login-box .btn-signin { float: right; width: 180px; height: 40px; background: #1ba1eb; font-size: 18px; color: #fff; }
 
 /* ==================================================
  *  Notification
