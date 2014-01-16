@@ -69,6 +69,7 @@
 					<label class="tools-bg-thumb">
 						<input type="file" ng-file="backgroundImage" ng-file-change="fileChange" style="display:none">
 						<img style="height: 100px" ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}" />
+						<i>+</i>
 					</label>
 					<button ng-click="editStat.selectedScene.background=''">Remove</button>
 					<label style="float:right">
