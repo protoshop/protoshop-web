@@ -4,7 +4,6 @@ angular.module('toHELL')
   .controller('LoginCTRL', ['$scope', '$location', '$http', 'GLOBAL',
     function ($scope, $location, $http, GLOBAL) {
 
-      console.log(1);
       // Check if user logged in.
       if (GLOBAL.loggedInUser) {
         return $location.path('list/');
