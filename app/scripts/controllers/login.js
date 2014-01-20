@@ -3,10 +3,14 @@
 angular.module('toHELL')
   .controller('LoginCTRL', ['$scope', '$location', '$http', 'GLOBAL',
     function ($scope, $location, $http, GLOBAL) {
-      $scope.user = {
-        username: '',
-        passwd: ''
-      };
+
+      console.log(1);
+      // Check if user logged in.
+      if (GLOBAL.loggedInUser) {
+        return $location.path('list/');
+      }
+
+      // Do the login operation.
       $scope.doSignin = function () {
 
         GLOBAL.loggedInUser = {
