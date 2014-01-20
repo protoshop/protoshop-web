@@ -1,12 +1,15 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'formDataObject',
-    'GLOBAL', 'editService', '$timeout', 'notifyService',
-    function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL,
-          editService, $timeout, notifyService) {
-      $scope.GLOBAL = GLOBAL;
-      
+  .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'formDataObject', 'GLOBAL',
+    '$location', 'editService', '$timeout', 'notifyService',
+    function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL, $location, editService, $timeout,
+      notifyService) {
+
+      if (!GLOBAL.loggedInUser) {
+        $location.path('/');
+      }
+
       /**
        * 存储当前的编辑状态
        * @var {Object}
@@ -46,7 +49,7 @@ angular.module('toHELL')
       editService.setStat($scope.editStat);
 
       for (var attr in editService) {
-        if(editService.hasOwnProperty(attr)){
+        if (editService.hasOwnProperty(attr)) {
           $scope[attr] = editService[attr];
         }
       }

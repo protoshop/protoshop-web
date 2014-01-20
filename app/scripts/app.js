@@ -37,11 +37,9 @@ angular.module('toHELL', [
   }])
   .constant('GLOBAL', {
     host: 'http://wxddb1.qa.nt.ctripcorp.com/',
-    pkgHost: isBeta
-      ? 'http://wxddb1.qa.nt.ctripcorp.com/betapackages/'
+    pkgHost: isBeta ? 'http://wxddb1.qa.nt.ctripcorp.com/betapackages/'
       : 'http://wxddb1.qa.nt.ctripcorp.com/packages/',
-    apiHost: isBeta
-      ? 'http://wxddb1.qa.nt.ctripcorp.com/tohellbeta/'
+    apiHost: isBeta ? 'http://wxddb1.qa.nt.ctripcorp.com/tohellbeta/'
       : 'http://wxddb1.qa.nt.ctripcorp.com/tohell/',
     errLogger: function (data, status, headers, config) {
       console.log('Status:', status, '\nData  :', data, '\nConfig:', config);

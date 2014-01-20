@@ -16,6 +16,7 @@
       }
     };
     var platform = 'ios';
+
     function EditServiceInstance() {
       var self = this;
 
@@ -80,11 +81,11 @@
        */
       this.addScene = function () {
         var newScene = {
-          id        : Date.now(),
-          order     : findMaxSceneOrder() + 1,
-          name      : 'New Scene ' + (''+Date.now()).slice(-3),
+          id: Date.now(),
+          order: findMaxSceneOrder() + 1,
+          name: 'New Scene ' + ('' + Date.now()).slice(-3),
           background: '',
-          elements  : []
+          elements: []
         };
         self.package.scenes.push(newScene);
 
@@ -107,11 +108,11 @@
           return this.addScene();
         }
         var newScene = {
-          id        : Date.now(),
-          order     : parseInt(scene.order, 10) + 1,
-          name      : 'Scene ' + (''+Date.now()).slice(-3),
+          id: Date.now(),
+          order: parseInt(scene.order, 10) + 1,
+          name: 'Scene ' + ('' + Date.now()).slice(-3),
           background: '',
-          elements  : []
+          elements: []
         };
         self.package.scenes.push(newScene);
 
@@ -147,20 +148,20 @@
        * @param {Object} to - 目标位置
        */
       this.orderScene = function (from, to) {
-        var scenes = self.package.scenes;
+        var scenes = self.package.scenes, s;
         if (from > to) {
-          for(var s=0;s<scenes.length;++s) {
-            if( scenes[s].order < from && scenes[s].order >= to) {
+          for (s = 0; s < scenes.length; ++s) {
+            if (scenes[s].order < from && scenes[s].order >= to) {
               scenes[s].order += 1;
             } else if (scenes[s].order - from === 0) {
               scenes[s].order = to;
             }
           }
         } else if (from < to) {
-          for(var s=0;s<scenes.length;++s) {
-            if( scenes[s].order > from && scenes[s].order <= to) {
+          for (s = 0; s < scenes.length; ++s) {
+            if (scenes[s].order > from && scenes[s].order <= to) {
               scenes[s].order -= 1;
-            }else if(scenes[s].order - from === 0) {
+            } else if (scenes[s].order - from === 0) {
               scenes[s].order = to;
             }
           }
@@ -226,7 +227,7 @@
         scenes.sort(function (a, b) {
           return parseInt(a.order, 10) - parseInt(b.order, 10);
         });
-        for(var i=0;i<scenes.length;++i) {
+        for (var i = 0; i < scenes.length; ++i) {
           scenes[i].order = i;
         }
       }
@@ -241,7 +242,7 @@
         self.deselectAction();
         self.deselectElement();
         self.editStat.selectedElement = element;
-        
+
         if (element.actions.length > 0) {
           self.selectAction(element.actions[0]);
         }
@@ -282,11 +283,11 @@
         var scene = self.editStat.selectedScene;
         var newElement = {
           // 默认参数
-          type   : 'hotspot',
-          posX   : 100,
-          posY   : 300,
-          width  : 120,
-          height : 42,
+          type: 'hotspot',
+          posX: 100,
+          posY: 300,
+          width: 120,
+          height: 42,
           actions: []
         };
         scene.elements.push(newElement);
@@ -335,12 +336,12 @@
           return;
         }
         var newAction = {
-          type               : 'jumpto',
-          target             : null,
-          transitionType     : 'push',
+          type: 'jumpto',
+          target: null,
+          transitionType: 'push',
           transitionDirection: 'up',
-          transitionDelay    : 0,
-          transitionDuration : 0.25
+          transitionDelay: 0,
+          transitionDuration: 0.25
         };
         actions.push(newAction);
         this.selectAction(newAction);
@@ -399,9 +400,9 @@
        */
       this.renderHotspotStyle = function (element) {
         return {
-          left  : element.posX,
-          top   : element.posY,
-          width : element.width,
+          left: element.posX,
+          top: element.posY,
+          width: element.width,
           height: element.height
         };
       };

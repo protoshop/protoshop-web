@@ -4,6 +4,10 @@ angular.module('toHELL')
   .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', function ($scope, $http, $location,
     GLOBAL) {
 
+    if (!GLOBAL.loggedInUser) {
+      $location.path('/');
+    }
+
     // To get data & set list.
     $scope.refreshList = function () {
       // $http.get('/api/package/list.json')
