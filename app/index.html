@@ -24,8 +24,8 @@
 		<div class="login-box">
 			<form class="login-form" ng-submit="doSignin()">
 				<ul>
-					<li><input type="text" placeholder="域帐号" ng-bind="user.username" /></li>
-					<li><input type="password" placeholder="密码" ng-bind="user.passwd" /></li>
+					<li><input type="text" placeholder="域帐号" ng-model="loginData.username" /></li>
+					<li><input type="password" placeholder="密码" ng-model="loginData.passwd" /></li>
 					<li><button class="btn-signin">Sign in</button></li>
 				</ul>
 			</form>

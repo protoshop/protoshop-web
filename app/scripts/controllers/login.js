@@ -12,15 +12,7 @@ angular.module('toHELL')
       // Do the login operation.
       $scope.doSignin = function () {
 
-        GLOBAL.loggedInUser = {
-          email: 'mail@example.com',
-          name: 'godisagirl',
-          nickname: 'Giag'
-        };
-        $location.path('list/');
-        return;
-
-        $http.post(GLOBAL.apiHost + 'login/', $scope.user)
+        $http.post(GLOBAL.apiHost + 'login/', $scope.loginData)
           .success(function (res) {
             switch (res.status) {
             case 1:
@@ -28,7 +20,7 @@ angular.module('toHELL')
               $location.path('list/');
               break;
             default:
-              console.log('Login Error: ' + res);
+              console.log('Login Error:', res);
             }
           })
           .error(GLOBAL.errLogger);
