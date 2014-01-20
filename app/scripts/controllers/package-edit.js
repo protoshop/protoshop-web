@@ -9,7 +9,7 @@ angular.module('toHELL')
       if (!GLOBAL.loggedInUser) {
         $location.path('/');
       }
-      
+
       /**
        * 存储当前的编辑状态
        * @var {Object}
