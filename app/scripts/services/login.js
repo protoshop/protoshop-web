@@ -12,11 +12,11 @@ angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', function (
           switch (res.status) {
           case '1':
             loggedInUser = res.result;
-            callback(res.result);
+            callback && callback(res.result);
             break;
           default:
             console.log('Login Error:', res);
-            errCallback(res);
+            errCallback && errCallback(res);
           }
         })
         .error(GLOBAL.errLogger);
