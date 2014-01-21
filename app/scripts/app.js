@@ -16,6 +16,10 @@ angular.module('toHELL', [
         templateUrl: 'login.html',
         controller: 'LoginCTRL'
       })
+      .when('/register/', {
+        templateUrl: 'register.html',
+        controller: 'RegisterCTRL'
+      })
       .when('/list/', {
         templateUrl: 'package-list.html',
         controller: 'PackageListCTRL'
