@@ -1,17 +1,18 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', function ($scope, $http, $location,
-    GLOBAL) {
-
-    if (!GLOBAL.loggedInUser) {
+  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', 'loginService',
+    function ($scope, $http, $location, GLOBAL, loginService) {
+      
+    if (!loginService.isLoggedIn()) {
       $location.path('/');
+      return;
     }
 
     // To get data & set list.
     $scope.refreshList = function () {
       // $http.get('/api/package/list.json')
-      $http.get(GLOBAL.apiHost + 'fetchlist/')
+      $http.get(GLOBAL.apiHost + 'fetchlist/?device=&owner=' + loginService.getLoggedInUser().name)
         .success(function (data) {
           $scope.packageList = data.projectList;
         })
@@ -53,6 +54,7 @@ angular.module('toHELL')
      */
     $scope.newPackageConfig = {
       appPlatform: 'ios',  // 'android' or 'ios'
+      appOwner: loginService.getLoggedInUser().name,
       appName: '',
       appDesc: ''
     };

@@ -6,8 +6,9 @@ angular.module('toHELL')
     function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL, $location, editService, $timeout,
       notifyService) {
 
-      if (!GLOBAL.loggedInUser) {
+      if (!loginService.isLoggedIn()) {
         $location.path('/');
+        return;
       }
 
       /**

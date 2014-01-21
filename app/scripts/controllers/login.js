@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('LoginCTRL', ['$scope', '$location', '$http', 'GLOBAL',
-    function ($scope, $location, $http, GLOBAL) {
+  .controller('LoginCTRL', ['$scope', '$location', '$http', 'GLOBAL', 'loginService',
+    function ($scope, $location, $http, GLOBAL, loginService) {
 
       // Check if user logged in.
       if (GLOBAL.loggedInUser) {
@@ -12,17 +12,9 @@ angular.module('toHELL')
       // Do the login operation.
       $scope.doSignin = function () {
 
-        $http.post(GLOBAL.apiHost + 'login/', $scope.loginData)
-          .success(function (res) {
-            switch (res.status) {
-            case 1:
-              GLOBAL.loggedInUser = res.result;
-              $location.path('list/');
-              break;
-            default:
-              console.log('Login Error:', res);
-            }
-          })
-          .error(GLOBAL.errLogger);
+        loginService.doLogin($scope.loginData, function(){
+          $location.path('list/');
+        });
+
       };
     }]);

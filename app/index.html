@@ -25,7 +25,7 @@
 			<form class="login-form" ng-submit="doSignin()">
 				<ul>
 					<li><input type="text" placeholder="域帐号" ng-model="loginData.username" /></li>
-					<li><input type="password" placeholder="密码" ng-model="loginData.passwd" /></li>
+					<li><input type="password" placeholder="密码" ng-model="loginData.userpwd" /></li>
 					<li><button class="btn-signin">Sign in</button></li>
 				</ul>
 			</form>
@@ -241,6 +241,7 @@
 <!-- build:js scripts/scripts.js -->
 <script src="scripts/app.js"></script>
 <script src="scripts/services/edit.js"></script>
+<script src="scripts/services/login.js"></script>
 <script src="scripts/services/notify.js"></script>
 <script src="scripts/services/formdata.js"></script>
 <script src="scripts/controllers/login.js"></script>
