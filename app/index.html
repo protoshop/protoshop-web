@@ -24,7 +24,7 @@
 		<div class="login-box">
 			<form class="login-form" ng-submit="doSignin()">
 				<ul>
-					<li><input type="text" placeholder="用户名" ng-bind="user.username" /></li>
+					<li><input type="text" placeholder="邮箱" ng-bind="user.email" /></li>
 					<li><input type="password" placeholder="密码" ng-bind="user.passwd" /></li>
 					<li><button class="btn-login">登录</button><a href="#/register/" class="link-form">注册用户</a></li>
 				</ul>
@@ -44,10 +44,8 @@
 		<div class="login-box">
 			<form class="login-form" ng-submit="doRegister()">
 				<ul>
-					<li><input type="text" placeholder="用户名" ng-bind="user.username" /></li>
+					<li><input type="text" placeholder="邮箱" ng-bind="user.email" /></li>
 					<li><input type="password" placeholder="密码" ng-bind="user.passwd" /></li>
-					<li><input type="text" placeholder="昵称（可选）" ng-bind="user.nickname" /></li>
-					<li><input type="text" placeholder="邮箱（可选）" ng-bind="user.email" /></li>
 					<li><button class="btn-login">注册</button><a href="#/" class="link-form">返回登录</a></li>
 				</ul>
 			</form>
