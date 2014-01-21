@@ -21,7 +21,7 @@ i { font-style: normal; }
 .menu-main button, .menu-modeswitch button, .scenes-edit button { display: inline-block; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 16px; color: #afafaf; background: transparent; cursor: pointer; }
 .menu-modeswitch .current { background-color: #162a3a; color: #178dd4; }
 
-.layout-main { position: relative; display: -webkit-box; display: box; width: 100%; height: 100%; }
+.layout-main { position: relative; display: -webkit-box; display:-moz-box; display: -webkit-flex; display: -ms-flexbox;  display: box; width: 100%; height: 100%; }
 
 .layout-scenes { position: relative; width: 180px; background-color: #222; overflow-x: hidden; overflow-y: auto; margin-top: 51px; }
 .layout-scenes ul{ margin-bottom: 60px; }
