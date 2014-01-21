@@ -72,7 +72,7 @@
 					<div class="pkg-platform icon-{{pkg.appPlatform === 'android' ? 'android' : 'apple'}}"></div>
 					<div class="pkg-info">
 						<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
-						<i class="icon-lock"></i><!-- 如果是私密项目，显示带锁图标 -->
+						<i class="icon-lock" ng-show="pkg.isPublic === '1'"></i>
 						<span class="pkg-createtime" ng-bind="pkg.createTime"></span>
 						<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
 					</div>
