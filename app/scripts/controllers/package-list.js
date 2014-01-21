@@ -14,7 +14,7 @@ angular.module('toHELL')
       // $http.get('/api/package/list.json')
       $http.get(GLOBAL.apiHost + 'fetchlist/?device=&owner=' + loginService.getLoggedInUser().name)
         .success(function (data) {
-          $scope.packageList = data.projectList;
+          $scope.packageList = data.results;
         })
         .error(GLOBAL.errLogger);
     };
