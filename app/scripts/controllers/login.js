@@ -5,7 +5,7 @@ angular.module('toHELL')
     function ($scope, $location, $http, GLOBAL, loginService) {
 
       // Check if user logged in.
-      if (GLOBAL.loggedInUser) {
+      if (loginService.isLoggedIn()) {
         return $location.path('list/');
       }
 
