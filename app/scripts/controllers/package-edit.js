@@ -2,9 +2,9 @@
 
 angular.module('toHELL')
   .controller('PackageEditCTRL', ['$scope', '$routeParams', '$http', '$document', 'formDataObject', 'GLOBAL',
-    '$location', 'editService', '$timeout', 'notifyService',
+    '$location', 'editService', '$timeout', 'notifyService', 'loginService',
     function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL, $location, editService, $timeout,
-      notifyService) {
+      notifyService, loginService) {
 
       if (!loginService.isLoggedIn()) {
         $location.path('/');
