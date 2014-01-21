@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', 'loginService',
-    function ($scope, $http, $location, GLOBAL, loginService) {
-      
+  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', 'loginService', function ($scope, $http,
+    $location, GLOBAL, loginService) {
+
     if (!loginService.isLoggedIn()) {
       $location.path('/');
       return;
@@ -54,6 +54,7 @@ angular.module('toHELL')
      */
     $scope.newPackageConfig = {
       appPlatform: 'ios',  // 'android' or 'ios'
+      isPublic: false,     // TODO:此处和视觉的逻辑是反的，待调整
       appOwner: loginService.getLoggedInUser().name,
       appName: '',
       appDesc: ''
@@ -63,9 +64,12 @@ angular.module('toHELL')
      * 创建 Package
      */
     $scope.createPackage = function () {
+
+      $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublic ? '0' : '1';
       var postData = {
         context: $scope.newPackageConfig
       };
+
       $http.post(GLOBAL.apiHost + 'createPoject/', postData)
         .success(function (data) {
           $location.path('/package/' + data.appID);
