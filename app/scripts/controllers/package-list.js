@@ -54,7 +54,7 @@ angular.module('toHELL')
      */
     $scope.newPackageConfig = {
       appPlatform: 'ios',  // 'android' or 'ios'
-      isPublic: false,     // TODO:此处和视觉的逻辑是反的，待调整
+      isPublic: true,
       appOwner: loginService.getLoggedInUser().name,
       appName: '',
       appDesc: ''
@@ -65,7 +65,7 @@ angular.module('toHELL')
      */
     $scope.createPackage = function () {
 
-      $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublic ? '0' : '1';
+      $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublic ? '1' : '0';
       var postData = {
         context: $scope.newPackageConfig
       };
