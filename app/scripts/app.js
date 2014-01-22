@@ -45,6 +45,27 @@ angular.module('toHELL', [
       : 'http://wxddb1.qa.nt.ctripcorp.com/packages/',
     apiHost: isBeta ? 'http://wxddb1.qa.nt.ctripcorp.com/tohellbeta/'
       : 'http://wxddb1.qa.nt.ctripcorp.com/tohell/',
+    errDesc: {
+      // 登陆接口 /login/
+      1001: '请求方式错误',
+      1002: '用户名或密码不正确',
+      1003: '邮箱为空',
+      1004: '密码为空',
+      1005: '邮箱错误',
+      // 注册接口 /register/
+      2001: '请求方式错误',
+      2002: '用户已存在',
+      2003: '服务器内部错误',
+      2004: '用户名为空',
+      2005: '密码为空',
+      // 获取用户信息接口 /usrinfo/
+      3001: '请求方式错误',
+      3002: '用户名不存在',
+      // 更新用户信息接口 /updateuser/
+      4001: '请求方式错误',
+      4002: '用户名为空',
+      4003: '用户名不存在'
+    },
     errLogger: function (data, status, headers, config) {
       console.log('Status:', status, '\nData  :', data, '\nConfig:', config);
     }

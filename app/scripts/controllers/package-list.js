@@ -12,7 +12,7 @@ angular.module('toHELL')
     // To get data & set list.
     $scope.refreshList = function () {
       // $http.get('/api/package/list.json')
-      $http.get(GLOBAL.apiHost + 'fetchlist/?device=&owner=' + loginService.getLoggedInUser().name)
+      $http.get(GLOBAL.apiHost + 'fetchlist/?device=&owner=' + loginService.getLoggedInUser().email)
         .success(function (data) {
           $scope.packageList = data.results;
         })
@@ -55,7 +55,7 @@ angular.module('toHELL')
     $scope.newPackageConfig = {
       appPlatform: 'ios',  // 'android' or 'ios'
       isPublic: true,
-      appOwner: loginService.getLoggedInUser().name,
+      appOwner: loginService.getLoggedInUser().email,
       appName: '',
       appDesc: ''
     };

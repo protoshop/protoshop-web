@@ -98,10 +98,10 @@ angular.module('toHELL')
           context: $scope.package
         })
           .success(function () {
-            // window.alert('已保存！');
             notifyService.notify('已保存！');
             console.log('Package "' + $scope.package.appID + '" saved!');
-          });
+          })
+          .error(GLOBAL.errLogger);
       };
 
     }]);
