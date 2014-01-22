@@ -16,6 +16,7 @@ angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', function (
             break;
           default:
             var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+            alert(errDesc);
             console.log('Login Error: ', errDesc, res);
             errCallback && errCallback(res);
           }
