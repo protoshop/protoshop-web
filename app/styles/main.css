@@ -15,9 +15,6 @@ i { font-style: normal; }
 .navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
 .navbar-header { float: left; padding: 0 10px; }
 .navbar-brand { line-height: 50px; font-size: 18px; font-weight: normal; cursor: default; color: #fafafa; }
-.navbar-about { float: right; padding: 0 10px; }
-.navbar-about .navbar-icon { display: inline-block; margin-top: 8px; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 18px; font-weight: 700; color: #afafaf; text-align: center; }
-.navbar-about .navbar-icon:hover { background: #162a3a; color: #178dd4; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
 .menu-main { float: left; }
 .menu-modeswitch { float: right; margin-right: 10px; }
@@ -121,7 +118,7 @@ i { font-style: normal; }
  *  Package List (previously 'project')
  */
 
-.pkg-box { width: 1200px; margin: 50px auto 0; }
+.pkg-box { width: 1200px; margin: 50px auto 0; overflow-y: auto; }
 .pkg-title { padding: 20px 6px; height: 40px; border-bottom: #333 solid 2px; }
 .pkg-title .pkg-name { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
 .pkg-title .pkg-new { float: right; padding: 0 14px; font-size: 18px; color: #fff; line-height: 40px; background: #1ba1eb; }
@@ -191,11 +188,3 @@ i { font-style: normal; }
 .notify-item.ng-hide-add.ng-hide-add-active,.notify-item.ng-hide-remove{ opacity: 0 }
 .notify-item.ng-hide-add,.notify-item.ng-hide-remove.ng-hide-remove-active{ opacity: 1 }
 .notify-item.ng-enter-stagger{ -webkit-transition-delay: .1s; -moz-transition-delay: .1s; transition-delay: .1s }
-
-/* About */
-.about-container { width: 1200px; margin: 50px auto; }
-.about-container .box-title { padding: 20px 0; border-bottom: 1px solid #eee; font-size: 20px; font-family: Microsoft Yahei; }
-.about-box { padding: 20px 0; }
-.about-box p { padding: 20px 0; }
-.about-box a { color: #014eb6; text-decoration: underline; }
-
