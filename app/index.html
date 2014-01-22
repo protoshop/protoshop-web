@@ -27,8 +27,8 @@
 		<div class="login-box">
 			<form class="login-form" ng-submit="doSignin()">
 				<ul>
-					<li><input type="text" placeholder="邮箱" ng-model="loginData.username" /></li>
-					<li><input type="password" placeholder="密码" ng-model="loginData.userpwd" /></li>
+					<li><input type="text" placeholder="邮箱" ng-model="loginData.email" /></li>
+					<li><input type="password" placeholder="密码" ng-model="loginData.passwd" /></li>
 					<li><button class="btn-login">登录</button><a href="#/register/" class="link-form">注册用户</a></li>
 				</ul>
 			</form>
@@ -72,10 +72,10 @@
 			<!-- Package List -->
 			<ul class="pkg-list">
 				<li ng-repeat="pkg in packageList">
-					<div class="pkg-platform icon-{{pkg.appPlatform === 1 ? 'apple' : 'android'}}"></div>
+					<div class="pkg-platform icon-{{pkg.appPlatform === 'ios' ? 'apple' : 'android'}}"></div>
 					<div class="pkg-info">
 						<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
-						<i class="icon-lock" ng-show="pkg.isPublic === '1'"></i>
+						<i class="icon-lock" ng-show="pkg.isPublic !== '1'"></i>
 						<span class="pkg-createtime" ng-bind="pkg.createTime"></span>
 						<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
 					</div>
@@ -118,7 +118,7 @@
 				<li>
 					<div class="neat-form">
 						<label>
-							<input type="checkbox" />
+							<input type="checkbox" ng-model="newPackageConfig.isPublic" />
 							<span class="ispublic">
 								<i class="icon-lock"></i>
 							</span>

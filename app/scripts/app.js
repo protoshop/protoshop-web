@@ -64,7 +64,12 @@ angular.module('toHELL', [
       // 更新用户信息接口 /updateuser/
       4001: '请求方式错误',
       4002: '用户名为空',
-      4003: '用户名不存在'
+      4003: '用户名不存在',
+      // 删除项目接口 /deleteProject/
+      6001: '请求方式错误',
+      6002: 'owner为空',
+      6003: 'appid为空',
+      6004: '服务器内部错误'
     },
     errLogger: function (data, status, headers, config) {
       console.log('Status:', status, '\nData  :', data, '\nConfig:', config);

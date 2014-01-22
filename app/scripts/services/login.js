@@ -3,10 +3,10 @@
 angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', function ($http, GLOBAL) {
   var loggedInUser;
   return {
-    isLoggedIn: function(){
+    isLoggedIn: function () {
       return !!loggedInUser;
     },
-    doLogin: function(account, callback, errCallback){
+    doLogin: function (account, callback, errCallback) {
       $http.post(GLOBAL.apiHost + 'login/', account)
         .success(function (res) {
           switch (res.status) {
@@ -16,13 +16,13 @@ angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', function (
             break;
           default:
             var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
-            console.log('Signup Error: ', errDesc, res);
+            console.log('Login Error: ', errDesc, res);
             errCallback && errCallback(res);
           }
         })
         .error(GLOBAL.errLogger);
     },
-    getLoggedInUser: function(){
+    getLoggedInUser: function () {
       return this.isLoggedIn() ? loggedInUser : false;
     }
   }

@@ -83,7 +83,7 @@
         var newScene = {
           id: Date.now(),
           order: findMaxSceneOrder() + 1,
-          name: 'New Scene ' + ('' + Date.now()).slice(-3),
+          name: 'New Scene ' + (self.package.scenes.length + 1),
           background: '',
           elements: []
         };
@@ -110,7 +110,7 @@
         var newScene = {
           id: Date.now(),
           order: parseInt(scene.order, 10) + 1,
-          name: 'Scene ' + ('' + Date.now()).slice(-3),
+          name: 'New Scene ' + (self.package.scenes.length + 1),
           background: '',
           elements: []
         };
