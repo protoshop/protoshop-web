@@ -1,0 +1,11 @@
+{
+  "name": "Prototype",
+  "description": "A CtripWXD product.",
+  "version": "0.3",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": { "16": "images/icon-tohell-120.png", "128": "images/icon-tohell-120.png" }
+}
