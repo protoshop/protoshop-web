@@ -69,7 +69,7 @@
 			<!-- Package List -->
 			<ul class="pkg-list">
 				<li ng-repeat="pkg in packageList">
-					<div class="pkg-platform icon-{{pkg.appPlatform === 'android' ? 'android' : 'apple'}}"></div>
+					<div class="pkg-platform icon-{{pkg.appPlatform === 1 ? 'apple' : 'android'}}"></div>
 					<div class="pkg-info">
 						<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
 						<i class="icon-lock" ng-show="pkg.isPublic === '1'"></i>
