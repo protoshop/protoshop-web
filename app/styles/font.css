@@ -1,4 +1,10 @@
 @font-face {
+  font-family: 'HelveticaUltraLight';
+  src: url('../font/helvetica-neue-ultralight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: 'tohell';
   src: url('../font/tohell.eot');
   src: url('../font/tohell.eot#iefix') format('embedded-opentype'),
@@ -8,17 +14,6 @@
   font-weight: normal;
   font-style: normal;
 }
-/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
-/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'tohell';
-    src: url('../font/tohell.svg#tohell') format('svg');
-  }
-}
-*/
- 
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "tohell";
   font-style: normal;
