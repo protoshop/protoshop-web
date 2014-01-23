@@ -104,4 +104,11 @@ angular.module('toHELL')
           .error(GLOBAL.errLogger);
       };
 
+      /**
+       * 登出账号
+       */
+      $scope.logout = function () {
+        loginService.doLogout();
+      }
+
     }]);
