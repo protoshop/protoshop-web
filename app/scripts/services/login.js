@@ -1,10 +1,16 @@
 'use strict';
 
-angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', function ($http, GLOBAL) {
+angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', '$location', function ($http, GLOBAL, $location) {
+
   var loggedInUser;
+
   return {
     isLoggedIn: function () {
+      loggedInUser = loggedInUser || JSON.parse(localStorage.getItem('loggedInUser'));
       return !!loggedInUser;
+    },
+    getLoggedInUser: function () {
+      return this.isLoggedIn() ? loggedInUser : false;
     },
     doLogin: function (account, callback, errCallback) {
       $http.post(GLOBAL.apiHost + 'login/', account)
@@ -12,18 +18,23 @@ angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', function (
           switch (res.status) {
           case '1':
             loggedInUser = res.result;
+            localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
             callback && callback(res.result);
             break;
           default:
             var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+            alert(errDesc);
             console.log('Login Error: ', errDesc, res);
             errCallback && errCallback(res);
           }
         })
         .error(GLOBAL.errLogger);
     },
-    getLoggedInUser: function () {
-      return this.isLoggedIn() ? loggedInUser : false;
+    doLogout: function (callback) {
+      loggedInUser = false;
+      localStorage.removeItem('loggedInUser');
+      $location.path('/');
+      callback && callback();
     }
   }
 }]);

@@ -65,6 +65,9 @@
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">Protoshop</a>
 		</div>
+		<div class="menu-modeswitch">
+			<button ng-click="logout()">Logout</button>
+		</div>
 		<div class="navbar-about">
 			<a href="about.html" class="navbar-icon">?</a>
 		</div>
@@ -141,7 +144,7 @@
 	<div class="layer-mask"></div>
 </script>
 
-<!-- ng-template: package.html -->
+<!-- ng-template: package-edit.html -->
 <script type="text/ng-template" id="package-edit.html">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
@@ -183,7 +186,7 @@
 		<!-- 中栏：场景详情修改区 -->
 		<div class="layout-stage {{package.appPlatform === 'android' ? 's4':'i5'}}" ng-click="onBackgroundClick()">
 			<div class="scene">
-				<img class="scene-bg" ng-src="{{editStat.selectedScene.background||''}}" alt=""/>
+				<img class="scene-bg" ng-show="editStat.selectedScene.background" ng-src="{{editStat.selectedScene.background}}" alt=""/>
 				<div editor-hotspot-group></div>
 			</div>
 		</div>

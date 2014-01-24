@@ -14,6 +14,7 @@ angular.module('toHELL')
               break;
             default:
               var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+              alert(errDesc);
               console.log('Signup Error: ', errDesc, res);
             }
           })
