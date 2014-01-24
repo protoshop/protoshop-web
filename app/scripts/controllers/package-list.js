@@ -84,4 +84,24 @@ angular.module('toHELL')
         })
         .error(GLOBAL.errLogger);
     };
+    
+    /**
+     * 登出账号
+     */
+    $scope.logout = function (e) {
+      var tar = angular.element(e.target);
+      var timeout = 1000,
+        readyTimer = false;
+      
+      if(tar.hasClass('ready')){
+        clearTimeout(readyTimer);
+        loginService.doLogout();
+      }else{
+        tar.addClass('ready');
+        readyTimer = setTimeout(function(){
+          tar.removeClass('ready');
+        },timeout);
+      }
+      //
+    };
   }]);
