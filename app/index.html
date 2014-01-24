@@ -62,7 +62,9 @@
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">Protoshop</a>
 		</div>
-		<button ng-click="logout()">Logout</button>
+		<button ng-click="logout($event)" class="btn btn-logout">
+			<span class="todo-text">Logout</span><span class="ready-text">Sure, Log me out.</span>
+		</button>
 	</nav>
 	<div class="layout-main">
 		<div class="pkg-box">

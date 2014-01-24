@@ -14,7 +14,7 @@ i { font-style: normal; }
 .navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; background-color: #383838; border-bottom: 1px solid #000; z-index: 9; }
 .navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
 .navbar-header { float: left; padding: 0 20px; }
-.navbar-brand { line-height: 50px; font-size: 24px; font-family: HelveticaUltraLight; font-weight: normal; color: #fafafa; letter-spacing: 2px; }
+.navbar-brand { line-height: 50px; font-size: 24px; font-family: HelveticaUltraLight, sans-serif; font-weight: 100; color: #fafafa; letter-spacing: 2px; }
 .navbar-about { float: right; padding: 0 10px; }
 .navbar-about .navbar-icon { display: inline-block; margin-top: 8px; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 18px; font-weight: 700; color: #afafaf; text-align: center; }
 .navbar-about .navbar-icon:hover { background: #162a3a; color: #178dd4; }
@@ -23,6 +23,13 @@ i { font-style: normal; }
 .menu-modeswitch { float: right; margin-right: 10px; }
 .menu-main button, .menu-modeswitch button, .scenes-edit button { display: inline-block; padding: 0 10px; line-height: 32px; border: 1px solid #000; border-radius: 5px; font-size: 16px; color: #afafaf; background: transparent; cursor: pointer; }
 .menu-modeswitch .current { background-color: #162a3a; color: #178dd4; }
+.btn-logout { height: 50px; line-height: 50px;  font-size: 18px; color: #999; outline: none; float: right }
+.btn-logout:hover { background: #1ba1eb; color: #FFF }
+.btn-logout span { display: inline-block; height: 50px; overflow: hidden; text-align: center; pointer-events: none; transition:width 0.2s }
+.btn-logout .todo-text { width: 100px }
+.btn-logout.ready .ready-text { width: 200px; background-color: #944; color: #FFF }
+.btn-logout .ready-text,
+.btn-logout.ready .todo-text { width: 0 }
 
 .layout-main { position: relative; display:-moz-box; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox;  display: box; display: flexbox; display: flex;  width: 100%; height: 100%; }
 
