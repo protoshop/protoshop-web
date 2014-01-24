@@ -1,4 +1,4 @@
-/* To Hell by xll */
+/* Protoshop @llxue */
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, form, input,select, textarea, button, header, nav, menu, section, aside, footer { margin: 0; padding: 0; }
 body { min-width: 1280px; min-height: 804px; background:#222; font-size:14px; font-family: "Open Sans", Helvetica, Arial, sans-serif; -webkit-user-select:none; -moz-user-select:none; -webkit-text-size-adjust:none; overflow-x:hidden; color: #333; }
 html, body { height: 100%; overflow: hidden }
@@ -33,10 +33,7 @@ i { font-style: normal; }
 .i5 { background-image: url(../images/bg-stage-i5.png); }
 .s4 { background-image: url(../images/bg-stage-s4.png); }
 
-/* ==================================================
- *  Scenes ( layout - left sidebar )
- */
-
+/* Scenes ( layout - left sidebar ) */
 .scenes-list { padding: 0; }
 .scenes-title { padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; word-break: break-all; }
 .scene-item { position: relative; padding: 20px 0; }
@@ -49,10 +46,7 @@ i { font-style: normal; }
 .scenes-edit { position: fixed; left: 0; bottom: 0; width: 180px; height: 40px; background-color: #383838; text-align: center; }
 .scenes-edit button { width: 60px; height: 26px; line-height: 26px; margin-top: 6px; font-size: 20px; }
 
-/* ==================================================
- *  Stage ( layout - center stage )
- */
-
+/* Stage ( layout - center stage ) */
 .scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 26px auto 0 }
 .i5 .scene { width: 320px; height: 568px; -webkit-transform: translate(-220px, -284px); transform: translate(-220px, -284px); }
 .s4 .scene { width: 400px; height: 640px; -webkit-transform: translate(-259px, -323px); transform: translate(-220px, -284px); }
@@ -90,10 +84,7 @@ i { font-style: normal; }
 .goto-transition input[type="radio"] { visibility: hidden; width: 0; height: 0; }
 .goto-transition input[type="radio"]:checked + i { color: #b7b7b7; }
 
-/* ==================================================
- *  Tools ( layout - right sidebar )
- */
-
+/* Tools ( layout - right sidebar ) */
 .tools-title { padding: 0 10px; height: 30px; line-height: 30px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; }
 .tools-title a { display: block; height: 30px; line-height: 30px; color: #afafaf; }
 .tools-title button{ float: right; margin-top:8px; margin-right:7px; color: #178dd4; }
@@ -117,11 +108,9 @@ i { font-style: normal; }
 .tools-actor-item-selected:before { position: absolute; content: ""; left: 4px; top: 6px; width: 288px; height: 20px; border: 1px solid #ffb529; border-radius: 6px; background-color: rgba(255,282,41,0.1); pointer-events: none; }
 .tools-actor-comment { font-size: 10px; margin-left: 6px; }
 
-/* ==================================================
- *  Package List (previously 'project')
- */
+/* Package List */
 
-.pkg-box { width: 1200px; margin: 50px auto 0; overflow-y: auto; }
+.pkg-box { width: 960px; margin: 50px auto 0; overflow-y: auto; }
 .pkg-title { padding: 20px 6px; height: 40px; border-bottom: #333 solid 2px; }
 .pkg-title .pkg-name { float: left; font-size: 30px; font-weight: 100; color: #afafaf; }
 .pkg-title .pkg-new { float: right; padding: 0 14px; font-size: 18px; color: #fff; line-height: 40px; background: #1ba1eb; }
@@ -129,7 +118,7 @@ i { font-style: normal; }
 .pkg-title .pkg-new i { font-style: normal; padding-right: 5px; }
 .pkg-list li { min-height: 56px; padding: 25px 10px 25px 50px; border-bottom: 1px dashed #333; overflow: hidden; }
 .pkg-list .pkg-platform { float: left; margin-left: -50px; margin-top: -3px; width: 32px; height: 32px; font-size: 28px; }
-.pkg-info { float: left; width: 920px; line-height: 26px; }
+.pkg-info { float: left; width: 700px; line-height: 26px; }
 .pkg-info .pkg-appname { font-size: 22px; color: #1ba1eb; float:left; }
 .pkg-info .pkg-appname:hover { text-decoration: underline; }
 .pkg-info .pkg-createtime { margin-left: 10px; font-size: 16px; font-weight: 100; color: rgba(255,255,255,0.4); float:left; }
@@ -162,25 +151,28 @@ i { font-style: normal; }
 .control-group input[type="text"], .control-group textarea { width: 360px; padding: 6px 10px; background: #efefef; font-size: 14px; }
 .neat-form .ispublic { display: inline-block; height: 30px; line-height: 30px; }
 .icon-lock { float: left; font-size: 30px; color: #ae81ff; }
-.neat-form .icon-lock:after { content: "设置为私密项目"; font-size: 14px; color: #ae81ff; }
+.neat-form .icon-lock:after { content: "设为私密项目"; font-size: 14px; color: #ae81ff; }
 .neat-form input[type="checkbox"]:checked + .ispublic .icon-lock { color: rgba(255,255,255,0.2); }
 .neat-form input[type="checkbox"]:checked + .ispublic .icon-lock:after { color: rgba(255,255,255,0.2); }
 .control-group .item-btn { float: right; }
 .control-group button { margin-left: 20px; padding: 0 10px; line-height: 30px; background: #1ba1eb; font-size: 16px; color: #fff; }
 
-/* ==================================================
- *  Login
- */
+/* Login */
 .login-box { margin: 160px auto; padding: 10px; width:380px; }
 .login-box li { padding: 10px 0; overflow: hidden; }
 .login-box input[type="text"], .login-box input[type="password"] { width: 350px; padding: 15px; font-size: 18px; }
 .login-box .btn-login { float: right; width: 180px; height: 50px; background: #1ba1eb; font-size: 18px; color: #fff; }
 .login-box .link-form { line-height: 40px; color: #3bc1ff; }
 
-/* ==================================================
- *  Notification
- */
+/* About */
+.about-container { width: 960px; margin: 50px auto; }
+.about-box { padding: 20px 0; font-family: Microsoft Yahei; }
+.about-box .box-title { padding: 10px 0; font-size: 24px; }
+.about-box p { padding: 10px 0; font-size: 18px; }
+.about-box a { color: #014eb6; }
 
+
+/* Notification */
 .notify{ position: relative;z-index: 20;display: table;min-width: 250px;min-height: 18px;color: #afafaf;list-style: none;background-color: transparent;margin: 0;padding: 5px }
 .notify-item{ border-radius: 6px;border: solid 2px #000;border-top: none;background-color: #383838;cursor: pointer;text-align: center;margin: 0;padding: 5px }
 .notify-item:first-of-type{ border-top: solid 2px #000 }
@@ -191,3 +183,4 @@ i { font-style: normal; }
 .notify-item.ng-hide-add.ng-hide-add-active,.notify-item.ng-hide-remove{ opacity: 0 }
 .notify-item.ng-hide-add,.notify-item.ng-hide-remove.ng-hide-remove-active{ opacity: 1 }
 .notify-item.ng-enter-stagger{ -webkit-transition-delay: .1s; -moz-transition-delay: .1s; transition-delay: .1s }
+
