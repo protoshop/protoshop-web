@@ -11,7 +11,7 @@ i { font-style: normal; }
 
 .layout { width: 100%; height: 100%; }
 
-.navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; background-color: #383838; border-bottom: 1px solid #000; z-index: 9; }
+.navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; background: #383838; border-bottom: 1px solid #000; z-index: 9; }
 .navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
 .navbar-header { float: left; padding: 0 20px; }
 .navbar-brand { line-height: 50px; font-size: 24px; font-family: HelveticaUltraLight, sans-serif; font-weight: 100; color: #fafafa; letter-spacing: 2px; }
@@ -170,9 +170,23 @@ i { font-style: normal; }
 .about-container { width: 960px; margin: 50px auto; }
 .about-box { padding: 20px 0; font-family: Microsoft Yahei; }
 .about-box .box-title { padding: 10px 0; font-size: 24px; }
-.about-box p { padding: 10px 0; font-size: 18px; }
+.about-box p { padding: 10px 0; font-size: 16px; }
 .about-box a { color: #014eb6; }
-
+.about-team { margin: 30px 0; overflow: hidden; }
+.about-team li { float: left; width: 240px; height: 264px; padding: 10px 0; font-family: Microsoft Yahei; text-align: center; }
+.about-team .team-avatar { width: 160px; height: 160px; margin: 0 auto; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; border-radius: 50%; }
+.about-team li:nth-child(1) .team-avatar { background-position: -160px 0; }
+.about-team li:nth-child(2) .team-avatar { background-position: -320px 0; }
+.about-team li:nth-child(3) .team-avatar { background-position: -480px 0; }
+.about-team li:nth-child(4) .team-avatar { background-position: 0 0; }
+.about-team li:nth-child(5) .team-avatar { background-position: 0 -160px; }
+.about-team li:nth-child(6) .team-avatar { background-position: -160px -160px; }
+.about-team li:nth-child(7) .team-avatar { background-position: -320px -160px; }
+.about-team li:nth-child(8) .team-avatar { background-position: 0 0; }
+.about-team .team-person { margin-top: 20px; }
+.about-team .person-name { font-size: 20px; }
+.about-team .person-job { font-size: 12px; color: rgba(0,0,0,0.6); }
+.about-team .person-weibo a { padding-left: 20px; background: url(../images/icon-weibo.png) no-repeat; color: #014eb6; }
 
 /* Notification */
 .notify{ position: relative;z-index: 20;display: table;min-width: 250px;min-height: 18px;color: #afafaf;list-style: none;background-color: transparent;margin: 0;padding: 5px }
