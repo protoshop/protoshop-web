@@ -2,7 +2,7 @@
 <html ng-app="toHELL">
 <head>
 	<meta charset="utf-8">
-	<title>Protoshop</title>
+	<title>Protoshop - 携程无线</title>
 	<meta name="viewport" content="width=device-width" />
 	<!-- build:css(.tmp) styles/main.css -->
 	<link rel="stylesheet" href="styles/main.css" />
@@ -15,7 +15,7 @@
 
 <!-- ng-template: login.html -->
 <script type="text/ng-template" id="login.html">
-	<nav class="navbar navbar-default">
+	<nav class="navbar">
 		<div class="navbar-header">
 			<a href="#" class="navbar-brand">Protoshop</a>
 		</div>
@@ -38,7 +38,7 @@
 
 <!-- ng-template: register.html -->
 <script type="text/ng-template" id="register.html">
-	<nav class="navbar navbar-default">
+	<nav class="navbar">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">Protoshop</a>
 		</div>
@@ -61,7 +61,7 @@
 
 <!-- ng-template: package-list.html -->
 <script type="text/ng-template" id="package-list.html">
-	<nav class="navbar navbar-default">
+	<nav class="navbar">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">Protoshop</a>
 		</div>
@@ -89,8 +89,9 @@
 						<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
 					</div>
 					<div class="pkg-btn">
-						<button ng-click="editPackage(pkg)">Edit</button>
-						<button ng-click="deletePackage(pkg)">Delete</button>
+						<!--<button ng-click="editPackage(pkg)">Edit</button>-->
+						<button ng-click="deletePackage(pkg)" class="icon-cancel" title="Delete">Delete</button>
+						<button ng-click="sharePackage(pkg)" class="icon-export" title="Share">Share</button>
 					</div>
 				</li>
 			</ul>
@@ -118,11 +119,11 @@
 				</li>
 				<li>
 					<div class="layer-item">Name</div>
-					<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="项目名称" />
+					<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="Package Name" />
 				</li>
 				<li>
 					<div class="layer-item">Description</div>
-					<textarea ng-model="newPackageConfig.appDesc" name="projectDetails" cols="20" rows="5"></textarea>
+					<textarea ng-model="newPackageConfig.appDesc" name="projectDetails" placeholder="Package Description" cols="20" rows="5"></textarea>
 				</li>
 				<li>
 					<div class="neat-form">
@@ -146,7 +147,7 @@
 
 <!-- ng-template: package-edit.html -->
 <script type="text/ng-template" id="package-edit.html">
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-scene">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#/">Protoshop</a>
 		</div>
@@ -157,7 +158,7 @@
 			<button class="icon-save" title="Save" ng-click="savePackage()">Save</button>
 		</div>
 		<div class="menu-modeswitch">
-			<button class="icon-flow-tree"></button>
+			<!--<button class="icon-flow-tree"></button>-->
 			<button class="icon-mobile current"></button>
 		</div>
 	</nav>
