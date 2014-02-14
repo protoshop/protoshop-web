@@ -14,14 +14,14 @@ i { font-style: normal; }
 .navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; background: #014eb6; border-bottom: 1px solid #000; z-index: 9; }
 .navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
 .navbar-scene { background: #383838; }
-.navbar-header { float: left; padding: 0 20px; }
+.navbar-header { float: left; padding: 0 10px; }
 .navbar-brand { line-height: 50px; font-size: 24px; font-family: HelveticaUltraLight, sans-serif; font-weight: 100; color: #fafafa; letter-spacing: 2px; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
 .menu-main { float: left; }
-.menu-main button, .menu-modeswitch button, .scenes-edit button, .navbar-about .navbar-icon, .btn-logout { display: inline-block; padding: 0 10px; line-height: 36px; border: 1px solid #000; border-radius: 3px; font-size: 16px; color: #afafaf; background: transparent; cursor: pointer; }
+.navbar button, .navbar-icon { display: inline-block; padding: 0 10px; line-height: 36px; border-radius: 3px; font-size: 16px; background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; }
 .navbar-about, .btn-logout, .menu-modeswitch { float: right; margin-right: 10px; }
 .navbar-about .navbar-icon, .btn-logout { margin-top: 6px; }
-.navbar-about .navbar-icon:hover, .btn-logout:hover { background: #162a3a; color: #178dd4; }
+.navbar button:hover, .navbar-icon:hover { background: rgba(255,255,255,0.4); }
 .btn-logout span { pointer-events: none; }
 .btn-logout .ready-text { display: none; }
 .btn-logout.ready .ready-text { display: inline; }
@@ -114,8 +114,8 @@ i { font-style: normal; }
 /* Package List */
 
 .pkg-box { width: 960px; margin: 50px auto 0; }
-.pkg-title { padding: 20px 6px; height: 40px; border-bottom: 2px solid #ddd; }
-.pkg-title .pkg-name { float: left; font-size: 30px; font-weight: 100; color: #666; }
+.pkg-title { padding: 30px 6px 20px; height: 40px; border-bottom: 2px solid #ddd; }
+.pkg-title .pkg-name { float: left; font-size: 32px; font-weight: 100; color: #666; }
 .pkg-title .pkg-new { float: right; padding: 0 14px; font-size: 18px; color: #fff; line-height: 40px; background: #ff8a00; border-radius: 3px; }
 .pkg-title .pkg-new:hover { background: #ff7200; }
 .pkg-title .pkg-new i { font-style: normal; padding-right: 5px; }
@@ -170,7 +170,7 @@ i { font-style: normal; }
 .login-box input[type="text"], .login-box input[type="password"] { width: 348px; padding: 15px; border: 1px solid rgba(0,0,0,0.4); border-radius: 3px; font-size: 18px; }
 .login-box .btn-login { float: right; width: 180px; height: 50px; background: #ff8a00; border-radius: 3px; font-size: 18px; color: #fff; }
 .login-box .btn-login:hover { background: #ff7200; }
-.login-box .link-form { line-height: 40px; color: #06c; }
+.login-box .link-form { display: inline-block; padding: 0 10px; line-height: 50px; color: #06c; }
 
 /* About */
 .about-container { width: 960px; margin: 50px auto; }
