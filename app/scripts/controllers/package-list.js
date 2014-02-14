@@ -62,7 +62,7 @@ angular.module('toHELL')
      */
     $scope.newPackageConfig = {
       appPlatform: 'ios',  // 'android' or 'ios'
-      isPublic: true,
+      isPublicCheckbox: true,
       appOwner: loginService.getLoggedInUser().email,
       appName: '',
       appDesc: ''
@@ -73,7 +73,8 @@ angular.module('toHELL')
      */
     $scope.createPackage = function () {
 
-      $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublic ? '1' : '0';
+      // 转换 checkbox 的值（true 或 false）为数据需要的字符串格式（'1'或'0'）
+      $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublicCheckbox ? '1' : '0';
       var postData = {
         context: $scope.newPackageConfig
       };
