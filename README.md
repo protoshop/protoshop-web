@@ -15,6 +15,8 @@
 在 webapp 目录下执行命令 `bower install` —— 安装 bower 依赖
 在 webapp 目录下执行命令 `grunt server` —— 启动本地服务器
 
+在 webapp 目录下执行命令 `grunt dist` —— 发布 WebApp 界面代码到 Beta 服务器
+
 ## 开发规范
 
 - 提交代码注释以『WA』开头（以区分项目中的其他子工程），四种分类：『WA样式』、『WA功能』、『WA代码』、『WA文档』。
