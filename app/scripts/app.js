@@ -13,19 +13,19 @@ angular.module('toHELL', [
 
     $routeProvider
       .when('/', {
-        templateUrl: 'login.html',
+        templateUrl: 'templates/login.html',
         controller: 'LoginCTRL'
       })
       .when('/register/', {
-        templateUrl: 'register.html',
+        templateUrl: 'templates/register.html',
         controller: 'RegisterCTRL'
       })
       .when('/list/', {
-        templateUrl: 'package-list.html',
+        templateUrl: 'templates/package-list.html',
         controller: 'PackageListCTRL'
       })
       .when('/package/:pkgId', {
-        templateUrl: 'package-edit.html',
+        templateUrl: 'templates/package-edit.html',
         controller: 'PackageEditCTRL'
       })
       .otherwise({
