@@ -153,7 +153,7 @@ i { font-style: normal; }
 .control-group input[type="radio"]:checked + .icon-android { opacity: 1 }
 .control-group input[type="text"], .control-group textarea { width: 360px; padding: 6px 10px; background: #fff; border: 1px solid rgba(0,0,0,0.2); border-radius: 3px; font-size: 14px; }
 .neat-form .ispublic { display: inline-block; height: 30px; line-height: 30px; }
-.icon-lock { float: left; font-size: 30px; color: #ae81ff; }
+.icon-lock { font-size: 30px; color: #ae81ff; }
 .neat-form .icon-lock:after { content: "设为私密项目"; font-size: 14px; color: #ae81ff; }
 .neat-form input[type="checkbox"]:checked + .ispublic .icon-lock { color: rgba(0,0,0,0.2); }
 .neat-form input[type="checkbox"]:checked + .ispublic .icon-lock:after { color: rgba(0,0,0,0.2); }
