@@ -3,12 +3,12 @@
 var isBeta = /(\/beta|:9999)/.test(window.location.href);
 
 angular.module('toHELL', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ngRoute',
-    'ngAnimate'
-  ])
+  'ngCookies',
+  'ngResource',
+  'ngSanitize',
+  'ngRoute',
+  'ngAnimate'
+])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 
     $routeProvider

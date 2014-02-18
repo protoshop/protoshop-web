@@ -328,8 +328,7 @@
         };
       }
     };
-  }
-  ]);
+  }]);
 
   module.directive('sceneListItem', [function () {
     return {
