@@ -1,0 +1,19 @@
+<nav class="navbar">
+	<div class="navbar-header">
+		<a href="#" class="navbar-brand">Protoshop</a>
+	</div>
+	<div class="navbar-about">
+		<a href="about.html" class="navbar-icon">About</a>
+	</div>
+</nav>
+<div class="layout-main">
+	<div class="login-box">
+		<form class="login-form" ng-submit="doSignin()">
+			<ul>
+				<li><input type="text" placeholder="邮箱" ng-model="loginData.email" /></li>
+				<li><input type="password" placeholder="密码" ng-model="loginData.passwd" /></li>
+				<li><button class="btn-login">登录</button><a href="#/register/" class="link-form">注册用户</a></li>
+			</ul>
+		</form>
+	</div>
+</div>

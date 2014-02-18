@@ -1,0 +1,108 @@
+<nav class="navbar navbar-scene">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="#/">Protoshop</a>
+	</div>
+	<div class="menu-main">
+		<!--<button class="icon-play" title="Run"></button>
+		<button class="icon-eye" title="Preview"></button>
+		<button class="icon-export" title="Export"></button>-->
+		<button class="icon-save" title="Save" ng-click="savePackage()">Save</button>
+	</div>
+	<div class="menu-modeswitch">
+		<!--<button class="icon-flow-tree"></button>-->
+		<button class="icon-mobile current"></button>
+	</div>
+</nav>
+
+<!-- 布局主体 -->
+<div class="layout-main">
+	<notify />
+	<!-- 左栏：场景列表 -->
+	<div class="layout-scenes" ng-click="deselectScene()">
+		<div class="scenes-title" ng-bind="package.appName"></div>
+		<ul class="scenes-list">
+			<li class="scene-item" ng-repeat="scene in package.scenes | orderBy:'order':number"
+				ng-class="{'item-current': scene === editStat.selectedScene}"
+				ng-click="selectScene(scene);$event.stopPropagation()"
+				scene-list-item>
+				<img class="scene-thumb" ng-src="{{scene.background||''}}" />
+				<input type="text" ng-model="scene.name" />
+			</li>
+		</ul>
+		<div class="scenes-edit">
+			<button ng-click="insertScene(editStat.selectedScene);$event.stopPropagation()">+</button>
+			<button ng-click="removeScene(editStat.selectedScene);$event.stopPropagation()">-</button>
+		</div>
+	</div>
+
+	<!-- 中栏：场景详情修改区 -->
+	<div class="layout-stage {{package.appPlatform === 'android' ? 's4':'i5'}}" ng-click="onBackgroundClick()">
+		<div class="scene">
+			<img class="scene-bg" ng-show="editStat.selectedScene.background" ng-src="{{editStat.selectedScene.background}}" alt=""/>
+			<div editor-hotspot-group></div>
+		</div>
+	</div>
+
+	<!-- 右栏：场景修改工具区 -->
+	<div class="layout-tools">
+		<!-- tools: background -->
+		<div class="tools-box" ng-show="editStat.selectedScene !== null">
+			<div class="tools-title">Background</div>
+			<div class="tools-background">
+				<label class="tools-bg-thumb">
+					<input type="file" ng-file="backgroundImage" ng-file-change="fileChange" style="display:none">
+					<img style="height: 100px" ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}" />
+					<i>+</i>
+				</label>
+				<button ng-click="editStat.selectedScene.background=''">Remove</button>
+				<label style="float:right">
+				</label>
+			</div>
+		</div>
+		<!-- tools: actor -->
+		<div class="tools-box" ng-show="editStat.selectedScene !== null">
+			<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button>
+			</div>
+			<ul class="tools-actor" ng-repeat="ele in editStat.selectedScene.elements">
+				<li class="tools-actor-item" ng-click="onActorItemClick(ele)"
+					ng-class="{'tools-actor-item-selected': ele === editStat.selectedElement}">
+						<span>Actor: {{ele.type}}
+						<span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
+						  W: {{ele.width}}  H: {{ele.height}}</span></span>
+					<button class="tools-actor-action icon-minus-circled" ng-click="removeElement(ele)"></button>
+				</li>
+			</ul>
+		</div>
+		<!-- tools: position -->
+		<div class="tools-box" ng-show="editStat.selectedElement !== null">
+			<div class="tools-title">Position</div>
+			<ul class="tools-position">
+				<li><label>X</label><input type="text" ng-model="editStat.selectedElement.posX" px-unit/> px</li>
+				<li><label>Y</label><input type="text" ng-model="editStat.selectedElement.posY" px-unit/> px</li>
+				<li><label>W</label><input type="text" ng-model="editStat.selectedElement.width" px-unit/> px</li>
+				<li><label>H</label><input type="text" ng-model="editStat.selectedElement.height" px-unit/> px</li>
+			</ul>
+		</div>
+		<!-- tools: action -->
+		<div class="tools-box" ng-show="editStat.selectedElement !== null">
+			<div class="tools-title">
+				<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
+				Actions
+			</div>
+			<ul class="tools-action">
+				<li ng-repeat="action in editStat.selectedElement.actions">
+					<span>{{renderActionItem(action)}}</span>
+					<button class="tools-title-action icon-minus-circled" ng-click="removeAction(action)"></button>
+				</li>
+			</ul>
+		</div>
+		<!-- tools: setting -->
+		<div class="tools-box" ng-show="editStat.selectedScene === null">
+			<div class="tools-title">Settings</div>
+			<ul class="tools-setting">
+				<li><label>Name:</label><input type="text" ng-model="package.appName" /></li>
+				<li><label>Icon:</label><img ng-src="{{package.appIcon}}" /></li>
+			</ul>
+		</div>
+	</div>
+</div>

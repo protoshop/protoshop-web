@@ -4,6 +4,7 @@
   "dependencies": {
     "jquery": "~2.0.3",
     "angular": "~1.2.7",
+    "angular-modal": "~0.0.3",
     "angular-resource": "~1.2.7",
     "angular-cookies": "~1.2.7",
     "angular-sanitize": "~1.2.7",

@@ -288,6 +288,7 @@ module.exports = function (grunt) {
               'views/*.*',
               'api/{,*/}*.*',
               'partials/{,*/}*.*',
+              'templates/{,*/}*.*',
               'images/{,*/}*.{webp,gif}',
               'font/{,*/}*.*'
             ]

@@ -1,0 +1,82 @@
+<nav class="navbar">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="#">Protoshop</a>
+	</div>
+	<div class="navbar-about">
+		<a href="about.html" class="navbar-icon">About</a>
+	</div>
+	<button ng-click="logout($event)" class="btn btn-logout">
+		<span class="todo-text">Logout</span><span class="ready-text">Are you sure?</span>
+	</button>
+</nav>
+<div class="layout-main">
+	<div class="pkg-box">
+		<div class="pkg-title">
+			<button class="pkg-new" ng-click="toggleCreateDialog()"><i>+</i>New</button>
+			<div class="pkg-name">Packages</div>
+		</div>
+		<!-- Package List -->
+		<ul class="pkg-list">
+			<li ng-repeat="pkg in packageList">
+				<div class="pkg-platform icon-{{pkg.appPlatform === 'ios' ? 'apple' : 'android'}}"></div>
+				<div class="pkg-info">
+					<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
+					<i class="icon-lock" ng-show="pkg.isPublic !== '1'"></i>
+					<span class="pkg-createtime" ng-bind="pkg.createTime"></span>
+					<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
+				</div>
+				<div class="pkg-btn">
+					<!--<button ng-click="editPackage(pkg)">Edit</button>-->
+					<button ng-click="deletePackage(pkg)" class="icon-cancel" title="Delete">Delete</button>
+					<button ng-mousedown="sharePackage(pkg)" class="icon-export" title="Share">Share</button>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="layer" ng-show="showCreateDialog">
+	<div class="layer-title">
+		<button class="close icon-cancel" ng-click="toggleCreateDialog()"></button>
+		<h3>New Package</h3>
+	</div>
+	<form class="layer-info" ng-submit="createPackage()">
+		<ul class="control-group">
+			<li>
+				<div class="layer-item">Devices</div>
+				<div class="neat-form">
+					<label>
+						<input type="radio" ng-model="newPackageConfig.appPlatform" name="platform" value="ios" required />
+						<i class="icon-apple" title="Apple">Apple</i>
+					</label>
+					<label>
+						<input type="radio" ng-model="newPackageConfig.appPlatform" name="platform" value="android" />
+						<i class="icon-android" title="Android">Android</i>
+					</label>
+				</div>
+			</li>
+			<li>
+				<div class="layer-item">Name</div>
+				<input required type="text" ng-model="newPackageConfig.appName" name="projectName" placeholder="Package Name" />
+			</li>
+			<li>
+				<div class="layer-item">Description</div>
+				<textarea ng-model="newPackageConfig.appDesc" name="projectDetails" placeholder="Package Description" cols="20" rows="5"></textarea>
+			</li>
+			<li>
+				<div class="neat-form">
+					<label>
+						<input type="checkbox" ng-model="newPackageConfig.isPublicCheckbox" />
+							<span class="ispublic">
+								<i class="icon-lock"></i>
+							</span>
+					</label>
+				</div>
+				<div class="item-btn">
+					<button>Save</button>
+					<button type="reset" ng-click="toggleCreateDialog()">Cancel</button>
+				</div>
+			</li>
+		</ul>
+	</form>
+</div>
+<div class="layer-mask"></div>
