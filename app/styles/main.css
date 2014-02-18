@@ -18,10 +18,10 @@ i { font-style: normal; }
 .navbar-brand { line-height: 50px; font-size: 24px; font-family: HelveticaUltraLight, sans-serif; font-weight: 100; color: #fafafa; letter-spacing: 2px; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
 .menu-main { float: left; }
-.navbar button, .navbar-icon { display: inline-block; padding: 0 10px; line-height: 36px; border-radius: 3px; font-size: 16px; background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; }
+.navbar button, .btn-navbar { display: inline-block; padding: 0 10px; line-height: 36px; border-radius: 3px; font-size: 16px; font-weight: 300; background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; }
 .navbar-about, .btn-logout, .menu-modeswitch { float: right; margin-right: 10px; }
-.navbar-about .navbar-icon, .btn-logout { margin-top: 6px; }
-.navbar button:hover, .navbar-icon:hover { background: rgba(255,255,255,0.4); }
+.navbar-about .btn-navbar, .btn-logout { margin-top: 6px; }
+.navbar button:hover, .btn-navbar:hover { background: rgba(255,255,255,0.4); }
 .btn-logout span { pointer-events: none; }
 .btn-logout .ready-text { display: none; }
 .btn-logout.ready .ready-text { display: inline; }
@@ -120,7 +120,7 @@ i { font-style: normal; }
 .pkg-title .pkg-new:hover { background: #ff7200; }
 .pkg-title .pkg-new i { font-style: normal; padding-right: 5px; }
 .pkg-list li { min-height: 52px; padding: 25px 10px 25px 50px; border-bottom: 1px solid #eaeaea; overflow: hidden; }
-.pkg-list .pkg-platform { float: left; margin-left: -50px; margin-top: -3px; width: 32px; height: 32px; font-size: 28px; }
+.pkg-list .pkg-platform { float: left; margin-left: -50px; width: 32px; height: 32px; font-size: 28px; }
 .pkg-info { float: left; width: 700px; line-height: 26px; }
 .pkg-info .pkg-appname { font-size: 22px; color: #06c; }
 .pkg-info .pkg-appname:hover { text-decoration: underline; }
@@ -131,7 +131,7 @@ i { font-style: normal; }
 .pkg-list li:hover button { color: rgba(0,0,0,0.2); }
 .pkg-list li:hover button:hover { color: rgba(0,0,0,0.4); }
 
-.layer { position: fixed; top: 200px; left: 50%; margin-left: -250px; width: 500px; background: #fefefe; border: 1px solid rgba(0,0,0,0.6); border-radius: 5px; padding: 10px; -webkit-transition: all 0.3s ease-in; -moz-transition: all 0.3s ease-in; z-index: 9; }
+.layer { position: fixed; top: 200px; left: 50%; margin-left: -250px; width: 500px; background: #f0f0f0; border: 1px solid rgba(0,0,0,0.6); border-radius: 5px; padding: 10px; -webkit-transition: all 0.3s ease-in; -moz-transition: all 0.3s ease-in; z-index: 9; }
 .layer-mask { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: #000; opacity: 0.4; }
 .layer.ng-hide + .layer-mask { display: none; }
 .layer-title { height: 40px; margin-bottom: 20px; padding-left: 10px; border-bottom: 1px solid rgba(0,0,0,0.2); }
@@ -147,13 +147,13 @@ i { font-style: normal; }
 .icon-apple, .icon-android { display: inline-block; width: 36px; height: 32px; margin-top: -4px; overflow: hidden; font-size: 28px; }
 .icon-apple { color: rgba(0,0,0,0.6); }
 .icon-android { color: rgb(164,202,57); }
-.control-group .icon-apple { opacity: 0.2; }
-.control-group .icon-android { opacity: 0.2; }
+.control-group .icon-apple { opacity: 0.4; }
+.control-group .icon-android { opacity: 0.4; }
 .control-group input[type="radio"]:checked + .icon-apple,
 .control-group input[type="radio"]:checked + .icon-android { opacity: 1 }
-.control-group input[type="text"], .control-group textarea { width: 360px; padding: 6px 10px; background: #fff; border: 1px solid rgba(0,0,0,0.2); border-radius: 3px; font-size: 14px; }
+.control-group input[type="text"], .control-group textarea { width: 358px; padding: 6px 10px; background: #fff; border: 1px solid rgba(0,0,0,0.2); border-radius: 3px; font-size: 14px; }
 .neat-form .ispublic { display: inline-block; height: 30px; line-height: 30px; }
-.icon-lock { font-size: 30px; color: #ae81ff; }
+.icon-lock { font-size: 30px; color: #ae81ff; vertical-align: -3px; }
 .neat-form .icon-lock:after { content: "设为私密项目"; font-size: 14px; color: #ae81ff; }
 .neat-form input[type="checkbox"]:checked + .ispublic .icon-lock { color: rgba(0,0,0,0.2); }
 .neat-form input[type="checkbox"]:checked + .ispublic .icon-lock:after { color: rgba(0,0,0,0.2); }
