@@ -3,6 +3,7 @@
 var isBeta = /(\/beta|:9999)/.test(window.location.href);
 
 angular.module('toHELL', [
+  'btford.modal',
   'ngCookies',
   'ngResource',
   'ngSanitize',

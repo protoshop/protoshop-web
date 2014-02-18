@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('toHELL')
-  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', 'loginService', function ($scope, $http,
-    $location, GLOBAL, loginService) {
+  .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', 'loginService', 'dialogShare',
+    function ($scope, $http, $location, GLOBAL, loginService, dialogShare) {
 
     if (!loginService.isLoggedIn()) {
       $location.path('/');
@@ -47,6 +47,10 @@ angular.module('toHELL')
           }
 
         });
+    };
+    
+    $scope.sharePackage = function (pkg) {
+      dialogShare.activate(pkg);
     };
 
     /**

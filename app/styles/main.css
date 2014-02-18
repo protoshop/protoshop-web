@@ -10,6 +10,11 @@ button { background: none; cursor: pointer; }
 i { font-style: normal; }
 
 .layout { width: 100%; height: 100%; }
+.modal { position: fixed; top: 50%; left: 50%; width: 50%; max-width: 550px; min-width: 330px; background-color: #EEE; height: auto; z-index: 2000;
+    -webkit-transform: translateX(-50%) translateY(-50%); transform: translateX(-50%) translateY(-50%); }
+/*.modal:before { content: ""; position: absolute; top: -50%; left: 0; width: 800px; height: 900px; right: 0; bottom: 0; background-color: rgba(0,0,0,0.2) }*/
+.modal + .layout { -webkit-filter: blur(8px) grayscale(100%); pointer-events: none; transition: all 0.2s ease; }
+.modal h2 { height: 45px; line-height: 46px; background-color: #05B; color: #FFF; padding: 0 0.6em }
 
 .navbar { position: fixed; top: 0; width: 100%; min-width: 1280px; height: 50px; background: #014eb6; border-bottom: 1px solid #000; z-index: 9; }
 .navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
