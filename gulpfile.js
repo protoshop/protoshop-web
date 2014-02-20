@@ -1,10 +1,10 @@
-var path = require('path'),
-  gulp = require('gulp'),
-  gutil = require('gulp-util'),
-  express = require('express'),
-  tinylr = require('tiny-lr'),
-  connectlr = require('connect-livereload'),
-  open = require('open');
+var path = require('path');
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var express = require('express');
+var tinylr = require('tiny-lr');
+var connectlr = require('connect-livereload');
+var open = require('open');
 
 var EXPRESS_PORT = 9999;
 var EXPRESS_ROOT = __dirname + '/app';
