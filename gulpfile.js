@@ -1,36 +1,53 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var express = require('express');
-var path = require('path');
-var tinylr = require('tiny-lr');
+var path = require('path'),
+  gulp = require('gulp'),
+  gutil = require('gulp-util'),
+  express = require('express'),
+  tinylr = require('tiny-lr'),
+  connectlr = require('connect-livereload'),
+  open = require('open');
 
-var createServers = function(port, lrport) {
+var EXPRESS_PORT = 9999;
+var EXPRESS_ROOT = __dirname + '/app';
+var LIVERELOAD_PORT = 35729;
+
+var createServers = function (port, lrport) {
+
+  // App Server
+  var app = express();
+  app.use(connectlr());
+  app.use(express.static(path.resolve(EXPRESS_ROOT)));
+  app.listen(port, function () {
+    gutil.log('Listening on', port, EXPRESS_ROOT);
+  });
+
+  // Livereload Server
   var lr = tinylr();
-  lr.listen(lrport, function() {
+  lr.listen(lrport, function () {
     gutil.log('LR Listening on', lrport);
   });
 
-  var app = express();
-  app.use(express.static(path.resolve('./app/')));
-  app.listen(port, function() {
-    gutil.log('Listening on', port);
-  });
-
-  return {
-    lr: lr,
-    app: app
-  };
-};
-
-var servers = createServers(8080, 35729);
-
-gulp.task('default', function(){
-  gulp.watch(["./app/**/*", "!./node_modules/**/*"], function(evt){
+  // Notify livereload of changes detected
+  var noti = function (evt) {
     gutil.log(gutil.colors.cyan(evt.path), 'changed');
-    servers.lr.changed({
+    lr.changed({
       body: {
         files: [evt.path]
       }
-    });
-  });
+    })
+  };
+
+  return {
+    lr: lr,
+    app: app,
+    noti: noti
+  };
+};
+
+var servers = createServers(EXPRESS_PORT, LIVERELOAD_PORT);
+
+gulp.task('serverdev', function () {
+  gulp.watch(["./app/**/*", "!./app/node_modules/**/*"], servers.noti);
+  open('http://localhost:9999');
 });
+
+gulp.task('default', ['serverdev']);
