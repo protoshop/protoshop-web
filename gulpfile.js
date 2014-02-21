@@ -94,7 +94,28 @@ gulp.task('clean', function () {
     .pipe(clean());
 });
 
-gulp.task('default', ['serverdev']);
 gulp.task('build', ['clean'], function () {
   gulp.start('usemin', 'copy');
 });
+
+var sh = function (commands) {
+  var exec = require('child_process').exec;
+  var sys = require('sys');
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    exec(arguments[i], function (error, stdout, stderr) {
+      if (error != null) {
+        sys.print('exec error: ' + error);
+      } else {
+        sys.print(stdout);
+        sys.print(stderr);
+      }
+    });
+  }
+};
+
+gulp.task('dist', function () {
+  sh('rsync ' + BUILD_ROOT + '/ sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/tohell/html/'
+    + ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules');
+});
+
+gulp.task('default', ['serverdev']);
