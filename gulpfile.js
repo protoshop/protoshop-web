@@ -71,6 +71,12 @@ gulp.task('usemin', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
+gulp.task('imagemin', function(){
+  gulp.src(EXPRESS_ROOT + '/images/*.*', {base: EXPRESS_ROOT})
+    .pipe(imagemin())
+    .pipe(gulp.dest(BUILD_ROOT));
+});
+
 gulp.task('copy', function () {
 
   // Static files
@@ -85,7 +91,7 @@ gulp.task('copy', function () {
   gulp.src([
       EXPRESS_ROOT + '/partials/**/*',
       EXPRESS_ROOT + '/templates/**/*'
-  ], {base: './app'})
+  ], {base: EXPRESS_ROOT})
     .pipe(gulp.dest('./dist'));
 });
 
@@ -95,7 +101,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', ['clean'], function () {
-  gulp.start('usemin', 'copy');
+  gulp.start('usemin', 'imagemin', 'copy');
 });
 
 var sh = function (commands) {
