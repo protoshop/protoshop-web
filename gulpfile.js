@@ -8,17 +8,17 @@ var open = require('open');
 
 var LIVERELOAD_PORT = 35729;
 var EXPRESS_PORT = 9999;
-var EXPRESS_ROOT = __dirname + '/app';
+var SOURCE_ROOT = __dirname + '/app';
 var BUILD_ROOT = __dirname + '/dist';
 
-var createServers = function (port, lrport) {
+var createServers = function (root, port, lrport) {
 
   // App Server
   var app = express();
   app.use(connectlr());
-  app.use(express.static(path.resolve(EXPRESS_ROOT)));
+  app.use(express.static(path.resolve(root)));
   app.listen(port, function () {
-    gutil.log('Listening on', port, EXPRESS_ROOT);
+    gutil.log('Listening on', port, SOURCE_ROOT);
   });
 
   // Livereload Server
@@ -45,8 +45,14 @@ var createServers = function (port, lrport) {
 };
 
 gulp.task('serverdev', function () {
-  var servers = createServers(EXPRESS_PORT, LIVERELOAD_PORT);
-  gulp.watch(["./app/**/*", "!./app/node_modules/**/*"], servers.onchange);
+  var servers = createServers(SOURCE_ROOT, EXPRESS_PORT, LIVERELOAD_PORT);
+  gulp.watch(['./app/**/*', '!./app/node_modules/**/*'], servers.onchange);
+  open('http://localhost:9999');
+});
+
+gulp.task('serverdist', function () {
+  var servers = createServers(BUILD_ROOT, EXPRESS_PORT, LIVERELOAD_PORT);
+  gulp.watch([BUILD_ROOT + '/**.*'], servers.onchange);
   open('http://localhost:9999');
 });
 
@@ -72,7 +78,7 @@ gulp.task('usemin', function () {
 });
 
 gulp.task('imagemin', function(){
-  gulp.src(EXPRESS_ROOT + '/images/*.*', {base: EXPRESS_ROOT})
+  gulp.src(SOURCE_ROOT + '/images/*.*', {base: SOURCE_ROOT})
     .pipe(imagemin())
     .pipe(gulp.dest(BUILD_ROOT));
 });
@@ -81,17 +87,17 @@ gulp.task('copy', function () {
 
   // Static files
   gulp.src([
-      '!' + EXPRESS_ROOT + '/*.html',
-      EXPRESS_ROOT + '/*.*',
-      EXPRESS_ROOT + '/font/**/*'
-  ], {base: EXPRESS_ROOT})
+      '!' + SOURCE_ROOT + '/*.html',
+      SOURCE_ROOT + '/*.*',
+      SOURCE_ROOT + '/font/**/*'
+  ], {base: SOURCE_ROOT})
     .pipe(gulp.dest('./dist'));
 
   // HTML templates
   gulp.src([
-      EXPRESS_ROOT + '/partials/**/*',
-      EXPRESS_ROOT + '/templates/**/*'
-  ], {base: EXPRESS_ROOT})
+      SOURCE_ROOT + '/partials/**/*',
+      SOURCE_ROOT + '/templates/**/*'
+  ], {base: SOURCE_ROOT})
     .pipe(gulp.dest('./dist'));
 });
 
