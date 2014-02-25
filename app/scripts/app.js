@@ -70,7 +70,10 @@ angular.module('toHELL', [
       6001: '请求方式错误',
       6002: 'owner为空',
       6003: 'appid为空',
-      6004: '服务器内部错误'
+      6004: '服务器内部错误',
+      // 创建工程接口 /createProject/
+      7001: '请求方式错误',
+      7002: 'token无效'
     },
     errLogger: function (data, status, headers, config) {
       console.log('Status:', status, '\nData  :', data, '\nConfig:', config);

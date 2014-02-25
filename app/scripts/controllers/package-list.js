@@ -4,15 +4,18 @@ angular.module('toHELL')
   .controller('PackageListCTRL', ['$scope', '$http', '$location', 'GLOBAL', 'loginService', 'dialogShare',
     function ($scope, $http, $location, GLOBAL, loginService, dialogShare) {
 
+      var token;
       if (!loginService.isLoggedIn()) {
         $location.path('/');
         return;
+      }else{
+        token = loginService.getLoggedInUser().token;
       }
 
       // To get data & set list.
       $scope.refreshList = function () {
         // $http.get('/api/package/list.json')
-        $http.get(GLOBAL.apiHost + 'fetchlist/?device=&token=' + loginService.getLoggedInUser().token)
+        $http.get(GLOBAL.apiHost + 'fetchlist/?device=&token=' + token)
           .success(function (data) {
             $scope.packageList = data.results;
           })
@@ -35,7 +38,7 @@ angular.module('toHELL')
        * @param pkg
        */
       $scope.deletePackage = function (pkg) {
-        $http.get(GLOBAL.apiHost + 'deleteProject/?appid=' + pkg.appID + '&token=' + loginService.getLoggedInUser().token)
+        $http.get(GLOBAL.apiHost + 'deleteProject/?appid=' + pkg.appID + '&token=' + token)
           .success(function (res) {
             switch (res.status) {
             case '1':
@@ -54,14 +57,14 @@ angular.module('toHELL')
       };
 
       /**
-       * 显示/隐藏『创建Package』对话框
+       * 显示/隐藏『创建工程』对话框
        */
       $scope.toggleCreateDialog = function () {
         $scope.showCreateDialog = !$scope.showCreateDialog;
       };
 
       /**
-       * 创建 Package 的默认配置
+       * 新建工程的默认配置
        * @type {{appName: string, comment: string}}
        */
       $scope.newPackageConfig = {
@@ -73,19 +76,32 @@ angular.module('toHELL')
       };
 
       /**
-       * 创建 Package
+       * 创建工程
        */
       $scope.createPackage = function () {
 
         // 转换 checkbox 的值（true 或 false）为数据需要的字符串格式（'1'或'0'）
         $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublicCheckbox ? '1' : '0';
+        
+        // 附上 token
+        $scope.newPackageConfig.token = token;
+        
         var postData = {
           context: $scope.newPackageConfig
         };
 
         $http.post(GLOBAL.apiHost + 'createPoject/', postData)
-          .success(function (data) {
-            $location.path('/package/' + data.appID);
+          .success(function (res) {
+
+            switch (res.status) {
+            case '1':
+              $location.path('/package/' + data.appID);
+              break;
+            default:
+              var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+              console.log('Delete Project Error: ', errDesc, res);
+            }
+            
           })
           .error(GLOBAL.errLogger);
       };
