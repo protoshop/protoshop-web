@@ -6,6 +6,10 @@ var tinylr = require('tiny-lr');
 var connectlr = require('connect-livereload');
 var open = require('open');
 
+/**************************************
+ *                 Launch Local Servers
+ */
+
 var LIVERELOAD_PORT = 35729;
 var EXPRESS_PORT = 9999;
 var SOURCE_ROOT = __dirname + '/app';
@@ -56,6 +60,10 @@ gulp.task('serverdist', function () {
   open('http://localhost:9999');
 });
 
+/**************************************
+ *                       Building Works
+ */
+
 //var sass = require('gulp-ruby-sass');
 //var jshint = require('gulp-jshint');
 
@@ -77,7 +85,7 @@ gulp.task('usemin', function () {
     .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('imagemin', function(){
+gulp.task('imagemin', function () {
   gulp.src(SOURCE_ROOT + '/images/*.*', {base: SOURCE_ROOT})
     .pipe(imagemin())
     .pipe(gulp.dest(BUILD_ROOT));
@@ -110,6 +118,10 @@ gulp.task('build', ['clean'], function () {
   gulp.start('usemin', 'imagemin', 'copy');
 });
 
+/**************************************
+ *                         Distribution
+ */
+
 var sh = function (commands) {
   var exec = require('child_process').exec;
   var sys = require('sys');
@@ -129,5 +141,9 @@ gulp.task('dist', function () {
   sh('rsync ' + BUILD_ROOT + '/ sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/tohell/html/'
     + ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules');
 });
+
+/**************************************
+ *                        General Tasks
+ */
 
 gulp.task('default', ['serverdev']);
