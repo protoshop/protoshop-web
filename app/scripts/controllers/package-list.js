@@ -35,7 +35,7 @@ angular.module('toHELL')
      * @param pkg
      */
     $scope.deletePackage = function (pkg) {
-      $http.get(GLOBAL.apiHost + 'deleteProject/?appid=' + pkg.appID + '&owner=' + loginService.getLoggedInUser().email)
+      $http.get(GLOBAL.apiHost + 'deleteProject/?appid=' + pkg.appID + '&token=' + loginService.getLoggedInUser().token)
         .success(function (res) {
           switch (res.status) {
           case '1':
