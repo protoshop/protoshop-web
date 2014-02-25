@@ -12,7 +12,7 @@ angular.module('toHELL')
     // To get data & set list.
     $scope.refreshList = function () {
       // $http.get('/api/package/list.json')
-      $http.get(GLOBAL.apiHost + 'fetchlist/?device=&owner=' + loginService.getLoggedInUser().email)
+      $http.get(GLOBAL.apiHost + 'fetchlist/?device=&token=' + loginService.getLoggedInUser().token)
         .success(function (data) {
           $scope.packageList = data.results;
         })
