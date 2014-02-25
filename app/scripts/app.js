@@ -66,7 +66,7 @@ angular.module('toHELL', [
       4001: '请求方式错误',
       4002: '用户名为空',
       4003: '用户名不存在',
-      // 删除项目接口 /deleteProject/
+      // 删除工程接口 /deleteProject/
       6001: '请求方式错误',
       6002: 'owner为空',
       6003: 'appid为空',
