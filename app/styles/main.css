@@ -59,7 +59,7 @@ i { font-style: normal; }
 .i5 .scene { width: 320px; height: 568px; -webkit-transform: translate(-220px, -284px); transform: translate(-220px, -284px); }
 .s4 .scene { width: 400px; height: 640px; -webkit-transform: translate(-259px, -323px); transform: translate(-220px, -284px); }
 .scene-bg { width: 100%; height: 100%; position: absolute; z-index: 0; pointer-events: none }
-.hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; position: absolute; }
+.hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; position: absolute; box-sizing: border-box; }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -6px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i:nth-child(1) { left: 0; top: 50%; cursor: w-resize; }
 .anchor i:nth-child(2) { left: 50%; top: 0; cursor: n-resize; }
@@ -187,14 +187,14 @@ i { font-style: normal; }
 .team-member { overflow: hidden; }
 .team-member li { float: left; width: 240px; height: 264px; padding: 10px 0; text-align: center; }
 .team-member .person-avatar { width: 160px; height: 160px; margin: 0 auto 20px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; border-radius: 50%; }
-.team-member li:nth-child(1) .person-avatar { background-position: -160px 0; }
-.team-member li:nth-child(2) .person-avatar { background-position: -320px 0; }
-.team-member li:nth-child(3) .person-avatar { background-position: -480px 0; }
-.team-member li:nth-child(4) .person-avatar { background-position: -640px 0; }
-.team-member li:nth-child(5) .person-avatar { background-position: 0 -160px; }
-.team-member li:nth-child(6) .person-avatar { background-position: -160px -160px; }
-.team-member li:nth-child(7) .person-avatar { background-position: -320px -160px; }
-.team-member li:nth-child(8) .person-avatar { background-position: -480px -160px; }
+.team-member li:nth-child(2) .person-avatar { background-position: -160px 0; }
+.team-member li:nth-child(3) .person-avatar { background-position: -320px 0; }
+.team-member li:nth-child(4) .person-avatar { background-position: -480px 0; }
+.team-member li:nth-child(5) .person-avatar { background-position: -640px 0; }
+.team-member li:nth-child(6) .person-avatar { background-position: 0 -160px; }
+.team-member li:nth-child(7) .person-avatar { background-position: -160px -160px; }
+.team-member li:nth-child(8) .person-avatar { background-position: -320px -160px; }
+.team-member li:nth-child(1) .person-avatar { background-position: -480px -160px; }
 .person-name { font-size: 20px; }
 .person-job { font-size: 12px; color: rgba(0,0,0,0.6); }
 .person-weibo { padding-left: 20px; background: url(../images/icon-weibo.png) no-repeat; color: #014eb6; }
