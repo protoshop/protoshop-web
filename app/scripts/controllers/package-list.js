@@ -93,15 +93,17 @@ angular.module('toHELL')
         $http.post(GLOBAL.apiHost + 'createPoject/', postData)
           .success(function (res) {
 
-            switch (res.status) {
-            case '1':
-              $location.path('/package/' + data.appID);
-              break;
-            default:
-              var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
-              console.log('Delete Project Error: ', errDesc, res);
-            }
-            
+//            此接口暂无 status 标志位
+//            switch (res.status) {
+//            case '1':
+//              $location.path('/package/' + data.appID);
+//              break;
+//            default:
+//              var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+//              console.log('Delete Project Error: ', errDesc, res);
+//            }
+
+            $location.path('/package/' + res.appID);
           })
           .error(GLOBAL.errLogger);
       };
