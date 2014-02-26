@@ -6,9 +6,12 @@ angular.module('toHELL')
     function ($scope, $routeParams, $http, $document, formDataObject, GLOBAL, $location, editService, $timeout,
       notifyService, loginService) {
 
+      var token;
       if (!loginService.isLoggedIn()) {
         $location.path('/');
         return;
+      }else{
+        token = loginService.getLoggedInUser().token;
       }
 
       /**
@@ -29,14 +32,13 @@ angular.module('toHELL')
         sceneHasAdded: false // 表示场景列表中是否有后添加的场景。这个变量与新增场景自动聚焦相关。
       };
 
-      $scope.package = {};
       /**
-       * 存储整个工程的实时状态
-       * @var {Object} $scope.package
+       * 获取工程数据，本地存储为 $scope.package
        */
-        // $http.get('/api/package/' + $routeParams.pkgId + '.json')
-        // $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
-      $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId)
+      $scope.package = {};
+      // $http.get('/api/package/' + $routeParams.pkgId + '.json')
+      // $http.get('/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json')
+      $http.get(GLOBAL.apiHost + 'fetchProject/?appid=' + $routeParams.pkgId + '&token=' + token)
         .success(function (data) {
           $scope.package = data;
           editService.setPackage($scope.package);
@@ -81,10 +83,10 @@ angular.module('toHELL')
             file: files[0]
           }
         }).success(function (data) {
-            var pkgURI = GLOBAL.pkgHost + $scope.package.appID + '/';
-            $scope.editStat.selectedScene.background = pkgURI + data.fileName;
-            console.log('suc: ', data);
-          })
+          var pkgURI = GLOBAL.pkgHost + $scope.package.appID + '/';
+          $scope.editStat.selectedScene.background = pkgURI + data.fileName;
+          console.log('suc: ', data);
+        })
           .error(function (err) {
             console.log('err: ', err);
           });
@@ -94,12 +96,21 @@ angular.module('toHELL')
        * 保存编辑好的项目JSON数据
        */
       $scope.savePackage = function () {
+        $scope.package.token = token;
+        console.log($scope.package);
         $http.post(GLOBAL.apiHost + 'saveProject/', {
           context: $scope.package
         })
-          .success(function () {
-            notifyService.notify('已保存！');
-            console.log('Package "' + $scope.package.appID + '" saved!');
+          .success(function (res) {
+            switch (res.status) {
+            case '1':
+              notifyService.notify('已保存！');
+              console.log('Package "' + $scope.package.appID + '" saved!');
+              break;
+            default:
+              var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+              console.log('Delete Project Error: ', errDesc, res);
+            }
           })
           .error(GLOBAL.errLogger);
       };

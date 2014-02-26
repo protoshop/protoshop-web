@@ -15,6 +15,8 @@ i { font-style: normal; }
 /*.modal:before { content: ""; position: absolute; top: -50%; left: 0; width: 800px; height: 900px; right: 0; bottom: 0; background-color: rgba(0,0,0,0.2) }*/
 .modal + .layout { -webkit-filter: blur(8px) grayscale(100%); pointer-events: none; transition: all 0.2s ease; }
 .modal h2 { height: 45px; line-height: 46px; background-color: #05B; color: #FFF; padding: 0 0.6em }
+.modal-share-close { height: 45px; width: 45px; margin-top: -45px; font-size: 15px; line-height: 45px; font-weight: bold; float: right; color: white }
+.modal-share p { line-height: 200px; text-align: center }
 
 .navbar { position: fixed; top: 0; width: 100%; height: 50px; background: #014eb6; border-bottom: 1px solid #000; z-index: 9; }
 .navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
