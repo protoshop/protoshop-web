@@ -98,61 +98,6 @@ module.exports = function (grunt) {
         'test/spec/{,*/}*.js'
       ]
     },
-    karma: {
-      unit: {
-        configFile: './test/karma-unit.conf.js',
-        autoWatch: false,
-        singleRun: true
-      },
-      // jshint -W106
-      unit_auto: {
-        configFile: './test/karma-unit.conf.js'
-      },
-      midway: {
-        configFile: './test/karma-midway.conf.js',
-        autoWatch: false,
-        singleRun: true
-      },
-      // jshint -W106
-      midway_auto: {
-        configFile: './test/karma-midway.conf.js'
-      },
-      e2e: {
-        configFile: './test/karma-e2e.conf.js',
-        autoWatch: false,
-        singleRun: true
-      },
-      // jshint -W106
-      e2e_auto: {
-        configFile: './test/karma-e2e.conf.js'
-      }
-    },
-//    compass: {
-//      options: {
-//        sassDir: '<%= yeoman.app %>/styles',
-//        cssDir: '.tmp/styles',
-//        generatedImagesDir: '.tmp/images/generated',
-//        imagesDir: '<%= yeoman.app %>/images',
-//        javascriptsDir: '<%= yeoman.app %>/scripts',
-//        fontsDir: '<%= yeoman.app %>/styles/fonts',
-//        importPath: '<%= yeoman.app %>/bower_components',
-//        httpImagesPath: '/images',
-//        httpGeneratedImagesPath: '/images/generated',
-//        httpFontsPath: '/styles/fonts',
-//        relativeAssets: false,
-//        assetCacheBuster: false
-//      },
-//      dist: {
-//        options: {
-//          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
-//        }
-//      },
-//      server: {
-//        options: {
-//          debugInfo: true
-//        }
-//      }
-//    },
     autoprefixer: {
       options: {
         browsers: ['last 1 version']
@@ -354,16 +299,6 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
-
-  grunt.registerTask('test', [
-    'clean:server',
-    'concurrent:test',
-    'autoprefixer',
-    'connect:test',
-    'karma:unit',
-    'karma:midway',
-    'karma:e2e'
-  ]);
 
   grunt.registerTask('build', [
     'clean:dist',
