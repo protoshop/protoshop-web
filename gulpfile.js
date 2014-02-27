@@ -82,7 +82,7 @@ gulp.task('usemin', function () {
       html: [minifyhtml({empty: true})],
       js: [uglify(), rev()]
     }))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest(BUILD_ROOT));
 });
 
 gulp.task('imagemin', function () {
@@ -92,21 +92,14 @@ gulp.task('imagemin', function () {
 });
 
 gulp.task('copy', function () {
-
-  // Static files
   gulp.src([
       '!' + SOURCE_ROOT + '/*.html',
       SOURCE_ROOT + '/*.*',
-      SOURCE_ROOT + '/font/**/*'
-  ], {base: SOURCE_ROOT})
-    .pipe(gulp.dest('./dist'));
-
-  // HTML templates
-  gulp.src([
+      SOURCE_ROOT + '/font/**/*',
       SOURCE_ROOT + '/partials/**/*',
       SOURCE_ROOT + '/templates/**/*'
   ], {base: SOURCE_ROOT})
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest(BUILD_ROOT));
 });
 
 gulp.task('clean', function () {
@@ -138,8 +131,12 @@ var sh = function (commands) {
 };
 
 gulp.task('dist', function () {
-  sh('rsync ' + BUILD_ROOT + '/ sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/tohell/html/'
-    + ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules');
+  var target = {
+    beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/tohell/beta/html/'
+  };
+  var rsyncParams = ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules';
+  
+  sh('rsync ' + BUILD_ROOT + '/ ' + target.beta + rsyncParams);
 });
 
 /**************************************
