@@ -1,6 +1,6 @@
 'use strict';
 
-var isBeta = /(beta)/.test(window.location.href);
+var isBeta = /(beta|:9999)/.test(window.location.href);
 
 angular.module('toHELL', [
   'btford.modal',
@@ -114,11 +114,12 @@ angular.module('toHELL', [
       14001: "请求方式错误",
       14002: "token为空",
       14003: "服务器内部错误",
-      // 生成ZIP包（webApp使用接口）
+      // 生成ZIP包
       15001: "请求方式错误",
       15002: "服务器IO操作错误",
       15003: "Lua解析错误",
       15004: "Lua解析异常",
+      15005: "token失效",
       // 上传图片接口
       0: "上传失败",
       1: "上传成功"
