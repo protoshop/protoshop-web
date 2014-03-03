@@ -115,4 +115,15 @@ angular.module('toHELL')
           .error(GLOBAL.errLogger);
       };
 
+      /**
+       * 响应键盘动作
+       */
+      $scope.$on('keydown', function(onEvent, keyEvent){
+        switch(keyEvent.which){
+        case 8:
+          // 阻止 Backspace 后退
+          keyEvent.preventDefault();
+        }
+      });
+
     }]);
