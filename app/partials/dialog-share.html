@@ -1,5 +1,46 @@
-<div class="modal modal-share">
-	<h2 ng-bind="appName"></h2>
-	<button class="modal-share-close" ng-click="modal.closeMe()">X</button>
-	<p>分享功能施工中……</p>
+<div class="layer">
+	<div class="layer-title">
+		<button class="close icon-cancel" ng-click="modal.closeMe()"></button>
+		<h3 ng-bind="appName"></h3>
+	</div>
+	<div class="layer-share">
+		<p>Choose people you want to share this project:</p>
+		<div class="users-selected selected-active">
+			<ul>
+				<li><span>admin</span><a href="###" class="user-delete">x</a></li>
+				<li><span>Amio</span><a href="###" class="user-delete">x</a></li>
+			</ul>
+			<input type="hidden" />
+		</div>
+		<ul class="users-list">
+			<li>
+				<div class="nickname">admin</div>
+				<div class="email">admin@ctrip.com</div>
+			</li>
+			<li>
+				<div class="nickname">lilyxue</div>
+				<div class="email">llxue@ctrip.com</div>
+			</li>
+			<li>
+				<div class="nickname">Amio</div>
+				<div class="email">xwjin@ctrip.com</div>
+			</li>
+			<li>
+				<div class="nickname">Leikuo</div>
+				<div class="email">leiguo@ctrip.com</div>
+			</li>
+			<li>
+				<div class="nickname">Amio</div>
+				<div class="email">xwjin@ctrip.com</div>
+			</li>
+			<li>
+				<div class="nickname">Leikuo</div>
+				<div class="email">leiguo@ctrip.com</div>
+			</li>
+			<li>
+				<div class="nickname">hlyu</div>
+				<div class="email">hlyu@ctrip.com</div>
+			</li>
+		</ul>
+	</div>
 </div>
