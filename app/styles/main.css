@@ -97,8 +97,9 @@ i { font-style: normal; }
 .tools-box input[type="text"] { padding: 3px; background-color: #282828; border: 1px solid #000; font-size: 12px; color: #fff; vertical-align: middle; }
 .tools-position input[type="text"] { width: 35px; height: 18px; }
 .tools-background { padding: 10px; text-align: left; }
-.tools-bg-thumb { display: inline-block; margin-right: 5px; width: 60px; height: 100px; vertical-align: top; text-align: center; }
-.tools-bg-thumb img { width:60px; height: 100%; }
+.tools-background .tools-bg-thumb { display: inline-block; width: 60px; height: 100px; vertical-align: middle; text-align: center; cursor: pointer; }
+.tools-bg-thumb:after { position: absolute; content: "+"; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); }
+.tools-bg-thumb img { width: 60px; }
 .tools-background button { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 .tools-bg-thumb i{ font-size: 16px; position: absolute; left: 44px; top: 40px; color: #afafaf; }
 
