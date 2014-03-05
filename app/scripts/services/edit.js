@@ -287,7 +287,7 @@
           posX: 100,
           posY: 300,
           width: 120,
-          height: 42,
+          height: 44,
           actions: []
         };
         scene.elements.push(newElement);
