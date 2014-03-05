@@ -8,7 +8,7 @@ angular.module('toHELL')
       if (!loginService.isLoggedIn()) {
         $location.path('/');
         return;
-      }else{
+      } else {
         token = loginService.getLoggedInUser().token;
       }
 
@@ -16,8 +16,25 @@ angular.module('toHELL')
       $scope.refreshList = function () {
         // $http.get('/api/package/list.json')
         $http.get(GLOBAL.apiHost + 'fetchlist/?device=&token=' + token)
-          .success(function (data) {
-            $scope.packageList = data.results;
+          .success(function (res) {
+
+            switch (res.status) {
+
+            case '1':
+              $scope.packageList = res.results;
+              break;
+
+            default:
+
+              switch (res.error_code) {
+              case '10002':
+                // token 认证失败（通常是登陆过期了）
+                loginService.doLogout();
+              }
+
+              var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+              console.log('获取列表错误: ', errDesc, res);
+            }
           })
           .error(GLOBAL.errLogger);
       };
@@ -82,10 +99,10 @@ angular.module('toHELL')
 
         // 转换 checkbox 的值（true 或 false）为数据需要的字符串格式（'1'或'0'）
         $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublicCheckbox ? '1' : '0';
-        
+
         // 附上 token
         $scope.newPackageConfig.token = token;
-        
+
         var postData = {
           context: $scope.newPackageConfig
         };
