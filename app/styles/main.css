@@ -39,15 +39,16 @@ i { font-style: normal; }
 /* Scenes ( layout - left sidebar ) */
 .scenes-list { padding: 0; }
 .scenes-title { padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; word-break: break-all; }
-.scene-item { position: relative; padding: 20px 0; }
+.scene-item { position: relative; padding: 20px 0; text-align: center; }
 .item-current { background-color: #393939; }
 .item-current:before { position: absolute; content: ""; left: 10px; top: 10px; width: 156px; height: 252px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,255,41,0.1); }
 .item-drag:before { position: absolute; content: ""; left: 10px; top: 10px; width: 156px; height: 252px; border: 2px solid #29ff49; border-radius: 6px; background-color: rgba(41,255,41,0.1); }
 .scene-thumb { position: relative; display: block; width: 120px; height: 213px; margin: 0 auto 5px; background-color: #FFF; pointer-events: none; }
-.scene-item input[type="text"] { position: relative; width: 108px; height: 24px; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; margin-left:31px;  padding:0 5px; }
-.scene-item input[type="text"]:focus{outline: 1px solid #333;}
+.scene-item input[type="text"] { position: relative; width: 114px; height: 24px; padding:0 5px; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; }
+.scene-item input[type="text"]:focus { outline: 1px solid #333; }
 .scenes-edit { position: fixed; left: 0; bottom: 0; width: 180px; height: 40px; background-color: #383838; text-align: center; }
-.scenes-edit button { width: 60px; height: 26px; line-height: 26px; margin-top: 6px; font-size: 20px; }
+.scenes-edit button { width: 60px; height: 26px; line-height: 26px; margin-top: 6px; border-radius: 3px; background: rgba(255,255,255,0.1); font-size: 20px; color: #fff; }
+.scenes-edit button:hover { background: rgba(255,255,255,0.4); }
 
 /* Stage ( layout - center stage ) */
 .scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 26px auto 0 }
