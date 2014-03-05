@@ -39,15 +39,16 @@ i { font-style: normal; }
 /* Scenes ( layout - left sidebar ) */
 .scenes-list { padding: 0; }
 .scenes-title { padding: 5px 10px; border-top: 1px solid #424242; border-bottom: 1px solid #000; color: #afafaf; word-break: break-all; }
-.scene-item { position: relative; padding: 20px 0; }
+.scene-item { position: relative; padding: 20px 0; text-align: center; }
 .item-current { background-color: #393939; }
 .item-current:before { position: absolute; content: ""; left: 10px; top: 10px; width: 156px; height: 252px; border: 2px solid #ffb529; border-radius: 6px; background-color: rgba(255,255,41,0.1); }
 .item-drag:before { position: absolute; content: ""; left: 10px; top: 10px; width: 156px; height: 252px; border: 2px solid #29ff49; border-radius: 6px; background-color: rgba(41,255,41,0.1); }
 .scene-thumb { position: relative; display: block; width: 120px; height: 213px; margin: 0 auto 5px; background-color: #FFF; pointer-events: none; }
-.scene-item input[type="text"] { position: relative; width: 108px; height: 24px; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; margin-left:31px;  padding:0 5px; }
-.scene-item input[type="text"]:focus{outline: 1px solid #333;}
+.scene-item input[type="text"] { position: relative; width: 114px; height: 24px; padding:0 5px; background: none; font-size: 12px; color: #fff; text-align: center; outline: none; }
+.scene-item input[type="text"]:focus { outline: 1px solid #333; }
 .scenes-edit { position: fixed; left: 0; bottom: 0; width: 180px; height: 40px; background-color: #383838; text-align: center; }
-.scenes-edit button { width: 60px; height: 26px; line-height: 26px; margin-top: 6px; font-size: 20px; }
+.scenes-edit button { width: 60px; height: 26px; line-height: 26px; margin-top: 6px; border-radius: 3px; background: rgba(255,255,255,0.1); font-size: 20px; color: #fff; }
+.scenes-edit button:hover { background: rgba(255,255,255,0.4); }
 
 /* Stage ( layout - center stage ) */
 .scene { position: absolute; left: 50%; top: 50%; width: 320px; height: 568px; margin: 26px auto 0 }
@@ -97,8 +98,9 @@ i { font-style: normal; }
 .tools-box input[type="text"] { padding: 3px; background-color: #282828; border: 1px solid #000; font-size: 12px; color: #fff; vertical-align: middle; }
 .tools-position input[type="text"] { width: 35px; height: 18px; }
 .tools-background { padding: 10px; text-align: left; }
-.tools-bg-thumb { display: inline-block; margin-right: 5px; width: 60px; height: 100px; vertical-align: top; text-align: center; }
-.tools-bg-thumb img { width:60px; height: 100%; }
+.tools-background .tools-bg-thumb { display: inline-block; width: 60px; height: 100px; vertical-align: middle; text-align: center; cursor: pointer; }
+.tools-bg-thumb:after { position: absolute; content: "+"; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); }
+.tools-bg-thumb img { width: 60px; }
 .tools-background button { width: 86px; height: 36px; border: 1px solid #000; background-color: #2f2f2f; color: #1998e0; }
 .tools-bg-thumb i{ font-size: 16px; position: absolute; left: 44px; top: 40px; color: #afafaf; }
 
