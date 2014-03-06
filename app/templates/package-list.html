@@ -27,7 +27,7 @@
 				</div>
 				<div class="pkg-btn">
 					<!--<button ng-click="editPackage(pkg)">Edit</button>-->
-					<button ng-mousedown="sharePackage(pkg)" class="icon-export" ng-show="pkg.isPublic !== '1'" title="Share">Share</button>
+					<button ng-click="sharePackage(pkg)" class="icon-export" ng-show="pkg.isPublic !== '1'" title="Share">Share</button>
 					<button ng-click="deletePackage(pkg)" class="icon-cancel" title="Delete">Delete</button>
 				</div>
 			</li>
