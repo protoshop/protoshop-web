@@ -15,7 +15,7 @@ var EXPRESS_PORT = 9999;
 var SOURCE_ROOT = __dirname + '/app';
 var BUILD_ROOT = __dirname + '/dist';
 
-var createServers = function (root, port, lrport) {
+function createServers (root, port, lrport) {
 
   // App Server
   var app = express();
@@ -46,7 +46,7 @@ var createServers = function (root, port, lrport) {
     app: app,
     onchange: onchange
   };
-};
+}
 
 gulp.task('serverdev', function () {
   var servers = createServers(SOURCE_ROOT, EXPRESS_PORT, LIVERELOAD_PORT);
@@ -115,7 +115,7 @@ gulp.task('build', ['clean'], function () {
  *                         Distribution
  */
 
-var sh = function (commands) {
+function sh (commands) {
   var exec = require('child_process').exec;
   var sys = require('sys');
   for (var i = 0, l = arguments.length; i < l; i++) {
@@ -128,16 +128,24 @@ var sh = function (commands) {
       }
     });
   }
-};
+}
 
-gulp.task('dist', function () {
-  var target = {
+function distribution (tar) {
+  var targets = {
     prod: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/tohell/html/',
     beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/beta/html/'
   };
   var rsyncParams = ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules';
 
-  sh('rsync ' + BUILD_ROOT + '/ ' + target.beta + rsyncParams);
+  sh('rsync ' + BUILD_ROOT + '/ ' + targets[tar].beta + rsyncParams);
+}
+
+gulp.task('dist',function(){
+  distribution('beta');
+});
+
+gulp.task('dist:prod',function(){
+  distribution('prod');
 });
 
 /**************************************
