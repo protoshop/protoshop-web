@@ -1,67 +1,50 @@
-var path = require('path');
+// The Great Gulp
 var gulp = require('gulp');
-var gutil = require('gulp-util');
-var express = require('express');
-var tinylr = require('tiny-lr');
-var connectlr = require('connect-livereload');
-var open = require('open');
+var $ = require('gulp-load-plugins')();
 
-/**************************************
- *                 Launch Local Servers
- */
-
-var LIVERELOAD_PORT = 35729;
-var EXPRESS_PORT = 9999;
+var LOCAL_PORT = 9999;
 var SOURCE_ROOT = __dirname + '/app';
 var BUILD_ROOT = __dirname + '/dist';
+var BROWSER = 'Google Chrome Canary';
 
-function createServers (root, port, lrport) {
+/**
+ * =====================================
+ *                 Launch Local Servers
+ * =====================================
+ */
 
-  // App Server
-  var app = express();
-  app.use(connectlr());
-  app.use(express.static(path.resolve(root)));
-  app.listen(port, function () {
-    gutil.log('Listening on', port, SOURCE_ROOT);
-  });
+gulp.task('connect:dev', $.connect.server({
+  livereload: true,
+  root: [SOURCE_ROOT],
+  port: LOCAL_PORT,
+  open: { browser: BROWSER }
+}));
 
-  // Livereload Server
-  var lr = tinylr();
-  lr.listen(lrport, function () {
-    gutil.log('LR Listening on', lrport);
-  });
+gulp.task('connect:dist', $.connect.server({
+  livereload: true,
+  root: [BUILD_ROOT],
+  port: LOCAL_PORT,
+  open: { browser: BROWSER }
+}));
 
-  // Notify livereload of changes detected
-  var onchange = function (evt) {
-    gutil.log(gutil.colors.cyan(evt.path), 'changed');
-    lr.changed({
-      body: {
-        files: [evt.path]
-      }
-    })
-  };
-
-  return {
-    lr: lr,
-    app: app,
-    onchange: onchange
-  };
+// Log & Notify Livereload
+function onchange(event) {
+  $.util.log($.util.colors.cyan(event.path), 'changed');
+  return gulp.src(event.path)
+    .pipe($.connect.reload());
 }
 
-gulp.task('serverdev', function () {
-  var servers = createServers(SOURCE_ROOT, EXPRESS_PORT, LIVERELOAD_PORT);
-  gulp.watch(['./app/**/*', '!./app/node_modules/**/*'], servers.onchange);
-  open('http://localhost:9999');
+gulp.task('server', ['connect:dev'], function () {
+  gulp.watch([
+      SOURCE_ROOT + '/**/*',
+      '!' + SOURCE_ROOT + '/node_modules/**/*'
+  ], onchange);
 });
 
-gulp.task('serverdist', function () {
-  var servers = createServers(BUILD_ROOT, EXPRESS_PORT, LIVERELOAD_PORT);
-  gulp.watch([BUILD_ROOT + '/**.*'], servers.onchange);
-  open('http://localhost:9999');
-});
-
-/**************************************
- *                       Building Works
+/**
+ * =====================================
+ *                             Building
+ * =====================================
  */
 
 //var sass = require('gulp-ruby-sass');
@@ -111,11 +94,13 @@ gulp.task('build', ['clean'], function () {
   gulp.start('usemin', 'imagemin', 'copy');
 });
 
-/**************************************
+/**
+ * =====================================
  *                         Distribution
+ * =====================================
  */
 
-function sh (commands) {
+function sh(commands) {
   var exec = require('child_process').exec;
   var sys = require('sys');
   for (var i = 0, l = arguments.length; i < l; i++) {
@@ -130,7 +115,7 @@ function sh (commands) {
   }
 }
 
-function distribution (tar) {
+function distribution(tar) {
   var targets = {
     prod: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/tohell/html/',
     beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/beta/html/'
@@ -140,16 +125,18 @@ function distribution (tar) {
   sh('rsync ' + BUILD_ROOT + '/ ' + targets[tar].beta + rsyncParams);
 }
 
-gulp.task('dist',function(){
+gulp.task('dist', function () {
   distribution('beta');
 });
 
-gulp.task('dist:prod',function(){
+gulp.task('dist:prod', function () {
   distribution('prod');
 });
 
-/**************************************
+/**
+ * =====================================
  *                        General Tasks
+ * =====================================
  */
 
-gulp.task('default', ['serverdev']);
+gulp.task('default', ['server']);

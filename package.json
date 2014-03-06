@@ -3,19 +3,26 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "gulp": "^3.5.0",
-    "gulp-util": "^2.2.0",
-    "open": "^0.0.4",
-    "express": "^3.4.7",
-    "tiny-lr": "^0.0.5",
-    "connect-livereload": "*",
     "gulp-usemin": "^0.3.1",
     "gulp-uglify": "^0.2.1",
     "gulp-minify-css": "^0.3.0",
     "gulp-minify-html": "^0.1.0",
     "gulp-rev": "^0.2.1",
-    "gulp-clean": "^0.2.4",
-    "gulp-imagemin": "^0.1.5",
+
+    "gulp": "~3.5.0",
+    "gulp-load-plugins": "~0.3.0",
+    "gulp-util": "~2.2.9",
+    "gulp-connect": "~1.0.7",
+
+    "gulp-autoprefixer": "~0.0.6",
+    "gulp-jshint": "~1.4.0",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-clean": "~0.2.4",
+    "gulp-cache": "~0.1.1",
+    "gulp-size": "~0.1.2",
+    "gulp-useref": "~0.1.2",
+    "gulp-bundle": "~0.2.0",
+    
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "^0.4.1",
     "grunt-contrib-concat": "~0.3.0",
@@ -40,6 +47,6 @@
     "js-yaml": "*"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.10.0"
   }
 }
