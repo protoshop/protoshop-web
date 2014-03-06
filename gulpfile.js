@@ -13,32 +13,58 @@ var BROWSER = 'Google Chrome Canary';
  * =====================================
  */
 
-gulp.task('connect:dev', $.connect.server({
-  livereload: true,
-  root: [SOURCE_ROOT],
-  port: LOCAL_PORT,
-  open: { browser: BROWSER }
-}));
+var express = require('express');
+var tinylr = require('tiny-lr');
+var connectlr = require('connect-livereload');
+var open = require('open');
+var path = require('path');
 
-gulp.task('connect:dist', $.connect.server({
-  livereload: true,
-  root: [BUILD_ROOT],
-  port: LOCAL_PORT,
-  open: { browser: BROWSER }
-}));
+var LIVERELOAD_PORT = 35729;
 
-// Log & Notify Livereload
-function onchange(event) {
-  $.util.log($.util.colors.cyan(event.path), 'changed');
-  return gulp.src(event.path)
-    .pipe($.connect.reload());
+function createServers (root, port, lrport) {
+
+  // App Server
+  var app = express();
+  console.log(path.resolve(root));
+  app.use(connectlr());
+  app.use(express.static(path.resolve(root)));
+  app.listen(port, function () {
+    $.util.log('Listening on', port, SOURCE_ROOT);
+  });
+
+  // Livereload Server
+  var lr = tinylr();
+  lr.listen(lrport, function () {
+    $.util.log('LR Listening on', lrport);
+  });
+
+  // Notify livereload of changes detected
+  var onchange = function (evt) {
+    $.util.log($.util.colors.cyan(evt.path), 'changed');
+    lr.changed({
+      body: {
+        files: [evt.path]
+      }
+    })
+  };
+
+  return {
+    lr: lr,
+    app: app,
+    onchange: onchange
+  };
 }
 
-gulp.task('server', ['connect:dev'], function () {
-  gulp.watch([
-      SOURCE_ROOT + '/**/*',
-      '!' + SOURCE_ROOT + '/node_modules/**/*'
-  ], onchange);
+gulp.task('server:dev', function () {
+  var servers = createServers(SOURCE_ROOT, LOCAL_PORT, LIVERELOAD_PORT);
+  gulp.watch(['./app/**/*', '!./app/node_modules/**/*'], servers.onchange);
+  open('http://localhost:9999');
+});
+
+gulp.task('server:dist', function () {
+  var servers = createServers(BUILD_ROOT, LOCAL_PORT, LIVERELOAD_PORT);
+  gulp.watch([BUILD_ROOT + '/**.*'], servers.onchange);
+  open('http://localhost:9999');
 });
 
 /**
@@ -139,4 +165,6 @@ gulp.task('dist:prod', function () {
  * =====================================
  */
 
-gulp.task('default', ['server']);
+gulp.task('server', ['server:dev']);
+
+gulp.task('default', ['server:dev']);

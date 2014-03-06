@@ -13,6 +13,7 @@
     "gulp-load-plugins": "~0.3.0",
     "gulp-util": "~2.2.9",
     "gulp-connect": "~1.0.7",
+    "gulp-exec": "~1.0.4",
 
     "gulp-autoprefixer": "~0.0.6",
     "gulp-jshint": "~1.4.0",
