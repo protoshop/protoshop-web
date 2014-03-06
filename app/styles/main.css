@@ -62,15 +62,15 @@ i { font-style: normal; }
 /*.hotspot:before, .hotspot:after { position: absolute; content: ""; left: 50%; }
 .hotspot:before { left: 50%; top: -15px; margin-left: -1px; width: 2px; height: 10px; background-color: #000; }
 .hotspot:after { left: 50%; top: -25px; margin-left: -6px; width: 10px; height: 10px; border-radius: 50%; background-color: #fef935; border: 1px solid #000; }*/
-.scene-goto { position: absolute; right: 119px; top: -53px; z-index: 2; }
+.scene-goto { position: absolute; right: 126px; top: -32px; z-index: 2; }
 .scene-goto-thumb { width: 45px; padding: 8px 10px; background: #fff; border: 2px solid rgba(1,78,182,0.5); border-radius: 5px; font-size: 12px; text-align: center; }
 .scene-goto-thumb img { width:45px; height: 70px }
-.scene-goto-thumb p{display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.scene-goto-thumb p { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
 .scene-goto-thumb p:empty{display:inline-block;}
-.scene-goto-line { position: relative; height: 2px; margin-left:36px; margin-top:-54px; background-color: #4fc9f0; }
+.scene-goto-line { position: relative; height: 2px; margin-left: 66px; margin-top: -55px; background-color: #4fc9f0; }
 .scene-goto-line:before, .scene-goto-line:after { position: absolute; content: ""; width: 12px; height: 12px; border-radius: 6px; background-color: #4fc9f0; }
-.scene-goto-line:before { left: -5px; top: -5px; }
-.scene-goto-line:after { right: -5px; top: -5px; }
+.scene-goto-line:before { left: -8px; top: -5px; }
+.scene-goto-line:after { right: -8px; top: -5px; }
 .scene-goto-animation { position: absolute; left: 50%; margin-top: -176px; margin-left: -120px; width: 268px; height: 140px; padding: 5px;  border: 1px solid #000; border-radius: 5px; background-color: #232323; font-size: 12px; color: #b7b7b7; box-shadow: 0 0 15px rgba(0,0,0,0.8), inset 0 0 1px #ccc; }
 .scene-goto-animation:after { position: absolute; content: ""; left: 50%; bottom: -10px; margin-left: -10px; margin-bottom: -10px; width: 0; height: 0; border-width: 10px; border-style: solid; border-color: #4a4a4a transparent transparent; }
 .scene-goto-animation dt { float: left; padding: 3px 0 3px 5px; line-height: 2; font-weight: 300; }
