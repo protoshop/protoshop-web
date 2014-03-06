@@ -78,9 +78,9 @@ var rev = require('gulp-rev');
 gulp.task('usemin', function () {
   gulp.src('./app/*.html')
     .pipe(usemin({
-      css: [minifycss(), 'concat', rev()],
-      html: [minifyhtml({empty: true})],
-      js: [uglify(), rev()]
+      css: [minifycss(), rev()],
+      js: [uglify(), rev()],
+      html: [minifyhtml({empty: true})]
     }))
     .pipe(gulp.dest(BUILD_ROOT));
 });
@@ -136,7 +136,7 @@ gulp.task('dist', function () {
     beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/beta/html/'
   };
   var rsyncParams = ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules';
-  
+
   sh('rsync ' + BUILD_ROOT + '/ ' + target.beta + rsyncParams);
 });
 
