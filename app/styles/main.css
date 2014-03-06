@@ -50,7 +50,7 @@ i { font-style: normal; }
 
 /* Stage ( layout - center stage ) */
 .scene { position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
-.i5 .scene { width: 320px; height: 568px; margin-top: -11px; }
+.i5 .scene { width: 320px; height: 568px; }
 .s4 .scene { width: 400px; height: 640px; margin-top: 23px; }
 .scene-bg { width: 100%; height: 100%; position: absolute; z-index: 0; pointer-events: none; }
 .hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; position: absolute; box-sizing: border-box; }
