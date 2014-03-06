@@ -1,4 +1,4 @@
-<nav class="navbar navbar-scene">
+<nav class="navbar">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="#/">Protoshop</a>
 	</div>
@@ -60,8 +60,8 @@
 		<div class="tools-box" ng-show="editStat.selectedScene !== null">
 			<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button>
 			</div>
-			<ul class="tools-actor" ng-repeat="ele in editStat.selectedScene.elements">
-				<li class="tools-actor-item" ng-click="onActorItemClick(ele)"
+			<ul class="tools-actor">
+				<li class="tools-actor-item" ng-repeat="ele in editStat.selectedScene.elements" ng-click="onActorItemClick(ele)"
 					ng-class="{'tools-actor-item-selected': ele === editStat.selectedElement}">
 						<span>Actor: {{ele.type}}
 						<span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
