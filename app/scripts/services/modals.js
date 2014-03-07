@@ -8,11 +8,26 @@ angular.module('toHELL')
       templateUrl: 'partials/dialog-share.html'
     })
   }])
-  .controller('DialogShareCtrl', ['dialogShare', '$scope', '$http', function(dialogShare, $scope, $http){
+  .controller('DialogShareCtrl', [
+    'dialogShare',
+    '$scope',
+    'GLOBAL',
+    '$http',
+    function(dialogShare, $scope, GLOBAL, $http){
+      
     this.closeMe = dialogShare.deactivate;
+      
     $scope.fellows = [];
-    $scope.lookupFellows = function($event){
-      console.log($event);
+    $scope.lookup = '';
+    $scope.lookupFellows = function(){
+      if($scope.lookup === ''){
+        $scope.fellows = [];
+      }else{
+        $http.get(GLOBAL.apiHost + 'searchUser/?keyword=' + $scope.lookup)
+          .success(function(res){
+            $scope.fellows = res.results;
+          });
+      }
     };
-    console.log($scope, this);
+      
   }]);

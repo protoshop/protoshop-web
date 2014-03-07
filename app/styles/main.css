@@ -27,7 +27,6 @@ i { font-style: normal; }
 .btn-logout.ready .todo-text { display: none; }
 
 .layout-main { position: relative; display: -webkit-flex; display: flex; width: 100%; height: 100%; min-width: 1280px; }
-
 .layout-scenes { position: fixed; left: 0; top: 50px; width: 180px; height: 100%; background: #fff; overflow-x: hidden; overflow-y: auto; }
 .layout-scenes ul { margin-bottom: 90px; }
 .layout-tools { position: fixed; right: 0; top: 50px; width: 300px; height: 100%; background: #fff; overflow-x: hidden; overflow-y: auto; }
@@ -169,14 +168,14 @@ i { font-style: normal; }
 
 /* layer-share */
 .layer-share { height: 320px; padding: 0 10px; }
-.share-output, .share-input { display: inline-block; height: 30px; font: 14px/30px 'Open Sans', arial; }
+.share-output, .share-input { display: inline-block; margin-left: .5em; height: 30px; font: 14px/30px 'Open Sans', arial; }
 .share-output::after { content: ''; height: 30px; border-right: 2px solid gray; -webkit-animation: blink 1s step-end 0s infinite}
 .share-input { outline: none; width: 2px; color: transparent; padding-right: 10px; margin-left: -3px; opacity: 0 }
-.users-selected { margin-top: 15px; padding: 8px; background: #fff; border: 1px solid #aaa; cursor: text; overflow: hidden; }
+.users-selected { display: block; margin-top: 15px; padding: 8px; background: #fff; border: 1px solid #aaa; cursor: text }
 .users-selected.selected-active { border-color: #5897fb; box-shadow: inset 0 0 3px rgba(0,0,0,0.2); }
 .users-selected li { float: left; height: 24px; line-height: 24px; margin: 3px; padding: 0 5px; background: #f0f0f0; border: 1px solid #aaa; border-radius: 3px; cursor: default; }
 .users-selected .user-delete { float: left; width: 16px; color: #999; text-align: center; }
-.users-list { height: 210px; margin-top: -1px; padding: 5px; background: #fff; border: 1px solid #aaa; border-top: none; overflow-y: scroll; }
+.users-list { margin-top: -1px; padding: 5px; background: #fff; border: 1px solid #aaa; border-top: none; overflow-y: scroll; }
 .users-list li { padding: 5px; }
 .users-list li:hover { background: #014eb6; }
 .users-list li:hover .nickname { color: #fff; }
