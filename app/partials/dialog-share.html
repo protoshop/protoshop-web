@@ -1,21 +1,21 @@
 <div class="layer">
 	<div class="layer-title">
 		<button class="close icon-cancel" ng-click="modal.closeMe()"></button>
-		<h3 ng-bind="appName"></h3>
+		<h3>共享：<span ng-bind="appName"></span></h3>
 	</div>
 	<div class="layer-share">
-		<p>Choose people you want to share this project:</p>
+		<p>查找小伙伴……用邮箱！</p>
 		<label class="users-selected selected-active">
 			<ul>
-				<li><span>admin</span><a href="###" class="user-delete">x</a></li>
-				<li><span>Amio</span><a href="###" class="user-delete">x</a></li>
+				<li><span ng-click="removeFellow()" class="icon-block"></span>admin</li>
+				<li><span class="icon-block"></span>Amio</li>
 			</ul>
-			<span class="share-output" ng-bind="lookup">22</span>
-			<input class="share-input" type="text" ng-model="lookup" ng-change="lookupFellows()" autofocus /></label>
+			<span class="share-output" ng-bind="lookupKeyword"></span>
+			<input class="share-input" type="text" ng-model="lookupKeyword" ng-change="lookupFellows()" autofocus /></label>
 		</label>
-		<ul class="users-list" ng-show="fellows.length">
-			<li ng-repeat="fellow in fellows">
-				<div class="nickname" ng-bind="fellow.nickname"></div>
+		<ul class="users-list" ng-show="hiFellows.length">
+			<li ng-repeat="fellow in hiFellows" ng-click="addFellow(fellow)">
+				<div class="nickname" ng-bind="fellow.nickname || '佚名'"></div>
 				<div class="email" ng-bind="fellow.email"></div>
 			</li>
 		</ul>
