@@ -7,8 +7,9 @@
 		<p>查找小伙伴……用邮箱！</p>
 		<label class="users-selected selected-active">
 			<ul>
-				<li><span ng-click="removeFellow()" class="icon-block"></span>admin</li>
-				<li><span class="icon-block"></span>Amio</li>
+				<li ng-repeat="fellow in sharedFellows">
+					<span ng-click="removeFellow(fellow)" class="icon-block"></span>
+					<span ng-bind="fellow.nickname || '佚名'"></span></li>
 			</ul>
 			<span class="share-output" ng-bind="lookupKeyword"></span>
 			<input class="share-input" type="text" ng-model="lookupKeyword" ng-change="lookupFellows()" autofocus /></label>

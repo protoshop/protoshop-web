@@ -20,7 +20,21 @@ angular.module('toHELL')
     angular.element('.share-input').focus();
 
     $scope.sharedFellows = [];
-    $http.get(GLOBAL.apiHost + 'sharelist/')
+    $http.post(GLOBAL.apiHost + 'shareList/', {
+      token: loginService.getLoggedInUser().token,
+      appid: $scope.appID
+    })
+    .success(function(res){
+      switch (res.status) {
+      case '1':
+      console.log(res.results);
+        $scope.sharedFellows = res.results;
+        break;
+      default:
+        var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+        console.log('获取分享列表 Error: ', errDesc, res);
+      }
+    });
 
     $scope.hiFellows = [];
     $scope.lookupKeyword = '';
@@ -51,15 +65,35 @@ angular.module('toHELL')
       .success(function (res) {
         switch (res.status) {
         case '1':
-//          $scope.fellows = res.results;
+//          $scope.sharedFellows = res.results;
           console.log(res.results);
           $scope.lookupKeyword = '';
+          $scope.hiFellows = [];
           break;
         default:
           var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
           console.log('添加分享伙伴 Error: ', errDesc, res);
         }
       });
-    }
+    };
+    
+    $scope.removeFellow = function(fellow){
+//      $http.post(GLOBAL.apiHost + 'removeShare/', {
+//        token: loginService.getLoggedInUser().token,
+//        appid: $scope.appID
+//      })
+//      .success(function(res){
+//        switch (res.status) {
+//        case '1':
+//          console.log(res.results);
+//          $scope.sharedFellows = res.results;
+//          break;
+//        default:
+//          var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+//          console.log('移除共享好友 Error: ', errDesc, res);
+//        }
+//      });
+      console.log(fellow);
+    };
   }
 ]);
