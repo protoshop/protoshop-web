@@ -13,7 +13,7 @@
 			<span class="share-output" ng-bind="lookup">22</span>
 			<input class="share-input" type="text" ng-model="lookup" ng-change="lookupFellows()" autofocus /></label>
 		</label>
-		<ul class="users-list">
+		<ul class="users-list" ng-show="fellows.length">
 			<li ng-repeat="fellow in fellows">
 				<div class="nickname" ng-bind="fellow.nickname"></div>
 				<div class="email" ng-bind="fellow.email"></div>
