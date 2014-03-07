@@ -1,16 +1,6 @@
 'use strict';
 (function () {
   var module = angular.module('toHELL');
-  
-  module.directive('dialogShare', function(){
-    return {
-      restrict: 'AE',
-      templateUrl: 'partials/dialog-share.html',
-      link: function(scope, element, attrs){
-        console.log(element,attrs);
-      }
-    }
-  });
 
   module.directive('pxUnit', function () {
     return {

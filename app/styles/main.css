@@ -134,11 +134,10 @@ i { font-style: normal; }
 .pkg-list li:hover button:hover { color: rgba(0,0,0,0.4); }
 
 
-.layer { position: fixed; top: 50%; left: 50%; width: 500px; padding: 10px; background: #f0f0f0; border: 1px solid rgba(0,0,0,0.6); border-radius: 5px; -webkit-transform: translate(-50%, -50%); z-index: 9; }
-.layer-mask { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+.layer { position: fixed; top: 50%; left: 50%; width: 500px; padding: 10px; background: #f0f0f0; border: 1px solid rgba(0,0,0,0.6); -webkit-transform: translate(-250px, -50%); z-index: 9; }
 .layer + .layout:after { position: fixed; content: ""; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
 .layer.ng-hide + .layer-mask { display: none; }
-.layer-title { height: 40px; margin-bottom: 20px; padding-left: 10px; border-bottom: 1px solid rgba(0,0,0,0.2); }
+.layer-title { height: 40px; margin-bottom: 20px; padding-left: 10px; border-bottom: 1px solid rgba(0,0,0,0.2); box-sizing: border-box }
 .layer-title h3 { line-height: 40px; color: rgba(0,0,0,0.6); font-size: 20px; }
 .close { float: right; line-height: 30px; font-size: 18px; color: rgba(0,0,0,0.4); cursor: pointer; }
 .close:hover { color: rgba(0,0,0,0.6); text-decoration: none; }
@@ -169,12 +168,15 @@ i { font-style: normal; }
 .control-group button:nth-child(2):hover { background: #aaa; }
 
 /* layer-share */
-.layer-share { min-height: 320px; padding: 0 10px; }
+.layer-share { height: 320px; padding: 0 10px; }
+.share-output, .share-input { display: inline-block; height: 30px; font: 14px/30px 'Open Sans', arial; }
+.share-output::after { content: ''; height: 30px; border-right: 2px solid gray; -webkit-animation: blink 1s step-end 0s infinite}
+.share-input { outline: none; width: 2px; color: transparent; padding-right: 10px; margin-left: -3px; opacity: 0 }
 .users-selected { margin-top: 15px; padding: 8px; background: #fff; border: 1px solid #aaa; cursor: text; overflow: hidden; }
 .users-selected.selected-active { border-color: #5897fb; box-shadow: inset 0 0 3px rgba(0,0,0,0.2); }
 .users-selected li { float: left; height: 24px; line-height: 24px; margin: 3px; padding: 0 5px; background: #f0f0f0; border: 1px solid #aaa; border-radius: 3px; cursor: default; }
 .users-selected .user-delete { float: left; width: 16px; color: #999; text-align: center; }
-.users-list { height: 210px; margin-top: -1px; padding: 5px; background: #fff; border: 1px solid #aaa; border-top: none; overflow-x: hidden; overflow-y: scroll; }
+.users-list { height: 210px; margin-top: -1px; padding: 5px; background: #fff; border: 1px solid #aaa; border-top: none; overflow-y: scroll; }
 .users-list li { padding: 5px; }
 .users-list li:hover { background: #014eb6; }
 .users-list li:hover .nickname { color: #fff; }
@@ -229,3 +231,9 @@ i { font-style: normal; }
 .notify-item.ng-hide-add, .notify-item.ng-hide-remove.ng-hide-remove-active { opacity: 1; }
 .notify-item.ng-enter-stagger { -webkit-transition-delay: .1s; transition-delay: .1s; }
 
+/* Animations */
+@-webkit-keyframes blink {
+    0%   { opacity: 1 }
+    50%  { opacity: 0 }
+    100% { opacity: 1 }
+}

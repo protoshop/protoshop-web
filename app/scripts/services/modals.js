@@ -8,6 +8,11 @@ angular.module('toHELL')
       templateUrl: 'partials/dialog-share.html'
     })
   }])
-  .controller('DialogShareCtrl', ['dialogShare', function(dialogShare){
+  .controller('DialogShareCtrl', ['dialogShare', '$scope', '$http', function(dialogShare, $scope, $http){
     this.closeMe = dialogShare.deactivate;
+    $scope.fellows = [];
+    $scope.lookupFellows = function($event){
+      console.log($event);
+    };
+    console.log($scope, this);
   }]);
