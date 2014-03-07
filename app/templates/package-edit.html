@@ -19,7 +19,7 @@
 	<notify />
 	<!-- 左栏：场景列表 -->
 	<div class="layout-scenes" ng-click="deselectScene()">
-		<button class="icon-menu"></button>
+		<button class="panel-toggle icon-left-open-big"></button>
 		<div class="scenes-title" ng-bind="package.appName"></div>
 		<ul class="scenes-list">
 			<li class="scene-item" ng-repeat="scene in package.scenes | orderBy:'order':number"
@@ -46,7 +46,7 @@
 
 	<!-- 右栏：场景修改工具区 -->
 	<div class="layout-tools">
-		<button class="icon-menu"></button>
+		<button class="panel-toggle icon-right-open-big"></button>
 		<!-- tools: background -->
 		<div class="tools-box" ng-show="editStat.selectedScene !== null">
 			<div class="tools-title">Background</div>
