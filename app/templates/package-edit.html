@@ -37,10 +37,12 @@
 	</div>
 
 	<!-- 中栏：场景详情修改区 -->
-	<div class="layout-stage {{package.appPlatform === 'android' ? 's4':'i5'}}" ng-click="onBackgroundClick()">
-		<div class="scene">
-			<img class="scene-bg" ng-show="editStat.selectedScene.background" ng-src="{{editStat.selectedScene.background}}" alt=""/>
-			<div editor-hotspot-group></div>
+	<div class="layout-stage" ng-click="onBackgroundClick()">
+		<div class="{{package.appPlatform === 'android' ? 's4':'i5'}}">
+			<div class="scene">
+				<img class="scene-bg" ng-show="editStat.selectedScene.background" ng-src="{{editStat.selectedScene.background}}" alt=""/>
+				<div editor-hotspot-group></div>
+			</div>
 		</div>
 	</div>
 
