@@ -34,9 +34,9 @@ i { font-style: normal; }
 .layout-stage { -webkit-flex: 1; flex: 1; margin-top: 50px; background-color: rgba(0,0,0,0.2); background-position: center center; background-repeat: no-repeat; overflow: auto; }
 .i5 { background-image: url(../images/bg-stage-i5.png); background-size: 521px auto; }
 .s4 { background-image: url(../images/bg-stage-s4.png); }
-.icon-menu { position: fixed; top: 50%; -webkit-transform: translate(0,-50%); padding: 8px 5px; background: rgba(0,0,0,0.4); color: #fff; }
-.layout-scenes .icon-menu { left: 180px; border-radius: 0 3px 3px 0; }
-.layout-tools .icon-menu { right: 300px; border-radius: 3px 0 0 3px; }
+.panel-toggle { position: fixed; top: 50%; -webkit-transform: translate(0,-50%); padding: 8px 5px; background: rgba(0,0,0,0.4); color: #fff; }
+.layout-scenes .panel-toggle { left: 180px; border-radius: 0 3px 3px 0; }
+.layout-tools .panel-toggle { right: 300px; border-radius: 3px 0 0 3px; }
 
 /* Scenes ( layout - left sidebar ) */
 .scenes-list { padding: 0; }
