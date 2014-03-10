@@ -147,8 +147,9 @@ function distribution(tar) {
     beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/beta/html/'
   };
   var rsyncParams = ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules';
+  var command = 'rsync ' + BUILD_ROOT + '/ ' + targets[tar] + rsyncParams;
 
-  sh('rsync ' + BUILD_ROOT + '/ ' + targets[tar].beta + rsyncParams);
+  sh(command);
 }
 
 gulp.task('dist', function () {
