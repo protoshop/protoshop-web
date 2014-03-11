@@ -17,6 +17,9 @@ angular.module('toHELL', [
         templateUrl: 'templates/login.html',
         controller: 'LoginCTRL'
       })
+      .when('/about/', {
+        templateUrl: 'templates/about.html'
+      })
       .when('/register/', {
         templateUrl: 'templates/register.html',
         controller: 'RegisterCTRL'
