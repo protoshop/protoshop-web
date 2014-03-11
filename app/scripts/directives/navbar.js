@@ -4,7 +4,7 @@ angular.module('toHELL')
  *  Navbar directive
  */
 
-.directive('navbar', ['loginService', function (loginService) {
+.directive('navbar', ['loginService', '$rootScope', '$route', function (loginService, $rootScope, $route) {
   return {
     restrict: 'AE',
     replace: true,
@@ -17,6 +17,10 @@ angular.module('toHELL')
 
       $scope.isLoggedIn = function () {
         return loginService.isLoggedIn();
+      };
+
+      $scope.isEditing = function () {
+        return $route.current.originalPath === '/package/:pkgId';
       };
 
       /**
@@ -39,6 +43,13 @@ angular.module('toHELL')
           }, readyTimeout);
         }
         //
+      };
+
+      /**
+       * 保存项目
+       */
+      $scope.savePackage = function () {
+        $rootScope.$broadcast('package.save');
       };
     }
   }
