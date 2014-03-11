@@ -9,30 +9,28 @@
 		<span class="todo-text">Logout</span><span class="ready-text">Are you sure?</span>
 	</button>
 </nav>
-<div class="layout-main">
-	<div class="pkg-box">
-		<div class="pkg-title">
-			<button class="pkg-new" ng-click="toggleCreateDialog()"><i>+</i>New</button>
-			<div class="pkg-name">Packages</div>
-		</div>
-		<!-- Package List -->
-		<ul class="pkg-list">
-			<li ng-repeat="pkg in packageList">
-				<div class="pkg-platform icon-{{pkg.appPlatform === 'ios' ? 'apple' : 'android'}}"></div>
-				<div class="pkg-info">
-					<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
-					<i class="icon-lock" ng-show="pkg.isPublic !== '1'"></i>
-					<span class="pkg-createtime" ng-bind="pkg.createTime"></span>
-					<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
-				</div>
-				<div class="pkg-btn">
-					<!--<button ng-click="editPackage(pkg)">Edit</button>-->
-					<button ng-click="sharePackage(pkg)" class="icon-export" ng-show="pkg.isPublic !== '1'" title="Share">Share</button>
-					<button ng-click="deletePackage(pkg)" class="icon-cancel" title="Delete">Delete</button>
-				</div>
-			</li>
-		</ul>
+<div class="layout-container">
+	<div class="pkg-title">
+		<button class="pkg-new" ng-click="toggleCreateDialog()"><i>+</i>New</button>
+		<div class="pkg-name">Packages</div>
 	</div>
+	<!-- Package List -->
+	<ul class="pkg-list">
+		<li ng-repeat="pkg in packageList">
+			<div class="pkg-platform icon-{{pkg.appPlatform === 'ios' ? 'apple' : 'android'}}"></div>
+			<div class="pkg-info">
+				<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
+				<i class="icon-lock" ng-show="pkg.isPublic !== '1'"></i>
+				<span class="pkg-createtime" ng-bind="pkg.createTime"></span>
+				<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
+			</div>
+			<div class="pkg-btn">
+				<!--<button ng-click="editPackage(pkg)">Edit</button>-->
+				<button ng-click="sharePackage(pkg)" class="icon-export" ng-show="pkg.isPublic !== '1'" title="Share">Share</button>
+				<button ng-click="deletePackage(pkg)" class="icon-cancel" title="Delete">Delete</button>
+			</div>
+		</li>
+	</ul>
 </div>
 <div class="layer" ng-show="showCreateDialog">
 	<div class="layer-title">
