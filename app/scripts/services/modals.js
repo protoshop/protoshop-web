@@ -19,15 +19,19 @@ angular.module('toHELL')
     this.closeMe = dialogShare.deactivate;
     angular.element('.share-input').focus();
 
+    /**
+     * 已经在分享列表中的好友
+     */
+
     $scope.sharedFellows = [];
     $http.post(GLOBAL.apiHost + 'shareList/', {
       token: loginService.getLoggedInUser().token,
       appid: $scope.appID
     })
-    .success(function(res){
+    .success(function (res) {
       switch (res.status) {
       case '1':
-      console.log(res.results);
+        console.log(res.results);
         $scope.sharedFellows = res.results;
         break;
       default:
@@ -35,6 +39,10 @@ angular.module('toHELL')
         console.log('获取分享列表 Error: ', errDesc, res);
       }
     });
+
+    /**
+     * 查询要分享的好友
+     */
 
     $scope.hiFellows = [];
     $scope.lookupKeyword = '';
@@ -54,7 +62,11 @@ angular.module('toHELL')
       }
     };
 
-    function setShare (fellow, allow) {
+    /**
+     * 设置某好友的分享权限
+     */
+
+    function setShare(fellow, allow) {
       $http.post(GLOBAL.apiHost + 'share/', {
         token: loginService.getLoggedInUser().token,
         appid: $scope.appID,
@@ -65,7 +77,6 @@ angular.module('toHELL')
         switch (res.status) {
         case '1':
           $scope.sharedFellows = res.results;
-          console.log(res.results);
           $scope.lookupKeyword = '';
           $scope.hiFellows = [];
           break;
@@ -76,11 +87,13 @@ angular.module('toHELL')
       });
     }
 
-    $scope.addFellow = function(fellow){
+    // 添加分享好友
+    $scope.addFellow = function (fellow) {
       setShare(fellow, true);
     };
 
-    $scope.removeFellow = function(fellow){
+    // 移除分享好友
+    $scope.removeFellow = function (fellow) {
       setShare(fellow, false);
     };
   }

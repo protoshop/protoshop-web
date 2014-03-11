@@ -406,14 +406,15 @@
   /**
    * Monitor global key event & broadcast them
    */
+
   module.directive('keyEvents', [
     '$document',
     '$rootScope',
-    function($document, $rootScope) {
+    function ($document, $rootScope) {
       return {
         restrict: 'A',
-        link: function() {
-          $document.bind('keydown', function(e) {
+        link: function () {
+          $document.bind('keydown', function (e) {
             $rootScope.$broadcast('keydown', e);
           });
         }
