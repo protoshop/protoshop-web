@@ -21,7 +21,7 @@ var path = require('path');
 
 var LIVERELOAD_PORT = 35729;
 
-function createServers (root, port, lrport) {
+function createServers(root, port, lrport) {
 
   // App Server
   var app = express();
@@ -76,44 +76,36 @@ gulp.task('server:dist', function () {
 //var sass = require('gulp-ruby-sass');
 //var jshint = require('gulp-jshint');
 
-var usemin = require('gulp-usemin');
-var uglify = require('gulp-uglify');
-var minifyhtml = require('gulp-minify-html');
-var minifycss = require('gulp-minify-css');
-var imagemin = require('gulp-imagemin');
-var clean = require('gulp-clean');
-var rev = require('gulp-rev');
-
 gulp.task('usemin', function () {
   gulp.src('./app/*.html')
-    .pipe(usemin({
-      css: [minifycss(), rev()],
-      js: [uglify(), rev()],
-      html: [minifyhtml({empty: true})]
-    }))
-    .pipe(gulp.dest(BUILD_ROOT));
+  .pipe($.usemin({
+    css: [$.minifyCss(), $.rev()],
+    js: [$.uglify(), $.rev()],
+    html: [$.minifyHtml({empty: true})]
+  }))
+  .pipe(gulp.dest(BUILD_ROOT));
 });
 
 gulp.task('imagemin', function () {
-  gulp.src(SOURCE_ROOT + '/images/*.*', {base: SOURCE_ROOT})
-    .pipe(imagemin())
-    .pipe(gulp.dest(BUILD_ROOT));
+  gulp.src(SOURCE_ROOT + '/images/*.*')
+  .pipe($.imagemin())
+  .pipe(gulp.dest(BUILD_ROOT + '/images/'));
 });
 
 gulp.task('copy', function () {
   gulp.src([
-      '!' + SOURCE_ROOT + '/*.html',
-      SOURCE_ROOT + '/*.*',
-      SOURCE_ROOT + '/font/**/*',
-      SOURCE_ROOT + '/partials/**/*',
-      SOURCE_ROOT + '/templates/**/*'
-  ], {base: SOURCE_ROOT})
-    .pipe(gulp.dest(BUILD_ROOT));
+    '!' + SOURCE_ROOT + '/*.html',
+    SOURCE_ROOT + '/*.*',
+    SOURCE_ROOT + '/font/**/*',
+    SOURCE_ROOT + '/partials/**/*',
+    SOURCE_ROOT + '/templates/**/*'
+  ], { base: SOURCE_ROOT })
+  .pipe(gulp.dest(BUILD_ROOT));
 });
 
 gulp.task('clean', function () {
   return gulp.src([BUILD_ROOT], {read: false})
-    .pipe(clean());
+  .pipe($.clean());
 });
 
 gulp.task('build', ['clean'], function () {

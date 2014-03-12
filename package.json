@@ -3,18 +3,16 @@
   "version": "0.0.2",
   "dependencies": {},
   "devDependencies": {
+    "gulp": "~3.5.0",
+    "gulp-load-plugins": "~0.3.0",
     "gulp-usemin": "~0.3.1",
     "gulp-uglify": "~0.2.1",
     "gulp-minify-css": "~0.3.0",
     "gulp-minify-html": "~0.1.0",
     "gulp-rev": "~0.2.1",
-
-    "gulp": "~3.5.0",
-    "gulp-load-plugins": "~0.3.0",
     "gulp-util": "~2.2.9",
     "gulp-connect": "~1.0.7",
     "gulp-exec": "~1.0.4",
-
     "gulp-autoprefixer": "~0.0.6",
     "gulp-jshint": "~1.4.0",
     "gulp-imagemin": "~0.1.5",
@@ -23,7 +21,7 @@
     "gulp-size": "~0.1.2",
     "gulp-useref": "~0.1.2",
     "gulp-bundle": "~0.2.0",
-    
+    "gulp-ng-html2js": "~0.1.6",
     "express": "*",
     "tiny-lr": "*",
     "connect-livereload": "*",
