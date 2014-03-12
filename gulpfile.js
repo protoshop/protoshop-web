@@ -55,13 +55,13 @@ function createServers(root, port, lrport) {
   };
 }
 
-gulp.task('server:dev', function () {
+gulp.task('server:dev', ['html2js'], function () {
   var servers = createServers(SOURCE_ROOT, LOCAL_PORT, LIVERELOAD_PORT);
   gulp.watch(['./app/**/*', '!./app/node_modules/**/*'], servers.onchange);
   open('http://localhost:9999');
 });
 
-gulp.task('server:dist', function () {
+gulp.task('server:dist', ['build'], function () {
   var servers = createServers(BUILD_ROOT, LOCAL_PORT, LIVERELOAD_PORT);
   gulp.watch([BUILD_ROOT + '/**.*'], servers.onchange);
   open('http://localhost:9999');
@@ -76,7 +76,7 @@ gulp.task('server:dist', function () {
 //var sass = require('gulp-ruby-sass');
 //var jshint = require('gulp-jshint');
 
-gulp.task('usemin', function () {
+gulp.task('usemin', ['html2js'], function () {
   gulp.src('./app/*.html')
   .pipe($.usemin({
     css: [$.minifyCss(), $.rev()],
@@ -84,6 +84,19 @@ gulp.task('usemin', function () {
     html: [$.minifyHtml({empty: true})]
   }))
   .pipe(gulp.dest(BUILD_ROOT));
+});
+
+gulp.task('html2js', function () {
+  return gulp.src(SOURCE_ROOT + "/partials/*.html")
+//  .pipe($.minifyHtml({
+//    empty: true
+//  }))
+  .pipe($.ngHtml2js({
+    moduleName: "toHELL",
+    prefix: "partials/"
+  }))
+  .pipe($.concat('partials.js'))
+  .pipe(gulp.dest(SOURCE_ROOT + "/scripts/"));
 });
 
 gulp.task('imagemin', function () {
@@ -96,9 +109,7 @@ gulp.task('copy', function () {
   gulp.src([
     '!' + SOURCE_ROOT + '/*.html',
     SOURCE_ROOT + '/*.*',
-    SOURCE_ROOT + '/font/**/*',
-    SOURCE_ROOT + '/partials/**/*',
-    SOURCE_ROOT + '/templates/**/*'
+    SOURCE_ROOT + '/font/**/*'
   ], { base: SOURCE_ROOT })
   .pipe(gulp.dest(BUILD_ROOT));
 });
