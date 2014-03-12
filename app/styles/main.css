@@ -197,7 +197,8 @@ i { font-style: normal; }
 .users-list .email { color: #999; }
 
 /* Login */
-.login-box { margin-top: 100px; }
+.login-box { margin-top: 40px; }
+.login-box .login-title { padding: 30px 0; line-height: 2em; font-size: 36px; font-family: Helvetica; font-weight: 100; text-align: center; }
 .login-box li { padding: 10px 0; }
 .login-box input[type="text"], .login-box input[type="password"] { width: 348px; padding: 15px; border: 1px solid rgba(0,0,0,0.4); border-radius: 3px; font-size: 18px; }
 .login-box .btn-login { float: right; width: 180px; height: 50px; background: #ff8a00; border-radius: 3px; font-size: 18px; color: #fff; }
