@@ -36,62 +36,64 @@
 	<!-- 右栏：场景修改工具区 -->
 	<div class="layout-tools">
 		<button class="panel-toggle icon-right-open-big"></button>
-		<!-- tools: background -->
-		<div class="tools-box" ng-show="editStat.selectedScene !== null">
-			<div class="tools-title">Background</div>
-			<div class="tools-background">
-				<label class="tools-bg-thumb">
-					<input type="file" ng-file="backgroundImage" ng-file-change="fileChange" style="display:none">
-					<img style="height: 100px" ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}" />
-				</label>
-				<button ng-click="editStat.selectedScene.background=''">Remove</button>
+		<div class="panel-tools">
+			<!-- tools: background -->
+			<div class="tools-box" ng-show="editStat.selectedScene !== null">
+				<div class="tools-title">Background</div>
+				<div class="tools-background">
+					<label class="tools-bg-thumb">
+						<input type="file" ng-file="backgroundImage" ng-file-change="fileChange" style="display:none">
+						<img style="height: 100px" ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}" />
+					</label>
+					<button ng-click="editStat.selectedScene.background=''">Remove</button>
+				</div>
 			</div>
-		</div>
-		<!-- tools: actor -->
-		<div class="tools-box" ng-show="editStat.selectedScene !== null">
-			<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button>
+			<!-- tools: actor -->
+			<div class="tools-box" ng-show="editStat.selectedScene !== null">
+				<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button>
+				</div>
+				<ul class="tools-actor">
+					<li class="tools-actor-item" ng-repeat="ele in editStat.selectedScene.elements" ng-click="onActorItemClick(ele)"
+						ng-class="{'tools-actor-item-selected': ele === editStat.selectedElement}">
+							<span>Actor: {{ele.type}}
+							<span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
+							  W: {{ele.width}}  H: {{ele.height}}</span></span>
+						<button class="tools-actor-action icon-minus-circled" ng-click="removeElement(ele)"></button>
+					</li>
+				</ul>
 			</div>
-			<ul class="tools-actor">
-				<li class="tools-actor-item" ng-repeat="ele in editStat.selectedScene.elements" ng-click="onActorItemClick(ele)"
-					ng-class="{'tools-actor-item-selected': ele === editStat.selectedElement}">
-						<span>Actor: {{ele.type}}
-						<span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
-						  W: {{ele.width}}  H: {{ele.height}}</span></span>
-					<button class="tools-actor-action icon-minus-circled" ng-click="removeElement(ele)"></button>
-				</li>
-			</ul>
-		</div>
-		<!-- tools: position -->
-		<div class="tools-box" ng-show="editStat.selectedElement !== null">
-			<div class="tools-title">Position</div>
-			<ul class="tools-position">
-				<li><label>X</label><input type="text" ng-model="editStat.selectedElement.posX" px-unit/> px</li>
-				<li><label>Y</label><input type="text" ng-model="editStat.selectedElement.posY" px-unit/> px</li>
-				<li><label>W</label><input type="text" ng-model="editStat.selectedElement.width" px-unit/> px</li>
-				<li><label>H</label><input type="text" ng-model="editStat.selectedElement.height" px-unit/> px</li>
-			</ul>
-		</div>
-		<!-- tools: action -->
-		<div class="tools-box" ng-show="editStat.selectedElement !== null">
-			<div class="tools-title">
-				<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
-				Actions
+			<!-- tools: position -->
+			<div class="tools-box" ng-show="editStat.selectedElement !== null">
+				<div class="tools-title">Position</div>
+				<ul class="tools-position">
+					<li><label>X</label><input type="text" ng-model="editStat.selectedElement.posX" px-unit/> px</li>
+					<li><label>Y</label><input type="text" ng-model="editStat.selectedElement.posY" px-unit/> px</li>
+					<li><label>W</label><input type="text" ng-model="editStat.selectedElement.width" px-unit/> px</li>
+					<li><label>H</label><input type="text" ng-model="editStat.selectedElement.height" px-unit/> px</li>
+				</ul>
 			</div>
-			<ul class="tools-action">
-				<li ng-repeat="action in editStat.selectedElement.actions">
-					<span>{{renderActionItem(action)}}</span>
-					<button class="tools-title-action icon-minus-circled" ng-click="removeAction(action)"></button>
-				</li>
-			</ul>
-		</div>
-		<!-- tools: setting -->
-		<div class="tools-box" ng-show="editStat.selectedScene === null">
-			<div class="tools-title">Settings</div>
-			<ul class="tools-setting">
-				<li><label>Name:</label><input type="text" ng-model="package.appName" /></li>
-				<!--<li><label>Icon:</label><img ng-src="{{package.appIcon}}" /></li>-->
-				<li><label>Icon:</label><img src="http://wxddb1.qa.nt.ctripcorp.com/packages/icon.png" /></li>
-			</ul>
+			<!-- tools: action -->
+			<div class="tools-box" ng-show="editStat.selectedElement !== null">
+				<div class="tools-title">
+					<button class="tools-title-action icon-plus-circled" ng-click="addAction()"></button>
+					Actions
+				</div>
+				<ul class="tools-action">
+					<li ng-repeat="action in editStat.selectedElement.actions">
+						<span>{{renderActionItem(action)}}</span>
+						<button class="tools-title-action icon-minus-circled" ng-click="removeAction(action)"></button>
+					</li>
+				</ul>
+			</div>
+			<!-- tools: setting -->
+			<div class="tools-box" ng-show="editStat.selectedScene === null">
+				<div class="tools-title">Settings</div>
+				<ul class="tools-setting">
+					<li><label>Name:</label><input type="text" ng-model="package.appName" /></li>
+					<!--<li><label>Icon:</label><img ng-src="{{package.appIcon}}" /></li>-->
+					<li><label>Icon:</label><img src="http://wxddb1.qa.nt.ctripcorp.com/packages/icon.png" /></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
