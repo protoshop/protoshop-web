@@ -9,7 +9,7 @@ input, select, textarea, button { -webkit-appearance:none; border: none; font-fa
 button { background: none; cursor: pointer; }
 i { font-style: normal; }
 
-.layout { display: -webkit-flex; display: flex; flex-direction: column; -webkit-flex-direction: column; width: 100%; height: 100%; min-width: 520px; }
+.layout { display: -webkit-flex; display: flex; flex-direction: column; -webkit-flex-direction: column; width: 100%; height: 100%; }
 
 .navbar { width: 100%; height: 50px; background: #014eb6; z-index: 9; }
 .navbar:after{ content:""; width: 100%; height: 50px; position:relative; }
@@ -128,12 +128,13 @@ i { font-style: normal; }
 
 /* Package List */
 
-.layout-container { -webkit-flex: 1; flex: 1; -webkit-align-self: center; align-self: center; min-width: 440px; max-width: 1200px; padding: 0 40px; }
+.layout-container { -webkit-flex: 1; flex: 1; -webkit-align-self: center; align-self: center; width: 920px; max-width: 1200px; padding: 0 40px; }
 .pkg-title { padding: 30px 6px 20px; height: 40px; border-bottom: 2px solid #ddd; }
 .pkg-title .pkg-name { float: left; font-size: 32px; color: #666; }
 .pkg-title .pkg-new { float: right; padding: 0 14px; font-size: 18px; color: #fff; line-height: 40px; background: #ff8a00; border-radius: 3px; }
 .pkg-title .pkg-new:hover { background: #ff7200; }
 .pkg-title .pkg-new i { font-style: normal; padding-right: 5px; }
+.pkg-list { min-width: 860px; }
 .pkg-list li { min-height: 52px; padding: 25px 10px 25px 50px; border-bottom: 1px solid #eaeaea; overflow: hidden; }
 .pkg-list .pkg-platform { float: left; margin-left: -50px; width: 32px; height: 32px; font-size: 28px; }
 .pkg-info { float: left; padding-right: 148px; line-height: 26px; font-size: 14px; }
@@ -242,10 +243,3 @@ i { font-style: normal; }
 .notify-item.ng-hide-add.ng-hide-add-active, .notify-item.ng-hide-remove { opacity: 0; }
 .notify-item.ng-hide-add, .notify-item.ng-hide-remove.ng-hide-remove-active { opacity: 1; }
 .notify-item.ng-enter-stagger { transition-delay: .1s; }
-
-/* Animations */
-@-webkit-keyframes blink {
-    0%   { opacity: 1 }
-    50%  { opacity: 0 }
-    100% { opacity: 1 }
-}
