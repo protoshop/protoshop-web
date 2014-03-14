@@ -1,6 +1,3 @@
 <ul class="notify">
-	<li class="notify-item" ng-repeat="item in items" ng-bind="item.content"
-	 ng-class="{'notify-item-info': item.nType == 'info', 'notify-item-warn': item.nType == 'warn', 'notify-item-error': item.nType == 'error'}"
-	 item-target="item"
-	 notify-item></li>
+	<li class="notify-item {{'notify-item-'+item.type}}" ng-repeat="item in items" ng-bind="item.message"></li>
 </ul>

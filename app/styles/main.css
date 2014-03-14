@@ -236,12 +236,14 @@ i { font-style: normal; }
 .team-nonmember .person-job { margin-right: 10px; }
 
 /* Notification */
-.notify { position: relative; z-index: 20; min-width: 250px; min-height: 18px; padding: 5px; color: #fff; }
-.notify-item { padding: 5px; border-radius: 6px; background-color: rgba(255,255,255,0.2); cursor: pointer; text-align: center; }
-.notify-item-info { color: #fff; }
-.notify-item-warn { color: #c47529; }
+.notify { position: fixed; top: 0; left: 50%; margin: 10px -120px; width: 240px; z-index: 999; }
+.notify-item { border-radius: 5px; height: 30px; line-height: 30px; margin-bottom: 18px; text-align: center; overflow: hidden; }
+.notify-item-info { background-color: rgba(0,0,0,0.2); color: #EEE; }
+.notify-item-warning { background-color: rgba(255,255,255,0.2); color: #EA3; opacity: 0.8; }
 .notify-item-error { color: #f00; }
-.notify-item.ng-leave{ transition: all linear .5s; }
-.notify-item.ng-hide-add.ng-hide-add-active, .notify-item.ng-hide-remove { opacity: 0; }
-.notify-item.ng-hide-add, .notify-item.ng-hide-remove.ng-hide-remove-active { opacity: 1; }
-.notify-item.ng-enter-stagger { transition-delay: .1s; }
+.notify-item.ng-enter,
+.notify-item.ng-leave { transition:0.2s ease all; }
+.notify-item.ng-enter,
+.notify-item.ng-leave.ng-leave-active { height: 0; margin-bottom: 0; }
+.notify-item.ng-leave,
+.notify-item.ng-enter.ng-enter-active { height: 30px; }
