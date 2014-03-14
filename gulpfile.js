@@ -96,7 +96,7 @@ gulp.task('html2js', function () {
     prefix: "partials/"
   }))
   .pipe($.concat('partials.js'))
-  .pipe(gulp.dest(SOURCE_ROOT + "/scripts/"));
+  .pipe(gulp.dest(BUILD_ROOT + "/scripts/"));
 });
 
 gulp.task('imagemin', function () {
