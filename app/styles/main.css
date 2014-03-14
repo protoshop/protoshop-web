@@ -142,7 +142,7 @@ i { font-style: normal; }
 .pkg-info { float: left; padding-right: 148px; line-height: 26px; font-size: 14px; }
 .pkg-info .pkg-appname { font-size: 22px; color: #06c; }
 .pkg-info .pkg-appname:hover { text-decoration: underline; }
-.pkg-info .pkg-createtime { margin-left: 6px; color: rgba(0,0,0,0.4); }
+.pkg-info .pkg-modifytime, .pkg-info .pkg-author { margin-left: 6px; color: rgba(0,0,0,0.4); }
 .pkg-info .pkg-desc { line-height: 1.5; color: rgba(0,0,0,0.6); }
 .pkg-btn { float: right; margin-left: -148px; }
 .pkg-btn button { width: 72px; height: 50px; line-height: 20px; font-size: 20px; color: rgba(0,0,0,0); }
