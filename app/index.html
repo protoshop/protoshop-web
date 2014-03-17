@@ -11,6 +11,18 @@
 </head>
 <body>
 
+<p id="browser-not-support" style="line-height: 3em; text-align: center; display: none">
+	非常、非常抱歉，暂不支持你使用的浏览器……装个 Chrome 吧 :D<br/>
+	<a href="http://www.google.com/intl/zh-CN/chrome/browser/">
+		<img width="123" height="40" src="images/chrome_logo_2x.png">
+	</a>
+	<script>
+		if (window.navigator.userAgent.match(/Chrome/)) {
+			document.getElementById('browser-not-support').style.display = 'block';
+		}
+	</script>
+</p>
+
 <div class="layout" ng-view key-events></div>
 
 <!-- build:js scripts/vendor.js -->
