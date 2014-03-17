@@ -36,11 +36,12 @@ i { font-style: normal; }
 .s4 { width: 450px; height: 806px; background-image: url(../images/bg-stage-s4.png); background-size: 450px auto; }
 .panel-toggle { display: none } /* 当前版本暂无此功能 */
 .panel-toggle { position: absolute; top: 50%; width: 28px; height: 32px; -webkit-transform: translate(0,-50%); transform: translate(0,-50%); background: rgba(0,0,0,0.4); color: #fff; z-index: 99; }
-.layout-scenes .panel-toggle { left: 180px; border-radius: 0 3px 3px 0; }
-.layout-tools .panel-toggle { right: 300px; border-radius: 3px 0 0 3px; }
+.layout-scenes .panel-toggle { left: 100%; border-radius: 0 3px 3px 0; }
+.layout-tools .panel-toggle { right: 100%; border-radius: 3px 0 0 3px; }
 .layout-scenes-off, .layout-tools-off { width: 0; }
-.layout-scenes-off { -webkit-transform: translate(-180px, 0); transform: translate(-180px, 0); }
-.layout-tools-off { -webkit-transform: translate(300px, 0); transform: translate(300px, 0); }
+.layout-scenes-off .scenes-title, .layout-scenes-off .scenes-edit { visibility: hidden; }
+/*.layout-scenes-off { -webkit-transform: translate(-180px, 0); transform: translate(-180px, 0); }
+.layout-tools-off { -webkit-transform: translate(300px, 0); transform: translate(300px, 0); }*/
 .layout-scenes-off .panel-toggle, .layout-tools-off .panel-toggle { -webkit-transform: translate(0,-50%) rotateY(180deg); transform: translate(0,-50%) rotateY(180deg); }
 .layout-scenes-off .panel-toggle { border-radius: 3px 0 0 3px; }
 .layout-tools-off .panel-toggle { border-radius: 0 3px 3px 0; }
@@ -141,7 +142,7 @@ i { font-style: normal; }
 .pkg-info { float: left; padding-right: 148px; line-height: 26px; font-size: 14px; }
 .pkg-info .pkg-appname { font-size: 22px; color: #06c; }
 .pkg-info .pkg-appname:hover { text-decoration: underline; }
-.pkg-info .pkg-createtime { margin-left: 6px; color: rgba(0,0,0,0.4); }
+.pkg-info .pkg-modifytime, .pkg-info .pkg-author { margin-left: 6px; color: rgba(0,0,0,0.4); }
 .pkg-info .pkg-desc { line-height: 1.5; color: rgba(0,0,0,0.6); }
 .pkg-btn { float: right; margin-left: -148px; }
 .pkg-btn button { width: 72px; height: 50px; line-height: 20px; font-size: 20px; color: rgba(0,0,0,0); }
