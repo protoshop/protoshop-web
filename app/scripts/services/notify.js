@@ -15,7 +15,7 @@ angular.module('toHELL')
   function create(message, type, timeout) {
 
     type = type || 'info';
-    timeout = timeout || 30000;
+    timeout = timeout || 3000;
 
     // 新的通知项目
     items.push({

@@ -109,7 +109,6 @@ angular.module('toHELL')
 
     $scope.$on('package.save', function () {
       $scope.package.token = token;
-      console.log($scope.package);
       $http.post(GLOBAL.apiHost + 'saveProject/', {
         context: $scope.package
       })
@@ -117,11 +116,10 @@ angular.module('toHELL')
         switch (res.status) {
         case '1':
           notifyService.notify('已保存！');
-          console.log('Package "' + $scope.package.appID + '" saved!');
           break;
         default:
           var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
-          console.log('Delete Project Error: ', errDesc, res);
+          notifyService.warn('Error: ' + errDesc);
         }
       })
       .error(GLOBAL.errLogger);
