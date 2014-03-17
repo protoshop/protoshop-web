@@ -17,7 +17,7 @@
 		<img width="123" height="40" src="images/chrome_logo_2x.png">
 	</a>
 	<script>
-		if (window.navigator.userAgent.match(/Chrome/)) {
+		if (!window.navigator.userAgent.match(/Chrome/)) {
 			document.getElementById('browser-not-support').style.display = 'block';
 		}
 	</script>
