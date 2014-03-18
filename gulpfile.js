@@ -69,6 +69,19 @@ gulp.task('server:dist', ['build'], function () {
 
 /**
  * =====================================
+ *                              Linting
+ * =====================================
+ */
+
+gulp.task('lint', function(){
+  return gulp.src(SOURCE_ROOT + '/scripts/**/*.js')
+  .pipe($.jshint('.jshintrc'))
+  .pipe($.jshint.reporter('jshint-stylish'))
+  .pipe($.size());
+});
+
+/**
+ * =====================================
  *                             Building
  * =====================================
  */

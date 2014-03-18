@@ -1,7 +1,7 @@
 {
   "name": "Protoshp/Web",
   "homepage": "http://protoshop.io",
-  "version": "0.1.2",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git@git.dev.sh.ctripcorp.com:wxd-pd/wxd-uitool.git"
@@ -19,7 +19,7 @@
     "gulp-connect": "~1.0.7",
     "gulp-exec": "~1.0.4",
     "gulp-autoprefixer": "~0.0.6",
-    "gulp-jshint": "^1.4.2",
+    "gulp-jshint": "^1.5.0",
     "gulp-imagemin": "~0.1.5",
     "gulp-clean": "~0.2.4",
     "gulp-cache": "~0.1.1",
@@ -31,7 +31,8 @@
     "tiny-lr": "*",
     "connect-livereload": "*",
     "open": "*",
-    "gulp-concat": "^2.1.7"
+    "gulp-concat": "^2.1.7",
+    "jshint-stylish": "^0.1.5"
   },
   "engines": {
     "node": ">=0.10.0"
