@@ -184,4 +184,4 @@ gulp.task('dist:prod', function () {
 
 gulp.task('server', ['server:dev']);
 
-gulp.task('default', ['server:dev']);
+gulp.task('default', $.taskListing);

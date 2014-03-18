@@ -26,12 +26,13 @@
     "gulp-size": "~0.1.2",
     "gulp-useref": "^0.1.2",
     "gulp-bundle": "^0.2.3",
-    "gulp-ng-html2js": "~0.1.6",
-    "express": "^4.0.0-rc3",
-    "tiny-lr": "*",
-    "connect-livereload": "*",
-    "open": "*",
     "gulp-concat": "^2.1.7",
+    "gulp-ng-html2js": "~0.1.6",
+    "gulp-task-listing": "^0.2.2",
+    "express": "^4.0.0-rc3",
+    "connect-livereload": "*",
+    "tiny-lr": "*",
+    "open": "*",
     "jshint-stylish": "^0.1.5"
   },
   "engines": {
