@@ -1,6 +1,11 @@
 {
-  "name": "uitool",
-  "version": "0.0.2",
+  "name": "Protoshp/Web",
+  "homepage": "http://protoshop.io",
+  "version": "0.1.2",
+  "repository": {
+    "type": "git",
+    "url": "git@git.dev.sh.ctripcorp.com:wxd-pd/wxd-uitool.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.5.6",
