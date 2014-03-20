@@ -23,6 +23,8 @@ angular.module('toHELL')
     } else {
       token = loginService.getLoggedInUser().token;
     }
+    
+    $scope.fileRoot = GLOBAL.pkgHost + '/' + $routeParams.pkgId + '/';
 
     /**
      * 存储当前的编辑状态
@@ -79,6 +81,23 @@ angular.module('toHELL')
 
     $scope.onActorItemClick = function (element) {
       editService.selectElement(element);
+    };
+    
+    $scope.iconUploadHandlers = {
+      before: function(args){
+        args.url = GLOBAL.apiHost + 'uploadImage/';
+        args.transformRequest = formDataObject;
+        args.data = {
+          appid: $scope.package.appID,
+          file: args.data.files[0]
+        };
+        return args;
+      },
+      after: function(data){
+        if(data.status === '1'){
+          $scope.package.icon = data.fileName;
+        }
+      }
     };
 
     $scope.fileChange = function (files) {

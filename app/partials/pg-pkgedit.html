@@ -152,7 +152,13 @@
 				<ul class="tools-setting">
 					<li><label>Name:</label><input type="text" ng-model="package.appName" /></li>
 					<!--<li><label>Icon:</label><img ng-src="{{package.appIcon}}" /></li>-->
-					<li><label>Icon:</label><img src="http://wxddb1.qa.nt.ctripcorp.com/packages/icon.png" /></li>
+					<li>
+						<label>
+							Icon:
+							<input style="display: none" uploader data-handlers="iconUploadHandlers" type="file" />
+							<img ng-src="{{package.icon ? fileRoot + package.icon : 'http://wxddb1.qa.nt.ctripcorp.com/packages/icon.png'}}" />
+						</label>
+					</li>
 				</ul>
 			</div>
 		</div>
