@@ -106,8 +106,7 @@ angular.module('toHELL')
       before: uploadDataFormater,
       after: function(data){
         if(data.status == '1'){
-          var pkgURI = GLOBAL.pkgHost + $scope.package.appID + '/';
-          $scope.editStat.selectedScene.background = pkgURI + data.fileName;
+          $scope.editStat.selectedScene.background = $scope.fileRoot + data.fileName;
         }
       }
     };
