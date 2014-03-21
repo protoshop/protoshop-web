@@ -83,43 +83,33 @@ angular.module('toHELL')
       editService.selectElement(element);
     };
     
+    function uploadDataFormater(args){
+      args.url = GLOBAL.apiHost + 'uploadImage/';
+      args.transformRequest = formDataObject;
+      args.data = {
+        appid: $scope.package.appID,
+        file: args.data.files[0]
+      };
+      return args;
+    }
+    
     $scope.iconUploadHandlers = {
-      before: function(args){
-        args.url = GLOBAL.apiHost + 'uploadImage/';
-        args.transformRequest = formDataObject;
-        args.data = {
-          appid: $scope.package.appID,
-          file: args.data.files[0]
-        };
-        return args;
-      },
+      before: uploadDataFormater,
       after: function(data){
         if(data.status === '1'){
           $scope.package.icon = data.fileName;
         }
       }
     };
-
-    $scope.fileChange = function (files) {
-      $http({
-        method: 'POST',
-        url: GLOBAL.apiHost + 'uploadImage/',
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        transformRequest: formDataObject,
-        data: {
-          appid: $scope.package.appID,
-          file: files[0]
+    
+    $scope.sceneBgUploadHandlers = {
+      before: uploadDataFormater,
+      after: function(data){
+        if(data.status == '1'){
+          var pkgURI = GLOBAL.pkgHost + $scope.package.appID + '/';
+          $scope.editStat.selectedScene.background = pkgURI + data.fileName;
         }
-      }).success(function (data) {
-        var pkgURI = GLOBAL.pkgHost + $scope.package.appID + '/';
-        $scope.editStat.selectedScene.background = pkgURI + data.fileName;
-        console.log('suc: ', data);
-      })
-      .error(function (err) {
-        console.log('err: ', err);
-      });
+      }
     };
 
     /**

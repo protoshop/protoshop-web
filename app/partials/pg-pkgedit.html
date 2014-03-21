@@ -45,7 +45,7 @@
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
 					<label class="tools-bg-thumb">
-						<input type="file" ng-file="backgroundImage" ng-file-change="fileChange" style="display:none">
+						<input type="file" uploader data-handlers="sceneBgUploadHandlers" style="display:none">
 						<img style="height: 100px" ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}" />
 					</label>
 					<button ng-click="editStat.selectedScene.background=''">Remove</button>
@@ -155,7 +155,7 @@
 					<li>
 						<label>Icon: </label>
 						<label>
-							<input style="display: none" uploader data-handlers="iconUploadHandlers" type="file" />
+							<input type="file" uploader data-handlers="iconUploadHandlers" style="display: none" />
 							<img ng-src="{{package.icon ? fileRoot + package.icon : 'http://wxddb1.qa.nt.ctripcorp.com/packages/icon.png'}}" />
 						</label>
 					</li>

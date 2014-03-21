@@ -422,31 +422,6 @@
     }
   ]);
 
-  /**
-   * Directive "ng-file" for uploading
-   *
-   * Attributes:
-   * @Attr ng-file {String} the attr to bind on $scope.
-   * @Attr ng-file-change {String} the method on $scope to call on change.
-   */
-  module.directive('ngFile', function () {
-    return {
-      link: function (scope, el, attrs) {
-        var args = {
-          bindAttr: attrs['ngFile'] || 'file',
-          onChange: attrs['ngFileChange']
-        };
-        el.bind('change', function (ev) {
-          scope[args.bindAttr] = ev.target.files;
-          scope.$apply();
-
-          if (args.onChange) {
-            scope[args.onChange](ev.target.files);
-          }
-        });
-      }
-    };
-  });
 
   module.directive('notify', ['$document', 'notifyService', function ($document, notifyService) {
 
@@ -454,8 +429,7 @@
       restrict: 'AE',
       templateUrl: 'partials/notify.html',
       replace: true,
-      link: function (scope, element) {
-//        positionCenter(element);
+      link: function (scope) {
         scope.items = notifyService.getItems();
         scope.dismiss = function(item){
           notifyService.remove(item);
