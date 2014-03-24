@@ -23,7 +23,7 @@ angular.module('toHELL')
     } else {
       token = loginService.getLoggedInUser().token;
     }
-    
+
     $scope.fileRoot = GLOBAL.pkgHost + '/' + $routeParams.pkgId + '/';
 
     /**
@@ -82,8 +82,8 @@ angular.module('toHELL')
     $scope.onActorItemClick = function (element) {
       editService.selectElement(element);
     };
-    
-    function uploadDataFormater(args){
+
+    function uploadDataFormater(args) {
       args.url = GLOBAL.apiHost + 'uploadImage/';
       args.transformRequest = formDataObject;
       args.data = {
@@ -92,20 +92,20 @@ angular.module('toHELL')
       };
       return args;
     }
-    
+
     $scope.iconUploadHandlers = {
       before: uploadDataFormater,
-      after: function(data){
-        if(data.status === '1'){
+      after: function (data) {
+        if (data.status === '1') {
           $scope.package.icon = data.fileName;
         }
       }
     };
-    
+
     $scope.sceneBgUploadHandlers = {
       before: uploadDataFormater,
-      after: function(data){
-        if(data.status == '1'){
+      after: function (data) {
+        if (data.status === '1') {
           $scope.editStat.selectedScene.background = $scope.fileRoot + data.fileName;
         }
       }

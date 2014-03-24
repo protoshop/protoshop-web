@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('toHELL')
 
 /**
@@ -52,5 +54,5 @@ angular.module('toHELL')
         $rootScope.$broadcast('package.save');
       };
     }
-  }
+  };
 }]);

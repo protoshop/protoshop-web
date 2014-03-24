@@ -6,7 +6,7 @@ angular.module('toHELL')
     controller: 'DialogShareCtrl',
     controllerAs: 'modal',
     templateUrl: 'partials/dialog-share.html'
-  })
+  });
 }])
 .controller('DialogShareCtrl', [
   'dialogShare',

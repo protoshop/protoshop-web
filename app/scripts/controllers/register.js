@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('RegisterCTRL', ['$scope', '$location', '$http', 'GLOBAL', 'loginService',
-  function ($scope, $location, $http, GLOBAL, loginService) {
+.controller('RegisterCTRL', ['$scope', '$location', '$http', 'GLOBAL', 'loginService', 'notifyService',
+  function ($scope, $location, $http, GLOBAL, loginService, notifyService) {
     $scope.doSignup = function () {
 
       // 将密码做 MD5 转换
@@ -24,11 +24,11 @@ angular.module('toHELL')
           break;
         default:
           var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
-          alert(errDesc);
+          notifyService.error(errDesc);
           console.log('Signup Error: ', errDesc, res);
         }
       })
       .error(GLOBAL.errLogger);
-    }
+    };
   }
 ]);

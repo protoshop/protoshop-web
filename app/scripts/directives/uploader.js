@@ -1,5 +1,7 @@
+'use strict';
+
 angular.module('toHELL')
-.directive('uploader', ['$http', 'GLOBAL', 'formDataObject', function ($http, GLOBAL, formDataObject) {
+.directive('uploader', ['$http', 'GLOBAL', 'formDataObject', function ($http, GLOBAL) {
   return {
     restrict: 'A',
     link: function (scope, el, attrs) {
@@ -8,14 +10,14 @@ angular.module('toHELL')
       el.bind('change', function (ev) {
 
         // handlers 对象包含两个方法：可选 before(postArgs), 必选 after(response)
-        var handlers = scope[attrs['handlers']];
+        var handlers = scope[attrs.handlers];
 
         if (handlers) {
 
           // 创建 POST 参数对象
           var postArgs = {
             method: 'POST',
-            url: attrs['url'] || '',
+            url: attrs.url || '',
             headers: {
               'Content-Type': 'multipart/form-data'
             },
@@ -25,7 +27,7 @@ angular.module('toHELL')
           };
 
           // handlers.before() 应该返回经过整理的 postArgs.
-          if(handlers.before){
+          if (handlers.before) {
             postArgs = handlers.before(postArgs);
           }
 

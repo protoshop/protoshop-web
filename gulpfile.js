@@ -73,8 +73,11 @@ gulp.task('server:dist', ['build'], function () {
  * =====================================
  */
 
-gulp.task('lint', function(){
-  return gulp.src(SOURCE_ROOT + '/scripts/**/*.js')
+gulp.task('lint', function () {
+  return gulp.src([
+    SOURCE_ROOT + '/scripts/**/*.js',
+    '!' + SOURCE_ROOT + '/scripts/libs/**/*.js'
+  ])
   .pipe($.jshint('.jshintrc'))
   .pipe($.jshint.reporter('jshint-stylish'))
   .pipe($.size());
