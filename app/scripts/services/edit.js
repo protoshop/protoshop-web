@@ -81,7 +81,7 @@
        */
       this.addScene = function () {
         var newScene = {
-          id: Date.now(),
+          id: Date.now().toString(),
           order: findMaxSceneOrder() + 1,
           name: 'New Scene ' + (self.package.scenes.length + 1),
           background: '',
@@ -108,7 +108,7 @@
           return this.addScene();
         }
         var newScene = {
-          id: Date.now(),
+          id: Date.now().toString(),
           order: parseInt(scene.order, 10) + 1,
           name: 'New Scene ' + (self.package.scenes.length + 1),
           background: '',
