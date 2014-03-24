@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.directive('uploader', ['$http', 'GLOBAL', 'formDataObject', function ($http, GLOBAL) {
+.directive('uploader', ['$http', function ($http) {
   return {
     restrict: 'A',
     link: function (scope, el, attrs) {
@@ -9,7 +9,10 @@ angular.module('toHELL')
       // 当 input 内容发生改变时直接上传
       el.bind('change', function (ev) {
 
-        // handlers 对象包含两个方法：可选 before(postArgs), 必选 after(response)
+        // handlers 对象包含三个方法：
+        //   - (可选) before(postArgs),
+        //   - (必选) after(response),
+        //   - (可选) onError(error)
         var handlers = scope[attrs.handlers];
 
         if (handlers) {
@@ -34,7 +37,7 @@ angular.module('toHELL')
           // 发起上传请求
           $http(postArgs)
           .success(handlers.after)
-          .error(GLOBAL.errLogger);
+          .error(handlers.onError || angular.noop);
         }
 
       });

@@ -99,7 +99,8 @@ angular.module('toHELL')
         if (data.status === '1') {
           $scope.package.icon = data.fileName;
         }
-      }
+      },
+      onError: GLOBAL.errLogger
     };
 
     $scope.sceneBgUploadHandlers = {
@@ -108,7 +109,8 @@ angular.module('toHELL')
         if (data.status === '1') {
           $scope.editStat.selectedScene.background = $scope.fileRoot + data.fileName;
         }
-      }
+      },
+      onError: GLOBAL.errLogger
     };
 
     /**
