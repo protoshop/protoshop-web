@@ -142,8 +142,16 @@ angular.module('toHELL')
     $scope.$on('keydown', function (onEvent, keyEvent) {
       switch (keyEvent.which) {
       case 8:
-        // 阻止 Backspace 后退
-        keyEvent.preventDefault();
+        // 酌情阻止 Backspace 后退
+        if ($scope.editStat.selectedElement) {
+          // 如果有选中 element
+          editService.removeElement($scope.editStat.selectedElement);
+          keyEvent.preventDefault();
+          keyEvent.stopPropagation();
+          $scope.$apply();
+        } else if (!confirm('确认：返回工程列表？\n未保存的修改将会丢失')) {
+          keyEvent.preventDefault();
+        }
       }
     });
 
