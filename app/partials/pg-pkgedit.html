@@ -27,7 +27,7 @@
 	<!-- 中栏：场景详情修改区 -->
 	<div class="layout-stage" ng-click="onBackgroundClick()">
 		<div class="{{package.appPlatform === 'android' ? 's4':'i5'}}">
-			<div class="scene">
+			<div class="scene" scene-stage>
 				<img class="scene-bg" ng-show="editStat.selectedScene.background" ng-src="{{editStat.selectedScene.background}}" alt=""/>
 				<div editor-hotspot-group></div>
 			</div>
@@ -52,67 +52,13 @@
 				</div>
 			</div>
 			<!-- tools: library -->
-			<div class="tools-box" ng-show="editStat.selectedScene !== null">
+			<div class="tools-box">
 				<div class="tools-title">Library</div>
-				<div class="lib-category">
-					<h3>Basic</h3>
-					<ul class="lib-list">
-						<li>
-							<div class="lib-item-thumb" style="background-position:-720px -96px;"></div>
-							<span class="lib-item-caption">Button</span>
-						</li>
-						<li>
-							<div class="lib-item-thumb" style="background-position:-240px -96px;"></div>
-							<span class="lib-item-caption">Toolbar</span>
-						</li>
-						<li>
-							<div class="lib-item-thumb" style="background-position:-480px 0;"></div>
-							<span class="lib-item-caption">Hotspot</span>
-						</li>
-						<li>
-							<div class="lib-item-thumb" style="background-position:-160px -256px;"></div>
-							<span class="lib-item-caption">List</span>
-						</li>
-					</ul>
-				</div>
-				<div class="lib-category">
-					<h3>Toolbars</h3>
-					<ul class="lib-list">
-						<li>
-							<div class="lib-item-thumb" style="background-position:-720px -96px;"></div>
-							<span class="lib-item-caption">Button</span>
-						</li>
-						<li>
-							<div class="lib-item-thumb" style="background-position:-240px -96px;"></div>
-							<span class="lib-item-caption">Toolbar</span>
-						</li>
-						<li>
-							<div class="lib-item-thumb" style="background-position:-480px 0;"></div>
-							<span class="lib-item-caption">Hotspot</span>
-						</li>
-					</ul>
-				</div>
-				<div class="lib-category">
-					<h3>Buttons</h3>
-					<ul class="lib-list">
-						<li>
-							<div class="lib-item-thumb" style="background-position:-720px -96px;"></div>
-							<span class="lib-item-caption">Button</span>
-						</li>
-						<li>
-							<div class="lib-item-thumb" style="background-position:-240px -96px;"></div>
-							<span class="lib-item-caption">Toolbar</span>
-						</li>
-						<li>
-							<div class="lib-item-thumb" style="background-position:-480px 0;"></div>
-							<span class="lib-item-caption">Hotspot</span>
-						</li>
-					</ul>
-				</div>
+				<sidebarlibs />
 			</div>
 			<!-- tools: actor -->
 			<div class="tools-box" ng-show="editStat.selectedScene !== null">
-				<div class="tools-title">Actors<button class="icon-plus-circled" ng-click="addHotspotElement()"></button></div>
+				<div class="tools-title">Actors</div>
 				<ul class="tools-actor">
 					<li class="tools-actor-item" ng-repeat="ele in editStat.selectedScene.elements" ng-click="onActorItemClick(ele)"
 						ng-class="{'tools-actor-item-selected': ele === editStat.selectedElement}">
