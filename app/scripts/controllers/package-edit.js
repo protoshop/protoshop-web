@@ -149,6 +149,9 @@ angular.module('toHELL')
           keyEvent.preventDefault();
           keyEvent.stopPropagation();
           $scope.$apply();
+        } else if (keyEvent.target.tagName == 'INPUT') {
+          // 如果焦点在输入框内，则阻止冒泡
+          keyEvent.stopPropagation();
         } else if (!confirm('确认：返回工程列表？\n未保存的修改将会丢失')) {
           keyEvent.preventDefault();
         }
