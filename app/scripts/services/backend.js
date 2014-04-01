@@ -79,6 +79,16 @@ angular.module('toHELL')
     deleteProject: function (info, callback) {
       var url = this.apiHost + 'deleteProject/?appid=' + info.appID + '&token=' + info.token;
       makeRequest(undefined, url, callback);
+    },
+
+    /**
+     * 获取工程包数据
+     */
+    getPackage: function (info, callback) {
+      var url = this.apiHost + 'fetchProject/?appid=' + info.pkgId + '&token=' + info.token;
+      // var url = '/api/package/' + info.pkgId + '.json'
+      // var url = '/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json'
+      makeRequest(undefined, url, callback);
     }
 
   }
