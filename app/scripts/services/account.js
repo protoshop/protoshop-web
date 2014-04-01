@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('toHELL')
-.factory('loginService', [ '$http', '$location', 'backendService', function ($http, $location, backend) {
+.factory('loginService', function () {
+  return {
+    isLoggedIn: function () {return false}
+  }
+})
+.factory('accountService', function ($http, $location, backendService, notifyService) {
 
   var loggedInUser;
 
@@ -16,38 +21,40 @@ angular.module('toHELL')
       return this.isLoggedIn() ? loggedInUser : false;
     },
 
-    doLogin: function (account, callback, errCallback) {
+    login: function (account, callback, errCallback) {
 
       // Trasform password to hash
       account.passwd = V.Security.md5(account.passwd);
 
       // Login
-      $http.post(backend.apiHost + 'login/', account)
+      $http.post(backendService.apiHost + 'login/', account)
       .success(function (res) {
         switch (res.status) {
 
-        case '1':
+        case 0:
           // Success
-          loggedInUser = res.result;
+          loggedInUser = res.result[0];
           localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
           callback && callback(res.result);
           break;
 
         default:
           // Else
-          var errDesc = backend.errDesc[res.error_code] || '未知错误';
+          var errDesc = '[ERR:' + res.code + '] ' + res.message;
           console.log('Login Error: ', errDesc, res);
+          notifyService.error(errDesc);
+
           errCallback && errCallback(res);
         }
       })
-      .error(GLOBAL.errLogger);
+      .error(backendService.errLogger);
     },
 
-    doLogout: function (callback) {
-      loggedInUser = false;
+    logout: function (callback) {
+      loggedInUser = null;
       localStorage.removeItem('loggedInUser');
       $location.path('/');
       callback && callback();
     }
   };
-}]);
+});

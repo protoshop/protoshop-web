@@ -4,12 +4,15 @@ angular.module('toHELL')
 .factory('backendService', [ '$http', '$location', function ($http, $location) {
 
   var isBeta = /(beta|:9999)/.test(window.location.href);
-  
+
   return {
-    host: 'http://wxddb1.qa.nt.ctripcorp.com/',
-    pkgHost: isBeta ? 'http://wxddb1.qa.nt.ctripcorp.com/betapackages/'
+    host: 'http://protoshop.ctripqa.com/ProtoShop/',
+    pkgDir: isBeta ? 'http://wxddb1.qa.nt.ctripcorp.com/betapackages/'
     : 'http://wxddb1.qa.nt.ctripcorp.com/packages/',
-    apiHost: isBeta ? 'http://wxddb1.qa.nt.ctripcorp.com/tohellbeta/'
-    : 'http://wxddb1.qa.nt.ctripcorp.com/tohell/'
+    apiHost: isBeta ? 'http://protoshop.ctripqa.com/ProtoShop/'
+    : 'http://protoshop.ctripqa.com/ProtoShop/',
+    errLogger: function (data, status, headers, config) {
+      console.log('Status:', status, '\nData  :', data, '\nConfig:', config);
+    }
   }
 }]);

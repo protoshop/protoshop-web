@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('RegisterCTRL', ['$scope', '$location', '$http', 'GLOBAL', 'loginService', 'notifyService',
-  function ($scope, $location, $http, GLOBAL, loginService, notifyService) {
+.controller('RegisterCTRL', ['$scope', '$location', '$http', 'backendService', 'accountService', 'notifyService',
+  function ($scope, $location, $http, backend, account, notifyService) {
     $scope.doSignup = function () {
 
       // 将密码做 MD5 转换
@@ -12,23 +12,23 @@ angular.module('toHELL')
       };
 
       // 注册
-      $http.post(GLOBAL.apiHost + 'register/', account)
+      $http.post(backend.apiHost + 'register/', account)
       .success(function (res) {
         switch (res.status) {
-        case '1':
+        case '0':
           // 注册成功后
           // 以用户原始输入的账号信息进行自动登陆
-          loginService.doLogin($scope.user, function () {
+          account.doLogin($scope.user, function () {
             $location.path('/list/');
           });
           break;
         default:
-          var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+          var errDesc = backend.errDesc[res.error_code] || '未知错误';
           notifyService.error(errDesc);
           console.log('Signup Error: ', errDesc, res);
         }
       })
-      .error(GLOBAL.errLogger);
+      .error(backend.errLogger);
     };
   }
 ]);

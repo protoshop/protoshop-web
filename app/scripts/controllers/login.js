@@ -1,18 +1,23 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('LoginCTRL', ['$scope', '$location', '$http', 'GLOBAL', 'loginService',
-  function ($scope, $location, $http, GLOBAL, loginService) {
+.controller('LoginCTRL', ['$scope', '$location', '$http', 'accountService',
+  function ($scope, $location, $http, account) {
 
     // Check if user logged in.
-    if (loginService.isLoggedIn()) {
+    if (account.isLoggedIn()) {
       return $location.path('list/');
     }
 
     // Do the login operation.
-    $scope.doSignin = function () {
+    $scope.doLogin = function () {
+      
+      var userData = {
+        email: $scope.loginData.email,
+        passwd: $scope.loginData.passwd
+      };
 
-      loginService.doLogin($scope.loginData, function () {
+      account.login(userData, function () {
         $location.path('list/');
       });
 

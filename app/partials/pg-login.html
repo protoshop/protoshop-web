@@ -1,9 +1,10 @@
 <navbar />
 
 <div class="layout-main">
+  <notify />
 	<div class="login-box">
 		<h3 class="login-title">Login</h3>
-		<form class="login-form" ng-submit="doSignin()">
+		<form class="login-form" ng-submit="doLogin()">
 			<ul>
 				<li><input type="text" placeholder="邮箱" ng-model="loginData.email" /></li>
 				<li><input type="password" placeholder="密码" ng-model="loginData.passwd" /></li>
