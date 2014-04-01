@@ -6,7 +6,7 @@ angular.module('toHELL')
  *  Navbar directive
  */
 
-.directive('navbar', ['loginService', '$rootScope', '$route', function (loginService, $rootScope, $route) {
+.directive('navbar', function (accountService, $rootScope, $route) {
   return {
     restrict: 'AE',
     replace: true,
@@ -18,7 +18,7 @@ angular.module('toHELL')
        */
 
       $scope.isLoggedIn = function () {
-        return loginService.isLoggedIn();
+        return accountService.isLoggedIn();
       };
 
       $scope.isEditing = function () {
@@ -37,7 +37,7 @@ angular.module('toHELL')
         var tar = angular.element(e.target);
 
         if (tar.hasClass('ready')) {
-          loginService.doLogout();
+          accountService.logout();
         } else {
           tar.addClass('ready');
           setTimeout(function () {
@@ -55,4 +55,4 @@ angular.module('toHELL')
       };
     }
   };
-}]);
+});
