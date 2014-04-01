@@ -21,32 +21,28 @@ angular.module('toHELL')
 
   /**
    * 开始编辑 Package
-   * @param pkg
    */
   $scope.editPackage = function (pkg) {
     $location.path('/package/' + pkg.appID);
   };
 
   /**
-   * Package 删除
-   * @param pkg
+   * 删除工程
    */
   $scope.deletePackage = function (pkg) {
-    var token = accountService.getLoggedInUser().token;
-    $http.get(GLOBAL.apiHost + 'deleteProject/?appid=' + pkg.appID + '&token=' + token)
-    .success(function (res) {
-      switch (res.status) {
-      case '1':
-        $scope.refreshList();
-        break;
-      default:
-        var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
-        console.log('Delete Project Error: ', errDesc, res);
-      }
+    var opInfo = {
+      appID: pkg.appID,
+      token: accountService.getLoggedInUser().token
+    };
 
+    backendService.deleteProject(opInfo, function () {
+      $scope.refreshList();
     });
   };
 
+  /**
+   * 分享按钮
+   */
   $scope.sharePackage = function (pkg) {
     dialogShare.activate(pkg);
   };
@@ -60,7 +56,6 @@ angular.module('toHELL')
 
   /**
    * 新建工程的默认配置
-   * @type {{appName: string, comment: string}}
    */
   $scope.newPackageConfig = {
     appPlatform: 'ios',  // 'android' or 'ios'

@@ -60,8 +60,8 @@ angular.module('toHELL')
     /**
      * 获取工程列表
      */
-    getProjectList: function (data, callback) {
-      var url = this.apiHost + 'fetchlist/?device=&token=' + data.token;
+    getProjectList: function (info, callback) {
+      var url = this.apiHost + 'fetchlist/?device=&token=' + info.token;
       makeRequest(undefined, url, callback);
     },
 
@@ -71,6 +71,14 @@ angular.module('toHELL')
     createProject: function (data, callback) {
       var url = this.apiHost + 'createPoject/';
       makeRequest(data, url, callback);
+    },
+
+    /**
+     * 删除工程
+     */
+    deleteProject: function (info, callback) {
+      var url = this.apiHost + 'deleteProject/?appid=' + info.appID + '&token=' + info.token;
+      makeRequest(undefined, url, callback);
     }
 
   }
