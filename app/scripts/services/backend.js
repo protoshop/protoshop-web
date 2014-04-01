@@ -11,8 +11,9 @@ angular.module('toHELL')
     : 'http://wxddb1.qa.nt.ctripcorp.com/packages/',
     apiHost: isBeta ? 'http://protoshop.ctripqa.com/ProtoShop/'
     : 'http://protoshop.ctripqa.com/ProtoShop/',
-    errLogger: function (data, status, headers, config) {
-      console.log('Status:', status, '\nData  :', data, '\nConfig:', config);
+    errLogger: function (res) {
+      var errDesc = '[ERR:' + res.code + '] ' + res.message;
+      console.log('Login Error: ', errDesc, res);
     }
   }
 }]);
