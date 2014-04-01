@@ -42,7 +42,7 @@ backendService, editService, $timeout, notifyService, loginService) {
   backendService.getPackage({
     pkgId: $routeParams.pkgId,
     token: token
-  },function(result){
+  }, function (result) {
     $scope.package = JSON.parse(result[0]);
     editService.setPackage($scope.package);
     editService.setStat($scope.editStat);
@@ -106,21 +106,13 @@ backendService, editService, $timeout, notifyService, loginService) {
    */
 
   $scope.$on('package.save', function () {
+
     $scope.package.token = token;
-    $http.post(backendService.apiHost + 'saveProject/', {
-      context: $scope.package
-    })
-    .success(function (res) {
-      switch (res.status) {
-      case '1':
-        notifyService.notify('已保存！');
-        break;
-      default:
-        var errDesc = backendService.errDesc[res.error_code] || '未知错误';
-        notifyService.warn('Error: ' + errDesc);
-      }
-    })
-    .error(backendService.errLogger);
+
+    backendService.savePackage($scope.package, function () {
+      notifyService.notify('已保存！');
+    });
+
   });
 
   /**

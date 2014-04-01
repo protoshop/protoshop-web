@@ -89,6 +89,16 @@ angular.module('toHELL')
       // var url = '/api/package/' + info.pkgId + '.json'
       // var url = '/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json'
       makeRequest(undefined, url, callback);
+    },
+
+    /**
+     * 保存工程包数据
+     */
+    savePackage: function (data, callback) {
+      var url = this.apiHost + 'saveProject/';
+      makeRequest({
+        context: data
+      }, url, callback);
     }
 
   }
