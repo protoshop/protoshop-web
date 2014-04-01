@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', '$location', function ($http, GLOBAL, $location) {
+angular.module('toHELL')
+.factory('loginService', [ '$http', '$location', 'backendService', function ($http, $location, backend) {
 
   var loggedInUser;
 
@@ -21,7 +22,7 @@ angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', '$location
       account.passwd = V.Security.md5(account.passwd);
 
       // Login
-      $http.post(GLOBAL.apiHost + 'login/', account)
+      $http.post(backend.apiHost + 'login/', account)
       .success(function (res) {
         switch (res.status) {
 
@@ -34,7 +35,7 @@ angular.module('toHELL').factory('loginService', [ '$http', 'GLOBAL', '$location
 
         default:
           // Else
-          var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
+          var errDesc = backend.errDesc[res.error_code] || '未知错误';
           console.log('Login Error: ', errDesc, res);
           errCallback && errCallback(res);
         }
