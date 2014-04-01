@@ -96,7 +96,7 @@ gulp.task('usemin', ['html2js'], function () {
   gulp.src('./app/*.html')
   .pipe($.usemin({
     css: [$.minifyCss(), $.rev()],
-    js: [$.uglify(), $.rev()],
+    js: [$.ngmin(), $.uglify(), $.rev()],
     html: [$.minifyHtml({empty: true})]
   }))
   .pipe(gulp.dest(BUILD_ROOT));
