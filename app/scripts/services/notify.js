@@ -41,6 +41,9 @@ angular.module('toHELL')
     info: function (msg) {
       return create(msg, 'info');
     },
+    done: function (msg) {
+      return create(msg, 'success');
+    },
     warn: function (msg) {
       return create(msg, 'warning');
     },

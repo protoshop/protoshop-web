@@ -11,10 +11,10 @@ angular.module('toHELL')
 
     // Do the login operation.
     $scope.doLogin = function () {
-      
+
       var userData = {
-        email: $scope.loginData.email,
-        passwd: $scope.loginData.passwd
+        email: $scope.email,
+        passwd: $scope.passwd || ''
       };
 
       account.login(userData, function () {

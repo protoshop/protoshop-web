@@ -242,12 +242,13 @@ i { font-style: normal; }
 
 /* Notification */
 .notify { position: fixed; top: 0; left: 50%; margin: 10px -120px; width: 240px; z-index: 999; }
-.notify-item { border-radius: 5px; height: 30px; line-height: 30px; margin-bottom: 18px; text-align: center; overflow: hidden; }
-.notify-item-info { background-color: rgba(0,0,0,0.2); color: #EEE; }
-.notify-item-warning { background-color: rgba(255,255,255,0.2); color: #EA3; opacity: 0.8; }
-.notify-item-error { color: #f00; }
+.notify-item { border-radius: 5px; height: 30px; line-height: 30px; margin-bottom: 18px; letter-spacing: 0.1em; text-align: center; overflow: hidden; box-shadow: 0 0 6px rgba(0,0,0,0.4) }
+.notify-item-info { background-color: rgba(255,255,255,0.8); color: #555; }
+.notify-item-success { background-color: rgba(60,160,30,0.9); color: #FFF; }
+.notify-item-warning { background-color: #d9534f; color: #FFF; }
+.notify-item-error { background-color: #d9534f; color: #FFF; }
 .notify-item.ng-enter,
-.notify-item.ng-leave { transition:0.2s ease all; }
+.notify-item.ng-leave { transition:0.1s ease-out all; }
 .notify-item.ng-enter,
 .notify-item.ng-leave.ng-leave-active { height: 0; margin-bottom: 0; }
 .notify-item.ng-leave,
