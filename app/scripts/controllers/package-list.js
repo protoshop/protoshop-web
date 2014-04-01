@@ -1,19 +1,17 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('PackageListCTRL', function ($scope, $http, $location, backendService, loginService, dialogShare) {
+.controller('PackageListCTRL', function ($scope, $http, $location, backendService, accountService, dialogShare) {
 
-  var token;
-  if (!loginService.isLoggedIn()) {
+  if (!accountService.isLoggedIn()) {
     $location.path('/');
     return;
-  } else {
-    token = loginService.getLoggedInUser().token;
   }
 
   // Get project list data & set data.
   $scope.refreshList = function () {
-    backendService.getProjectList(function (list) {
+    var user = accountService.getLoggedInUser();
+    backendService.getProjectList(user, function (list) {
       $scope.packageList = list;
     });
   };
@@ -34,6 +32,7 @@ angular.module('toHELL')
    * @param pkg
    */
   $scope.deletePackage = function (pkg) {
+    var token = accountService.getLoggedInUser().token;
     $http.get(GLOBAL.apiHost + 'deleteProject/?appid=' + pkg.appID + '&token=' + token)
     .success(function (res) {
       switch (res.status) {
@@ -66,7 +65,7 @@ angular.module('toHELL')
   $scope.newPackageConfig = {
     appPlatform: 'ios',  // 'android' or 'ios'
     isPublicCheckbox: true,
-    appOwner: loginService.getLoggedInUser().email,
+    appOwner: accountService.getLoggedInUser().email,
     appName: '',
     appDesc: ''
   };
@@ -74,34 +73,22 @@ angular.module('toHELL')
   /**
    * 创建工程
    */
-  $scope.createPackage = function () {
+  $scope.createProject = function () {
 
     // 转换 checkbox 的值（true 或 false）为数据需要的字符串格式（'1'或'0'）
     $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublicCheckbox ? '1' : '0';
 
     // 附上 token
-    $scope.newPackageConfig.token = token;
+    $scope.newPackageConfig.token = accountService.getLoggedInUser().token;
 
     var postData = {
       context: $scope.newPackageConfig
     };
 
-    $http.post(GLOBAL.apiHost + 'createPoject/', postData)
-    .success(function (res) {
+    backendService.createProject(postData, function (pkg) {
+      $location.path('/package/' + pkg.appID);
+    });
 
-//            此接口暂无 status 标志位
-//            switch (res.status) {
-//            case '1':
-//              $location.path('/package/' + data.appID);
-//              break;
-//            default:
-//              var errDesc = GLOBAL.errDesc[res.error_code] || '未知错误';
-//              console.log('Delete Project Error: ', errDesc, res);
-//            }
-
-      $location.path('/package/' + res.appID);
-    })
-    .error(GLOBAL.errLogger);
   };
 
 });

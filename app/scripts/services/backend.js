@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.factory('backendService', function ($http, accountService) {
+.factory('backendService', function ($http) {
 
   var isBeta = /(beta|:9999)/.test(window.location.href);
 
@@ -9,6 +9,43 @@ angular.module('toHELL')
     var errInfo = '[ERR:' + res.code + '] ' + res.message;
     console.log(infoPrefix || 'Backend Service Error: ', errInfo, res);
     notifyService.error(res.message);
+  }
+
+  function httpErrLogger(err) {
+    console.log(err);
+  }
+
+  /**
+   * HTTP 请求集散中心
+   * @param {Object=} data
+   * @param {String} url
+   * @param {Function=} callback
+   * @param {Function=} errCallback
+   */
+  function makeRequest(data, url, callback, errCallback) {
+    if (data) {
+      // Make a 'GET'
+      $http.post(url, data)
+      .success(function (res) {
+        if (res.status === 0) {
+          callback && callback(res.result)
+        } else {
+          errCallback && errCallback(res);
+        }
+      })
+      .error(httpErrLogger);
+    } else {
+      // Make a 'POST'
+      $http.get(url)
+      .success(function (res) {
+        if (res.status === 0) {
+          callback && callback(res.result)
+        } else {
+          errCallback && errCallback(res);
+        }
+      })
+      .error(httpErrLogger);
+    }
   }
 
   return {
@@ -20,25 +57,20 @@ angular.module('toHELL')
     : 'http://wxddb1.qa.nt.ctripcorp.com/packages/',
     errLogger: errLogger,
 
-    getProjectList: function (callback) {
+    /**
+     * 获取工程列表
+     */
+    getProjectList: function (data, callback) {
+      var url = this.apiHost + 'fetchlist/?device=&token=' + data.token;
+      makeRequest(undefined, url, callback);
+    },
 
-      var user = accountService.getLoggedInUser();
-
-      // $http.get('/api/package/list.json')
-      $http.get(this.apiHost + 'fetchlist/?device=&token=' + user.token)
-      .success(function (res) {
-
-        switch (res.status) {
-
-        case 0:
-          callback && callback(res.result);
-          break;
-
-        default:
-          errLogger(res);
-        }
-      })
-      .error(errLogger);
+    /**
+     * 创建工程
+     */
+    createProject: function (data, callback) {
+      var url = this.apiHost + 'createPoject/';
+      makeRequest(data, url, callback);
     }
 
   }
