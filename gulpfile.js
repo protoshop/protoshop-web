@@ -163,7 +163,8 @@ function sh(commands) {
 function distribution(tar) {
   var targets = {
     prod: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/tohell/html/',
-    beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/beta/html/'
+    beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/beta/html/',
+    ctqa: 'weiwuxu@10.2.254.48:/var/www/ProtoShop/html/'
   };
   var rsyncParams = ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules';
   var command = 'rsync ' + BUILD_ROOT + '/ ' + targets[tar] + rsyncParams;
@@ -171,12 +172,16 @@ function distribution(tar) {
   sh(command);
 }
 
-gulp.task('dist', function () {
+gulp.task('dist:prod', function () {
+  distribution('prod');
+});
+
+gulp.task('dist:beta', function () {
   distribution('beta');
 });
 
-gulp.task('dist:prod', function () {
-  distribution('prod');
+gulp.task('dist', function () {
+  distribution('ctqa');
 });
 
 /**
