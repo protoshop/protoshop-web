@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('toHELL')
-.factory('accountService', function ($http, $location, backendService, notifyService) {
+.factory('accountService', function ($http, $location, notifyService) {
 
   var loggedInUser;
+
+  var isBeta = /(beta|:9999)/.test(window.location.href);
 
   function errLogger(res, infoPrefix) {
     var errData = '[ERR:' + res.code + '] ' + res.message;
@@ -12,6 +14,10 @@ angular.module('toHELL')
   }
 
   return {
+    apiHost: isBeta
+    ? 'http://protoshop.ctripqa.com/ProtoShop/'
+    : 'http://protoshop.ctripqa.com/ProtoShop/',
+    errLogger: errLogger,
 
     /**
      * 注册新用户账号
@@ -29,7 +35,7 @@ angular.module('toHELL')
       };
 
       // 注册
-      $http.post(backendService.apiHost + 'register/', data)
+      $http.post(this.apiHost + 'register/', data)
       .success(function (res) {
         switch (res.status) {
         case 0:
@@ -40,7 +46,7 @@ angular.module('toHELL')
           errCallback && errCallback();
         }
       })
-      .error(backendService.errLogger);
+      .error(errLogger);
     },
 
     /**
@@ -72,7 +78,7 @@ angular.module('toHELL')
       account.passwd = V.Security.md5(account.passwd);
 
       // Login
-      $http.post(backendService.apiHost + 'login/', account)
+      $http.post(this.apiHost + 'login/', account)
       .success(function (res) {
         switch (res.status) {
 
@@ -89,7 +95,7 @@ angular.module('toHELL')
           errCallback && errCallback(res);
         }
       })
-      .error(backendService.errLogger);
+      .error(errLogger);
     },
 
     /**
