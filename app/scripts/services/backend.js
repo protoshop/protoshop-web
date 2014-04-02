@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.factory('backendService', function ($http) {
+.factory('backendService', function ($http, notifyService) {
 
   var isBeta = /(beta|:9999)/.test(window.location.href);
 
@@ -24,23 +24,25 @@ angular.module('toHELL')
    */
   function makeRequest(data, url, callback, errCallback) {
     if (data) {
-      // Make a 'GET'
+      // Make 'POST'
       $http.post(url, data)
       .success(function (res) {
         if (res.status === 0) {
           callback && callback(res.result)
         } else {
+          notifyService.error(res.message);
           errCallback && errCallback(res);
         }
       })
       .error(httpErrLogger);
     } else {
-      // Make a 'POST'
+      // Make 'GET'
       $http.get(url)
       .success(function (res) {
         if (res.status === 0) {
           callback && callback(res.result)
         } else {
+          notifyService.error(res.message);
           errCallback && errCallback(res);
         }
       })

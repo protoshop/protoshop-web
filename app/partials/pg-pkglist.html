@@ -12,7 +12,7 @@
 			<div class="pkg-info">
 				<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
 				<i class="icon-lock" ng-show="pkg.isPublic !== '1'"></i>
-				<span class="pkg-author" ng-bind="'@'+(pkg.appOwnerNickname||pkg.appOwner)"></span>
+				<span class="pkg-author" ng-bind="'by '+(pkg.appOwnerNickname||pkg.appOwner)"></span>
 				<span class="pkg-modifytime" ng-bind="pkg.editTime | ago"></span>
 				<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
 			</div>
