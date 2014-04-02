@@ -84,6 +84,30 @@ angular.module('toHELL')
     },
 
     /**
+     * 获取指定工程的分享列表
+     */
+    getProjectSharer: function (data, callback) {
+      var url = this.apiHost + 'shareList/';
+      makeRequest(data, url, callback);
+    },
+
+    /**
+     * 搜索用户
+     */
+    searchUser: function (data, callback) {
+      var url = this.apiHost + 'searchUser/';
+      makeRequest(data, url, callback);
+    },
+
+    /**
+     * 设置工程对某用户的分享状态
+     */
+    setShare: function (args, callback) {
+      var url = this.apiHost + 'share/';
+      makeRequest(args, url, callback);
+    },
+
+    /**
      * 获取工程包数据
      */
     getPackage: function (info, callback) {
