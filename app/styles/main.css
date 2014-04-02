@@ -131,6 +131,10 @@ i { font-style: normal; }
 .lib-list { display: -webkit-flex; display: flex; -webkit-flex: 1; flex: 1; -webkit-flex-flow: row wrap; flex-flow: row wrap; }
 .lib-list li { width: 100px; padding: 10px 0; border-right: 1px solid rgba(0,0,0,0.1); border-bottom: 1px solid rgba(0,0,0,0.1); box-sizing: border-box; font-size: 10px; cursor: pointer; text-align: center; }
 .lib-item-thumb { width: 80px; height: 50px; margin: 0 auto; background-image: url(../images/un-library.png); background-repeat: no-repeat; }
+.thumb-button { background-position:-720px -96px; }
+.thumb-hotspot { background-position:-480px 0; }
+.thumb-list { background-position:-160px -256px; }
+.thumb-toolbar { background-position:-240px -96px; }
 
 /* Package List */
 
