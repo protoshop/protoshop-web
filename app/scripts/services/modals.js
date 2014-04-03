@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('toHELL')
-.factory('dialogShare', ['btfModal', function (Modal) {
-  return Modal({
+.factory('dialogShare', function (btfModal) {
+  return btfModal({
     controller: 'DialogShareCtrl',
     controllerAs: 'modal',
     templateUrl: 'partials/dialog-share.html'
   });
-}])
+})
 .controller('DialogShareCtrl', function (dialogShare, $scope, backendService, accountService) {
 
   this.closeMe = dialogShare.deactivate;
