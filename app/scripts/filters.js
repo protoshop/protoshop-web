@@ -23,7 +23,8 @@ angular.module('toHELL')
 
     var counter;
     for (var intv in intervals) {
-      if (counter = Math.floor(seconds / intervals[intv])) {
+      counter = Math.floor(seconds / intervals[intv]);
+      if (counter > 0) {
         return counter + ' ' + intv + 's ago';
       }
     }
