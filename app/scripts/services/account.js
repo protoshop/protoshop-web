@@ -109,7 +109,4 @@ angular.module('toHELL')
       callback && callback();
     }
   };
-})
-.factory('loginService', function (accountService) {
-  return accountService
 });

@@ -1,15 +1,12 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('PackageEditCTRL', function ($scope, $routeParams, $http, $document, formDataObject, $location,
-backendService, editService, $timeout, notifyService, loginService) {
+.controller('PackageEditCTRL', function ($scope, $routeParams, $document, formDataObject, $location, backendService,
+editService, $timeout, notifyService, accountService) {
 
-  var token;
-  if (!loginService.isLoggedIn()) {
+  if (!accountService.isLoggedIn()) {
     $location.path('/');
     return;
-  } else {
-    token = loginService.getLoggedInUser().token;
   }
 
   $scope.fileRoot = backendService.pkgHost + '/' + $routeParams.pkgId + '/';
@@ -41,7 +38,7 @@ backendService, editService, $timeout, notifyService, loginService) {
 
   backendService.getPackage({
     pkgId: $routeParams.pkgId,
-    token: token
+    token: accountService.getLoggedInUser().token
   }, function (result) {
     $scope.package = JSON.parse(result[0]);
     editService.setPackage($scope.package);
@@ -107,8 +104,7 @@ backendService, editService, $timeout, notifyService, loginService) {
 
   $scope.$on('package.save', function () {
 
-    $scope.package.token = token;
-
+    $scope.package.token = accountService.getLoggedInUser().token;
     backendService.savePackage($scope.package, function () {
       notifyService.notify('已保存！');
     });

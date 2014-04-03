@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.directive('sidebarlibs', ['loginService', '$rootScope', '$route', function (loginService, $rootScope, $route) {
+.directive('sidebarlibs', function ($rootScope) {
   return {
     restrict: 'E',
     replace: true,
@@ -18,4 +18,4 @@ angular.module('toHELL')
       });
     }
   };
-}]);
+});
