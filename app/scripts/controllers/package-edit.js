@@ -130,6 +130,7 @@ editService, $timeout, notifyService, accountService) {
         keyEvent.stopPropagation();
       } else if (!confirm('确认：返回工程列表？\n未保存的修改将会丢失')) {
         keyEvent.preventDefault();
+        keyEvent.stopPropagation();
       }
     }
   });
