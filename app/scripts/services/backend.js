@@ -55,8 +55,8 @@ angular.module('toHELL')
     ? 'http://protoshop.ctripqa.com/ProtoShop/'
     : 'http://protoshop.ctripqa.com/ProtoShop/',
     pkgDir: isBeta
-    ? 'http://wxddb1.qa.nt.ctripcorp.com/betapackages/'
-    : 'http://wxddb1.qa.nt.ctripcorp.com/packages/',
+    ? 'http://protoshop.ctripqa.com/packages/'
+    : 'http://protoshop.ctripqa.com/packages/',
     errLogger: errLogger,
 
     /**

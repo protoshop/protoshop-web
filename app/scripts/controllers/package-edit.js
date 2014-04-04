@@ -9,7 +9,7 @@ editService, $timeout, notifyService, accountService) {
     return;
   }
 
-  $scope.fileRoot = backendService.pkgHost + '/' + $routeParams.pkgId + '/';
+  $scope.fileRoot = backendService.pkgDir + $routeParams.pkgId + '/';
 
   /**
    * 存储当前的编辑状态
@@ -68,22 +68,25 @@ editService, $timeout, notifyService, accountService) {
     editService.selectElement(element);
   };
 
-  function uploadDataFormater(args) {
-    args.url = backendService.apiHost + 'uploadImage/';
-    args.transformRequest = formDataObject;
-    args.data = {
+  /**
+   * 图标上传和背景图上传
+   */
+
+  function uploadDataFormater(postArgs, attrs) {
+    postArgs.url = backendService.apiHost + 'uploadImage/';
+    postArgs.transformRequest = formDataObject;
+    postArgs.data = {
       appid: $scope.package.appID,
-      file: args.data.files[0]
+      fileName: attrs.current,
+      file: postArgs.data.files[0]
     };
-    return args;
+    return postArgs;
   }
 
   $scope.iconUploadHandlers = {
     before: uploadDataFormater,
-    after: function (data) {
-      if (data.status === '1') {
-        $scope.package.icon = data.fileName;
-      }
+    after: function (info) {
+        $scope.package.icon = info.fileName;
     },
     onError: backendService.errLogger
   };
@@ -91,9 +94,7 @@ editService, $timeout, notifyService, accountService) {
   $scope.sceneBgUploadHandlers = {
     before: uploadDataFormater,
     after: function (data) {
-      if (data.status === '1') {
-        $scope.editStat.selectedScene.background = $scope.fileRoot + data.fileName;
-      }
+        $scope.editStat.selectedScene.background = data.fileName;
     },
     onError: backendService.errLogger
   };

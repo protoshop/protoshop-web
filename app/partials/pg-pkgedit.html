@@ -44,8 +44,8 @@
 				<div class="tools-title">Background</div>
 				<div class="tools-background">
 					<label class="tools-bg-thumb">
-						<input type="file" uploader data-handlers="sceneBgUploadHandlers" style="display:none">
-						<img style="height: 100px" ng-src="{{editStat.selectedScene.background||defaults.sceneBackground}}" />
+						<input type="file" uploader data-handlers="sceneBgUploadHandlers" data-current="{{editStat.selectedScene.background||''}}" style="display:none">
+						<img style="height: 100px" ng-src="{{editStat.selectedScene.background?(fileRoot+editStat.selectedScene.background):defaults.sceneBackground}}" />
 					</label>
 					<button ng-click="editStat.selectedScene.background=''">Remove</button>
 				</div>

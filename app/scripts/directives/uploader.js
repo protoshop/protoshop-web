@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.directive('uploader', ['$http', function ($http) {
+.directive('uploader', function ($http, backendService) {
   return {
     restrict: 'A',
     link: function (scope, el, attrs) {
@@ -31,16 +31,22 @@ angular.module('toHELL')
 
           // handlers.before() 应该返回经过整理的 postArgs.
           if (handlers.before) {
-            postArgs = handlers.before(postArgs);
+            postArgs = handlers.before(postArgs, attrs);
           }
 
           // 发起上传请求
-          $http(postArgs)
-          .success(handlers.after)
+          $http(postArgs, backendService.apiHost + '/uploadImage/')
+          .success(function(res){
+            if(res.status === 0){
+              handlers.after(res.result[0]);
+            } else {
+              notifyService.error(res.message);
+            }
+          })
           .error(handlers.onError || angular.noop);
         }
 
       });
     }
   };
-}]);
+});
