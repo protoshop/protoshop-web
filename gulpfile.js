@@ -125,6 +125,7 @@ gulp.task('copy', function () {
   gulp.src([
     '!' + SOURCE_ROOT + '/*.html',
     SOURCE_ROOT + '/*.*',
+    SOURCE_ROOT + '/scripts/assets/*.*',
     SOURCE_ROOT + '/font/**/*'
   ], { base: SOURCE_ROOT })
   .pipe(gulp.dest(BUILD_ROOT));
