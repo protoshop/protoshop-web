@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Basic",
+    "components": [
+      {
+        "type": "button",
+        "label": "Button"
+      },
+      {
+        "type": "hotspot",
+        "label": "Hotspot"
+      }
+    ]
+  },
+  {
+    "title": "Advance",
+    "components": [
+      {
+        "type": "list",
+        "label": "List"
+      },
+      {
+        "type": "toolbar",
+        "label": "Toolbar"
+      }
+    ]
+  }
+]
