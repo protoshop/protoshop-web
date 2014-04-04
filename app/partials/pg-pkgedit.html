@@ -2,6 +2,7 @@
 
 <!-- 布局主体 -->
 <div class="layout-main">
+
 	<!-- 左栏：场景列表 -->
 	<div class="layout-scenes" ng-click="deselectScene()">
 		<div class="panel-toggle">
@@ -13,7 +14,7 @@
 				ng-class="{'item-current': scene === editStat.selectedScene}"
 				ng-click="selectScene(scene);$event.stopPropagation()"
 				scene-list-item>
-				<img class="scene-thumb" ng-src="{{scene.background||''}}" />
+				<img class="scene-thumb" ng-src="{{scene.background?fileRoot+scene.background:''}}" />
 				<input type="text" ng-model="scene.name" />
 			</li>
 		</ul>
@@ -27,7 +28,7 @@
 	<div class="layout-stage" ng-click="onBackgroundClick()">
 		<div class="{{package.appPlatform === 'android' ? 's4':'i5'}}">
 			<div class="scene" scene-stage>
-				<img class="scene-bg" ng-show="editStat.selectedScene.background" ng-src="{{editStat.selectedScene.background}}" alt=""/>
+				<img class="scene-bg" ng-src="{{editStat.selectedScene.background?(fileRoot+editStat.selectedScene.background):defaults.sceneBackground}}" alt=""/>
 				<div editor-hotspot-group></div>
 			</div>
 		</div>
