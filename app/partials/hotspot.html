@@ -1,7 +1,7 @@
 <!-- Hotspot -->
 <div class="anchor" ng-show="targetElement === editStat.selectedElement" editor-hotspot-handle>
 </div>
-<div class="scene-goto"
+<!-- <div class="scene-goto"
 	 ng-show="targetElement === editStat.selectedElement && editStat.selectedAction != null"
 	 ng-mousedown="$event.stopPropagation()" ng-style="editStat.gotoSignStyle">
 	<div class="scene-goto-thumb">
@@ -60,5 +60,83 @@
 				</dd>
 			</dl>
 		</form>
+	</div>
+</div> -->
+<div class="scene-setting">
+	<div class="scene-setting-line"></div>
+	<div class="scene-setting-panel">
+		<h3>Hotspot</h3>
+		<div class="setting-title">Size &amp; Position:</div>
+		<div class="setting-prop">
+			<div class="prop-size">
+				<label>X <input type="text" /></label>
+				<label>Y <input type="text" /></label>
+				<label>W <input type="text" /></label>
+				<label>H <input type="text" /></label>
+			</div>
+		</div>
+		<div class="setting-title">Text &amp; Styles:</div>
+		<div class="setting-prop">
+			<div class="prop-text">
+				<input type="text" value="Here is title..." />
+				<select name="" id="">
+					<option value="">12</option>
+					<option value="">14</option>
+					<option value="">16</option>
+					<option value="" selected="selected">18</option>
+					<option value="">20</option>
+					<option value="">22</option>
+					<option value="">24</option>
+					<option value="">26</option>
+					<option value="">28</option>
+					<option value="">30</option>
+					<option value="">32</option>
+				</select>				
+			</div>
+			<div class="prop-styles">Background: <input type="color" /></div>
+			<div class="prop-styles">Border Radius: <input type="text" value="0" /> px</div>
+		</div>
+		<div class="setting-title">Go To:</div>
+		<div class="setting-prop">
+			<div class="prop-goto">
+				<select ng-model="editStat.selectedAction.target"
+						ng-options="s.id as s.name for s in scenes">
+				</select>
+			</div>
+			<div class="prop-transition">
+				<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
+							  name="transition-name" value="none" /><i
+						class="icon-block"></i></label>
+				<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
+							  name="transition-name" value="push"
+							  checked="checked" /><i>Push</i></label>
+				<label><input type="radio" ng-model="editStat.selectedAction.transitionType"
+							  name="transition-name" value="cover" /><i>Cover</i></label>
+			</div>
+			<div class="prop-transition" ng-hide="editStat.selectedAction.transitionType==='none'">
+				<label><input type="radio"
+							  ng-model="editStat.selectedAction.transitionDirection"
+							  name="transition-direction" value="up" /><i
+						class="icon-up-bold"></i></label>
+				<label><input type="radio"
+							  ng-model="editStat.selectedAction.transitionDirection"
+							  name="transition-direction" value="right" /><i
+						class="icon-right-bold"></i></label>
+				<label><input type="radio"
+							  ng-model="editStat.selectedAction.transitionDirection"
+							  name="transition-direction" value="down" /><i
+						class="icon-down-bold"></i></label>
+				<label><input type="radio"
+							  ng-model="editStat.selectedAction.transitionDirection"
+							  name="transition-direction" value="left" /><i
+						class="icon-left-bold"></i></label>
+			</div>
+			<div class="prop-transition-time" ng-hide="editStat.selectedAction.transitionType==='none'">
+				<input type="text" ng-model="editStat.selectedAction.transitionDelay" time-unit />
+				s delay<br />
+				<input type="text" ng-model="editStat.selectedAction.transitionDuration" time-unit />
+				s duration
+			</div>
+		</div>
 	</div>
 </div>
