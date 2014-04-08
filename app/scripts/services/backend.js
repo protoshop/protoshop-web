@@ -1,7 +1,29 @@
 'use strict';
 
 angular.module('toHELL')
-.factory('backendService', function ($http, notifyService) {
+
+/**
+ * 加载指示器
+ */
+
+.factory('loadingIndicator', function () {
+
+  var html = '<div class="spinner"></div>';
+
+  return function (show) {
+    if (show) {
+      angular.element(document.body).append(html);
+    } else {
+      angular.element('body > .spinner').remove();
+    }
+  };
+})
+
+/**
+ * 集中后端服务
+ */
+
+.factory('backendService', function ($http, notifyService, loadingIndicator) {
 
   var isBeta = /(beta|:9999)/.test(window.location.href);
 
@@ -12,6 +34,7 @@ angular.module('toHELL')
   }
 
   function httpErrLogger(err) {
+    loadingIndicator(false);
     console.log(err);
   }
 
@@ -23,10 +46,13 @@ angular.module('toHELL')
    * @param {Function=} errCallback
    */
   function makeRequest(data, url, callback, errCallback) {
+    loadingIndicator(true);
+
     if (data) {
       // Make 'POST'
       $http.post(url, data)
       .success(function (res) {
+        loadingIndicator(false);
         if (res.status === 0) {
           callback && callback(res.result)
         } else {
@@ -39,6 +65,7 @@ angular.module('toHELL')
       // Make 'GET'
       $http.get(url)
       .success(function (res) {
+        loadingIndicator(false);
         if (res.status === 0) {
           callback && callback(res.result)
         } else {
