@@ -80,8 +80,8 @@ angular.module('toHELL')
       context: $scope.newPackageConfig
     };
 
-    backendService.createProject(postData, function (pkg) {
-      $location.path('/package/' + pkg.appID);
+    backendService.createProject(postData, function (result) {
+      $location.path('/package/' + result[0].appID);
     });
 
   };
