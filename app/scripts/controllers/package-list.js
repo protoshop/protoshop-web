@@ -8,7 +8,12 @@ angular.module('toHELL')
     return;
   }
 
-  // Get project list data & set data.
+  var currentUserEmail = accountService.getLoggedInUser().email;
+  $scope.listOrder = function listOrder(pkg) {
+    return pkg.appOwner === currentUserEmail
+  };
+
+  // 获取工程列表数据
   $scope.refreshList = function () {
     var user = accountService.getLoggedInUser();
     backendService.getProjectList(user, function (list) {
@@ -16,7 +21,7 @@ angular.module('toHELL')
     });
   };
 
-  // Init list
+  // 列表初始化
   $scope.refreshList();
 
   /**

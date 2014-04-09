@@ -7,7 +7,7 @@
 	</div>
 	<!-- Package List -->
 	<ul class="pkg-list">
-		<li ng-repeat="pkg in packageList">
+		<li ng-repeat="pkg in packageList | orderBy:listOrder:true">
 			<div class="pkg-platform icon-{{pkg.appPlatform === 'ios' ? 'apple' : 'android'}}"></div>
 			<div class="pkg-info">
 				<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
