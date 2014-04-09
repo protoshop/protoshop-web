@@ -86,11 +86,11 @@ angular.module('toHELL')
 
   return {
     apiHost: isBeta
-    ? 'http://protoshop.ctripqa.com/ProtoShop/'
-    : 'http://protoshop.ctripqa.com/ProtoShop/',
+    ? 'http://10.2.254.48/ProtoShop/'
+    : 'http://10.2.254.48/ProtoShop/',
     pkgDir: isBeta
-    ? 'http://protoshop.ctripqa.com/packages/'
-    : 'http://protoshop.ctripqa.com/packages/',
+    ? 'http://10.2.254.48/packages/'
+    : 'http://10.2.254.48/packages/',
     errLogger: errLogger,
 
     /**
