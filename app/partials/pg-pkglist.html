@@ -7,11 +7,11 @@
 	</div>
 	<!-- Package List -->
 	<ul class="pkg-list">
-		<li ng-repeat="pkg in packageList">
+		<li ng-repeat="pkg in packageList | orderBy:byCurrentUser:true" ng-class="{'mine':byCurrentUser(pkg),'private':!pkg.isPublic}">
 			<div class="pkg-platform icon-{{pkg.appPlatform === 'ios' ? 'apple' : 'android'}}"></div>
 			<div class="pkg-info">
 				<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
-				<i class="icon-lock" ng-show="pkg.isPublic !== '1'"></i>
+				<i class="icon-lock"></i>
 				<span class="pkg-author" ng-bind="'by '+(pkg.appOwnerNickname||pkg.appOwner)"></span>
 				<span class="pkg-modifytime" ng-bind="pkg.editTime | ago"></span>
 				<div class="pkg-desc" ng-bind="pkg.appDesc"></div>

@@ -8,15 +8,23 @@ angular.module('toHELL')
     return;
   }
 
-  // Get project list data & set data.
+  var currentUserEmail = accountService.getLoggedInUser().email;
+  $scope.byCurrentUser = function (pkg) {
+    return pkg.appOwner === currentUserEmail;
+  };
+
+  // 获取工程列表数据
   $scope.refreshList = function () {
     var user = accountService.getLoggedInUser();
     backendService.getProjectList(user, function (list) {
+      list.forEach(function(item){
+        item.isPublic = (item.isPublic === '1');
+      });
       $scope.packageList = list;
     });
   };
 
-  // Init list
+  // 列表初始化
   $scope.refreshList();
 
   /**
