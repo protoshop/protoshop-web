@@ -9,11 +9,18 @@ angular.module('toHELL')
 .factory('loadingIndicator', function () {
 
   var html = '<div class="spinner"></div>';
+  var begin;
 
-  return function (show) {
+  return function (show, info) {
+    var api = info ? info.replace(/^.*ProtoShop/, '') : '';
     if (show) {
+      begin = new Date;
+      api ? console.time(api) : (1);
+//      console.log('[Request]', api);
       angular.element(document.body).append(html);
     } else {
+      api ? console.timeEnd(api) : (1);
+//      console.log('[RequestTime]', (new Date - begin) / 1000, api);
       angular.element('body > .spinner').remove();
     }
   };
@@ -46,13 +53,13 @@ angular.module('toHELL')
    * @param {Function=} errCallback
    */
   function makeRequest(data, url, callback, errCallback) {
-    loadingIndicator(true);
+    loadingIndicator(true, url);
 
     if (data) {
       // Make 'POST'
       $http.post(url, data)
       .success(function (res) {
-        loadingIndicator(false);
+        loadingIndicator(false, url);
         if (res.status === 0) {
           callback && callback(res.result)
         } else {
@@ -65,7 +72,7 @@ angular.module('toHELL')
       // Make 'GET'
       $http.get(url)
       .success(function (res) {
-        loadingIndicator(false);
+        loadingIndicator(false, url);
         if (res.status === 0) {
           callback && callback(res.result)
         } else {
