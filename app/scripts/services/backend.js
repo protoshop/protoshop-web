@@ -12,7 +12,7 @@ angular.module('toHELL')
   var begin;
 
   return function (show, info) {
-    var api = info ? info.replace(/^.*ProtoShop/, '') : '';
+    var api = info ? info.replace(/^.*ProtoShop(\/\w+\/).*/, '$1') : '';
     if (show) {
       begin = new Date;
       api ? console.time(api) : (1);
