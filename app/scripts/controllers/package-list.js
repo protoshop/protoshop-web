@@ -9,14 +9,17 @@ angular.module('toHELL')
   }
 
   var currentUserEmail = accountService.getLoggedInUser().email;
-  $scope.listOrder = function listOrder(pkg) {
-    return pkg.appOwner === currentUserEmail
+  $scope.byCurrentUser = function (pkg) {
+    return pkg.appOwner === currentUserEmail;
   };
 
   // 获取工程列表数据
   $scope.refreshList = function () {
     var user = accountService.getLoggedInUser();
     backendService.getProjectList(user, function (list) {
+      list.forEach(function(item){
+        item.isPublic = (item.isPublic === '1');
+      });
       $scope.packageList = list;
     });
   };
