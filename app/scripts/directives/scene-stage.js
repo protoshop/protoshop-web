@@ -4,8 +4,8 @@ angular.module('toHELL')
 .directive('sceneStage', ['$rootScope', function ($rootScope) {
   return {
     restrict: 'A',
-//    replace: true,
-//    templateUrl: 'partials/scene-stage.html',
+    replace: true,
+    templateUrl: 'partials/scene-stage.html',
     link: function (scope, el) {
 
       // Handle Event 'drop'

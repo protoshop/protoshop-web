@@ -179,14 +179,6 @@
     };
   }]);
 
-  module.directive('editorHotspotGroup', [function () {
-    return {
-      restrict: 'AE',
-      transclude: true,
-      templateUrl: 'partials/hotspotgroup.html'
-    };
-  }]);
-
   module.directive('editorHotspotHandle', ['$document', function ($document) {
     var lastCursor = '';
     return {
