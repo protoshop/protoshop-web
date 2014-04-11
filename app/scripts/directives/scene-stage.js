@@ -9,6 +9,12 @@ angular.module('toHELL')
     scope: true,
     link: function (scope, el) {
 
+      // Scene 的编辑区的基础信息
+      scope.stage = {
+        width: el.width(),
+        height: el.height()
+      };
+
       // Handle Event 'drop'
       var $el = angular.element(el);
       $el.on('dragover', function (ev) {ev.preventDefault();});
@@ -28,8 +34,8 @@ angular.module('toHELL')
       scope.$on('scene.addElement', function (event, args) {
         var newElement = {
           type: args.type,
-          posX: ruleNumber(args.posx - 60,0,200),
-          posY: ruleNumber(args.posy - 22,0,436),
+          posX: (args.posx - 60).crop(0, 200),
+          posY: (args.posy - 22).crop(0, 436),
           width: 120,
           height: 44,
           actions: []
@@ -38,17 +44,10 @@ angular.module('toHELL')
         event.currentScope.$apply();
       });
 
-      /**
-       * 功能函数：返回不超过 low 到 high 范围的 X
-       * 
-       * @param {Number} X 处理目标
-       * @param {Number} low 允许的最小值
-       * @param {Number} high 允许的最大值
-       * @returns {Number}
-       */
-      function ruleNumber(X, low, high) {
-        return X < low ? low : X > high ? high : X;
-      }
+      scope.selectElement = function (elemObj) {
+        scope.editStat.selectedElement = elemObj;
+      };
+
     }
   };
 }]);
