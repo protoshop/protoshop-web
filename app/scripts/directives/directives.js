@@ -119,8 +119,7 @@
     }
   ]);
 
-
-  module.directive('notify', ['$document', 'notifyService', function ($document, notifyService) {
+  module.directive('notify', function (notifyService) {
 
     return {
       restrict: 'AE',
@@ -128,11 +127,12 @@
       replace: true,
       link: function (scope) {
         scope.items = notifyService.getItems();
-        scope.dismiss = function(item){
+        scope.dismiss = function (item) {
           notifyService.remove(item);
-        }
+        };
       }
     };
-  }]);
+
+  });
 
 })();

@@ -20,7 +20,7 @@ angular.module('toHELL')
       }
 
     }
-  }
+  };
 })
 .directive('droppable', function () {
   return {
@@ -41,5 +41,5 @@ angular.module('toHELL')
       }
 
     }
-  }
+  };
 });

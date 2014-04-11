@@ -19,6 +19,8 @@
   "smarttabs": true,
   "jquery": true,
   "white": true,
+  "expr": true,
+  "laxcomma": true,
   "globals": {
     "angular": false
   }

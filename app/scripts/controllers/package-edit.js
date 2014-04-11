@@ -86,7 +86,7 @@ editService, $timeout, notifyService, accountService) {
   $scope.iconUploadHandlers = {
     before: uploadDataFormater,
     after: function (info) {
-        $scope.package.icon = info.fileName;
+      $scope.package.icon = info.fileName;
     },
     onError: backendService.errLogger
   };
@@ -94,7 +94,7 @@ editService, $timeout, notifyService, accountService) {
   $scope.sceneBgUploadHandlers = {
     before: uploadDataFormater,
     after: function (data) {
-        $scope.editStat.selectedScene.background = data.fileName;
+      $scope.editStat.selectedScene.background = data.fileName;
     },
     onError: backendService.errLogger
   };
@@ -129,7 +129,7 @@ editService, $timeout, notifyService, accountService) {
       } else if (keyEvent.target.tagName == 'INPUT') {
         // 如果焦点在输入框内，则阻止冒泡
         keyEvent.stopPropagation();
-      } else if (!confirm('确认：返回工程列表？\n未保存的修改将会丢失')) {
+      } else if (!window.confirm('确认：返回工程列表？\n未保存的修改将会丢失')) {
         keyEvent.preventDefault();
         keyEvent.stopPropagation();
       }

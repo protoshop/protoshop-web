@@ -9,18 +9,14 @@ angular.module('toHELL')
 .factory('loadingIndicator', function () {
 
   var html = '<div class="spinner"></div>';
-  var begin;
 
   return function (show, info) {
     var api = info ? info.replace(/^.*ProtoShop(\/\w+\/).*/, '$1') : '';
     if (show) {
-      begin = new Date;
-      api ? console.time(api) : (1);
-//      console.log('[Request]', api);
+      api && console.time(api);
       angular.element(document.body).append(html);
     } else {
-      api ? console.timeEnd(api) : (1);
-//      console.log('[RequestTime]', (new Date - begin) / 1000, api);
+      api && console.timeEnd(api);
       angular.element('body > .spinner').remove();
     }
   };
@@ -61,7 +57,7 @@ angular.module('toHELL')
       .success(function (res) {
         loadingIndicator(false, url);
         if (res.status === 0) {
-          callback && callback(res.result)
+          callback && callback(res.result);
         } else {
           notifyService.error(res.message);
           errCallback && errCallback(res);
@@ -74,7 +70,7 @@ angular.module('toHELL')
       .success(function (res) {
         loadingIndicator(false, url);
         if (res.status === 0) {
-          callback && callback(res.result)
+          callback && callback(res.result);
         } else {
           notifyService.error(res.message);
           errCallback && errCallback(res);
@@ -161,5 +157,5 @@ angular.module('toHELL')
       }, url, callback);
     }
 
-  }
+  };
 });
