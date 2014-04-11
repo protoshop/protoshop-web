@@ -12,6 +12,13 @@ angular.module('toHELL')
     templateUrl: 'partials/scene-element.html',
     scope: true,
     link: function (scope, el) {
+
+      // Scene 的编辑区的基础信息
+      scope.stage = {
+        width: el.parent().width(),
+        height: el.parent().height()
+      };
+
       scope.scenes = scope.package.scenes;
       scope.defaults = {
         sceneBackground: 'images/dummy-scene-thumb.png'

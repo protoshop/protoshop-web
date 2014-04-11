@@ -9,12 +9,6 @@ angular.module('toHELL')
     scope: true,
     link: function (scope, el) {
 
-      // Scene 的编辑区的基础信息
-      scope.stage = {
-        width: el.width(),
-        height: el.height()
-      };
-
       // Handle Event 'drop'
       var $el = angular.element(el);
       $el.on('dragover', function (ev) {ev.preventDefault();});
