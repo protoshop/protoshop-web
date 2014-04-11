@@ -6,6 +6,7 @@ angular.module('toHELL')
     restrict: 'A',
     replace: true,
     templateUrl: 'partials/scene-stage.html',
+    scope: true,
     link: function (scope, el) {
 
       // Handle Event 'drop'

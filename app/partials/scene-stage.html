@@ -1,5 +1,5 @@
 <div class="scene">
-	<img class="scene-bg" ng-if="editStat.selectedScene.background" ng-src="{{editStat.selectedScene.background?fileRoot+editStat.selectedScene.background:''}}" alt=""/>
+	<img class="scene-bg" ng-if="editStat.selectedScene.background" ng-src="{{fileRoot + editStat.selectedScene.background}}" alt=""/>
   <div class="actor hotspot" editor-hotspot ng-repeat="targetElement in editStat.selectedScene.elements"
        ng-style="renderHotspotStyle(targetElement)">{{targetElement}}</div>
 </div>

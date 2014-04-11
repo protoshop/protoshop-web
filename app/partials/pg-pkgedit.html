@@ -27,10 +27,7 @@
 	<!-- 中栏：场景详情修改区 -->
 	<div class="layout-stage" ng-click="onBackgroundClick()">
 		<div class="{{package.appPlatform === 'android' ? 's4':'i5'}}">
-			<div class="scene" scene-stage>
-				<img class="scene-bg" ng-src="{{editStat.selectedScene.background?(fileRoot+editStat.selectedScene.background):defaults.sceneBackground}}" alt=""/>
-				<div editor-hotspot-group></div>
-			</div>
+			<div class="scene" scene-stage></div>
 		</div>
 	</div>
 
