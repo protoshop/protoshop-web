@@ -7,8 +7,11 @@ angular.module('toHELL')
     replace: true,
     templateUrl: 'partials/sidebar-libs.html',
     link: function (scope) {
+      
+      var c = scope.comp;
 
       scope.dragComponent = function (ev) {
+        console.log(scope);
         var type = ev.target.getAttribute('data-type');
         var dt = ev.originalEvent.dataTransfer;
         dt.setData('type', type);

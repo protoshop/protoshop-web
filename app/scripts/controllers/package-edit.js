@@ -120,16 +120,18 @@ editService, $timeout, notifyService, accountService) {
     switch (keyEvent.which) {
     case 8:
       // 酌情阻止 Backspace 后退
-      if ($scope.editStat.selectedElement) {
+      if (keyEvent.target.tagName == 'INPUT') {
+        // 如果焦点在输入框内，则阻止冒泡
+        keyEvent.stopPropagation();
+      }
+      else if ($scope.editStat.selectedElement) {
         // 如果有选中 element
         editService.removeElement($scope.editStat.selectedElement);
         keyEvent.preventDefault();
         keyEvent.stopPropagation();
         $scope.$apply();
-      } else if (keyEvent.target.tagName == 'INPUT') {
-        // 如果焦点在输入框内，则阻止冒泡
-        keyEvent.stopPropagation();
       } else if (!window.confirm('确认：返回工程列表？\n未保存的修改将会丢失')) {
+        // 确认的话，则后退到列表页
         keyEvent.preventDefault();
         keyEvent.stopPropagation();
       }

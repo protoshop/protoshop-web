@@ -1,28 +1,28 @@
-[
-  {
-    "title": "Basic",
-    "components": [
-      {
-        "type": "button",
-        "label": "Button"
-      },
-      {
-        "type": "hotspot",
-        "label": "Hotspot"
-      }
-    ]
+{
+  "button": {
+    "group": "Basic",
+    "label": "Button",
+    "props": {
+      "rect": true,
+      "style": true,
+      "text": true
+    }
   },
-  {
-    "title": "Advance",
-    "components": [
-      {
-        "type": "list",
-        "label": "List"
-      },
-      {
-        "type": "toolbar",
-        "label": "Toolbar"
-      }
-    ]
+  "hotspot": {
+    "group": "Basic",
+    "label": "Hotspot",
+    "props": {
+      "rect": true,
+      "style": true,
+      "goto": true
+    }
+  },
+  "list": {
+    "group": "Advance",
+    "label": "List"
+  },
+  "toolbar": {
+    "group": "Advance",
+    "label": "Toolbar"
   }
-]
+}
