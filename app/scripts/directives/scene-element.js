@@ -105,10 +105,16 @@ angular.module('toHELL')
   };
 })
 
+/**
+ * Element Rect Handler（界面元素拖拽控件） in scene editor
+ */
+
 .directive('elementHandler', function ($document) {
   return {
     restrict: 'AE',
-    scope: true,
+    scope: {
+      elemData: '=elem'
+    },
     templateUrl: 'partials/scene-element-handler.html',
     link: function (scope, el) {
 
@@ -121,10 +127,10 @@ angular.module('toHELL')
 
         // 记录初始状态
         scope.origin = {
-          elemx: scope.$parent.elem.posX,
-          elemy: scope.$parent.elem.posY,
-          elemw: scope.$parent.elem.width,
-          elemh: scope.$parent.elem.height,
+          elemx: scope.elemData.posX,
+          elemy: scope.elemData.posY,
+          elemw: scope.elemData.width,
+          elemh: scope.elemData.height,
           mousex: $event.clientX,
           mousey: $event.clientY
         };
@@ -151,18 +157,20 @@ angular.module('toHELL')
 
         switch (scope.direction) {
         case 'up':
-          scope.$parent.elem.posY = scope.origin.elemy + deltaY;
-          scope.$parent.elem.height = scope.origin.elemh - deltaY;
+          deltaY = deltaY.crop(0 - scope.origin.elemy, scope.origin.elemh);
+          scope.elemData.posY = scope.origin.elemy + deltaY;
+          scope.elemData.height = scope.origin.elemh - deltaY;
           break;
         case 'down':
-          scope.$parent.elem.height = scope.origin.elemh + deltaY;
+          scope.elemData.height = (scope.origin.elemh + deltaY).crop(0, scope.$parent.stage.height - scope.origin.elemy);
           break;
         case 'left':
-          scope.$parent.elem.posX = scope.origin.elemx + deltaX;
-          scope.$parent.elem.width = scope.origin.elemw - deltaX;
+          deltaX = deltaX.crop(0 - scope.origin.elemx, scope.origin.elemw);
+          scope.elemData.posX = scope.origin.elemx + deltaX;
+          scope.elemData.width = scope.origin.elemw - deltaX;
           break;
         case 'right':
-          scope.$parent.elem.width = scope.origin.elemw + deltaX;
+          scope.elemData.width = (scope.origin.elemw + deltaX).crop(0, scope.$parent.stage.width - scope.origin.elemx);
         }
 
         scope.$apply();
