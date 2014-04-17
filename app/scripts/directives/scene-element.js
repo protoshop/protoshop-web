@@ -13,22 +13,21 @@ angular.module('toHELL')
     scope: true,
     link: function (scope, el) {
 
-      // Scene 的编辑区的基础信息
+      // Scene 的编辑区的基础环境信息。 TODO：stage 的宽和高应该取自工程配置
       scope.stage = {
         width: el.parent().width(),
         height: el.parent().height()
       };
 
       // 登记此控件可以有的属性集合
-      $q.all([uilibs, uiprops]).then(function(res){
+      $q.all([uilibs, uiprops]).then(function (res) {
         scope.props = {};
         var cfg = res[0].data[scope.elem.type].props;
-        for(var p in cfg){
-          if(cfg.hasOwnProperty(p)){
+        for (var p in cfg) {
+          if (cfg.hasOwnProperty(p)) {
             scope.props[p] = res[1].data[p];
           }
         }
-        console.log(scope.props);
       });
 
       scope.scenes = scope.package.scenes;
@@ -37,47 +36,9 @@ angular.module('toHELL')
       };
 
       /**
-       * 渲染当前选中Action所对应的Scene背景图
-       * @func renderThumbBackground
-       * @return {String} 如果存在相应Action及对应Scene背景图，则返回该背景图的相对路径，否则返回一个默认背景图的相对路径
-       * @private
-       */
-      scope.renderThumbBackground = function () {
-        var defaultOne = scope.defaults.sceneBackground;
-        var action = scope.editStat.selectedAction;
-        if (!action) {
-          return defaultOne;
-        }
-
-        var scene = scope.findSceneById(action.target);
-
-        if (!scene) {
-          return defaultOne;
-        }
-
-        var target = scene.background;
-        return (target === '' || !target) ? defaultOne : target;
-      };
-
-      scope.gotoSignStyle = {
-        top: '',
-        right: ''
-      };
-      scope.gotoLineStyle = {
-        width: '264px'
-      };
-
-      /**
        * 当鼠标点下时，
        * 记录控件和鼠标指针的当前位置，开始监听拖拽相关事件
        */
-
-      scope.origin = {
-        posx: 0,
-        posy: 0,
-        mousex: 0,
-        mousey: 0
-      };
 
       el.on('mousedown', function (event) {
 
@@ -91,10 +52,12 @@ angular.module('toHELL')
         scope.$apply();
 
         // 记录控件和鼠标初始位置
-        scope.origin.posx = scope.elem.posX;
-        scope.origin.posy = scope.elem.posY;
-        scope.origin.mousex = event.clientX;
-        scope.origin.mousey = event.clientY;
+        scope.origin = {
+          posx: scope.elem.posX,
+          posy: scope.elem.posY,
+          mousex: event.clientX,
+          mousey: event.clientY
+        };
 
         // 绑定
         $document.on('mousemove', updateElemPos);
@@ -142,145 +105,81 @@ angular.module('toHELL')
   };
 })
 
-.directive('editorHotspotHandle', function ($document) {
-  var lastCursor = '';
+.directive('elementHandler', function ($document) {
   return {
     restrict: 'AE',
-    transclude: true,
-    templateUrl: 'partials/hotspothandle.html',
-    link: function (scope) {
-      var expanderStack = {
-        expanderMovingTarget: null,
-        expanderMovingStart: {
-          x: 0,
-          y: 0
-        },
-        expanderMovingOffset: {
-          x: 0,
-          y: 0
-        },
-        hotspotPos: {
-          x: 0,
-          y: 0
-        },
-        hotspot: {
-          width: 0,
-          height: 0
-        },
-        expanderIndex: null
-      };
+    scope: true,
+    templateUrl: 'partials/scene-element-handler.html',
+    link: function (scope, el) {
 
-      /**
-       * 元素缩放触头在鼠标按下时触发此函数
-       * @func onExpanderDown
-       * @param {Element} ele - 元素对象
-       * @param {number} pos - 触头的索引，用来区分是哪个触头。从左开始顺时针依次为1、2、3、4
-       * @param {event} $event - 鼠标事件
-       * @private
-       */
-      scope.onExpanderDown = function (ele, pos, $event) {
-        if ($event.which !== 1) {// 不接受非左键点击
+      el.on('mousedown', function ($event) {
+
+        // 不接受非左键点击
+        if ($event.which !== 1) {
           return;
         }
-        $document.on('mousemove', scope.onExpanderMove);
-        $document.on('mouseup', scope.onExpanderUp);
-        var sT = expanderStack;
-        sT.expanderIndex = pos;
-        sT.expanderMovingTarget = ele;
-        sT.expanderMovingStart.x = $event.clientX;
-        sT.expanderMovingStart.y = $event.clientY;
-        sT.hotspotPos.x = parseInt(ele.posX, 10);
-        sT.hotspotPos.y = parseInt(ele.posY, 10);
-        sT.hotspot.width = parseInt(ele.width, 10);
-        sT.hotspot.height = parseInt(ele.height, 10);
-        sT.expanderMovingOffset.y = parseInt(sT.expanderMovingTarget.height, 10); // 小心单位
-        sT.expanderMovingOffset.x = parseInt(sT.expanderMovingTarget.width, 10);
-        var jBody = $document.find('body');
-        var cursor = '';
-        lastCursor = jBody.css('cursor');
-        switch (pos) {
-        case 1:
-          cursor = 'w-resize';
-          break;
-        case 2:
-          cursor = 'n-resize';
-          break;
-        case 3:
-          cursor = 'e-resize';
-          break;
-        case 4:
-          cursor = 's-resize';
-          break;
-        default:
-          break;
-        }
-        jBody.css({
-          cursor: cursor
-        });
-      };
+
+        // 记录初始状态
+        scope.origin = {
+          elemx: scope.$parent.elem.posX,
+          elemy: scope.$parent.elem.posY,
+          elemw: scope.$parent.elem.width,
+          elemh: scope.$parent.elem.height,
+          mousex: $event.clientX,
+          mousey: $event.clientY
+        };
+
+        scope.direction = $event.target.dataset.handle;
+
+        // 绑定
+        $document.on('mousemove', updateElemRect);
+        $document.on('mouseup', unbindDragEvents);
+
+        $event.stopPropagation();
+
+      });
 
       /**
-       * 元素缩放触头在鼠标松开时触发此函数
-       * @func onExpanderUp
-       * @private
+       * 根据拖拽事件更新元素宽高（以及位置）
+       * @param $ev
        */
-      scope.onExpanderUp = function () {
-        var sT = expanderStack;
-        sT.expanderMovingTarget = null;
-        $document.find('body').css('cursor', lastCursor);
+
+      function updateElemRect($ev) {
+
+        var deltaX = $ev.clientX - scope.origin.mousex;
+        var deltaY = $ev.clientY - scope.origin.mousey;
+
+        switch (scope.direction) {
+        case 'up':
+          scope.$parent.elem.posY = scope.origin.elemy + deltaY;
+          scope.$parent.elem.height = scope.origin.elemh - deltaY;
+          break;
+        case 'down':
+          scope.$parent.elem.height = scope.origin.elemh + deltaY;
+          break;
+        case 'left':
+          scope.$parent.elem.posX = scope.origin.elemx + deltaX;
+          scope.$parent.elem.width = scope.origin.elemw - deltaX;
+          break;
+        case 'right':
+          scope.$parent.elem.width = scope.origin.elemw + deltaX;
+        }
+
         scope.$apply();
-      };
+      }
 
       /**
-       * 元素缩放触头在鼠标移动时触发此函数
-       * @func onExpanderMove
-       * @param {event} $event - 鼠标事件
-       * @private
+       * 清理拖拽相关事件
        */
-      scope.onExpanderMove = function ($event) {
-        var eT = expanderStack;
-        if (eT.expanderMovingTarget !== null) {
-          var target = eT.expanderMovingTarget;
-          var xT = eT.expanderMovingOffset.x + $event.clientX - eT.expanderMovingStart.x;
-          var yT = eT.expanderMovingOffset.y + $event.clientY - eT.expanderMovingStart.y;
-          // 计算实际的移动距离
-          var deltaY = eT.hotspot.height - yT;
-          var deltaX = eT.hotspot.width - xT;
 
-          switch (eT.expanderIndex) {
-            // 由于元素的定位实际是左上角的定位，因此左边侧和上边侧的变动，需要同时移动元素来保持整体的静止
-          case 1:
-            // 防止因无法resize而导致的move
-            if (eT.hotspotPos.x - deltaX < eT.hotspotPos.x + eT.hotspot.width) {
-              scope.moveHotspotTo(target, eT.hotspotPos.x - deltaX, eT.hotspotPos.y);
-            }
-            // 防止因无法move而导致的resize
-            // FIXME: 注意，这两种判断都不是精确的，可能因为鼠标事件精确性发生一定的差错
-            if (parseInt(target.posX, 10) > 0 || deltaX < 0) {
-              scope.resizeHotspotTo(target, eT.hotspot.width + deltaX, eT.hotspot.height);
-            }
-            break;
-          case 2:
-            if (eT.hotspotPos.y - deltaY < eT.hotspotPos.y + eT.hotspot.height) {
-              scope.moveHotspotTo(target, eT.hotspotPos.x, eT.hotspotPos.y - deltaY);
-            }
-            if (parseInt(target.posY, 10) > 0 || deltaY < 0) {
-              scope.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height + deltaY);
-            }
-            break;
-            // 而右边侧与下边侧的移动则不会对整体位置造成影响
-          case 3:
-            scope.resizeHotspotTo(target, eT.hotspot.width - deltaX, eT.hotspot.height);
-            break;
-          case 4:
-            scope.resizeHotspotTo(target, eT.hotspot.width, eT.hotspot.height - deltaY);
-            break;
-          default:
-            break;
-          }
-          scope.$apply();
-        }
-      };
+      function unbindDragEvents() {
+        $document.unbind('mousemove', updateElemRect);
+        $document.unbind('mouseup', unbindDragEvents);
+      }
+
+      // 阻止控件元素上的点击事件冒泡
+      el.on('click', function (event) { event.stopPropagation(); });
+
     }
   };
 });
