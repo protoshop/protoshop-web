@@ -65,16 +65,23 @@ i { font-style: normal; }
 .scenes-edit button:hover { background: #195fbc; color: #fff; }
 
 /* Stage ( layout - center stage ) */
+
 .scene { position: relative; }
 .i5 .scene { width: 320px; height: 568px; margin-left: 101px; margin-top: 142px; }
 .s4 .scene { width: 400px; height: 640px; margin-left: 26px; margin-top: 82px; }
 .scene-bg { width: 100%; height: 100%; pointer-events: none; }
-.hotspot { background-color: rgba(255, 135, 124, 0.5); border: 1px solid #b0b0b0; position: absolute; box-sizing: border-box; }
+.scene-element { position: absolute }
+.scene-element:hover { box-sizing: border-box }
+.scene-element.hotspot { background-color: rgba(255, 135, 124, 0.4); }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i:nth-child(1) { left: 0; top: 50%; cursor: w-resize; }
 .anchor i:nth-child(2) { left: 50%; top: 0; cursor: n-resize; }
 .anchor i:nth-child(3) { right: 0; top: 50%; cursor: e-resize; }
 .anchor i:nth-child(4) { left: 50%; bottom: 0; cursor: s-resize; }
+
+/* Element View */
+.element-view { height: 100%; width: 100%; text-align: center; pointer-events: none }
+
 /*
 .scene-goto { position: absolute; right: 126px; top: -32px; z-index: 2; }
 .scene-goto-thumb { width: 45px; padding: 8px 10px; background: #fff; border: 2px solid rgba(1,78,182,0.5); border-radius: 5px; font-size: 12px; text-align: center; }
@@ -100,10 +107,10 @@ i { font-style: normal; }
 .setting-prop select { height: 26px; }
 .setting-prop .prop-size label { display: inline-block; width: 92px; padding: 2px 0; text-align: right; }
 .setting-prop .prop-size input[type="text"] { width: 40px; margin-left: 5px; }
-.setting-prop .prop-text input[type="text"] { width: 128px; }
+.setting-prop .prop-text input[type="text"] { width: 90px; }
 .setting-prop .prop-text select { width: 48px; }
 .setting-prop .prop-style input[type="text"] { width: 40px; }
-.setting-prop .prop-style input[type="color"] { width: 44px; height: 24px; padding: 0 2px; border: 1px solid #ccc; border-radius: 3px; vertical-align: middle; }
+.setting-prop input[type="color"] { width: 40px; height: 26px; padding: 0 2px; border-radius: 3px; vertical-align: middle; }
 .setting-prop .prop-goto select { width: 188px; }
 .setting-prop .prop-transition label { color: rgba(0,0,0,0.2); cursor: pointer; }
 .setting-prop .prop-transition input[type="radio"] { visibility: hidden; width: 0; height: 0; }
