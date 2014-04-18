@@ -14,9 +14,8 @@ angular.module('toHELL')
       elemData: '&elemData'
     },
     templateUrl: 'partials/scene-element-view.html',
-    link: function(scope, el){
+    link: function(scope){
       scope.elem = scope.elemData();
-      console.log(scope);
     }
-  }
+  };
 });
