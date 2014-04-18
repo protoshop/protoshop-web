@@ -2,7 +2,7 @@
 <div class="scene-setting">
 	<div class="scene-setting-line"></div>
 	<div class="scene-setting-panel" ng-if="elem === editStat.selectedElement">
-		<h3>{{elem.type}} Properties</h3>
+		<h3>Properties</h3>
 
 		<div class="setting-title">Size &amp; Position:</div>
 		<div class="setting-prop">
@@ -21,6 +21,7 @@
 					<input type="text" ng-model="elem.textContent" placeholder="Here is text..." />
 					<select ng-model="elem.textSize" ng-init="elem.textSize = elem.textSize || 14"
 							ng-options="v for v in props.text.size"></select>
+          <input type="color" ng-model="elem.textColor" />
 				</div>
 			</div>
 		</div>
@@ -29,11 +30,10 @@
 			<div class="setting-title">Style:</div>
 			<div class="setting-prop">
 				<div class="prop-style">Background:
-					<input type="color" ng-model="elem.backgroundColor"
-						   ng-init="elem.backgroundColor=elem.backgroundColor||'transparent'" />
+					<input type="color" ng-model="elem.bgColor" />
 				</div>
 				<div class="prop-style">Border Radius:
-					<input type="text" ng-model="elem.radius" ng-init="elem.radius=elem.radius||0" /> px
+					<input type="text" ng-model="elem.bdRadius" ng-init="elem.bdRadius = elem.bdRadius || 0" /> px
 				</div>
 			</div>
 		</div>
