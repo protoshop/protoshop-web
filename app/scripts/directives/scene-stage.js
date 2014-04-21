@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.directive('sceneStage', ['$rootScope', function ($rootScope) {
+.directive('sceneStage', function ($rootScope, uilib) {
   return {
     restrict: 'A',
     replace: true,
@@ -26,16 +26,13 @@ angular.module('toHELL')
 
       // Handle Event 'scene.addElement'
       scope.$on('scene.addElement', function (event, args) {
-        var newElement = {
-          type: args.type,
-          posX: (args.posx - 60).crop(0, 200),
-          posY: (args.posy - 22).crop(0, 436),
-          width: 120,
-          height: 44,
-          actions: []
-        };
-        event.currentScope.editStat.selectedScene.elements.push(newElement);
-        event.currentScope.$apply();
+        uilib.then(function (lib) {
+          var newElement = JSON.parse(JSON.stringify(lib.data[args.type].init));
+          newElement.posX = (args.posx - 60).crop(0, 200);
+          newElement.posY = (args.posy - 22).crop(0, 436);
+          
+          event.currentScope.editStat.selectedScene.elements.push(newElement);
+        });
       });
 
       scope.selectElement = function (elemObj) {
@@ -44,4 +41,4 @@ angular.module('toHELL')
 
     }
   };
-}]);
+});

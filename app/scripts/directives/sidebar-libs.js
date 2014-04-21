@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.directive('sidebarlibs', function (uilibs) {
+.directive('sidebarlibs', function (uilib) {
   return {
     restrict: 'E',
     replace: true,
@@ -16,8 +16,8 @@ angular.module('toHELL')
       };
 
       // load ui component libs
-      uilibs.then(function (libs) {
-        scope.libs = libs.data;
+      uilib.then(function (lib) {
+        scope.libs = lib.data;
       });
 
     }

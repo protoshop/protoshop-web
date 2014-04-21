@@ -6,8 +6,8 @@ angular.module('toHELL')
  * UI Component Libs Service
  */
 
-.factory('uilibs', function ($http) {
-  return $http.get('scripts/assets/libs.json');
+.factory('uilib', function ($http) {
+  return $http.get('scripts/assets/components.json');
 })
 
 .factory('uiprops', function ($http) {

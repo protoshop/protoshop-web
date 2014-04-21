@@ -1,0 +1,71 @@
+{
+  "button": {
+    "group": "Basic",
+    "label": "Button",
+    "init": {
+      "type": "button",
+      "posX": 0,
+      "posY": 0,
+      "width": 120,
+      "height": 44,
+
+      "bgColor": "#2c5abb",
+      "bgImage": "",
+
+      "text": "",
+      "textColor": "#ffffff",
+      "textSize": 14
+    }
+  },
+  "hotspot": {
+    "group": "Basic",
+    "label": "Hotspot",
+    "init": {
+      "type": "hotspot",
+      "posX": 0,
+      "posY": 0,
+      "width": 160,
+      "height": 44,
+
+      "goto": {
+        "target": "",
+        "direction": "none",
+        "delay": 0,
+        "duration": 0.3
+      }
+    }
+  },
+  "toolbar": {
+    "group": "Advance",
+    "label": "Toolbar"
+  },
+  "list": {
+    "group": "Advance",
+    "label": "List"
+  },
+  "view": {
+    "group": "Prototype",
+    "label": "View",
+    "init": {
+      "type": "hotspot",
+      "posX": 0,
+      "posY": 0,
+      "width": 160,
+      "height": 120,
+
+      "bgColor": "",
+      "bgImage": "",
+
+      "text": "",
+      "textColor": "#ffffff",
+      "textSize": 14,
+
+      "goto": {
+        "target": "",
+        "direction": "none",
+        "delay": 0,
+        "duration": 0.3
+      }
+    }
+  }
+}

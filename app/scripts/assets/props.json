@@ -1,22 +1,4 @@
 {
-  "rect": {
-    "posX": "Number",
-    "posY": "Number",
-    "width": "Number",
-    "height": "Number"
-  },
-  "text": {
-    "content": "String",
-    "size": [10,12,14,16,18,20,22,24,26,28,30,32,34,36]
-  },
-  "style": {
-    "background": "String",
-    "borderRadius": "Number"
-  },
-  "goto": {
-    "target": "String",
-    "direction": ["up","down","left","right","none"],
-    "delay": "Number",
-    "duration": "Number"
-  }
+  "textSize": [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36],
+  "direction": ["up", "down", "left", "right", "none"]
 }

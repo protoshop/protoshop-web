@@ -6,7 +6,7 @@ angular.module('toHELL')
  * Element（界面元素控件） in scene editor
  */
 
-.directive('sceneElement', function ($document, $q, uilibs, uiprops) {
+.directive('sceneElement', function ($document) {
   return {
     restrict: 'AE',
     templateUrl: 'partials/scene-element.html',
@@ -18,17 +18,6 @@ angular.module('toHELL')
         width: el.parent().width(),
         height: el.parent().height()
       };
-
-      // 登记此控件可以有的属性集合
-      $q.all([uilibs, uiprops]).then(function (res) {
-        scope.props = {};
-        var cfg = res[0].data[scope.elem.type].props;
-        for (var p in cfg) {
-          if (cfg.hasOwnProperty(p)) {
-            scope.props[p] = res[1].data[p];
-          }
-        }
-      });
 
       scope.scenes = scope.package.scenes;
       scope.defaults = {

@@ -82,20 +82,7 @@ i { font-style: normal; }
 /* Element View */
 .element-view { height: 100%; width: 100%; text-align: center; pointer-events: none }
 
-/*
-.scene-goto { position: absolute; right: 126px; top: -32px; z-index: 2; }
-.scene-goto-thumb { width: 45px; padding: 8px 10px; background: #fff; border: 2px solid rgba(1,78,182,0.5); border-radius: 5px; font-size: 12px; text-align: center; }
-.scene-goto-thumb img { width:45px; height: 70px }
-.scene-goto-thumb p { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-.scene-goto-thumb p:empty{display:inline-block;}
-.scene-goto-line { position: relative; height: 2px; margin-left: 66px; margin-top: -55px; background-color: #4fc9f0; }
-.scene-goto-line:before, .scene-goto-line:after { position: absolute; content: ""; width: 12px; height: 12px; border-radius: 6px; background-color: #4fc9f0; }
-.scene-goto-line:before { left: -8px; top: -5px; }
-.scene-goto-line:after { right: -8px; top: -5px; }
-.goto-scenes { position: relative; margin-bottom: 2px; }
-.goto-scenes:after { position: absolute; content: ""; right: 10px; top: 10px; width: 0; height: 0; border-width: 6px; border-style: solid; border-color: #666 transparent transparent; pointer-events:none; }
-*/
-.scene-setting { position: absolute; right: 100%; top: 0; margin-right: 10px; }
+.scene-setting { position: absolute; right: 100%; top: 0; margin-right: 10px; z-index: 99 }
 .scene-setting-line { background: #fff; }
 .scene-setting-panel { width: 240px; padding-bottom: 10px; background: #fff; border: 1px solid #ccc; }
 .scene-setting-panel h3 { padding: 0 10px; line-height: 2; background: rgba(0,0,0,0.1); border-bottom: 1px solid #ccc; }
