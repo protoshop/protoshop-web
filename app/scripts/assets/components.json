@@ -27,12 +27,12 @@
       "width": 160,
       "height": 44,
 
-      "goto": {
+      "jumpto": {
         "target": "",
         "transitionType": "none",
-        "direction": "left",
-        "delay": 0,
-        "duration": 0.3
+        "transitionDirection": "left",
+        "transitionDelay": 0,
+        "transitionDuration": 0.3
       }
     }
   },
@@ -61,7 +61,7 @@
       "textColor": "#ffffff",
       "textSize": 14,
 
-      "goto": {
+      "jumpto": {
         "target": "",
         "direction": "none",
         "delay": 0,
