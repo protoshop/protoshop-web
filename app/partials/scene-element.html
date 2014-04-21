@@ -20,8 +20,7 @@
 			<div class="setting-prop">
 				<div class="prop-text">
 					<input type="text" ng-model="elem.textContent" placeholder="Here is text..." />
-					<select ng-model="elem.textSize" ng-init="elem.textSize = elem.textSize || 14"
-							ng-options="v for v in props.textSize"></select>
+					<select ng-model="elem.textSize" ng-options="v for v in uiprops.textSize"></select>
           <input type="color" ng-model="elem.textColor" />
 				</div>
 			</div>
@@ -30,12 +29,15 @@
 		<div ng-if="elem.bgColor">
 			<div class="setting-title">Style:</div>
 			<div class="setting-prop">
-				<div class="prop-style">Background:
+				<div class="prop-style">Background Color:
 					<input type="color" ng-model="elem.bgColor" />
 				</div>
-				<div class="prop-style">Border Radius:
-					<input type="text" ng-model="elem.bdRadius" ng-init="elem.bdRadius = elem.bdRadius || 0" /> px
+				<div class="prop-style">Background Image:
+					<input type="text" ng-model="elem.bgImage" />
 				</div>
+				<!--<div class="prop-style">Border Radius:-->
+					<!--<input type="text" ng-model="elem.bdRadius" ng-init="elem.bdRadius = elem.bdRadius || 0" /> px-->
+				<!--</div>-->
 			</div>
 		</div>
 
@@ -43,34 +45,34 @@
 			<div class="setting-title">Go To:</div>
 			<div class="setting-prop">
 				<div class="prop-goto">
-					<select ng-model="elem.target" ng-options="s.id as s.name for s in scenes"></select>
+					<select ng-model="elem.goto.target" ng-options="s.id as s.name for s in scenes"></select>
 				</div>
 				<div class="prop-transition">
 					<label>
-            <input type="radio" ng-model="elem.transitionType" name="transition-name" value="none" />
+            <input type="radio" ng-model="elem.goto.transitionType" name="transition-name" value="none" />
             <i class="icon-block"></i></label>
 					<label>
-            <input type="radio" ng-model="elem.transitionType" name="transition-name" value="push" checked="checked" />
+            <input type="radio" ng-model="elem.goto.transitionType" name="transition-name" value="push" />
             <i>Push</i></label>
 					<label>
-            <input type="radio" ng-model="elem.transitionType" name="transition-name" value="cover" />
+            <input type="radio" ng-model="elem.goto.transitionType" name="transition-name" value="cover" />
             <i>Cover</i></label>
 				</div>
-				<div class="prop-transition" ng-hide="elem.transitionType==='none'">
-					<label><input type="radio" ng-model="elem.transitionDirection" name="transition-direction" value="up" />
+				<div class="prop-transition" ng-hide="elem.goto.transitionType==='none'">
+					<label><input type="radio" ng-model="elem.goto.direction" name="transition-direction" value="up" />
             <i class="icon-up-bold"></i></label>
-					<label><input type="radio" ng-model="elem.transitionDirection" name="transition-direction" value="right" />
+					<label><input type="radio" ng-model="elem.goto.direction" name="transition-direction" value="right" />
             <i class="icon-right-bold"></i></label>
-					<label><input type="radio" ng-model="elem.transitionDirection" name="transition-direction" value="down" />
+					<label><input type="radio" ng-model="elem.goto.direction" name="transition-direction" value="down" />
             <i class="icon-down-bold"></i></label>
-					<label><input type="radio" ng-model="elem.transitionDirection" name="transition-direction" value="left" />
+					<label><input type="radio" ng-model="elem.goto.direction" name="transition-direction" value="left" />
             <i class="icon-left-bold"></i></label>
-				</div>
-				<div class="prop-transition-time" ng-hide="elem.transitionType==='none'">
-					<input type="text" ng-model="elem.transitionDelay" time-unit />
-					s delay<br />
-					<input type="text" ng-model="elem.transitionDuration" time-unit />
-					s duration
+          <div class="prop-transition-time">
+            <input type="text" ng-model="elem.transitionDelay" time-unit />
+            s delay<br />
+            <input type="text" ng-model="elem.transitionDuration" time-unit />
+            s duration
+          </div>
 				</div>
 			</div>
 		</div>

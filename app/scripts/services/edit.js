@@ -242,10 +242,6 @@
         self.deselectAction();
         self.deselectElement();
         self.editStat.selectedElement = element;
-
-        if (element.actions.length > 0) {
-          self.selectAction(element.actions[0]);
-        }
       };
 
       /**

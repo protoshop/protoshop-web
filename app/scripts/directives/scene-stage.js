@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.directive('sceneStage', function ($rootScope, uilib) {
+.directive('sceneStage', function ($rootScope, uilib, uiprops) {
   return {
     restrict: 'A',
     replace: true,
@@ -22,6 +22,11 @@ angular.module('toHELL')
             posy: ev.originalEvent.clientY - ev.target.offsetTop + ev.target.scrollTop
           });
         }
+      });
+
+      // For enum props config
+      uiprops.then(function (props) {
+        scope.uiprops = props.data;
       });
 
       // Handle Event 'scene.addElement'

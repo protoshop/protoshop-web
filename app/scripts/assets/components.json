@@ -29,7 +29,8 @@
 
       "goto": {
         "target": "",
-        "direction": "none",
+        "transitionType": "none",
+        "direction": "left",
         "delay": 0,
         "duration": 0.3
       }
