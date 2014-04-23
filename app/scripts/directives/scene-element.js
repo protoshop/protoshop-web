@@ -50,6 +50,8 @@ angular.module('toHELL')
         // 绑定
         $document.on('mousemove', updateElemPos);
         $document.on('mouseup', unbindDragEvents);
+        
+        event.stopPropagation();
 
       });
 
