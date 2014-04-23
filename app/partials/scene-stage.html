@@ -1,7 +1,5 @@
-<div class="scene">
-	<img class="scene-bg" ng-if="editStat.selectedScene.background" ng-src="{{fileRoot + editStat.selectedScene.background}}" alt=""/>
+<div class="scene" ng-style="{'background-image': 'url(' + fileRoot + editStat.selectedScene.background + ')'}">
   <div ng-repeat="elem in editStat.selectedScene.elements"
        ng-include="'partials/scene-element.html'"
-       scene-element class="scene-element" ng-class="elem.type"
-       ng-style="{left: elem.posX, top: elem.posY, width: elem.width, height: elem.height}"></div>
+       scene-element class="scene-element" ng-class="elem.type" ng-style="{left: elem.posX, top:elem.posY}"></div>
 </div>

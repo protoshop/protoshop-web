@@ -1,8 +1,9 @@
 <div class="element-view"
-     ng-style="{height: elem.height, width: elem.width, backgroundColor:elem.bgColor,borderRadius:elem.bdRadius+'px'}">
-  
+     ng-style="{left: elem.posX, top:elem.posY, height: elem.height, width: elem.width, backgroundColor:elem.bgColor,
+     borderRadius:elem.bdRadius+'px'}">
+
   <span ng-if="elem.text" class="elem-text-content"
         ng-bind="elem.text"
         ng-style="{color:elem.textColor,fontSize:elem.textSize,lineHeight:elem.height+'px'}"></span>
-  
+
 </div>
