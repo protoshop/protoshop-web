@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
+
 .run(function () {
 
   /**
@@ -31,4 +32,5 @@ angular.module('toHELL')
   };
 
 })
+
 .constant('utils', {});

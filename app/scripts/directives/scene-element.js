@@ -9,7 +9,6 @@ angular.module('toHELL')
 .directive('sceneElement', function ($document) {
   return {
     restrict: 'AE',
-    templateUrl: 'partials/scene-element.html',
     scope: true,
     link: function (scope, el) {
 

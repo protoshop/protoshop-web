@@ -1,81 +1,9 @@
-<div element-handler class="anchor" ng-if="elem === editStat.selectedElement" elem="elem"></div>
+
 <element-view elem-data="elem"></element-view>
-<div class="scene-setting">
-	<div class="scene-setting-line"></div>
-	<div class="scene-setting-panel" ng-if="elem === editStat.selectedElement">
-		<h3>Properties</h3>
+<element-edit elem-data="elem" ng-if="elem === editStat.selectedElement"></element-edit>
+<element-handler elem-data="elem" ng-if="elem === editStat.selectedElement"></element-handler>
 
-		<div class="setting-title">Size &amp; Position:</div>
-		<div class="setting-prop">
-			<div class="prop-size">
-				<label>X <input type="text" ng-model="elem.posX" /></label>
-				<label>Y <input type="text" ng-model="elem.posY" /></label>
-				<label>W <input type="text" ng-model="elem.width" /></label>
-				<label>H <input type="text" ng-model="elem.height" /></label>
-			</div>
-		</div>
-
-		<div ng-if="elem.textColor">
-			<div class="setting-title">Text:</div>
-			<div class="setting-prop">
-				<div class="prop-text">
-					<input type="text" ng-model="elem.textContent" placeholder="Here is text..." />
-					<select ng-model="elem.textSize" ng-options="v for v in uiprops.textSize"></select>
-          <input type="color" ng-model="elem.textColor" />
-				</div>
-			</div>
-		</div>
-
-		<div ng-if="elem.bgColor">
-			<div class="setting-title">Style:</div>
-			<div class="setting-prop">
-				<div class="prop-style">Background Color:
-					<input type="color" ng-model="elem.bgColor" />
-				</div>
-				<div class="prop-style">Background Image:
-					<input type="text" ng-model="elem.bgImage" />
-				</div>
-				<!--<div class="prop-style">Border Radius:-->
-					<!--<input type="text" ng-model="elem.bdRadius" ng-init="elem.bdRadius = elem.bdRadius || 0" /> px-->
-				<!--</div>-->
-			</div>
-		</div>
-
-		<div ng-if="elem.jumpto">
-			<div class="setting-title">Jump To:</div>
-			<div class="setting-prop">
-				<div class="prop-goto">
-					<select ng-model="elem.jumpto.target" ng-options="s.id as s.name for s in scenes"></select>
-				</div>
-				<div class="prop-transition">
-					<label>
-            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name" value="none" />
-            <i class="icon-block"></i></label>
-					<label>
-            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name" value="push" />
-            <i>Push</i></label>
-					<label>
-            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name" value="cover" />
-            <i>Cover</i></label>
-				</div>
-				<div class="prop-transition" ng-hide="elem.jumpto.transitionType==='none'">
-					<label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction" value="up" />
-            <i class="icon-up-bold"></i></label>
-					<label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction" value="right" />
-            <i class="icon-right-bold"></i></label>
-					<label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction" value="down" />
-            <i class="icon-down-bold"></i></label>
-					<label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction" value="left" />
-            <i class="icon-left-bold"></i></label>
-          <div class="prop-transition-time">
-            <input type="text" ng-model="elem.jumpto.transitionDelay" time-unit />
-            s delay<br />
-            <input type="text" ng-model="elem.jumpto.transitionDuration" time-unit />
-            s duration
-          </div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-</div>
+<div ng-repeat="elem in elem.elements"
+     ng-include="'partials/scene-element.html'"
+     scene-element class="scene-element" ng-class="elem.type"
+     ng-style="{left: elem.posX, top: elem.posY, width: elem.width, height: elem.height}"></div>

@@ -9,8 +9,9 @@ angular.module('toHELL')
 .directive('elementHandler', function ($document) {
   return {
     restrict: 'AE',
+    replace: 'true',
     scope: {
-      elemData: '=elem'
+      elemData: '='
     },
     templateUrl: 'partials/scene-element-handler.html',
     link: function (scope, el) {
