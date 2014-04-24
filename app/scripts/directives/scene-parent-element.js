@@ -9,20 +9,20 @@ angular.module('toHELL')
 .directive('parentElement', function ($rootScope) {
   return {
     restrict: 'A',
-    link: function(scope, el){
+    link: function (scope, el) {
 
       // Handle Style
       var $el = angular.element(el);
       $el.on('dragover', function (ev) {
         $el.addClass('dragover');
         ev.stopPropagation();
-        ev.preventDefault();}
-      );
+        ev.preventDefault();
+      });
       $el.on('dragleave', function (ev) {
         $el.removeClass('dragover');
-        ev.preventDefault();}
-      );
-      
+        ev.preventDefault();
+      });
+
       // Handle Drop
       $el.on('drop', function (ev) {
         $el.removeClass('dragover');
@@ -38,7 +38,7 @@ angular.module('toHELL')
           });
         }
       });
-      
+
     }
-  }
+  };
 });

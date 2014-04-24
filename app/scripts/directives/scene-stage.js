@@ -21,7 +21,7 @@ angular.module('toHELL')
 
           newElement.posX = (args.posx - 60).crop(0, 200);
           newElement.posY = (args.posy - 22).crop(0, 436);
-          
+
           var host = args.wrapper.elem || scope.editStat.selectedScene;
 
           host.elements = host.elements || [];
