@@ -8,6 +8,11 @@ angular.module('toHELL')
     templateUrl: 'partials/scene-stage.html',
     scope: true,
     link: function (scope, el) {
+      
+      scope.size = {
+        width: el.width(),
+        height: el.height()
+      };
 
       // Handle Event 'drop'
       var $el = angular.element(el);

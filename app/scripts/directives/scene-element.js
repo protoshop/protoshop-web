@@ -13,9 +13,9 @@ angular.module('toHELL')
     link: function (scope, el) {
 
       // Scene 的编辑区的基础环境信息。 TODO：stage 的宽和高应该取自工程配置
-      scope.stage = {
-        width: el.parent().width(),
-        height: el.parent().height()
+      scope.size = {
+        width: scope.elem.width,
+        height: scope.elem.height
       };
 
       scope.scenes = scope.package.scenes;
@@ -65,9 +65,9 @@ angular.module('toHELL')
         $document.find('body').css('cursor', 'move');
 
         // 拖拽范围
-        var maxX = scope.stage.width - scope.elem.width;
+        var maxX = scope.$parent.size.width - scope.elem.width;
         var minX = 0;
-        var maxY = scope.stage.height - scope.elem.height;
+        var maxY = scope.$parent.size.height - scope.elem.height;
         var minY = 0;
 
         scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(maxX, minX);

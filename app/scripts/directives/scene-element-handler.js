@@ -10,9 +10,6 @@ angular.module('toHELL')
   return {
     restrict: 'AE',
     replace: 'true',
-    scope: {
-      elemData: '='
-    },
     templateUrl: 'partials/scene-element-handler.html',
     link: function (scope, el) {
 
@@ -25,10 +22,10 @@ angular.module('toHELL')
 
         // 记录初始状态
         scope.origin = {
-          elemx: scope.elemData.posX,
-          elemy: scope.elemData.posY,
-          elemw: scope.elemData.width,
-          elemh: scope.elemData.height,
+          elemx: scope.elem.posX,
+          elemy: scope.elem.posY,
+          elemw: scope.elem.width,
+          elemh: scope.elem.height,
           mousex: $event.clientX,
           mousey: $event.clientY
         };
@@ -56,19 +53,19 @@ angular.module('toHELL')
         switch (scope.direction) {
         case 'up':
           deltaY = deltaY.crop(0 - scope.origin.elemy, scope.origin.elemh);
-          scope.elemData.posY = scope.origin.elemy + deltaY;
-          scope.elemData.height = scope.origin.elemh - deltaY;
+          scope.elem.posY = scope.origin.elemy + deltaY;
+          scope.elem.height = scope.origin.elemh - deltaY;
           break;
         case 'down':
-          scope.elemData.height = (scope.origin.elemh + deltaY).crop(0, scope.$parent.stage.height - scope.origin.elemy);
+          scope.elem.height = (scope.origin.elemh + deltaY).crop(0, scope.$parent.$parent.size.height - scope.origin.elemy);
           break;
         case 'left':
           deltaX = deltaX.crop(0 - scope.origin.elemx, scope.origin.elemw);
-          scope.elemData.posX = scope.origin.elemx + deltaX;
-          scope.elemData.width = scope.origin.elemw - deltaX;
+          scope.elem.posX = scope.origin.elemx + deltaX;
+          scope.elem.width = scope.origin.elemw - deltaX;
           break;
         case 'right':
-          scope.elemData.width = (scope.origin.elemw + deltaX).crop(0, scope.$parent.stage.width - scope.origin.elemx);
+          scope.elem.width = (scope.origin.elemw + deltaX).crop(0, scope.$parent.$parent.size.width - scope.origin.elemx);
         }
 
         scope.$apply();
