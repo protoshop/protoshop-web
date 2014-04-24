@@ -6,7 +6,7 @@ angular.module('toHELL')
  * Element Editor in scene editor
  */
 
-.directive('elementEdit', function(){
+.directive('elementEdit', function () {
   return {
     restrict: 'AE',
     replace: true,
@@ -14,7 +14,17 @@ angular.module('toHELL')
       elemData: '&elemData'
     },
     templateUrl: 'partials/scene-element-edit.html',
-    link: function(scope){
+    controller: function ($scope, uiprops) {
+      
+      $scope.package = $scope.$parent.package;
+
+      // For enum props config
+      uiprops.then(function (props) {
+        $scope.props = props.data;
+      });
+
+    },
+    link: function (scope) {
       scope.elem = scope.elemData();
     }
   };

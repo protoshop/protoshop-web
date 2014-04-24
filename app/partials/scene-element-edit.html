@@ -18,7 +18,7 @@
       <div class="setting-prop">
         <div class="prop-text">
           <input type="text" ng-model="elem.text" placeholder="Here is text..." />
-          <select ng-model="elem.textSize" ng-options="v for v in uiprops.textSize"></select>
+          <select ng-model="elem.textSize" ng-options="v for v in props.textSize"></select>
           <input type="color" ng-model="elem.textColor" />
         </div>
       </div>
@@ -43,7 +43,7 @@
       <div class="setting-title">Jump To:</div>
       <div class="setting-prop">
         <div class="prop-goto">
-          <select ng-model="elem.jumpto.target" ng-options="s.id as s.name for s in scenes"></select>
+          <select ng-model="elem.jumpto.target" ng-options="s.id as s.name for s in package.scenes"></select>
         </div>
         <div class="prop-transition">
           <label>

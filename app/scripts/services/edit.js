@@ -259,8 +259,8 @@
        * @param {Action} action - 要移除的动作对象
        */
       this.removeElement = function (element) {
-        var elements = self.editStat.selectedScene.elements;
-        var index = elements.indexOf(element);
+        var list = self.editStat.selectedScene.elements;
+        var index = list.indexOf(element);
         if (index < 0) {
           return;
         }
@@ -268,7 +268,7 @@
         if (element === self.editStat.selectedElement) {
           this.deselectElement();
         }
-        elements.splice(index, 1);
+        list.splice(index, 1);
       };
 
       /**

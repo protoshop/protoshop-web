@@ -10,18 +10,18 @@ angular.module('toHELL')
   return {
     restrict: 'AE',
     scope: true,
-    link: function (scope, el) {
+    controller: function ($scope) {
 
       // Scene 的编辑区的基础环境信息。 TODO：stage 的宽和高应该取自工程配置
-      scope.size = {
-        width: scope.elem.width,
-        height: scope.elem.height
+      $scope.size = {
+        width: $scope.elem.width,
+        height: $scope.elem.height
       };
 
-      scope.scenes = scope.package.scenes;
-      scope.defaults = {
-        sceneBackground: 'images/dummy-scene-thumb.png'
-      };
+      $scope.scenes = $scope.package.scenes;
+
+    },
+    link: function (scope, el) {
 
       /**
        * 当鼠标点下时，
@@ -50,7 +50,7 @@ angular.module('toHELL')
         // 绑定
         $document.on('mousemove', updateElemPos);
         $document.on('mouseup', unbindDragEvents);
-        
+
         event.stopPropagation();
 
       });

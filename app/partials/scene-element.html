@@ -5,5 +5,5 @@
 
 <div ng-repeat="elem in elem.elements"
      ng-include="'partials/scene-element.html'"
-     scene-element class="scene-element" ng-class="elem.type"
+     scene-element parent-element class="scene-element" ng-class="elem.type"
      ng-style="{left: elem.posX, top: elem.posY}"></div>

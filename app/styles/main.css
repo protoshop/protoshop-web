@@ -81,6 +81,7 @@ i { font-style: normal; }
 
 /* Element View */
 .element-view { height: 100%; width: 100%; text-align: center; pointer-events: none }
+.dragover > .element-view { box-shadow: 0 0 0 2px gold }
 
 .scene-setting { position: absolute; right: 100%; top: 0; margin-right: 10px; z-index: 99 }
 .scene-setting-line { background: #fff; }
