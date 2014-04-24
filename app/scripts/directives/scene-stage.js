@@ -9,9 +9,12 @@ angular.module('toHELL')
     scope: true,
     link: function (scope, el) {
 
-      scope.size = {
-        width: el.width(),
-        height: el.height()
+      scope.size = scope.package.appPlatform == 'ios' ? {
+        width: 320,
+        height: 480
+      } : {
+        width: 400,
+        height: 640
       };
 
       // Handle Event 'scene.addElement'
