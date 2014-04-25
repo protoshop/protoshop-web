@@ -7,11 +7,11 @@ angular.module('toHELL')
     replace: true,
     templateUrl: 'partials/scene-stage.html',
     scope: true,
-    link: function (scope, el) {
+    link: function (scope) {
 
       scope.size = scope.package.appPlatform == 'ios' ? {
         width: 320,
-        height: 480
+        height: 568
       } : {
         width: 400,
         height: 640

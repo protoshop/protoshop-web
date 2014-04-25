@@ -15,7 +15,7 @@ angular.module('toHELL')
     },
     templateUrl: 'partials/scene-element-edit.html',
     controller: function ($scope, uiprops) {
-      
+
       $scope.package = $scope.$parent.package;
 
       // For enum props config

@@ -6,7 +6,7 @@ angular.module('toHELL')
  * Element（界面元素控件） in scene editor
  */
 
-.directive('elementView', function(){
+.directive('elementView', function () {
   return {
     restrict: 'AE',
     replace: true,
@@ -14,7 +14,7 @@ angular.module('toHELL')
       elemData: '&elemData'
     },
     templateUrl: 'partials/scene-element-view.html',
-    link: function(scope){
+    link: function (scope) {
       scope.elem = scope.elemData();
     }
   };
