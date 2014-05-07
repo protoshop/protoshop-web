@@ -70,8 +70,15 @@ angular.module('toHELL')
         var maxY = scope.$parent.size.height - scope.elem.height;
         var minY = 0;
 
-        scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(maxX, minX);
-        scope.elem.posY = (scope.origin.posy + $ev.clientY - scope.origin.mousey).crop(maxY, minY);
+        // 
+        if(scope.elem.wrapperSize){
+          scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(99999, minX);
+          scope.elem.posY = (scope.origin.posy + $ev.clientY - scope.origin.mousey).crop(99999, minY);
+        }else{
+          scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(maxX, minX);
+          scope.elem.posY = (scope.origin.posy + $ev.clientY - scope.origin.mousey).crop(maxY, minY);
+        }
+
 
         scope.$apply();
       }

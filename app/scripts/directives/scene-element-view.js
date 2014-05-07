@@ -10,12 +10,6 @@ angular.module('toHELL')
   return {
     restrict: 'AE',
     replace: true,
-    scope: {
-      elemData: '&elemData'
-    },
-    templateUrl: 'partials/scene-element-view.html',
-    link: function (scope) {
-      scope.elem = scope.elemData();
-    }
+    templateUrl: 'partials/scene-element-view.html'
   };
 });
