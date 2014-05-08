@@ -105,6 +105,8 @@ i { font-style: normal; }
 .setting-prop .prop-transition input[type="radio"]:checked + i { color: rgba(0,0,0,0.8); }
 .setting-prop .prop-transition-time input[type="text"] { display: inline-block; width: 36px; padding: 0 5px; border: none; border-bottom: 1px dotted #ccc; line-height: 1.5; background-color: transparent; font-weight: 300; outline: none; }
 
+.elem-content { position: absolute; left: 100%; top: 0; margin-left: 10px; z-index: 99; background-color: #FFE; box-shadow: 0 0 1px 1px #AAA inset }
+
 /* Tools ( layout - right sidebar ) */
 .panel-tools { overflow-y: auto; }
 .tools-title { padding: 0 10px; height: 30px; line-height: 30px; background: rgba(0,0,0,0.05); border-bottom: 1px solid #ccc; color: #666; }

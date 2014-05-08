@@ -125,7 +125,7 @@
       "bgColor": "",
       "bgImage": "",
 
-      "wrapperSize": {
+      "contentSize": {
         "width": 320,
         "height": 240
       }

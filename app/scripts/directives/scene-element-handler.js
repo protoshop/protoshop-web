@@ -57,9 +57,7 @@ angular.module('toHELL')
           scope.elem.height = scope.origin.elemh - deltaY;
           break;
         case 'down':
-          // 当 elem 包含 wrapperSize 属性的时候，即为 scroll-view，允许内容区域任意大小
-          scope.elem.height = scope.elem.wrapperSize ? (scope.origin.elemh + deltaY).crop(0,99999)
-            : (scope.origin.elemh + deltaY).crop(0, scope.$parent.$parent.size.height - scope.origin.elemy);
+          scope.elem.height = (scope.origin.elemh + deltaY).crop(0, scope.$parent.$parent.size.height - scope.origin.elemy);
           break;
         case 'left':
           deltaX = deltaX.crop(0 - scope.origin.elemx, scope.origin.elemw);
@@ -67,9 +65,7 @@ angular.module('toHELL')
           scope.elem.width = scope.origin.elemw - deltaX;
           break;
         case 'right':
-          // 当 elem 包含 wrapperSize 属性的时候，即为 scroll-view，允许内容区域任意大小
-          scope.elem.width = scope.elem.wrapperSize ? (scope.origin.elemw + deltaX).crop(0,99999)
-            : (scope.origin.elemw + deltaX).crop(0, scope.$parent.$parent.size.width - scope.origin.elemx);
+          scope.elem.width = (scope.origin.elemw + deltaX).crop(0, scope.$parent.$parent.size.width - scope.origin.elemx);
         }
 
         scope.$apply();
