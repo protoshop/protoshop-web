@@ -28,10 +28,15 @@ angular.module('toHELL')
        * 记录控件和鼠标指针的当前位置，开始监听拖拽相关事件
        */
 
-      el.on('mousedown', function (event) {
+      function bindDragHandler($ev) {
+
+        // 过滤掉元素附属编辑框上的点击事件
+        if (!$ev.target.classList.contains('scene-element')) {
+          return;
+        }
 
         // 不接受非左键点击
-        if (event.which !== 1) {
+        if ($ev.which !== 1) {
           return;
         }
 
@@ -43,17 +48,19 @@ angular.module('toHELL')
         scope.origin = {
           posx: scope.elem.posX,
           posy: scope.elem.posY,
-          mousex: event.clientX,
-          mousey: event.clientY
+          mousex: $ev.clientX,
+          mousey: $ev.clientY
         };
 
         // 绑定
         $document.on('mousemove', updateElemPos);
         $document.on('mouseup', unbindDragEvents);
 
-        event.stopPropagation();
+        $ev.stopPropagation();
 
-      });
+      }
+
+      el.on('mousedown', bindDragHandler);
 
       /**
        * 根据拖拽事件，更新控件的位置信息
@@ -71,14 +78,13 @@ angular.module('toHELL')
         var minY = 0;
 
         // 
-        if(scope.elem.wrapperSize){
+        if (scope.elem.wrapperSize) {
           scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(99999, minX);
           scope.elem.posY = (scope.origin.posy + $ev.clientY - scope.origin.mousey).crop(99999, minY);
-        }else{
+        } else {
           scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(maxX, minX);
           scope.elem.posY = (scope.origin.posy + $ev.clientY - scope.origin.mousey).crop(maxY, minY);
         }
-
 
         scope.$apply();
       }
