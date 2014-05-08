@@ -43,6 +43,15 @@ editService, $timeout, notifyService, accountService) {
     $scope.package = JSON.parse(result[0]);
     editService.setPackage($scope.package);
     editService.setStat($scope.editStat);
+
+    $scope.size = $scope.package.appPlatform == 'ios' ? {
+      width: 320,
+      height: 568
+    } : {
+      width: 400,
+      height: 640
+    };
+
     // 默认选中第一个场景
     var sceneId = editService.findScene('order', 0);
     $scope.selectScene(sceneId);
