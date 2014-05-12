@@ -51,7 +51,7 @@ i { font-style: normal; }
 
 /* Scenes ( layout - left sidebar ) */
 .scenes-list { flex: 1; -webkit-flex: 1; overflow-y: auto; }
-.scenes-title { height: 30px; line-height: 30px; padding: 0 10px; background: rgba(0,0,0,0.05); border-bottom: 1px solid #ccc; color: #666; word-wrap: break-word; }
+.scenes-title { height: 30px; line-height: 30px; padding: 0 10px; background: rgba(0,0,0,0.05); border-bottom: 1px solid #ccc; color: #666; word-wrap: break-word; overflow: hidden }
 .scene-item { position: relative; padding: 10px 0; border-bottom: 1px solid #ccc; text-align: center; }
 .scene-item:last-child { border-bottom: none; }
 .item-current { background: rgba(0,50,80,1); box-shadow: inset 0 0 50px rgba(0,0,0,0.3); }
