@@ -6,10 +6,10 @@
     <div class="setting-title">Size &amp; Position:</div>
     <div class="setting-prop">
       <div class="prop-size">
-        <label>X <input type="text" ng-model="elem.posX" /></label>
-        <label>Y <input type="text" ng-model="elem.posY" /></label>
-        <label>W <input type="text" ng-model="elem.width" /></label>
-        <label>H <input type="text" ng-model="elem.height" /></label>
+        <label>X <input type="number" ng-model="elem.posX" /></label>
+        <label>Y <input type="number" ng-model="elem.posY" /></label>
+        <label>W <input type="number" ng-model="elem.width" /></label>
+        <label>H <input type="number" ng-model="elem.height" /></label>
       </div>
     </div>
 
@@ -28,8 +28,8 @@
       <div class="setting-title">Wrapper Size:</div>
       <div class="setting-prop">
         <div class="prop-size">
-          <label>W <input type="text" ng-model="elem.contentSize.width" /></label>
-          <label>H <input type="text" ng-model="elem.contentSize.height" /></label>
+          <label>W <input type="number" ng-model="elem.contentSize.width" /></label>
+          <label>H <input type="number" ng-model="elem.contentSize.height" /></label>
         </div>
       </div>
     </div>
@@ -67,13 +67,17 @@
             <i>Cover</i></label>
         </div>
         <div class="prop-transition" ng-hide="elem.jumpto.transitionType==='none'">
-          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction" value="up" />
+          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
+                        value="up" />
             <i class="icon-up-bold"></i></label>
-          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction" value="right" />
+          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
+                        value="right" />
             <i class="icon-right-bold"></i></label>
-          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction" value="down" />
+          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
+                        value="down" />
             <i class="icon-down-bold"></i></label>
-          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction" value="left" />
+          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
+                        value="left" />
             <i class="icon-left-bold"></i></label>
           <div class="prop-transition-time">
             <input type="text" ng-model="elem.jumpto.transitionDelay" time-unit />

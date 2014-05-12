@@ -1,10 +1,12 @@
 
 <element-view elem-data="elem"></element-view>
 <element-edit elem-data="elem" ng-if="elem === editStat.selectedElement"></element-edit>
-<element-content-editor elem-data="elem" ng-if="elem === editStat.selectedElement && elem.contentSize">asdf</element-content-editor>
+<element-content-editor elem-data="elem" ng-if="elem === editStat.selectedElement && elem.contentSize"></element-content-editor>
 <element-handler elem-data="elem" ng-if="elem === editStat.selectedElement"></element-handler>
 
-<div ng-repeat="elem in elem.elements"
-     ng-include="'partials/scene-element.html'"
-     scene-element parent-element class="scene-element" ng-class="elem.type"
-     ng-style="{left: elem.posX, top: elem.posY}"></div>
+<div ng-if="!elem.contentSize">
+  <div ng-repeat="elem in elem.elements"
+       ng-include="'partials/scene-element.html'"
+       scene-element parent-element class="scene-element" ng-class="elem.type"
+       ng-style="{left: elem.posX, top: elem.posY}"></div>
+</div>

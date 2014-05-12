@@ -50,6 +50,8 @@ angular.module('toHELL')
         var deltaX = $ev.clientX - scope.origin.mousex;
         var deltaY = $ev.clientY - scope.origin.mousey;
 
+        var wrapperSize = scope.elemData ? scope.elemData().contentSize : scope.$parent.$parent.size;
+
         switch (scope.direction) {
         case 'up':
           deltaY = deltaY.crop(0 - scope.origin.elemy, scope.origin.elemh);
@@ -57,7 +59,7 @@ angular.module('toHELL')
           scope.elem.height = scope.origin.elemh - deltaY;
           break;
         case 'down':
-          scope.elem.height = (scope.origin.elemh + deltaY).crop(0, scope.$parent.$parent.size.height - scope.origin.elemy);
+          scope.elem.height = (scope.origin.elemh + deltaY).crop(0, wrapperSize.height - scope.origin.elemy);
           break;
         case 'left':
           deltaX = deltaX.crop(0 - scope.origin.elemx, scope.origin.elemw);
@@ -65,7 +67,7 @@ angular.module('toHELL')
           scope.elem.width = scope.origin.elemw - deltaX;
           break;
         case 'right':
-          scope.elem.width = (scope.origin.elemw + deltaX).crop(0, scope.$parent.$parent.size.width - scope.origin.elemx);
+          scope.elem.width = (scope.origin.elemw + deltaX).crop(0, wrapperSize.width - scope.origin.elemx);
         }
 
         scope.$apply();

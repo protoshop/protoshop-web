@@ -90,14 +90,14 @@ i { font-style: normal; }
 .scene-setting-panel .setting-title { padding: 10px; font-weight: 700; }
 .scene-setting-panel .setting-prop { padding: 0 20px; font-size: 12px; }
 .setting-prop > div { padding: 5px 0; }
-.setting-prop input[type="text"], .setting-prop select { padding: 0 3px; border: 1px solid #ccc; border-radius: 3px; vertical-align: middle; }
-.setting-prop input[type="text"] { height: 24px; }
+.setting-prop input, .setting-prop select { padding: 0 3px; border: 1px solid #ccc; border-radius: 3px; vertical-align: middle; }
+.setting-prop input { height: 24px; }
 .setting-prop select { height: 26px; }
 .setting-prop .prop-size label { display: inline-block; width: 92px; padding: 2px 0; text-align: right; }
-.setting-prop .prop-size input[type="text"] { width: 40px; margin-left: 5px; }
-.setting-prop .prop-text input[type="text"] { width: 90px; }
+.setting-prop .prop-size input { width: 40px; margin-left: 5px; }
+.setting-prop .prop-text input { width: 90px; }
 .setting-prop .prop-text select { width: 48px; }
-.setting-prop .prop-style input[type="text"] { width: 40px; }
+.setting-prop .prop-style input { width: 40px; }
 .setting-prop input[type="color"] { width: 40px; height: 26px; padding: 0 2px; border-radius: 3px; vertical-align: middle; }
 .setting-prop .prop-goto select { width: 188px; }
 .setting-prop .prop-transition label { color: rgba(0,0,0,0.2); cursor: pointer; }

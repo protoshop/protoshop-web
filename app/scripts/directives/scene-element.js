@@ -54,7 +54,7 @@ angular.module('toHELL')
 
         // 绑定
         $document.on('mousemove', updateElemPos);
-        $document.on('mouseup', unbindDragEvents);
+        $document.one('mouseup', unbindDragEvents);
 
         $ev.stopPropagation();
 
@@ -72,9 +72,10 @@ angular.module('toHELL')
         $document.find('body').css('cursor', 'move');
 
         // 拖拽范围
-        var maxX = scope.$parent.size.width - scope.elem.width;
+        var zoneSize = scope.elemData ? scope.elemData().contentSize : scope.$parent.size;
+        var maxX = zoneSize.width - scope.elem.width;
         var minX = 0;
-        var maxY = scope.$parent.size.height - scope.elem.height;
+        var maxY = zoneSize.height - scope.elem.height;
         var minY = 0;
 
         // 
@@ -98,8 +99,7 @@ angular.module('toHELL')
         // 清除鼠标样式
         $document.find('body').css('cursor', 'auto');
 
-        $document.unbind('mousemove', updateElemPos);
-        $document.unbind('mouseup', unbindDragEvents);
+        $document.off('mousemove', updateElemPos);
       }
 
       // 阻止控件元素上的点击事件冒泡
