@@ -84,6 +84,14 @@ angular.module('toHELL')
     // 附上 token
     $scope.newPackageConfig.token = accountService.getLoggedInUser().token;
 
+    $scope.newPackageConfig.size = $scope.newPackageConfig.appPlatform == 'ios' ? {
+      width: 320,
+      height: 568
+    } : {
+      width: 400,
+      height: 640
+    };
+
     var postData = {
       context: $scope.newPackageConfig
     };

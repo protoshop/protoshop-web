@@ -41,7 +41,7 @@ angular.module('toHELL')
         }
 
         // 选中此控件
-        scope.selectElement(scope.elem);
+        scope.selectElement && scope.selectElement(scope.elem);
         scope.$apply();
 
         // 记录控件和鼠标初始位置
