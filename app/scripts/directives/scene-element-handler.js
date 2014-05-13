@@ -34,7 +34,7 @@ angular.module('toHELL')
 
         // 绑定
         $document.on('mousemove', updateElemRect);
-        $document.on('mouseup', unbindDragEvents);
+        $document.one('mouseup', unbindDragEvents);
 
         $event.stopPropagation();
 
@@ -78,8 +78,79 @@ angular.module('toHELL')
        */
 
       function unbindDragEvents() {
-        $document.unbind('mousemove', updateElemRect);
-        $document.unbind('mouseup', unbindDragEvents);
+        $document.off('mousemove', updateElemRect);
+      }
+
+      // 阻止控件元素上的点击事件冒泡
+      el.on('click', function (event) { event.stopPropagation(); });
+
+    }
+  };
+})
+
+/**
+ * Element Content Rect Handler（界面内容元素拖拽控件）
+ */
+
+.directive('elementContentHandler', function ($document) {
+  return {
+    restrict: 'AE',
+    replace: 'true',
+    templateUrl: 'partials/scene-element-handler.html',
+    link: function (scope, el) {
+
+      el.on('mousedown', function ($event) {
+
+        // 不接受非左键点击
+        if ($event.which !== 1) {
+          return;
+        }
+
+        // 记录初始状态
+        scope.origin = {
+          elemw: scope.elem.contentSize.width,
+          elemh: scope.elem.contentSize.height,
+          mousex: $event.clientX,
+          mousey: $event.clientY
+        };
+
+        scope.direction = $event.target.dataset.handle;
+
+        // 绑定
+        $document.on('mousemove', updateElemRect);
+        $document.one('mouseup', unbindDragEvents);
+
+        $event.stopPropagation();
+
+      });
+
+      /**
+       * 根据拖拽事件更新元素宽高（以及位置）
+       * @param $ev
+       */
+
+      function updateElemRect($ev) {
+
+        var deltaX = $ev.clientX - scope.origin.mousex;
+        var deltaY = $ev.clientY - scope.origin.mousey;
+
+        switch (scope.direction) {
+        case 'down':
+          scope.elem.contentSize.height = scope.origin.elemh + deltaY;
+          break;
+        case 'right':
+          scope.elem.contentSize.width = scope.origin.elemw + deltaX;
+        }
+
+        scope.$apply();
+      }
+
+      /**
+       * 清理拖拽相关事件
+       */
+
+      function unbindDragEvents() {
+        $document.off('mousemove', updateElemRect);
       }
 
       // 阻止控件元素上的点击事件冒泡

@@ -78,6 +78,9 @@ i { font-style: normal; }
 .anchor i:nth-child(2) { left: 50%; top: 0; cursor: n-resize; }
 .anchor i:nth-child(3) { right: 0; top: 50%; cursor: e-resize; }
 .anchor i:nth-child(4) { left: 50%; bottom: 0; cursor: s-resize; }
+/* 隐藏 scroll-view content 拖拽的左和上锚点 */
+.elem-content > .anchor i:nth-child(1),
+.elem-content > .anchor i:nth-child(2) { display: none }
 
 /* Element View */
 .element-view { height: 100%; width: 100%; text-align: center; pointer-events: none }
