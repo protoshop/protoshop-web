@@ -6,7 +6,7 @@ angular.module('toHELL')
  * Element Content Editor
  */
 
-.directive('elementContentEditor', function ($document) {
+.directive('elementContentEditor', function () {
   return {
     restrict: 'AE',
     replace: true,
