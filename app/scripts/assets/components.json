@@ -108,9 +108,20 @@
       ]
     }
   },
-  "list": {
-    "group": "Advance",
-    "label": "List"
+  "label": {
+    "group": "Basic",
+    "label": "Label",
+    "init": {
+      "type": "label",
+      "posX": 0,
+      "posY": 0,
+      "width": 120,
+      "height": 44,
+
+      "text": "label",
+      "textColor": "#333333",
+      "textSize": 14
+    }
   },
   "scroll-view": {
     "group": "Prototype",
