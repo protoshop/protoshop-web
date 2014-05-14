@@ -87,7 +87,9 @@ angular.module('toHELL')
     };
 
     var postData = {
-      context: accountService.getLoggedInUser().token,
+      context: {
+        token: accountService.getLoggedInUser().token
+      },
       package: $scope.newPackageConfig
     };
 
