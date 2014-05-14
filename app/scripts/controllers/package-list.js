@@ -67,7 +67,7 @@ angular.module('toHELL')
    */
   $scope.newPackageConfig = {
     appPlatform: 'ios',  // 'android' or 'ios'
-    isPublicCheckbox: true,
+    isPublic: true,
     appOwner: accountService.getLoggedInUser().email,
     appName: '',
     appDesc: ''
@@ -78,12 +78,6 @@ angular.module('toHELL')
    */
   $scope.createProject = function () {
 
-    // 转换 checkbox 的值（true 或 false）为数据需要的字符串格式（'1'或'0'）
-    $scope.newPackageConfig.isPublic = $scope.newPackageConfig.isPublicCheckbox ? '1' : '0';
-
-    // 附上 token
-    $scope.newPackageConfig.token = accountService.getLoggedInUser().token;
-
     $scope.newPackageConfig.size = $scope.newPackageConfig.appPlatform == 'ios' ? {
       width: 320,
       height: 568
@@ -93,7 +87,8 @@ angular.module('toHELL')
     };
 
     var postData = {
-      context: $scope.newPackageConfig
+      context: accountService.getLoggedInUser().token,
+      package: $scope.newPackageConfig
     };
 
     backendService.createProject(postData, function (result) {
