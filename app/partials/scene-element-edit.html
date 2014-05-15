@@ -49,6 +49,18 @@
       </div>
     </div>
 
+    <div ng-if="elem.image">
+      <div class="setting-title">Image:</div>
+      <div class="setting-prop">
+        <div class="prop-style">
+          <label>
+            <input type="file" uploader data-handlers="imageViewUploadHandlers" data-current="{{editStat.selectedScene.background||''}}" style="display:none">
+            <img style="max-width:100%; max-height: 200px" ng-src="{{elem.image?(fileRoot + elem.image):''}}" />
+          </label>
+        </div>
+      </div>
+    </div>
+
     <div ng-if="elem.jumpto">
       <div class="setting-title">Jump To:</div>
       <div class="setting-prop">
