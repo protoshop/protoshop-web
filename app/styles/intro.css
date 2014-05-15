@@ -1,0 +1,57 @@
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, form, input,select, textarea, button, header, nav, menu, section, aside, footer { margin: 0; padding: 0; }
+body { background: #fff; font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: 100; -webkit-user-select: none; -webkit-text-size-adjust: none; overflow: scroll; color: #fff; }
+html, body { height: 100%; }
+ul, li { list-style: none; }
+a { color: #fff; text-decoration: underline; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+.row { height: 100%; }
+
+/* Splash */
+.splash { background-color: #49aaee; text-align: center; }
+.logo { display: inline-block; line-height: 16px; height: 16px; width: 80px; margin-top: 20%; background-color: white; position: relative }
+.logo:before, .logo:after { content: ''; background-color: white; width: 32px; height: 32px; border-radius: 20px; position: absolute }
+.logo:before { top: -8px; left: -20px; }
+.logo:after { top: -8px; right: -20px; }
+
+.fromto { margin-top: 5%; }
+.fromto .arrow { color: #CCC; font-size: 16px; position: relative; top: -4em; margin: 2em; }
+.fromto div { display: inline-block; width: 200px; margin: 5em 0; opacity: 0.8; border-radius: 5px; padding-bottom: 1em; }
+.fromto div:hover { background: rgba(0,0,0,0.1); cursor: pointer; }
+.fromto .icon { font-size: 90px; }
+
+.nav { position: absolute; bottom: 0; height: 40px; line-height: 40px; text-align: left; padding: 0 15px; }
+.nav.fixed { position: fixed; left: 0; right: 0; top: 0; }
+.nav a { margin-left: 10px; opacity: 0.5; }
+.nav a:hover { opacity: 1; }
+
+/* TryOnline */
+.tryonline { background-color: #ffdd6c; }
+
+/* GetMobile */
+.getmobile { position: relative; padding: 0 10%; background: #45bc7a url(../images/bg-stage-i5.png) right bottom no-repeat; background-size: 522px auto; }
+.getmobile .demo { position: absolute; right: 101px; bottom: 187px; }
+
+/* About */
+.about { padding: 0 10%; background-color: #eb6c59; }
+.team-member { padding: 30px 0; line-height: 1.5; overflow: hidden; }
+.team-member li { float: left; width: 220px; height: 264px; padding: 10px 0; text-align: center; }
+.team-member .person-avatar { width: 160px; height: 160px; margin: 0 auto 20px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; border-radius: 50%; }
+.team-member li:nth-child(2) .person-avatar { background-position: -160px 0; }
+.team-member li:nth-child(3) .person-avatar { background-position: -320px 0; }
+.team-member li:nth-child(4) .person-avatar { background-position: -480px 0; }
+.team-member li:nth-child(5) .person-avatar { background-position: -640px 0; }
+.team-member li:nth-child(6) .person-avatar { background-position: 0 -160px; }
+.team-member li:nth-child(7) .person-avatar { background-position: -160px -160px; }
+.team-member li:nth-child(8) .person-avatar { background-position: -320px -160px; }
+.team-member li:nth-child(1) .person-avatar { background-position: -480px -160px; }
+.person-name { font-size: 20px; }
+.person-job { font-size: 12px; }
+.person-weibo { padding-left: 20px; background: url(../images/icon-weibo.png) no-repeat; }
+.team-nonmember { margin-top: 30px; }
+.team-title { margin-bottom: 30px; font-size: 20px; }
+.team-nonmember li { padding: 5px 0; }
+.team-nonmember .person-avatar { display: inline-block; width: 40px; height: 40px; margin-right: 10px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; border-radius: 50%; vertical-align: middle; }
+.team-nonmember li:nth-child(1) .person-avatar { background-position: 0 -336px; }
+.team-nonmember li:nth-child(2) .person-avatar { background-position: -48px -336px; }
+.team-nonmember .person-name { display: inline-block; width: 52px; margin-right: 10px; font-size: 16px; }
+.team-nonmember .person-job { margin-right: 10px; }

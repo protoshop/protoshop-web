@@ -1,42 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-  <meta charset="UTF-8">
-  <title>Protoshop</title>
-  <style>
-    html, body { height: 100%; width: 100%; margin: 0; font-family: 'Open Sans', sans-serif; color: white }
-    body { overflow: scroll }
-    a { color: white; text-decoration: none; opacity: 0.5 }
-    a:hover { text-decoration: underline; opacity: 1 }
-    .nav { position: absolute; bottom: 0; height: 40px; line-height: 40px; text-align: left; padding: 0 15px }
-    .nav.fixed { position: fixed; left: 0; right: 0; top: 0 }
-    .nav a { margin-left: 10px }
-
-    .row { height: 100%; text-align: center }
-    .splash { background-color: royalblue }
-    .tryonline { background-color: sandybrown }
-    .getmobile { background-color: slateblue }
-    .about { background-color: lightskyblue }
-
-    .logo { display: inline-block; line-height: 16px; height: 16px; width: 80px; margin-top: 20%; background-color: white; position: relative }
-    .logo::before, .logo::after { content: ''; background-color: white; width: 32px; height: 32px; border-radius: 20px; position: absolute }
-    .logo::before { top: -8px; left: -20px }
-    .logo::after { top: -8px; right: -20px }
-
-    .fromto { margin-top: 5% }
-    .fromto .arrow { color: #CCC; font-size: 16px; position: relative; top: -4em; margin: 2em }
-    .fromto div { display: inline-block; width: 200px; margin: 5em 0; opacity: 0.8; border-radius: 5px; padding-bottom: 1em }
-    .fromto div:hover { background: rgba(0,0,0,0.1); cursor: pointer }
-    .fromto .icon { font-size: 90px }
-  </style>
+<meta charset="UTF-8">
+<title>Protoshop</title>
+<link rel="stylesheet" href="styles/intro.css" />
+<link rel="stylesheet" href="styles/font.css" />
 </head>
 <body>
 <div id="splash" class="row splash">
   <div class="logo"></div>
   <div class="fromto">
-    <div class="from"><span class="icon">#</span><br>Build with browser</div>
+    <div class="from"><span class="icon-monitor icon"></span><br>Build with browser</div>
     <span class="arrow">=&gt;</span>
-    <div class="to"><span class="icon">$</span><br>View on the mobile</div>
+    <div class="to"><span class="icon-mobile icon"></span><br>View on the mobile</div>
   </div>
   <div class="nav">
     <span>Protoshop</span>
@@ -46,8 +22,75 @@
   </div>
 </div>
 <div id="tryonline" class="row tryonline"></div>
-<div id="getmobile" class="row getmobile"></div>
-<div id="about" class="row about"></div>
+<div id="getmobile" class="row getmobile">
+  <div class="demo"><img src="images/intro-list.png" alt="Demo-list" width="320" /></div>
+</div>
+<div id="about" class="row about">
+  <ul class="team-member">
+    <li>
+      <div class="person-avatar"></div>
+      <div class="person-name">Wei He</div>
+      <div class="person-job">CtripWXD Director</div>
+      <a href="http://weibo.com/hewei1976" class="person-weibo">@weihe可以懂</a>
+    </li>
+    <li>
+      <div class="person-avatar"></div>
+      <div class="person-name">Lei Kuo</div>
+      <div class="person-job">Project Manager/Team Leader</div>
+    </li>
+    <li>
+      <div class="person-avatar"></div>
+      <div class="person-name">Amio</div>
+      <div class="person-job">WebApp JS Developer</div>
+      <a href="http://weibo.com/amio" class="person-weibo">@烟波湛狂蓝</a>
+    </li>
+    <li>
+      <div class="person-avatar"></div>
+      <div class="person-name">Lily Xue</div>
+      <div class="person-job">WebApp CSS Developer/PM/UX/UI</div>
+      <a href="http://weibo.com/lilyxue" class="person-weibo">@点头猪</a>
+    </li>
+    <li>
+      <div class="person-avatar"></div>
+      <div class="person-name">Anselz</div>
+      <div class="person-job">Server Developer</div>
+      <a href="http://weibo.com/517433742" class="person-weibo">@Janselz</a>
+    </li>
+    <li>
+      <div class="person-avatar"></div>
+      <div class="person-name">Hongli Yu</div>
+      <div class="person-job">Client iOS Developer</div>
+    </li>
+    <li>
+      <div class="person-avatar"></div>
+      <div class="person-name">Xinke Li</div>
+      <div class="person-job">Client Android Developer</div>
+    </li>
+    <li>
+      <div class="person-avatar"></div>
+      <div class="person-name">Flea</div>
+      <div class="person-job">Design Consultant</div>
+      <a href="http://weibo.com/catflea" class="person-weibo">@iflea</a>
+    </li>
+  </ul>
+  <div class="team-nonmember">
+    <div class="team-title">感谢以下为 Protoshop 做出重要贡献的同事：</div>
+    <ul>
+      <li>
+        <span class="person-avatar"></span>
+        <strong class="person-name">朱仙琴</strong>
+        <span class="person-job">WebApp CSS Developer</span>
+        <a href="http://weibo.com/u/1867165890" class="person-weibo">@happy奔向未来</a>
+      </li>
+      <li>
+        <span class="person-avatar"></span>
+        <strong class="person-name">刘洋河</strong>
+        <span class="person-job">WebApp JS Developer</span>
+        <a href="http://weibo.com/mewjerry" class="person-weibo">@不编程不舒服斯基</a>
+      </li>
+    </ul>
+  </div>
+</div>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
   $(function(){
@@ -60,7 +103,6 @@
         $nav.removeClass('fixed');
       }
     });
-
 
     $('.nav span').on('click',function($e){
       scrollTo('#splash');
