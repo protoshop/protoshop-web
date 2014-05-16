@@ -114,7 +114,6 @@ editService, $timeout, notifyService, accountService) {
 
   $scope.$on('package.save', function () {
 
-    $scope.package.token = accountService.getLoggedInUser().token;
     backendService.savePackage($scope.package, function () {
       notifyService.notify('已保存！');
     });

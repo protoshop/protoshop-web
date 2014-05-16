@@ -26,9 +26,11 @@ angular.module('toHELL')
  * 集中后端服务
  */
 
-.factory('backendService', function ($http, notifyService, loadingIndicator) {
+.factory('backendService', function ($http, notifyService, loadingIndicator, accountService) {
 
   var isBeta = /(beta|:9999)/.test(window.location.href);
+  
+  var token = accountService.getLoggedInUser().token;
 
   function errLogger(res, infoPrefix) {
     var errInfo = '[ERR:' + res.code + '] ' + res.message;
@@ -153,7 +155,10 @@ angular.module('toHELL')
     savePackage: function (data, callback) {
       var url = this.apiHost + 'saveProject/';
       makeRequest({
-        context: data
+        context: {
+          token: token
+        },
+        package: data
       }, url, callback);
     }
 
