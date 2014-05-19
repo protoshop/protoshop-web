@@ -35,7 +35,7 @@ i { font-style: normal; }
 .i5 { width: 522px; height: 900px; background-image: url(../images/bg-stage-i5.png); background-size: 522px auto; }
 .s4 { width: 450px; height: 806px; background-image: url(../images/bg-stage-s4.png); background-size: 450px auto; }
 .panel-toggle { position: absolute; top: 50%; -webkit-transform: translate(0,-50%); transform: translate(0,-50%); z-index: 99; }
-.panel-toggle button { margin-bottom: 5px; padding: 8px 5px; background: rgba(0,0,0,0.1); font-size: 16px; color: #fff; }
+.panel-toggle button { margin-bottom: 5px; padding: 8px 10px; background: rgba(0,0,0,0.1); font-size: 16px; color: #fff; }
 .panel-toggle button:last-child { margin-bottom: 0; }
 .panel-toggle button.current, .panel-toggle button:hover { background: rgba(0,0,0,0.4); }
 .layout-scenes .panel-toggle { left: 100%; }
@@ -159,17 +159,17 @@ i { font-style: normal; }
 .pkg-list { min-width: 860px; }
 .pkg-list li { padding: 20px 10px 20px 60px; border-bottom: 1px solid #eaeaea; overflow: hidden; }
 .pkg-list .mine { background-color: #F3F8FF }
-.pkg-list .icon-lock { display: none }
-.pkg-list .private .icon-lock { display: inline; font-size: 25px; position: relative; top: -2px }
+.pkg-list .fa-lock { display: none }
+.pkg-list .private .fa-lock { display: inline; font-size: 25px; position: relative; }
 .pkg-list .pkg-platform { float: left; margin-left: -50px; width: 32px; height: 32px; font-size: 28px; }
-.pkg-info { float: left; padding-right: 148px; line-height: 26px; font-size: 14px; }
+.pkg-info { float: left; padding-right: 168px; line-height: 26px; font-size: 14px; }
 .pkg-info .pkg-appname { font-size: 22px; color: #06c; }
 .pkg-info .pkg-appname:hover { text-decoration: underline; }
 .pkg-info .pkg-modifytime,
 .pkg-info .pkg-author { margin-left: 6px; color: rgba(0,0,0,0.4); }
 .pkg-info .pkg-desc { line-height: 1.5; color: rgba(0,0,0,0.6); }
-.pkg-btn { float: right; margin-left: -148px; }
-.pkg-btn button { width: 72px; height: 50px; line-height: 20px; font-size: 20px; color: rgba(0,0,0,0); }
+.pkg-btn { float: right; margin-left: -168px; }
+.pkg-btn button { width: 82px; height: 50px; line-height: 20px; font-size: 20px; color: rgba(0,0,0,0); }
 .pkg-list li:hover button { color: rgba(0,0,0,0.2); }
 .pkg-list li:hover button:hover { color: rgba(0,0,0,0.4); }
 
@@ -186,20 +186,20 @@ i { font-style: normal; }
 /*.control-group img { margin-right: 10px; width:28px; vertical-align:middle; }*/
 .neat-form { display: inline-block; }
 .neat-form label { cursor: pointer; }
-.neat-form input { display:none; }
-.icon-apple, .icon-android { display: inline-block; width: 36px; height: 32px; margin-top: -4px; overflow: hidden; font-size: 28px; }
-.icon-apple { color: rgba(0,0,0,0.6); }
-.icon-android { color: rgb(164,202,57); }
-.control-group .icon-apple { opacity: 0.4; }
-.control-group .icon-android { opacity: 0.4; }
-.control-group input[type="radio"]:checked + .icon-apple,
-.control-group input[type="radio"]:checked + .icon-android { opacity: 1 }
+.neat-form input { display: none; }
+.fa-apple, .fa-android { margin-right: 10px; font-size: 28px; }
+.fa-apple { color: rgba(0,0,0,0.6); }
+.fa-android { color: rgb(164,202,57); }
+.control-group .fa-apple { opacity: 0.4; }
+.control-group .fa-android { opacity: 0.4; }
+.control-group input[type="radio"]:checked + .fa-apple,
+.control-group input[type="radio"]:checked + .fa-android { opacity: 1 }
 .control-group input[type="text"], .control-group textarea { width: 358px; padding: 6px 10px; background: #fff; border: 1px solid rgba(0,0,0,0.2); border-radius: 3px; font-size: 14px; }
 .neat-form .ispublic { display: inline-block; height: 30px; line-height: 30px; }
-.icon-lock { font-size: 30px; color: #ae81ff; vertical-align: -3px; }
-.neat-form .icon-lock:after { content: "设为私密项目"; font-size: 14px; color: #ae81ff; }
-.neat-form input[type="checkbox"]:checked + .ispublic .icon-lock { color: rgba(0,0,0,0.2); }
-.neat-form input[type="checkbox"]:checked + .ispublic .icon-lock:after { color: rgba(0,0,0,0.2); }
+.fa-lock { font-size: 30px; color: #ae81ff; }
+.neat-form .fa-lock:after { content: "设为私密项目"; margin-left: .5em; font-size: 14px; color: #ae81ff; vertical-align: middle; }
+.neat-form input[type="checkbox"]:checked + .ispublic .fa-lock { color: rgba(0,0,0,0.2); }
+.neat-form input[type="checkbox"]:checked + .ispublic .fa-lock:after { color: rgba(0,0,0,0.2); }
 .control-group .item-btn { float: right; }
 .control-group button { margin-left: 10px; padding: 0 15px; line-height: 32px; border-radius: 3px; font-size: 16px; color: #fff; }
 .control-group button:nth-child(1) { background: #ff8a00; }
