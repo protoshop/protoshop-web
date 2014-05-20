@@ -40,7 +40,7 @@
       "textSize": 14
     }
   },
-  "imageview": {
+  "image-view": {
     "group": "Basic",
     "label": "Image View",
     "init": {
@@ -53,11 +53,11 @@
       "image": "../../images/dummy-scene-thumb.png"
     }
   },
-  "scrollview": {
+  "scroll-view": {
     "group": "Prototype",
     "label": "Scroll View",
     "init": {
-      "type": "hotspot",
+      "type": "scrollview",
       "posX": 0,
       "posY": 0,
       "width": 320,
