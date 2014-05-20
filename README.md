@@ -11,9 +11,9 @@
 
 ## 初始化本地开发环境
 
-在 webapp 目录下执行命令 `npm install` —— 安装 node 模组
-在 webapp 目录下执行命令 `bower install` —— 安装 bower 依赖
-在 webapp 目录下执行命令 `grunt server` —— 启动本地服务器
+- 在 webapp 目录下执行命令 `npm install` —— 安装 node 模组
+- 在 webapp 目录下执行命令 `bower install` —— 安装 bower 依赖
+- 在 webapp 目录下执行命令 `grunt server` —— 启动本地服务器
 
 在 webapp 目录下执行命令 `grunt dist` —— 发布 WebApp 界面代码到 Beta 服务器
 
@@ -34,6 +34,7 @@
 目前使用[karma](http://karma-runner.github.io/0.10/index.html)进行测试，所参考的资料主要是[这篇博客](http://www.yearofmoo.com/2013/01/full-spectrum-testing-with-angularjs-and-karma.html#testing-modules)。
 
 ### 安装karma
+
 karma需要全局安装：`npm install -g karma`
 
 目前karma的其他相关模块已写入了node的`package.json`。
