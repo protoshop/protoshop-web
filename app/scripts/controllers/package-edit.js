@@ -40,7 +40,7 @@ editService, $timeout, notifyService, accountService) {
     pkgId: $routeParams.pkgId,
     token: accountService.getLoggedInUser().token
   }, function (result) {
-    $scope.package = JSON.parse(result[0]);
+    $scope.package = result[0];
     editService.setPackage($scope.package);
     editService.setStat($scope.editStat);
 
