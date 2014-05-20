@@ -8,18 +8,18 @@
 	<!-- Package List -->
 	<ul class="pkg-list">
 		<li ng-repeat="pkg in packageList | orderBy:byCurrentUser:true" ng-class="{'mine':byCurrentUser(pkg),'private':!pkg.isPublic}">
-			<div class="pkg-platform icon-{{pkg.appPlatform === 'ios' ? 'apple' : 'android'}}"></div>
+			<div class="pkg-platform fa fa-{{pkg.appPlatform === 'ios' ? 'apple' : 'android'}}"></div>
 			<div class="pkg-info">
 				<a href="#/package/{{pkg.appID}}" ng-bind="pkg.appName" class="pkg-appname"></a>
-				<i class="icon-lock"></i>
+				<i class="fa fa-lock"></i>
 				<span class="pkg-author" ng-bind="'by '+(pkg.appOwnerNickname||pkg.appOwner)"></span>
 				<span class="pkg-modifytime" ng-bind="pkg.editTime | ago"></span>
 				<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
 			</div>
 			<div class="pkg-btn">
 				<!--<button ng-click="editPackage(pkg)">Edit</button>-->
-				<button ng-click="sharePackage(pkg)" class="icon-export" ng-show="pkg.isPublic !== '1'" title="Share">Share</button>
-				<button ng-click="deletePackage(pkg)" class="icon-cancel" title="Delete">Delete</button>
+				<button ng-click="sharePackage(pkg)" class="fa fa-share" ng-show="pkg.isPublic !== '1'" title="Share">Share</button>
+				<button ng-click="deletePackage(pkg)" class="fa fa-times" title="Delete">Delete</button>
 			</div>
 		</li>
 	</ul>
@@ -36,11 +36,11 @@
 				<div class="neat-form">
 					<label>
 						<input type="radio" ng-model="newPackageConfig.appPlatform" name="platform" value="ios" required />
-						<i class="icon-apple" title="Apple">Apple</i>
+						<i class="fa fa-apple" title="iOS"></i>
 					</label>
 					<label>
 						<input type="radio" ng-model="newPackageConfig.appPlatform" name="platform" value="android" />
-						<i class="icon-android" title="Android">Android</i>
+						<i class="fa fa-android" title="Android"></i>
 					</label>
 				</div>
 			</li>
@@ -57,7 +57,7 @@
 					<label>
 						<input type="checkbox" ng-model="newPackageConfig.isPublic" />
 							<span class="ispublic">
-								<i class="icon-lock"></i>
+								<i class="fa fa-lock"></i>
 							</span>
 					</label>
 				</div>
