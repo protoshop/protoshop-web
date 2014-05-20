@@ -7,7 +7,8 @@
 克隆版本库之后，在本地安装如下依赖软件包：
 
 1. Node.js & npm (http://nodejs.org/download/)
-2. yeoman (包含 bower & grunt) (http://yeoman.io/)
+2. Bower (http://bower.io/)
+3. Gulp (http://gulpjs.com/)
 
 ## 初始化本地开发环境
 
