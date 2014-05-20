@@ -25,25 +25,6 @@
       }
     }
   },
-  "hotspot": {
-    "group": "Basic",
-    "label": "Hotspot",
-    "init": {
-      "type": "hotspot",
-      "posX": 0,
-      "posY": 0,
-      "width": 160,
-      "height": 44,
-
-      "jumpto": {
-        "target": "",
-        "transitionType": "none",
-        "transitionDirection": "left",
-        "transitionDelay": 0,
-        "transitionDuration": 0.3
-      }
-    }
-  },
   "label": {
     "group": "Basic",
     "label": "Label",
@@ -59,7 +40,7 @@
       "textSize": 14
     }
   },
-  "image-view": {
+  "imageview": {
     "group": "Basic",
     "label": "Image View",
     "init": {
@@ -72,7 +53,7 @@
       "image": "../../images/dummy-scene-thumb.png"
     }
   },
-  "scroll-view": {
+  "scrollview": {
     "group": "Prototype",
     "label": "Scroll View",
     "init": {
