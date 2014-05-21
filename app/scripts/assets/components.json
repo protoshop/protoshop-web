@@ -65,7 +65,7 @@
   },
   "image-view": {
     "group": "Basic",
-    "label": "Image View",
+    "label": "Image",
     "init": {
       "type": "imageview",
       "posX": 0,
@@ -74,6 +74,17 @@
       "height": 60,
 
       "image": "../../images/dummy-scene-thumb.png"
+    }
+  },
+  "view": {
+    "group": "Basic",
+    "label": "View",
+    "init": {
+      "type": "view",
+      "posX": 0,
+      "posY": 0,
+      "width": 240,
+      "height": 160
     }
   },
   "scroll-view": {
