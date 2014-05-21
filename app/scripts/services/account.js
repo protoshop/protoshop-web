@@ -74,7 +74,7 @@ angular.module('toHELL')
      */
     login: function (account, callback, errCallback) {
 
-      // Trasform password to hash
+      // Transform password to hash
       account.passwd = V.Security.md5(account.passwd);
 
       // Login

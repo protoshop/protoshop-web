@@ -78,7 +78,7 @@ angular.module('toHELL')
    */
   $scope.createProject = function () {
 
-    $scope.newPackageConfig.size = $scope.newPackageConfig.appPlatform == 'ios' ? {
+    $scope.newPackageConfig.size = $scope.newPackageConfig.appPlatform === 'ios' ? {
       width: 320,
       height: 568
     } : {

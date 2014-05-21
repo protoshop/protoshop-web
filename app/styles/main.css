@@ -72,7 +72,6 @@ i { font-style: normal; }
 .scene-bg { width: 100%; height: 100%; pointer-events: none; }
 .scene-element { position: absolute }
 .scene-element:hover { box-sizing: border-box }
-.scene-element.scrollview { background-color: rgba(255, 135, 124, 0.4); }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i:nth-child(1) { left: 0; top: 50%; cursor: w-resize; }
 .anchor i:nth-child(2) { left: 50%; top: 0; cursor: n-resize; }
@@ -112,8 +111,12 @@ i { font-style: normal; }
 
 .elem-content { position: absolute; left: 100%; top: 0; margin-left: 10px; z-index: 99; background: #fff url(../images/bg-scrollview.png) repeat; box-shadow: 0 0 1px 1px #AAA inset; }
 
-.elem-text-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-.label .element-view { text-align: left; }
+/* Element type-specific styles */
+.scene-element.button { background-color: rgba(255, 135, 124, 0.4); }
+.scene-element.view { background-color: rgba(120, 180, 255, 0.3); }
+.scene-element.scrollview { background-color: rgba(120, 200, 255, 0.4); }
+.elem-text-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 100% }
+.label .element-view { text-align: left; border: 1px dashed rgba(0,0,0,0.2) }
 .imageview img { height: 100%; width: 100%; }
 
 /* Tools ( layout - right sidebar ) */

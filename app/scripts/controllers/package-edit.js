@@ -40,11 +40,11 @@ editService, $timeout, notifyService, accountService) {
     pkgId: $routeParams.pkgId,
     token: accountService.getLoggedInUser().token
   }, function (result) {
-    $scope.package = JSON.parse(result[0]);
+    $scope.package = result[0];
     editService.setPackage($scope.package);
     editService.setStat($scope.editStat);
 
-    $scope.size = $scope.package.appPlatform == 'ios' ? {
+    $scope.size = $scope.package.appPlatform === 'ios' ? {
       width: 320,
       height: 568
     } : {
@@ -128,7 +128,7 @@ editService, $timeout, notifyService, accountService) {
     switch (keyEvent.which) {
     case 8:
       // 酌情阻止 Backspace 后退
-      if (keyEvent.target.tagName == 'INPUT') {
+      if (keyEvent.target.tagName === 'INPUT') {
         // 如果焦点在输入框内，则阻止冒泡
         keyEvent.stopPropagation();
       }

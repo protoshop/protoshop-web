@@ -6,7 +6,7 @@ angular.module('toHELL')
  * Element（界面元素控件） in scene editor
  */
 
-.directive('sceneElement', function ($document) {
+.directive('sceneElement', function ($document, backendService) {
   return {
     restrict: 'AE',
     scope: true,
@@ -17,6 +17,8 @@ angular.module('toHELL')
         width: $scope.elem.width,
         height: $scope.elem.height
       };
+
+      $scope.fileRoot = backendService.pkgDir + $scope.package.appID + '/';
 
       $scope.scenes = $scope.package.scenes;
 
