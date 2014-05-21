@@ -70,7 +70,7 @@
         <div class="prop-transition">
           <label>
             <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name" value="none" />
-            <i class="icon-block"></i></label>
+            <i class="fa fa-ban"></i></label>
           <label>
             <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name" value="push" />
             <i>Push</i></label>
@@ -81,16 +81,16 @@
         <div class="prop-transition" ng-hide="elem.jumpto.transitionType==='none'">
           <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
                         value="up" />
-            <i class="icon-up-bold"></i></label>
+            <i class="fa fa-arrow-up" title="up"></i></label>
           <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
                         value="right" />
-            <i class="icon-right-bold"></i></label>
+            <i class="fa fa-arrow-right" title="right"></i></label>
           <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
                         value="down" />
-            <i class="icon-down-bold"></i></label>
+            <i class="fa fa-arrow-down" title="down"></i></label>
           <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
                         value="left" />
-            <i class="icon-left-bold"></i></label>
+            <i class="fa fa-arrow-left" title="left"></i></label>
           <div class="prop-transition-time">
             <input type="text" ng-model="elem.jumpto.transitionDelay" time-unit />
             s delay<br />
