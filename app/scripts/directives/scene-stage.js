@@ -14,8 +14,8 @@ angular.module('toHELL')
         uilib.then(function (lib) {
           var newElement = JSON.parse(JSON.stringify(lib.data[args.type].init));
 
-          newElement.posX = (args.posx - 60).crop(0, 200);
-          newElement.posY = (args.posy - 22).crop(0, 436);
+          newElement.posX = parseInt(args.posx - 60).crop(0, 200);
+          newElement.posY = parseInt(args.posy - 22).crop(0, 436);
 
           var host = args.wrapper.elem || scope.editStat.selectedScene;
 
