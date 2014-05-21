@@ -167,14 +167,14 @@ i { font-style: normal; }
 .pkg-list .fa-lock { display: none }
 .pkg-list .private .fa-lock { display: inline; font-size: 25px; position: relative; }
 .pkg-list .pkg-platform { float: left; margin-left: -50px; width: 32px; height: 32px; font-size: 28px; }
-.pkg-info { float: left; padding-right: 168px; line-height: 26px; font-size: 14px; }
+.pkg-info { float: left; padding-right: 160px; line-height: 26px; font-size: 14px; }
 .pkg-info .pkg-appname { font-size: 22px; color: #06c; }
 .pkg-info .pkg-appname:hover { text-decoration: underline; }
 .pkg-info .pkg-modifytime,
 .pkg-info .pkg-author { margin-left: 6px; color: rgba(0,0,0,0.4); }
 .pkg-info .pkg-desc { line-height: 1.5; color: rgba(0,0,0,0.6); }
-.pkg-btn { float: right; margin-left: -168px; }
-.pkg-btn button { width: 80px; height: 50px; line-height: 50px; font-size: 50px; color: rgba(0,0,0,0); }
+.pkg-btn { float: right; margin-left: -160px; }
+.pkg-btn button { width: 64px; height: 50px; line-height: 50px; font-size: 40px; color: rgba(0,0,0,0); }
 .pkg-list li:hover button { color: rgba(0,0,0,0.2); }
 .pkg-list li:hover button:hover { color: rgba(0,0,0,0.4); }
 
