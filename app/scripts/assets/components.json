@@ -25,6 +25,29 @@
       }
     }
   },
+  "hotspot": {
+    "group": "Basic",
+    "label": "Hotspot",
+    "init": {
+      "type": "button",
+      "posX": 0,
+      "posY": 0,
+      "width": 160,
+      "height": 44,
+
+      "bgOpacity": 0,
+
+      "text": "",
+
+      "jumpto": {
+        "target": "",
+        "transitionType": "none",
+        "transitionDirection": "left",
+        "transitionDelay": 0,
+        "transitionDuration": 0.3
+      }
+    }
+  },
   "label": {
     "group": "Basic",
     "label": "Label",
