@@ -6,6 +6,6 @@
         ng-bind="elem.text"
         ng-style="{color:elem.textColor,fontSize:elem.textSize}"></span>
 
-  <img ng-if="elem.image" src="{{fileRoot + elem.image}}" />
+  <img ng-if="elem.image" ng-src="{{fileRoot + elem.image}}" />
 
 </div>
