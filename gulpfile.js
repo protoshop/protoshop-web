@@ -5,7 +5,6 @@ var $ = require('gulp-load-plugins')();
 var LOCAL_PORT = 9999;
 var SOURCE_ROOT = __dirname + '/app';
 var BUILD_ROOT = __dirname + '/dist';
-var BROWSER = 'Google Chrome Canary';
 
 /**
  * =====================================
@@ -95,7 +94,7 @@ gulp.task('lint', function () {
 gulp.task('usemin', ['html2js'], function () {
   gulp.src('./app/*.html')
   .pipe($.usemin({
-    css: [$.minifyCss(), $.rev()],
+    css: [$.autoprefixer(), $.minifyCss(), $.rev()],
     js: [$.ngmin(), $.uglify(), $.rev()],
     html: [$.minifyHtml({empty: true})]
   }))
