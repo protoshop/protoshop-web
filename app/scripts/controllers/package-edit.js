@@ -125,7 +125,8 @@ editService, $timeout, notifyService, accountService) {
    */
 
   $scope.$on('keydown', function (onEvent, keyEvent) {
-    switch (keyEvent.which) {
+
+    switch (keyEvent.keyCode) {
     case 8:
       // 酌情阻止 Backspace 后退
       if (keyEvent.target.tagName === 'INPUT') {
