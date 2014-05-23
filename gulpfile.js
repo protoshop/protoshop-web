@@ -3,8 +3,8 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
 var LOCAL_PORT = 9999;
-var SOURCE_ROOT = __dirname + '/app';
-var BUILD_ROOT = __dirname + '/dist';
+var SOURCE_ROOT = './app';
+var BUILD_ROOT = './dist';
 
 /**
  * =====================================
@@ -115,9 +115,13 @@ gulp.task('html2js', function () {
 });
 
 gulp.task('imagemin', function () {
-  gulp.src(SOURCE_ROOT + '/images/*.*')
+  var imgSrc = './app/images/*.*';
+  var imgDst = './dist/images';
+  
+  gulp.src(imgSrc)
+  .pipe($.changed('./dist/images'))
   .pipe($.imagemin())
-  .pipe(gulp.dest(BUILD_ROOT + '/images/'));
+  .pipe(gulp.dest(imgDst));
 });
 
 gulp.task('copy', function () {
@@ -135,9 +139,7 @@ gulp.task('clean', function () {
   .pipe($.clean());
 });
 
-gulp.task('build', ['clean'], function () {
-  gulp.start('usemin', 'imagemin', 'copy');
-});
+gulp.task('build', ['usemin', 'imagemin', 'copy']);
 
 /**
  * =====================================
