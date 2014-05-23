@@ -28,7 +28,7 @@ a { color: #fff; text-decoration: underline; -webkit-tap-highlight-color: rgba(0
 /* TryOnline */
 .tryonline { background-color: #ffdd6c; }
 .tryonline .wrap { position: relative; }
-.tryonline .online { position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+.tryonline .online { position: absolute; left: 20px; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
 
 /* GetMobile */
 .getmobile  { padding: 0 10%; background: #45bc7a; }
