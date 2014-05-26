@@ -14,9 +14,7 @@ angular.module('toHELL')
   }
 
   return {
-    apiHost: isBeta
-    ? 'http://protoshop.ctripqa.com/ProtoShop/'
-    : 'http://protoshop.ctripqa.com/ProtoShop/',
+    apiHost: isBeta ? 'http://protoshop.ctripqa.com/ProtoShop/' : 'http://api.protoshop.io/',
     errLogger: errLogger,
 
     /**
