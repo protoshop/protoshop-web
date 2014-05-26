@@ -164,7 +164,7 @@ function sh(commands) {
 
 function distribution(tar) {
   var targets = {
-    prod: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/tohell/html/',
+    prod: 'ProtoShop@protoshop.io:/var/www/ProtoShop/html/',
     beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/beta/html/',
     ctqa: 'weiwuxu@10.2.254.48:/var/www/ProtoShop/html/'
   };
