@@ -2,7 +2,7 @@
 
 <div class="layout-main">
 	<div class="login-box">
-		<h3 class="login-title">Login</h3>
+		<h3 class="login-title">Login<span ng-if="sso"> / <a href="http://protoshop.ctripqa.com/ProtoShop/SSOLogin">SSO</a></span></h3>
 		<form class="login-form" ng-submit="doLogin()">
 			<ul>
 				<li><input type="text" placeholder="Email Address" ng-model="email" /></li>

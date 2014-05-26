@@ -22,5 +22,7 @@ angular.module('toHELL')
       });
 
     };
+    
+    $scope.sso = /ctripqa\.com|:9999/.test(window.location.href);
   }
 ]);
