@@ -83,7 +83,7 @@ angular.module('toHELL')
   }
 
   return {
-    apiHost: isBeta ? 'http://10.2.254.48/ProtoShop/' : 'http://api.protoshop.io/ProtoShop/',
+    apiHost: isBeta ? 'http://10.2.254.48/ProtoShop/' : 'http://api.protoshop.io/',
     pkgDir: isBeta ? 'http://10.2.254.48/packages/' : 'http://protoshop.io/packages/',
     errLogger: errLogger,
 
