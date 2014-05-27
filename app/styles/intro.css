@@ -22,7 +22,7 @@ a:hover { color: rgba(255,255,255,1); }
 .splash-show .fa-angle-right { display: inline-block; vertical-align: middle; margin: 0 40px; color: rgba(255,255,255,0.4); }
 .show-mobile .fa { font-size: 200px; }
 
-.nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; text-align: left; }
+.nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; font-size: 20px; text-align: left; }
 .nav.fixed { position: fixed; right: 0; top: 0; z-index: 9; }
 .nav-slide { float: left; padding: 0 15px; }
 .nav-login { float: right; padding: 0 15px; }
