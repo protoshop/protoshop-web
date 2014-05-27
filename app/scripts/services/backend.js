@@ -28,7 +28,7 @@ angular.module('toHELL')
 
 .factory('backendService', function ($http, notifyService, loadingIndicator, accountService) {
 
-  var isBeta = /(beta|:9999)/.test(window.location.href);
+  var isBeta = /(beta|:9999|ctripqa)/.test(window.location.href);
   
   var token = accountService.getLoggedInUser().token;
 

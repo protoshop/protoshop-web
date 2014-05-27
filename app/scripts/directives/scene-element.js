@@ -13,10 +13,7 @@ angular.module('toHELL')
     controller: function ($scope) {
 
       // Scene 的编辑区的基础环境信息。 TODO：stage 的宽和高应该取自工程配置
-      $scope.size = {
-        width: $scope.elem.width,
-        height: $scope.elem.height
-      };
+      $scope.size = $scope.elem;
 
       $scope.fileRoot = backendService.pkgDir + $scope.package.appID + '/';
 

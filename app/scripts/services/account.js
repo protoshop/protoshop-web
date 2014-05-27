@@ -5,7 +5,7 @@ angular.module('toHELL')
 
   var loggedInUser;
 
-  var isBeta = /(beta|:9999)/.test(window.location.href);
+  var isBeta = /(beta|:9999|ctripqa)/.test(window.location.href);
 
   function errLogger(res, infoPrefix) {
     var errData = '[ERR:' + res.code + '] ' + res.message;
