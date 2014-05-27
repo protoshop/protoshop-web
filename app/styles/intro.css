@@ -9,7 +9,7 @@ a { color: #fff; text-decoration: underline; -webkit-tap-highlight-color: rgba(0
 
 /* Splash */
 .splash { background-color: #49aaee; text-align: center; }
-.logo { display: inline-block; line-height: 16px; height: 16px; width: 80px; margin-top: 20%; background-color: white; position: relative }
+.logo { display: inline-block; line-height: 16px; height: 16px; width: 80px; margin-top: 20vh; background-color: white; position: relative }
 .logo:before, .logo:after { content: ''; background-color: white; width: 32px; height: 32px; border-radius: 20px; position: absolute }
 .logo:before { top: -8px; left: -20px; }
 .logo:after { top: -8px; right: -20px; }
