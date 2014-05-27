@@ -22,6 +22,7 @@
   "expr": true,
   "laxcomma": true,
   "globals": {
-    "angular": false
+    "angular": false,
+    "V": false
   }
 }

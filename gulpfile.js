@@ -117,7 +117,7 @@ gulp.task('html2js', function () {
 gulp.task('imagemin', function () {
   var imgSrc = './app/images/*.*';
   var imgDst = './dist/images';
-  
+
   gulp.src(imgSrc)
   .pipe($.changed('./dist/images'))
   .pipe($.imagemin())
@@ -164,8 +164,7 @@ function sh(commands) {
 
 function distribution(tar) {
   var targets = {
-    prod: 'ProtoShop@protoshop.io:/var/www/ProtoShop/html/',
-    beta: 'sxxie@wxddb1.qa.nt.ctripcorp.com:/usr/local/httpd/htdocs/beta/html/',
+    io: 'ProtoShop@protoshop.io:/var/www/ProtoShop/html/',
     ctqa: 'weiwuxu@10.2.254.48:/var/www/ProtoShop/html/'
   };
   var rsyncParams = ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules';
@@ -174,12 +173,8 @@ function distribution(tar) {
   sh(command);
 }
 
-gulp.task('dist:prod', function () {
-  distribution('prod');
-});
-
-gulp.task('dist:beta', function () {
-  distribution('beta');
+gulp.task('dist:io', function () {
+  distribution('io');
 });
 
 gulp.task('dist', function () {
