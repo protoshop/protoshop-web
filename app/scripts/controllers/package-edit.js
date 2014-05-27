@@ -135,7 +135,7 @@ editService, $timeout, notifyService, accountService) {
       }
       else if ($scope.editStat.selectedElement) {
         // 如果有选中 element
-        editService.removeElement($scope.editStat.selectedElement);
+        editService.removeElement($scope.editStat.selectedScene, $scope.editStat.selectedElement);
         keyEvent.preventDefault();
         keyEvent.stopPropagation();
         $scope.$apply();

@@ -254,21 +254,39 @@
       };
 
       /**
-       * 删除一个动作。如果该动作被选中，首先会被取消选中。
-       * @func addAction
-       * @param {Action} action - 要移除的动作对象
+       * 删除一个控件。
        */
-      this.removeElement = function (element) {
-        var list = self.editStat.selectedScene.elements;
-        var index = list.indexOf(element);
-        if (index < 0) {
-          return;
-        }
+      this.removeElement = function (scope, element) {
+
         // 当删除的是选中场景时，释放对场景的选择
         if (element === self.editStat.selectedElement) {
           this.deselectElement();
         }
-        list.splice(index, 1);
+
+        // 按树形结构查找 element
+        function traverse(parent, element, callback) {
+          if(!parent.elements){
+            return false;
+          }
+          var idx = parent.elements.indexOf(element);
+          if (idx < 0) {
+            for (var i = parent.elements.length; i--;) {
+              if (traverse(parent.elements[i], element, callback)) {
+                return true;
+              } else {
+                return false;
+              }
+            }
+            return false;
+          } else {
+            callback(parent, idx, element);
+            return true;
+          }
+        }
+
+        traverse(scope, element, function(parent, idx, elem){
+          parent.elements.splice(idx,1);
+        });
       };
 
       /**
