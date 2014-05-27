@@ -100,10 +100,6 @@
       "bgColor": "#E6E7E8",
       "bgImage": "",
 
-      "text": "Toolbar",
-      "textColor": "#000000",
-      "textSize": 24,
-
       "elements": [
         {
           "type": "button",
@@ -147,6 +143,16 @@
             "transitionDelay": 0,
             "transitionDuration": 0.3
           }
+        },{
+          "type": "label",
+          "posX": 120,
+          "posY": 0,
+          "width": 120,
+          "height": 44,
+
+          "text": "Toolbar",
+          "textColor": "#000000",
+          "textSize": 24
         }
       ]
     }
