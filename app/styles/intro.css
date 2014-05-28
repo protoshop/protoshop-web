@@ -29,16 +29,16 @@ a:hover { color: rgba(255,255,255,1); }
 .nav a { margin-left: 10px; }
 
 /* TryOnline & GetMobile */
-.tryonline { background: #ffdd6c; }
-.getmobile  { background: #eb6c59; }
-.online h3, .mobile h3 { position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); padding: 0 10%; font-size: 48px; font-weight: 100; color: rgba(255,255,255,0.5); text-align: center; }
+.tryonline { background: #ffca59; }
+.getmobile  { background: #ec614c; }
+.online h3, .mobile h3 { position: absolute; top: 40%; width: 40%; font-size: 48px; font-weight: 100; color: rgba(255,255,255,0.5); text-align: right; }
 .online em, .mobile em { display: block; font-style: normal; font-size: 72px; color: rgba(255,255,255,1); }
 .online .pic-online, .mobile .pic-mobile { position: absolute; left: 50%; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); width: 50%; height: 100%; background-position: left center; background-repeat: no-repeat; }
 .online .pic-online { background-image: url(../images/intro-online.png); background-size: 753px auto; }
 .mobile .pic-mobile { background-image: url(../images/intro-mobile.png); background-size: 640px auto; }
 
 /* About */
-.about { padding: 0 10%; background-color: #45bc7a; }
+.about { padding: 0 10%; background-color: #3dbe76; }
 .team-member { padding: 5em 0; line-height: 1.5; overflow: hidden; }
 .team-member li { float: left; width: 300px; padding: 10px 0; }
 .team-member .person-avatar { display: inline-block; vertical-align: middle; width: 80px; height: 80px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; background-size: 400px auto; border-radius: 50%; border: 2px solid #fff; }
