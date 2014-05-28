@@ -101,10 +101,12 @@ angular.module('toHELL')
      * @param callback
      */
     logout: function (callback) {
+      var isSSO = loggedInUser['isSSO'];
       loggedInUser = null;
       localStorage.removeItem('loggedInUser');
       $location.path('/');
       callback && callback();
+      isSSO && (window.location.href = 'http://protoshop.ctripqa.com/ProtoShop/SSOLogout/');
     }
   };
 });
