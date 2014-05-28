@@ -1,11 +1,8 @@
 'use strict';
 
-angular.module('toHELL')
-.factory('accountService', function ($http, $location, notifyService) {
+angular.module('toHELL').factory('accountService', function ($http, ENV, $location, notifyService) {
 
   var loggedInUser;
-
-  var isBeta = /(beta|:9999|ctripqa)/.test(window.location.href);
 
   function errLogger(res, infoPrefix) {
     var errData = '[ERR:' + res.code + '] ' + res.message;
@@ -14,7 +11,6 @@ angular.module('toHELL')
   }
 
   return {
-    apiHost: isBeta ? 'http://protoshop.ctripqa.com/ProtoShop/' : 'http://api.protoshop.io/',
     errLogger: errLogger,
 
     /**
@@ -33,7 +29,7 @@ angular.module('toHELL')
       };
 
       // 注册
-      $http.post(this.apiHost + 'register/', data)
+      $http.post(ENV.apiHost + 'register/', data)
       .success(function (res) {
         switch (res.status) {
         case 0:
@@ -76,7 +72,7 @@ angular.module('toHELL')
       account.passwd = V.Security.md5(account.passwd);
 
       // Login
-      $http.post(this.apiHost + 'login/', account)
+      $http.post(ENV.apiHost + 'login/', account)
       .success(function (res) {
         switch (res.status) {
 

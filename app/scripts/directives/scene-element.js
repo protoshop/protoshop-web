@@ -6,16 +6,16 @@ angular.module('toHELL')
  * Element（界面元素控件） in scene editor
  */
 
-.directive('sceneElement', function ($document, backendService) {
+.directive('sceneElement', function ($document) {
   return {
     restrict: 'AE',
     scope: true,
-    controller: function ($scope) {
+    controller: function ($scope, ENV) {
 
       // Scene 的编辑区的基础环境信息。 TODO：stage 的宽和高应该取自工程配置
       $scope.size = $scope.elem;
 
-      $scope.fileRoot = backendService.pkgDir + $scope.package.appID + '/';
+      $scope.fileRoot = ENV.pkgRoot + $scope.package.appID + '/';
 
       $scope.scenes = $scope.package.scenes;
 
