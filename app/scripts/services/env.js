@@ -13,14 +13,14 @@ angular.module('toHELL').service('ENV', function () {
   }
 
   var apiHosts = {
-    debug: 'http://10.2.254.48/ProtoShop/',
-    ctqa: '',
+    debug: 'http://10.2.254.48/debugProtoShop/',
+    ctqa: 'http://10.2.254.48/ProtoShop/',
     open: 'http://api.protoshop.io/'
   };
   
   var pkgRoots = {
-    debug: 'http://10.2.254.48/ProtoShop/',
-    ctqa: 'http://10.2.254.48/packages/',
+    debug: 'http://10.2.254.48/debugProtoShop/',
+    ctqa: 'http://10.2.254.48/debugpackages/',
     open: 'http://protoshop.io/packages/'
   };
 
