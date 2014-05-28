@@ -2,7 +2,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, 
 body { background: #000; font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: 100; -webkit-user-select: none; -webkit-text-size-adjust: none; overflow: scroll; color: #fff; }
 html, body { height: 100%; }
 ul, li { list-style: none; }
-a { color: rgba(255,255,255,0.5); text-decoration: underline; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+a { color: rgba(255,255,255,0.5); text-decoration: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
 a:hover { color: rgba(255,255,255,1); }
 
 .row { height: 100%; position: relative; }
@@ -22,7 +22,7 @@ a:hover { color: rgba(255,255,255,1); }
 .splash-show .fa-angle-right { display: inline-block; vertical-align: middle; margin: 0 40px; color: rgba(255,255,255,0.4); }
 .show-mobile .fa { font-size: 200px; }
 
-.nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; font-size: 20px; text-align: left; }
+.nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; font-size: 16px; text-align: left; }
 .nav.fixed { position: fixed; right: 0; top: 0; z-index: 9; }
 .nav-slide { float: left; padding: 0 15px; }
 .nav-login { float: right; padding: 0 15px; }
@@ -31,16 +31,18 @@ a:hover { color: rgba(255,255,255,1); }
 /* TryOnline & GetMobile */
 .tryonline { background: #ffdd6c; }
 .getmobile  { background: #eb6c59; }
-.online h3, .mobile h3 { position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); padding: 0 1em; font-size: 64px; font-weight: 100; }
+.online h3, .mobile h3 { position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); padding: 0 10%; font-size: 48px; font-weight: 100; color: rgba(255,255,255,0.5); text-align: center; }
+.online h3 em, .mobile h3 em { display: block; font-style: normal; font-size: 72px; color: rgba(255,255,255,1); }
 .online .pic-online, .mobile .pic-mobile { position: absolute; left: 50%; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); background-position: center center; background-repeat: no-repeat; }
 .online .pic-online { width: 753px; height: 100%; background-image: url(../images/intro-online.png); background-size: 753px auto; }
 .mobile .pic-mobile { width: 640px; height: 100%; background-image: url(../images/intro-mobile.png); background-size: 640px auto; }
 
 /* About */
 .about { padding: 0 10%; background-color: #45bc7a; }
-.team-member { padding: 30px 0; line-height: 1.5; overflow: hidden; }
-.team-member li { float: left; width: 192px; height: 194px; padding: 10px 0; text-align: center; }
-.team-member .person-avatar { width: 80px; height: 80px; margin: 0 auto 20px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; background-size: 400px auto; border-radius: 50%; border: 2px solid #fff; }
+.team-member { padding: 5em 0; line-height: 1.5; overflow: hidden; }
+.team-member li { float: left; width: 300px; padding: 10px 0; }
+.team-member .person-avatar { display: inline-block; vertical-align: middle; width: 80px; height: 80px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; background-size: 400px auto; border-radius: 50%; border: 2px solid #fff; }
+.team-member .person-info { display: inline-block; vertical-align: middle; margin-left: 20px; }
 .team-member li:nth-child(2) .person-avatar { background-position: -80px 0; }
 .team-member li:nth-child(3) .person-avatar { background-position: -160px 0; }
 .team-member li:nth-child(4) .person-avatar { background-position: -240px 0; }
@@ -54,10 +56,11 @@ a:hover { color: rgba(255,255,255,1); }
 .team-nonmember { margin-top: 30px; }
 .team-title { margin-bottom: 30px; font-size: 20px; }
 .team-nonmember li { padding: 5px 0; }
-.team-nonmember .person-avatar { display: inline-block; width: 40px; height: 40px; margin-right: 10px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; border-radius: 50%; border: 1px solid #fff; vertical-align: middle; }
-.team-nonmember li:nth-child(1) .person-avatar { background-position: 0 -336px; }
-.team-nonmember li:nth-child(2) .person-avatar { background-position: -48px -336px; }
-.team-nonmember .person-name { display: inline-block; width: 52px; margin-right: 10px; font-size: 16px; }
+.team-nonmember .person-avatar { display: inline-block; width: 40px; height: 40px; margin-right: 20px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; border-radius: 50%; border: 1px solid #fff; vertical-align: middle; }
+.team-nonmember li:nth-child(2) .person-avatar { background-position: 0 -336px; }
+.team-nonmember li:nth-child(1) .person-avatar { background-position: -48px -336px; }
+.team-nonmember .person-name { display: inline-block; width: 100px; margin-right: 10px; font-size: 16px; }
 .team-nonmember .person-job { margin-right: 10px; }
 
 .donate { padding: 2em 0; font-size: 24px; }
+.donate a { font-size: 20px; }
