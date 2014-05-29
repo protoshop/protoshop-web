@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>Protoshop</title>
+	<!-- build:css styles/intro.css -->
+	<link rel="stylesheet" href="../app/styles/intro.css" />
+	<link rel="stylesheet" href="../app/styles/font-awesome.css" />
+	<!-- endbuild -->
+</head>
+<body>
+<div id="splash" class="row splash">
+	<div class="logo"></div>
+	<div class="splash-show">
+		<div class="show-desktop"><span class="fa fa-desktop"></span><br />Build on Web</div>
+		<span class="fa fa-angle-right"></span>
+		<div class="show-mobile"><span class="fa fa-mobile"></span><br />View on Mobile</div>
+	</div>
+	<div class="nav">
+		<div class="nav-slide">
+			<span>Protoshop</span>
+			<a id="gotry" href="#tryonline">Online Editor</a>
+			<a id="gomob" href="#getmobile">Mobile Client</a>
+			<a id="goabt" href="#about">About</a>			
+		</div>
+		<div class="nav-login">
+			<a href="../app/">Login</a>
+		</div>
+	</div>
+</div>
+<div id="tryonline" class="row tryonline">
+	<div class="online">
+		<h3><em>Build</em>On Web</h3>
+		<div class="pic-online"></div>
+	</div>		
+</div>
+<div id="getmobile" class="row getmobile">
+	<div class="mobile">
+		<h3><em>View</em>On Mobile</h3>
+		<div class="pic-mobile"></div>
+	</div>		
+</div>
+<div id="about" class="row about">
+	<ul class="team-member">
+		<li>
+			<div class="person-avatar"></div>
+			<div class="person-info">
+				<div class="person-name">Wei He</div>
+				<div class="person-job">CtripWXD Director</div>
+				<i class="fa fa-weibo"></i> <a href="http://weibo.com/hewei1976" target="_blank">weihe可以懂</a>					
+			</div>
+		</li>
+		<li>
+			<div class="person-avatar"></div>
+			<div class="person-info">
+				<div class="person-name">Lei Kuo</div>
+				<div class="person-job">Project Manager / Team Leader</div>
+			</div>
+		</li>
+		<li>
+			<div class="person-avatar"></div>
+			<div class="person-info">
+				<div class="person-name">Amio</div>
+				<div class="person-job">JS Developer</div>
+				<i class="fa fa-weibo"></i> <a href="http://weibo.com/amio" target="_blank">烟波湛狂蓝</a>
+			</div>
+		</li>
+		<li>
+			<div class="person-avatar"></div>
+			<div class="person-info">
+				<div class="person-name">Lily Xue</div>
+				<div class="person-job">HTML/CSS Developer / UX / UI</div>
+				<i class="fa fa-weibo"></i> <a href="http://weibo.com/lilyxue" target="_blank">点头猪</a>
+			</div>
+		</li>
+		<li>
+			<div class="person-avatar"></div>
+			<div class="person-info">
+				<div class="person-name">Anselz</div>
+				<div class="person-job">Server Developer</div>
+				<i class="fa fa-weibo"></i> <a href="http://weibo.com/517433742" target="_blank" target="_blank">Janselz</a>
+			</div>
+		</li>
+		<li>
+			<div class="person-avatar"></div>
+			<div class="person-info">
+				<div class="person-name">Hongli Yu</div>
+				<div class="person-job">iOS Developer</div>
+			</div>
+		</li>
+		<li>
+			<div class="person-avatar"></div>
+			<div class="person-info">
+				<div class="person-name">Xinke Li</div>
+				<div class="person-job">Android Developer</div>
+			</div>
+		</li>
+	</ul>
+	<dl class="team-nonmember">
+		<dt>Credits:</dt>
+		<dd>
+			<span class="person-name">Yanghe Liu</span>
+			<a href="http://weibo.com/mewjerry" title="不编程不舒服斯基" class="fa fa-weibo" target="_blank"></a>
+		</dd>
+		<dd>
+			<span class="person-name">Flea</span>
+			<a href="http://weibo.com/catflea" title="iflea" class="fa fa-weibo" target="_blank"></a>
+		</dd>
+		<dd>
+			<span class="person-name">Xianqin Zhu</span>
+			<a href="http://weibo.com/u/1867165890" title="happy奔向未来" class="fa fa-weibo" target="_blank"></a>
+		</dd>
+	</dl>
+	<div class="donate">
+		<i class="fa fa-coffee"></i> <a href="https://qr.alipay.com/ap27zqsxo3v5q61z1f" title="求咖灰~~~" target="_blank">Buy me a coffee!</a> (੭ु๑‾᷄ ⁻̫ ‾᷅)੭ु⁾⁾
+	</div>
+</div>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+  $(function(){
+    var $win = $(window), $nav = $('.nav');
+    var barHeight = 40;
+    $win.on('scroll',function(e){
+      if ($win.scrollTop() > $win.height() - barHeight){
+        $nav.addClass('fixed');
+      }else{
+        $nav.removeClass('fixed');
+      }
+    });
+
+    $('.nav span').on('click',function($e){
+      scrollTo('#splash');
+      $e.preventDefault();
+    });
+    $('#gotry, .from').on('click',function($e){
+      scrollTo('#tryonline');
+      $e.preventDefault();
+    });
+    $('#gomob, .to').on('click',function($e){
+      scrollTo('#getmobile');
+      $e.preventDefault();
+    });
+    $('#goabt').on('click',function($e){
+      scrollTo('#about');
+      $e.preventDefault();
+    });
+
+    function scrollTo (elem){
+      $('html, body').animate({
+        scrollTop: $(elem).offset().top
+      }, 160);
+    }
+  });
+</script>
+</body>
+</html>
