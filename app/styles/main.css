@@ -115,7 +115,7 @@ i { font-style: normal; }
 .scene-element.button { background-color: rgba(255, 135, 124, 0.4); }
 .scene-element.view { background-color: rgba(120, 180, 255, 0.3); }
 .scene-element.scrollview { background-color: rgba(120, 200, 255, 0.4); }
-.elem-text-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 100% }
+.elem-text-content { position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); width: 100% }
 .label .element-view { text-align: left; border: 1px dashed rgba(0,0,0,0.2) }
 .imageview img { height: 100%; width: 100%; }
 
@@ -183,7 +183,7 @@ i { font-style: normal; }
 .pkg-list li:hover button:hover { color: rgba(0,0,0,0.4); }
 
 
-.layer { position: fixed; top: 50%; left: 50%; width: 500px; padding: 10px; background: #f0f0f0; border: 1px solid rgba(0,0,0,0.6); transform: translate(-50%, -50%); z-index: 9; }
+.layer { position: fixed; top: 50%; left: 50%; width: 500px; padding: 10px; background: #f0f0f0; border: 1px solid rgba(0,0,0,0.6); -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); z-index: 9; }
 .layer + .layout:after { position: fixed; content: ""; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
 .layer.ng-hide + .layer-mask { display: none; }
 .layer-title { height: 40px; margin-bottom: 20px; padding-left: 10px; border-bottom: 1px solid rgba(0,0,0,0.2); box-sizing: border-box; }
@@ -284,4 +284,6 @@ i { font-style: normal; }
 .notify-item.ng-enter.ng-enter-active { height: 30px; }
 
 .spinner { position: fixed; bottom: 20px; left: 50%; width: 16px; height: 16px; margin-left: -10px; pointer-events: none; border: 5px dotted rgba(0,0,0,0.4); border-radius: 20px; -webkit-animation: spin 1.5s infinite linear; }
-@-webkit-keyframes spin { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+@-webkit-keyframes spin {
+	100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
