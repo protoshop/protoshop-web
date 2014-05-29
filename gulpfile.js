@@ -166,7 +166,7 @@ function distribution(tar) {
   var targets = {
     open: 'ProtoShop@protoshop.io:/var/www/ProtoShop/html/',
     ctqa: 'weiwuxu@10.2.254.48:/var/www/ProtoShop/html/',
-    debug: 'weiwuxu@10.2.254.48:/var/www/Debug/'
+    debug: 'weiwuxu@10.2.254.48:/var/www/Debug/html/'
   };
   var rsyncParams = ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules';
   var command = 'rsync ' + BUILD_ROOT + '/ ' + targets[tar] + rsyncParams;
