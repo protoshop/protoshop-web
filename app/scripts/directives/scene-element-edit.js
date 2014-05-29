@@ -26,7 +26,7 @@ angular.module('toHELL')
       /**
        * 图片上传
        */
-      
+
       $scope.fileRoot = backendService.pkgDir + $scope.package.appID + '/';
 
       function uploadDataFormater(postArgs, attrs) {
@@ -39,13 +39,17 @@ angular.module('toHELL')
         };
         return postArgs;
       }
-      
+
       $scope.imageViewUploadHandlers = {
         before: uploadDataFormater,
         after: function (info) {
           $scope.elem.image = info.fileName;
         },
         onError: backendService.errLogger
+      };
+
+      $scope.deleteElement = function () {
+        $scope.$emit('delete-element', $scope.elem);
       };
 
     },

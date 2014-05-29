@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('PackageEditCTRL', function ($scope, $routeParams, $document, ENV, formDataObject, $location, backendService,
-editService, $timeout, notifyService, accountService) {
+.controller('PackageEditCTRL', function ($scope, $routeParams, $document, ENV, formDataObject, $location,
+backendService, editService, $timeout, notifyService, accountService) {
 
   if (!accountService.isLoggedIn()) {
     $location.path('/');
@@ -135,7 +135,6 @@ editService, $timeout, notifyService, accountService) {
       }
       else if ($scope.editStat.selectedElement) {
         // 如果有选中 element
-        editService.removeElement($scope.editStat.selectedScene, $scope.editStat.selectedElement);
         keyEvent.preventDefault();
         keyEvent.stopPropagation();
         $scope.$apply();
@@ -145,6 +144,11 @@ editService, $timeout, notifyService, accountService) {
         keyEvent.stopPropagation();
       }
     }
+  });
+
+  $scope.$on('delete-element', function (ev, el) {
+    editService.removeElement($scope.editStat.selectedScene, el);
+    ev.stopPropagation();
   });
 
 });
