@@ -9,7 +9,7 @@ a:hover { color: rgba(255,255,255,1); }
 
 /* Splash */
 .splash { background-color: #49aaee; text-align: center; }
-.logo { display: inline-block; line-height: 16px; height: 16px; width: 80px; margin-top: 20vh; background-color: white; position: relative }
+.logo { display: inline-block; line-height: 16px; height: 16px; width: 80px; margin-top: 20vmin; background-color: white; position: relative }
 .logo:before, .logo:after { content: ''; background-color: white; width: 32px; height: 32px; border-radius: 20px; position: absolute }
 .logo:before { top: -8px; left: -20px; }
 .logo:after { top: -8px; right: -20px; }
@@ -31,8 +31,8 @@ a:hover { color: rgba(255,255,255,1); }
 /* TryOnline & GetMobile */
 .tryonline { background: #ffca59; }
 .getmobile  { background: #ec614c; }
-.online h3, .mobile h3 { position: absolute; top: 40%; width: 40%; font-size: 48px; font-weight: 100; color: rgba(255,255,255,0.5); text-align: right; }
-.online em, .mobile em { display: block; font-style: normal; font-size: 72px; color: rgba(255,255,255,1); }
+.online h3, .mobile h3 { position: absolute; top: 40%; width: 40%; font-size: 6vmin; font-weight: 100; color: rgba(255,255,255,0.5); text-align: right; }
+.online em, .mobile em { display: block; font-style: normal; font-size: 10vmin; color: rgba(255,255,255,1); }
 .online .pic-online, .mobile .pic-mobile { position: absolute; left: 50%; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); width: 50%; height: 100%; background-position: left center; background-repeat: no-repeat; }
 .online .pic-online { background-image: url(../images/intro-online.png); background-size: 753px auto; }
 .mobile .pic-mobile { background-image: url(../images/intro-mobile.png); background-size: 640px auto; }
@@ -66,4 +66,16 @@ a:hover { color: rgba(255,255,255,1); }
 }
 @media (max-width: 480px) {
 	.show-desktop { margin-left: 4vmin; }
+	.nav { background: rgba(0,0,0,0.6); font-size: 12px; }
+	.nav span { display: none; }
+	.online .pic-online { background-size: 400px auto; }
+	.mobile .pic-mobile { background-size: 380px auto; }
+	.row.about { padding: 0 10px; }
+	.team-member { padding: 3em 0 0; }
+	.team-member li { width: 50%; height: 76px; padding: 0; }
+	.team-member .person-avatar { display: none; }
+	.team-member .person-info { margin: 0; }
+	.team-member .person-job { font-size: 10px; }
+	.team-nonmember { display: none; }
+	.donate { padding: 1em 0; font-size: 18px; }
 }
