@@ -4,7 +4,7 @@ var $ = require('gulp-load-plugins')();
 
 var LOCAL_PORT = 9999;
 var SOURCE_ROOT = './app';
-var BUILD_ROOT = './dist';
+var BUILD_ROOT = './dist/app';
 
 /**
  * =====================================
@@ -88,17 +88,24 @@ gulp.task('lint', function () {
  * =====================================
  */
 
-//var sass = require('gulp-ruby-sass');
-//var jshint = require('gulp-jshint');
-
 gulp.task('usemin', ['html2js'], function () {
-  gulp.src('./app/*.html')
+
+  // WebApp
+  gulp.src('app/*.html')
   .pipe($.usemin({
     css: [$.autoprefixer(), $.minifyCss(), $.rev()],
     js: [$.ngmin(), $.uglify(), $.rev()],
     html: [$.minifyHtml({empty: true})]
   }))
   .pipe(gulp.dest(BUILD_ROOT));
+
+  // Homepage
+  gulp.src('home/*.html')
+  .pipe($.usemin({
+    css: [$.autoprefixer(), $.minifyCss(), $.rev()],
+    html: [$.minifyHtml({empty: true})]
+  }))
+  .pipe(gulp.dest('dist/home'));
 });
 
 gulp.task('html2js', function () {
@@ -115,16 +122,18 @@ gulp.task('html2js', function () {
 });
 
 gulp.task('imagemin', function () {
-  var imgSrc = './app/images/*.*';
-  var imgDst = './dist/images';
+  var imgSrc = SOURCE_ROOT + '/images/*.*';
+  var imgDst = BUILD_ROOT + '/images';
 
   gulp.src(imgSrc)
-  .pipe($.changed('./dist/images'))
+  .pipe($.changed(imgDst))
   .pipe($.imagemin())
   .pipe(gulp.dest(imgDst));
 });
 
 gulp.task('copy', function () {
+
+  // WebApp
   gulp.src([
     '!' + SOURCE_ROOT + '/*.html',
     SOURCE_ROOT + '/*.*',
@@ -132,6 +141,12 @@ gulp.task('copy', function () {
     SOURCE_ROOT + '/fonts/**/*'
   ], { base: SOURCE_ROOT })
   .pipe(gulp.dest(BUILD_ROOT));
+
+  // Homepage
+  gulp.src(['app/fonts/**/*'])
+  .pipe(gulp.dest('dist/home/fonts'));
+  gulp.src(['app/images/intro-*','app/images/un-team.png'])
+  .pipe(gulp.dest('dist/home/images/'));
 });
 
 gulp.task('clean', function () {
@@ -164,18 +179,18 @@ function sh(commands) {
 
 function distribution(tar) {
   var targets = {
-    open: 'ProtoShop@protoshop.io:/var/www/ProtoShop/html/',
+    io: 'ProtoShop@protoshop.io:/var/www/ProtoShop/html/',
     ctqa: 'weiwuxu@10.2.254.48:/var/www/ProtoShop/html/',
-    debug: 'weiwuxu@10.2.254.48:/var/www/Debug/'
+    debug: 'weiwuxu@10.2.254.48:/var/www/Debug/html/'
   };
   var rsyncParams = ' -avz -e ssh --delete --exclude=.git* --exclude=*.scss --exclude=node_modules';
-  var command = 'rsync ' + BUILD_ROOT + '/ ' + targets[tar] + rsyncParams;
+  var command = 'rsync ./dist/ ' + targets[tar] + rsyncParams;
 
   sh(command);
 }
 
-gulp.task('dist:open', function () {
-  distribution('open');
+gulp.task('dist:io', function () {
+  distribution('io');
 });
 
 gulp.task('dist:ctqa', function () {

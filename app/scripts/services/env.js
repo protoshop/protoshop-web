@@ -4,11 +4,11 @@ angular.module('toHELL').service('ENV', function () {
 
   var env = 'unknown';
   
-  if (/(beta|:9999|ctripqa)/.test(window.location.href)) {
+  if (/debug/.test(window.location.href)) {
     env = 'debug';
-  } else if (/(beta|:9999|ctripqa)/.test(window.location.href)) {
+  } else if (/ctripqa/.test(window.location.href)) {
     env = 'ctqa';
-  } else if (/(beta|:9999|ctripqa)/.test(window.location.href)) {
+  } else if (/\.io/.test(window.location.href)) {
     env = 'open';
   }
 
