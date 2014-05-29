@@ -60,6 +60,12 @@ gulp.task('server:dev', ['html2js'], function () {
   open('http://localhost:9999');
 });
 
+gulp.task('server:home', function () {
+  var servers = createServers('.', LOCAL_PORT, LIVERELOAD_PORT);
+  gulp.watch(['./app/**/*', './home/**/*', '!./app/node_modules/**/*'], servers.onchange);
+  open('http://localhost:9999/home');
+});
+
 gulp.task('server:dist', ['build'], function () {
   var servers = createServers(BUILD_ROOT, LOCAL_PORT, LIVERELOAD_PORT);
   gulp.watch([BUILD_ROOT + '/**.*'], servers.onchange);

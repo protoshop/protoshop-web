@@ -4,7 +4,7 @@ angular.module('toHELL').service('ENV', function () {
 
   var env = 'unknown';
   
-  if (/debug/.test(window.location.href)) {
+  if (/debug|localhost/.test(window.location.href)) {
     env = 'debug';
   } else if (/ctripqa/.test(window.location.href)) {
     env = 'ctqa';
