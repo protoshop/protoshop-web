@@ -5,7 +5,6 @@ var $ = require('gulp-load-plugins')();
 var LOCAL_PORT = 9999;
 var SOURCE_ROOT = './app';
 var BUILD_ROOT = './dist/app';
-var INTRO_ROOT = './dist/intro';
 
 /**
  * =====================================
@@ -146,6 +145,8 @@ gulp.task('copy', function () {
   // Homepage
   gulp.src(['app/fonts/**/*'])
   .pipe(gulp.dest('dist/home/fonts'));
+  gulp.src(['app/images/intro-*','app/images/un-team.png'])
+  .pipe(gulp.dest('dist/home/images/'));
 });
 
 gulp.task('clean', function () {
