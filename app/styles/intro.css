@@ -15,12 +15,12 @@ a:hover { color: rgba(255,255,255,1); }
 .logo:after { top: -8px; right: -20px; }
 
 .splash-show { margin-top: 10%; }
-.show-desktop, .show-mobile { display: inline-block; padding: 5em; border-radius: 5px; vertical-align: middle; text-align: center; }
-.show-desktop { margin-left: -6em; }
+.show-desktop, .show-mobile { display: inline-block; padding: 5vmin; border-radius: 5px; vertical-align: middle; text-align: center; }
+.show-desktop { margin-left: -6vmin; }
 .show-desktop:hover, .show-mobile:hover { background: rgba(0,0,0,0.1); cursor: pointer; }
-.splash-show .fa { height: 200px; line-height: 200px; font-size: 180px; }
-.splash-show .fa-angle-right { display: inline-block; vertical-align: middle; margin: 0 40px; color: rgba(255,255,255,0.4); }
-.show-mobile .fa { font-size: 200px; }
+.splash-show .fa { height: 20vmin; line-height: 20vmin; font-size: 18vmin; }
+.splash-show .fa-angle-right { display: inline-block; vertical-align: middle; margin: 0 3vmin; color: rgba(255,255,255,0.4); }
+.show-mobile .fa { font-size: 20vmin; }
 
 .nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; font-size: 16px; text-align: left; }
 .nav.fixed { position: fixed; right: 0; top: 0; z-index: 9; }
@@ -60,3 +60,10 @@ a:hover { color: rgba(255,255,255,1); }
 
 .donate { position: absolute; bottom: 0; padding: 2em 0; font-size: 24px; }
 .donate a { font-size: 20px; }
+
+@media (max-width: 640px) {
+	.show-desktop { margin-left: -2vmin; }
+}
+@media (max-width: 480px) {
+	.show-desktop { margin-left: 4vmin; }
+}
