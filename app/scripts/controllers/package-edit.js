@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('PackageEditCTRL', function ($scope, $routeParams, $document, formDataObject, $location, backendService,
+.controller('PackageEditCTRL', function ($scope, $routeParams, $document, ENV, formDataObject, $location, backendService,
 editService, $timeout, notifyService, accountService) {
 
   if (!accountService.isLoggedIn()) {
@@ -9,7 +9,7 @@ editService, $timeout, notifyService, accountService) {
     return;
   }
 
-  $scope.fileRoot = backendService.pkgDir + $routeParams.pkgId + '/';
+  $scope.fileRoot = ENV.pkgRoot + $routeParams.pkgId + '/';
 
   /**
    * 存储当前的编辑状态

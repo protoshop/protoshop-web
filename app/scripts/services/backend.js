@@ -26,10 +26,8 @@ angular.module('toHELL')
  * 集中后端服务
  */
 
-.factory('backendService', function ($http, notifyService, loadingIndicator, accountService) {
+.factory('backendService', function ($http, ENV, notifyService, loadingIndicator, accountService) {
 
-  var isBeta = /(beta|:9999|ctripqa)/.test(window.location.href);
-  
   var token = accountService.getLoggedInUser().token;
 
   function errLogger(res, infoPrefix) {
@@ -83,15 +81,13 @@ angular.module('toHELL')
   }
 
   return {
-    apiHost: isBeta ? 'http://10.2.254.48/ProtoShop/' : 'http://api.protoshop.io/',
-    pkgDir: isBeta ? 'http://10.2.254.48/packages/' : 'http://protoshop.io/packages/',
     errLogger: errLogger,
 
     /**
      * 获取工程列表
      */
     getProjectList: function (info, callback) {
-      var url = this.apiHost + 'fetchlist/?device=&token=' + info.token;
+      var url = ENV.apiHost + 'fetchlist/?device=&token=' + info.token;
       makeRequest(undefined, url, callback);
     },
 
@@ -99,7 +95,7 @@ angular.module('toHELL')
      * 创建工程
      */
     createProject: function (data, callback) {
-      var url = this.apiHost + 'createPoject/';
+      var url = ENV.apiHost + 'createPoject/';
       makeRequest(data, url, callback);
     },
 
@@ -107,7 +103,7 @@ angular.module('toHELL')
      * 删除工程
      */
     deleteProject: function (info, callback) {
-      var url = this.apiHost + 'deleteProject/?appid=' + info.appID + '&token=' + info.token;
+      var url = ENV.apiHost + 'deleteProject/?appid=' + info.appID + '&token=' + info.token;
       makeRequest(undefined, url, callback);
     },
 
@@ -115,7 +111,7 @@ angular.module('toHELL')
      * 获取指定工程的分享列表
      */
     getProjectSharer: function (data, callback) {
-      var url = this.apiHost + 'shareList/';
+      var url = ENV.apiHost + 'shareList/';
       makeRequest(data, url, callback);
     },
 
@@ -123,7 +119,7 @@ angular.module('toHELL')
      * 搜索用户
      */
     searchUser: function (data, callback) {
-      var url = this.apiHost + 'searchUser/';
+      var url = ENV.apiHost + 'searchUser/';
       makeRequest(data, url, callback);
     },
 
@@ -131,7 +127,7 @@ angular.module('toHELL')
      * 设置工程对某用户的分享状态
      */
     setShare: function (args, callback) {
-      var url = this.apiHost + 'share/';
+      var url = ENV.apiHost + 'share/';
       makeRequest(args, url, callback);
     },
 
@@ -139,7 +135,7 @@ angular.module('toHELL')
      * 获取工程包数据
      */
     getPackage: function (info, callback) {
-      var url = this.apiHost + 'fetchProject/?appid=' + info.pkgId + '&token=' + info.token;
+      var url = ENV.apiHost + 'fetchProject/?appid=' + info.pkgId + '&token=' + info.token;
       // var url = '/api/package/' + info.pkgId + '.json'
       // var url = '/api/package/' + '1d9abf59bfade93c71fbb260b6dc7390.json'
       makeRequest(undefined, url, callback);
@@ -149,7 +145,7 @@ angular.module('toHELL')
      * 保存工程包数据
      */
     savePackage: function (data, callback) {
-      var url = this.apiHost + 'saveProject/';
+      var url = ENV.apiHost + 'saveProject/';
       makeRequest({
         context: {
           token: token
