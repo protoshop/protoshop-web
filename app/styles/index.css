@@ -37,6 +37,7 @@ a:hover { color: rgba(255,255,255,1); }
 .online .pic-online, .mobile .pic-mobile { position: absolute; left: 50%; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); width: 50%; height: 100%; background-position: left center; background-repeat: no-repeat; }
 .online .pic-online { background-image: url(../images/intro-online.png); background-size: 753px auto; }
 .mobile .pic-mobile { background-image: url(../images/intro-mobile.png); background-size: 640px auto; }
+.mobile .qrcode-download { position: absolute; right: 0; top: 180px; width: 120px; height: 138px; background: url(../images/qrcode-download.png) no-repeat; background-size: contain; }
 
 /* About */
 .about { padding: 0 10%; background-color: #3dbe76; }
@@ -62,6 +63,8 @@ a:hover { color: rgba(255,255,255,1); }
 
 .donate { position: absolute; bottom: 0; padding: 2em 0; font-size: 24px; }
 .donate a { font-size: 20px; }
+.donate .qrcode-donate { position: absolute; -webkit-transform: translate(-136px,-120px); transform: translate(-136px,-120px); opacity: 0; width: 120px; height: 120px; background: url(../images/qrcode-donate.png) no-repeat; background-size: contain; transition: all 200ms ease-in; }
+.donate a:hover + .qrcode-donate { opacity: 1; }
 
 @media (max-width: 640px) {
 	.show-desktop { margin-left: -2vmin; }
