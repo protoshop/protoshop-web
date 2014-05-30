@@ -188,9 +188,9 @@ i { font-style: normal; }
 .layer { position: fixed; top: 50%; left: 50%; width: 500px; padding: 10px; background: #f0f0f0; border: 1px solid rgba(0,0,0,0.6); -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); z-index: 9; }
 .layer + .layout:after { position: fixed; content: ""; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
 .layer.ng-hide + .layer-mask { display: none; }
-.layer-title { height: 40px; margin-bottom: 20px; padding-left: 10px; border-bottom: 1px solid rgba(0,0,0,0.2); box-sizing: border-box; }
-.layer-title h3 { line-height: 40px; color: rgba(0,0,0,0.6); font-size: 20px; }
-.close { float: right; line-height: 30px !important; font-size: 18px; color: rgba(0,0,0,0.4); cursor: pointer; }
+.layer-title { height: 40px; margin-bottom: 20px; padding-left: 6px; border-bottom: 1px solid rgba(0,0,0,0.2); box-sizing: border-box; }
+.layer-title h3 { line-height: 36px; color: rgba(0,0,0,0.6); font-size: 20px; }
+.close { float: right; line-height: 30px; margin-right: 5px; font-size: 18px; color: rgba(0,0,0,0.4); cursor: pointer; }
 .close:hover { color: rgba(0,0,0,0.6); text-decoration: none; }
 .control-group li { padding: 0 10px 20px 110px; }
 .control-group .layer-item { float: left; width: 100px; margin-left: -110px; color: rgba(0,0,0,0.6); line-height: 28px;  font-size: 16px; text-align: right; }
