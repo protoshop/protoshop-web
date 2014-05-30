@@ -2,7 +2,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, 
 body { background: #000; font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: 100; -webkit-user-select: none; -webkit-text-size-adjust: none; overflow: scroll; color: #fff; }
 html, body { height: 100%; }
 ul, li { list-style: none; }
-a { color: rgba(255,255,255,0.6); text-decoration: underline; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+a { color: rgba(255,255,255,0.6); text-decoration: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
 a:hover { color: rgba(255,255,255,1); }
 
 .row { height: 100%; position: relative; }
@@ -25,6 +25,7 @@ a:hover { color: rgba(255,255,255,1); }
 .nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; font-size: 16px; text-align: left; }
 .nav.fixed { position: fixed; right: 0; top: 0; z-index: 9; }
 .nav-slide { float: left; padding: 0 15px; }
+.nav-slide span { cursor: default; }
 .nav-login { float: right; padding: 0 15px; }
 .nav a { margin-left: 10px; }
 
@@ -39,6 +40,7 @@ a:hover { color: rgba(255,255,255,1); }
 
 /* About */
 .about { padding: 0 10%; background-color: #3dbe76; }
+.about .fa:before { font-size: 20px; }
 .team-member { padding: 5em 0; line-height: 1.5; overflow: hidden; }
 .team-member li { float: left; width: 300px; padding: 10px 0; }
 .team-member .person-avatar { display: inline-block; vertical-align: middle; width: 80px; height: 80px; background-color: #ddd; background-image: url(../images/un-team.png); background-repeat: no-repeat; background-size: 400px auto; border-radius: 50%; border: 2px solid #fff; }
@@ -53,10 +55,10 @@ a:hover { color: rgba(255,255,255,1); }
 .team-member li:nth-child(8) .person-avatar { background-position: -160px -80px; }
 .team-member .person-name { font-size: 20px; }
 .team-member .person-job { font-size: 12px; }
-.team-nonmember { padding-left: 104px; line-height: 16px; overflow: hidden; }
-.team-nonmember dt, .team-nonmember dd { float: left; padding: 5px 0; }
-.team-nonmember dt { width: 80px; margin-left: -104px; font-size: 20px; text-align: center; }
-.team-nonmember dd { margin-right: 20px; font-size: 16px; }
+.team-nonmember { padding-left: 104px; overflow: hidden; }
+.team-nonmember dt, .team-nonmember dd { float: left; font-size: 20px; }
+.team-nonmember dt { margin-left: -104px; padding: 5px 10px; }
+.team-nonmember dd { margin-right: 20px; padding: 5px 0; }
 
 .donate { position: absolute; bottom: 0; padding: 2em 0; font-size: 24px; }
 .donate a { font-size: 20px; }
