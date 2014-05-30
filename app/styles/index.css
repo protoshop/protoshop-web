@@ -2,7 +2,7 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, 
 body { background: #000; font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: 100; -webkit-user-select: none; -webkit-text-size-adjust: none; overflow: scroll; color: #fff; }
 html, body { height: 100%; }
 ul, li { list-style: none; }
-a { color: rgba(255,255,255,0.5); text-decoration: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+a { color: rgba(255,255,255,0.6); text-decoration: underline; -webkit-tap-highlight-color: rgba(0,0,0,0); }
 a:hover { color: rgba(255,255,255,1); }
 
 .row { height: 100%; position: relative; }
@@ -54,9 +54,9 @@ a:hover { color: rgba(255,255,255,1); }
 .team-member .person-name { font-size: 20px; }
 .team-member .person-job { font-size: 12px; }
 .team-nonmember { padding-left: 104px; line-height: 16px; overflow: hidden; }
-.team-nonmember dt { float: left; width: 80px; margin-left: -104px; padding: 5px 0; font-size: 20px; text-align: center; }
-.team-nonmember dd { float: left; margin-right: 20px; padding: 5px 0; }
-.team-nonmember .person-name { font-size: 16px; }
+.team-nonmember dt, .team-nonmember dd { float: left; padding: 5px 0; }
+.team-nonmember dt { width: 80px; margin-left: -104px; font-size: 20px; text-align: center; }
+.team-nonmember dd { margin-right: 20px; font-size: 16px; }
 
 .donate { position: absolute; bottom: 0; padding: 2em 0; font-size: 24px; }
 .donate a { font-size: 20px; }
@@ -67,7 +67,7 @@ a:hover { color: rgba(255,255,255,1); }
 @media (max-width: 480px) {
 	.show-desktop { margin-left: 4vmin; }
 	.nav { background: rgba(0,0,0,0.6); font-size: 12px; }
-	.nav span { display: none; }
+	.nav-login { display: none; }
 	.online .pic-online { background-size: 400px auto; }
 	.mobile .pic-mobile { background-size: 380px auto; }
 	.row.about { padding: 0 10px; }
@@ -76,6 +76,8 @@ a:hover { color: rgba(255,255,255,1); }
 	.team-member .person-avatar { display: none; }
 	.team-member .person-info { margin: 0; }
 	.team-member .person-job { font-size: 10px; }
-	.team-nonmember { display: none; }
+	.team-nonmember { padding-left: 70px; }
+	.team-nonmember dt, .team-nonmember dd { padding: 0; font-size: 14px; }
+	.team-nonmember dt { width: 50px; margin-left: -70px; }
 	.donate { padding: 1em 0; font-size: 18px; }
 }
