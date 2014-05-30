@@ -40,6 +40,9 @@ angular.module('toHELL')
    * 删除工程
    */
   $scope.deletePackage = function (pkg) {
+
+    if (!window.confirm('删除项目？')) return;
+
     var opInfo = {
       appID: pkg.appID,
       token: accountService.getLoggedInUser().token
