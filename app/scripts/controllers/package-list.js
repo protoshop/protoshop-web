@@ -1,23 +1,25 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('PackageListCTRL', function ($scope, $http, $location, backendService, accountService, dialogShare) {
+.controller('PackageListCTRL', function ($scope, $http, $location, backendService, accountService, dialogShare, ENV) {
 
   if (!accountService.isLoggedIn()) {
     $location.path('/');
     return;
   }
 
-  var currentUserEmail = accountService.getLoggedInUser().email;
+  $scope.allowShare = ENV.env !== 'open';
+
+  $scope.currentUserEmail = accountService.getLoggedInUser().email;
   $scope.byCurrentUser = function (pkg) {
-    return pkg.appOwner === currentUserEmail;
+    return pkg.appOwner === $scope.currentUserEmail;
   };
 
   // 获取工程列表数据
   $scope.refreshList = function () {
     var user = accountService.getLoggedInUser();
     backendService.getProjectList(user, function (list) {
-      list.forEach(function(item){
+      list.forEach(function (item) {
         item.isPublic = (item.isPublic === '1');
       });
       $scope.packageList = list;

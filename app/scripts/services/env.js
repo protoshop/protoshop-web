@@ -8,7 +8,7 @@ angular.module('toHELL').service('ENV', function () {
     env = 'debug';
   } else if (/ctripqa/.test(window.location.href)) {
     env = 'ctqa';
-  } else if (/\.io/.test(window.location.href)) {
+  } else {
     env = 'open';
   }
 

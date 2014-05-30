@@ -16,9 +16,8 @@
 				<span class="pkg-modifytime" ng-bind="pkg.editTime | ago"></span>
 				<div class="pkg-desc" ng-bind="pkg.appDesc"></div>
 			</div>
-			<div class="pkg-btn">
-				<!--<button ng-click="editPackage(pkg)">Edit</button>-->
-				<button ng-click="sharePackage(pkg)" class="fa fa-share-alt" ng-show="pkg.isPublic !== '1'" title="Share"></button>
+			<div class="pkg-btn" ng-if="pkg.appOwner === currentUserEmail">
+				<button ng-if="allowShare" ng-click="sharePackage(pkg)" class="fa fa-share-alt" ng-show="pkg.isPublic !== '1'" title="Share"></button>
 				<button ng-click="deletePackage(pkg)" class="fa fa-times" title="Delete"></button>
 			</div>
 		</li>
