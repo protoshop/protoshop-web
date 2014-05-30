@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-.directive('uploader', function ($http, backendService, notifyService) {
+.directive('uploader', function ($http, ENV, notifyService) {
   return {
     restrict: 'A',
     link: function (scope, el, attrs) {
@@ -35,7 +35,7 @@ angular.module('toHELL')
           }
 
           // 发起上传请求
-          $http(postArgs, backendService.apiHost + '/uploadImage/')
+          $http(postArgs, ENV.apiHost + '/uploadImage/')
           .success(function (res) {
             if (res.status === 0) {
               handlers.after(res.result[0]);

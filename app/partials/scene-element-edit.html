@@ -43,19 +43,17 @@
         <div ng-if="elem.bgImage" class="prop-style">Background Image:
           <input type="text" ng-model="elem.bgImage" />
         </div>
-        <!--<div class="prop-style">Border Radius:-->
-        <!--<input type="text" ng-model="elem.bdRadius" ng-init="elem.bdRadius = elem.bdRadius || 0" /> px-->
-        <!--</div>-->
       </div>
     </div>
 
-    <div ng-if="elem.image">
+    <div ng-if="elem.image !== undefined">
       <div class="setting-title">Image:</div>
       <div class="setting-prop">
         <div class="prop-style">
           <label>
+            <div class="image-hint" ng-if="elem.image === ''">Select Image</div>
             <input type="file" uploader data-handlers="imageViewUploadHandlers" data-current="{{editStat.selectedScene.background||''}}" style="display:none">
-            <img style="max-width:100%; max-height: 200px" ng-src="{{elem.image?(fileRoot + elem.image):''}}" />
+            <img style="max-width:100%; max-height: 200px" ng-if="elem.image" ng-src="{{fileRoot + elem.image}}" />
           </label>
         </div>
       </div>
