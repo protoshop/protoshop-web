@@ -1,6 +1,6 @@
 <div class="layer">
 	<div class="layer-title">
-		<button class="close icon-cancel" ng-click="modal.closeMe()"></button>
+		<button class="close fa fa-times" ng-click="modal.closeMe()"></button>
 		<h3>Share: <span ng-bind="appName"></span></h3>
 	</div>
 	<div class="layer-share">
@@ -8,7 +8,7 @@
 		<label class="users-selected selected-active">
 			<ul>
 				<li ng-repeat="fellow in sharedFellows">
-					<span ng-click="removeFellow(fellow)" class="icon-block"></span>
+					<span ng-click="removeFellow(fellow)" class="fa fa-ban"></span>
 					<span ng-bind="fellow.nickname || '佚名'" title="{{fellow.email}}"></span></li>
 			</ul>
 			<span class="share-output" ng-bind="lookupKeyword"></span>
