@@ -109,6 +109,8 @@ i { font-style: normal; }
 .setting-prop .prop-transition input[type="radio"]:checked + i { color: rgba(0,0,0,0.8); }
 .setting-prop .prop-transition-time { margin-top: 10px; }
 .setting-prop .prop-transition-time input[type="text"] { display: inline-block; width: 36px; padding: 0 10px; border: none; border-bottom: 1px dotted #ccc; line-height: 1.5; background-color: transparent; font-weight: 300; outline: none; }
+.image-hint { text-align: center; height: 50px; line-height: 50px; background-color: #EEE }
+.imageview { background-color: rgba(99,99,99,0.1) }
 
 .elem-content { position: absolute; left: 100%; top: 0; margin-left: 10px; z-index: 99; background: #fff url(../images/bg-scrollview.png) repeat; box-shadow: 0 0 1px 1px #AAA inset; }
 
@@ -188,11 +190,10 @@ i { font-style: normal; }
 .layer.ng-hide + .layer-mask { display: none; }
 .layer-title { height: 40px; margin-bottom: 20px; padding-left: 10px; border-bottom: 1px solid rgba(0,0,0,0.2); box-sizing: border-box; }
 .layer-title h3 { line-height: 40px; color: rgba(0,0,0,0.6); font-size: 20px; }
-.close { float: right; line-height: 30px; font-size: 18px; color: rgba(0,0,0,0.4); cursor: pointer; }
+.close { float: right; line-height: 30px !important; font-size: 18px; color: rgba(0,0,0,0.4); cursor: pointer; }
 .close:hover { color: rgba(0,0,0,0.6); text-decoration: none; }
 .control-group li { padding: 0 10px 20px 110px; }
 .control-group .layer-item { float: left; width: 100px; margin-left: -110px; color: rgba(0,0,0,0.6); line-height: 28px;  font-size: 16px; text-align: right; }
-/*.control-group img { margin-right: 10px; width:28px; vertical-align:middle; }*/
 .neat-form { display: inline-block; }
 .neat-form label { cursor: pointer; }
 .neat-form input { display: none; }

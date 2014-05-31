@@ -6,7 +6,7 @@ angular.module('toHELL')
  * Element Editor in scene editor
  */
 
-.directive('elementEdit', function (backendService, formDataObject) {
+.directive('elementEdit', function (ENV, backendService, formDataObject) {
   return {
     restrict: 'AE',
     replace: true,
@@ -23,14 +23,14 @@ angular.module('toHELL')
         $scope.props = props.data;
       });
 
+      $scope.fileRoot = ENV.pkgRoot + $scope.package.appID + '/';
+
       /**
        * 图片上传
        */
 
-      $scope.fileRoot = backendService.pkgDir + $scope.package.appID + '/';
-
       function uploadDataFormater(postArgs, attrs) {
-        postArgs.url = backendService.apiHost + 'uploadImage/';
+        postArgs.url = ENV.apiHost + 'uploadImage/';
         postArgs.transformRequest = formDataObject;
         postArgs.data = {
           appid: $scope.package.appID,

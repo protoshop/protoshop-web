@@ -82,7 +82,7 @@ backendService, editService, $timeout, notifyService, accountService) {
    */
 
   function uploadDataFormater(postArgs, attrs) {
-    postArgs.url = backendService.apiHost + 'uploadImage/';
+    postArgs.url = ENV.apiHost + 'uploadImage/';
     postArgs.transformRequest = formDataObject;
     postArgs.data = {
       appid: $scope.package.appID,

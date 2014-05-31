@@ -19,8 +19,8 @@ angular.module('toHELL').service('ENV', function () {
   };
   
   var pkgRoots = {
-    debug: 'http://10.2.254.48/debugProtoShop/',
-    ctqa: 'http://10.2.254.48/debugpackages/',
+    debug: 'http://10.2.254.48/debugpackages/',
+    ctqa: 'http://10.2.254.48/packages/',
     open: 'http://protoshop.io/packages/'
   };
 
