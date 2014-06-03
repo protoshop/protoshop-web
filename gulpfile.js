@@ -118,7 +118,7 @@ var BUILD_STAMP = '<!--BUILDSTAMP-->';
 
 gulp.task('html2js', function () {
   return gulp.src(SOURCE_ROOT + "/partials/*.html")
-  .pipe($.replace(BUILD_STAMP, 'Build:'+ new Date().toISOString().replace(/-|T.*/g,'')))
+  .pipe($.replace(BUILD_STAMP, 'Build:' + new Date().toISOString().replace(/-|T.*/g, '')))
   .pipe($.ngHtml2js({
     moduleName: "toHELL",
     prefix: "partials/"
@@ -151,7 +151,7 @@ gulp.task('copy', function () {
   // Homepage
   gulp.src(['app/fonts/**/*'])
   .pipe(gulp.dest('dist/home/fonts'));
-  gulp.src(['app/images/intro-*','app/images/un-team.png'])
+  gulp.src(['app/images/intro-*', 'app/images/un-team.png'])
   .pipe(gulp.dest('dist/home/images/'));
 });
 
@@ -206,6 +206,8 @@ gulp.task('dist:ctqa', function () {
 gulp.task('dist', function () {
   distribution('debug');
 });
+
+gulp.task('dist:all', ['dist', 'dist:ctqa', 'dist:io']);
 
 /**
  * =====================================
