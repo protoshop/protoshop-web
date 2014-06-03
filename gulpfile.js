@@ -114,11 +114,11 @@ gulp.task('usemin', ['html2js'], function () {
   .pipe(gulp.dest('dist/home'));
 });
 
+var BUILD_STAMP = '<!--BUILDSTAMP-->';
+
 gulp.task('html2js', function () {
   return gulp.src(SOURCE_ROOT + "/partials/*.html")
-//  .pipe($.minifyHtml({
-//    empty: true
-//  }))
+  .pipe($.replace(BUILD_STAMP, 'Build:'+ new Date().toISOString().replace(/-|T.*/g,'')))
   .pipe($.ngHtml2js({
     moduleName: "toHELL",
     prefix: "partials/"

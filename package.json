@@ -25,6 +25,7 @@
     "gulp-minify-html": "^0.1.2",
     "gulp-ng-html2js": "~0.1.6",
     "gulp-ngmin": "^0.1.2",
+    "gulp-replace": "^0.3.0",
     "gulp-rev": "^0.2.1",
     "gulp-size": "~0.1.2",
     "gulp-task-listing": "^0.2.2",
