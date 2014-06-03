@@ -151,7 +151,7 @@ gulp.task('copy', function () {
   // Homepage
   gulp.src(['app/fonts/**/*'])
   .pipe(gulp.dest('dist/home/fonts'));
-  gulp.src(['app/images/intro-*', 'app/images/un-team.png'])
+  gulp.src(['app/images/*'])
   .pipe(gulp.dest('dist/home/images/'));
 });
 
