@@ -9,8 +9,8 @@ a:hover { color: rgba(255,255,255,1); }
 
 /* Splash */
 .splash { background-color: #49aaee; text-align: center; }
-.logo { display: inline-block; line-height: 16px; height: 16px; width: 80px; margin-top: 20vmin; background-color: white; position: relative }
-.logo:before, .logo:after { content: ''; background-color: white; width: 32px; height: 32px; border-radius: 20px; position: absolute }
+.logo { position: relative; display: inline-block; width: 80px; height: 16px; line-height: 16px; margin-top: 20vmin; background-color: #fff; }
+.logo:before, .logo:after { position: absolute; content: ''; width: 32px; height: 32px; background-color: #fff; border-radius: 20px; }
 .logo:before { top: -8px; left: -20px; }
 .logo:after { top: -8px; right: -20px; }
 
@@ -22,7 +22,7 @@ a:hover { color: rgba(255,255,255,1); }
 .splash-show .fa-angle-right { display: inline-block; vertical-align: middle; margin: 0 3vmin; color: rgba(255,255,255,0.4); }
 .show-mobile .fa { font-size: 20vmin; }
 
-.nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; font-size: 16px; text-align: left; }
+.nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; background: rgba(0,0,0,0.6); font-size: 16px; text-align: left; }
 .nav.fixed { position: fixed; right: 0; top: 0; z-index: 9; }
 .nav-slide { float: left; padding: 0 15px; }
 .nav-slide span { cursor: default; }
@@ -71,7 +71,7 @@ a:hover { color: rgba(255,255,255,1); }
 }
 @media (max-width: 480px) {
 	.show-desktop { margin-left: 4vmin; }
-	.nav { background: rgba(0,0,0,0.6); font-size: 12px; }
+	.nav { font-size: 12px; }
 	.nav-login { display: none; }
 	.online .pic-online { background-size: 400px auto; }
 	.mobile .pic-mobile { background-size: 380px auto; }
