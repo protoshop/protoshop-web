@@ -1,10 +1,10 @@
 {
   "name": "Protoshp.Web",
   "homepage": "http://protoshop.io",
-  "version": "0.1.1",
+  "version": "0.2.2",
   "repository": {
     "type": "git",
-    "url": "git@git.dev.sh.ctripcorp.com:wxd-pd/wxd-uitool.git"
+    "url": "git@git@github.com:protoshop/protoshop-web.git"
   },
   "devDependencies": {
     "connect-livereload": "^0.4.0",
