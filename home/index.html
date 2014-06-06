@@ -123,6 +123,8 @@
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
   $(function(){
+    
+    // Nav Bar
     var $win = $(window), $nav = $('.nav');
     var barHeight = 40;
     $win.on('scroll',function(e){
@@ -133,6 +135,7 @@
       }
     });
 
+    // Scroll Func
     $('.nav span').on('click',function($e){
       scrollTo('#splash');
       $e.preventDefault();
@@ -155,6 +158,17 @@
         scrollTop: $(elem).offset().top
       }, 160);
     }
+
+    // Body Class
+    var env = 'unknown';
+    if (/debug|localhost/.test(window.location.href)) {
+      env = 'debug';
+    } else if (/ctripqa/.test(window.location.href)) {
+      env = 'ctqa';
+    } else {
+      env = 'open';
+    }
+    $('body').addClass('env-' + env);
   });
 </script>
 </body>

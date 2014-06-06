@@ -45,4 +45,10 @@ angular.module('toHELL', [
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
+})
+
+.run(function (ENV) {
+  
+  // 配置 <body/> 上的类名
+  angular.element(document.body).addClass('env-' + ENV.env);
 });
