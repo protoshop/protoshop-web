@@ -188,9 +188,9 @@ i { font-style: normal; }
 .layer { position: fixed; top: 50%; left: 50%; width: 500px; padding: 10px; background: #f0f0f0; border: 1px solid rgba(0,0,0,0.6); -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); z-index: 9; }
 .layer + .layout:after { position: fixed; content: ""; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
 .layer.ng-hide + .layer-mask { display: none; }
-.layer-title { height: 40px; margin-bottom: 20px; padding-left: 6px; border-bottom: 1px solid rgba(0,0,0,0.2); box-sizing: border-box; }
-.layer-title h3 { line-height: 36px; color: rgba(0,0,0,0.6); font-size: 20px; }
-.close { float: right; line-height: 30px; margin-right: 5px; font-size: 18px; color: rgba(0,0,0,0.4); cursor: pointer; }
+.layer-title { height: 40px; margin-bottom: 20px; padding-left: 10px; border-bottom: 1px solid rgba(0,0,0,0.2); box-sizing: border-box; }
+.layer-title h3 { line-height: 40px; color: rgba(0,0,0,0.6); font-size: 20px; }
+.close { float: right; line-height: 30px !important; font-size: 18px; color: rgba(0,0,0,0.4); cursor: pointer; }
 .close:hover { color: rgba(0,0,0,0.6); text-decoration: none; }
 .control-group li { padding: 0 10px 20px 110px; }
 .control-group .layer-item { float: left; width: 100px; margin-left: -110px; color: rgba(0,0,0,0.6); line-height: 28px;  font-size: 16px; text-align: right; }
@@ -245,27 +245,22 @@ i { font-style: normal; }
 .about-box { padding: 30px 0; }
 .about-box .box-title { padding: 10px 0; font-size: 28px; font-family: Microsoft Yahei, sans-serif; }
 .about-box p { padding: 10px 0; line-height: 1.5; font-size: 14px; }
+.about-box .about-qrcode-download { height: 200px; background: url(../images/qrcode-download.png) no-repeat -10px -10px; background-size: 200px auto; }
+.env-ctqa .about-box .about-qrcode-download { background-image: url(../images/qrcode-ctqa.png); }
 .about-box a { color: #014eb6; }
-.about-box .build-stamp { font-weight: lighter; margin-left: 0.2em; font-size: 0.4em; line-height: 1em; color: #BBB }
 
 /* Notification */
 .notify { position: fixed; top: 0; left: 50%; margin: 10px -120px; min-width: 320px; z-index: 999; }
-.notify-item { border-radius: 5px; height: 30px; line-height: 30px; margin-bottom: 18px; letter-spacing: 0.1em; text-align: center; overflow: hidden; box-shadow: 0 0 6px rgba(0,0,0,0.4) }
+.notify-item { border-radius: 5px; height: 30px; line-height: 30px; margin-bottom: 18px; letter-spacing: 0.1em; text-align: center; overflow: hidden; box-shadow: 0 0 6px rgba(0,0,0,0.4); }
 .notify-item-info { background-color: rgba(255,255,255,0.8); color: #555; }
 .notify-item-success { background-color: rgba(60,160,30,0.9); color: #FFF; }
 .notify-item-warning { background-color: #d9534f; color: #FFF; }
 .notify-item-error { background-color: #d9534f; color: #FFF; }
-.notify-item.ng-enter,
-.notify-item.ng-leave { transition:0.1s ease-out all; }
-.notify-item.ng-enter,
-.notify-item.ng-leave.ng-leave-active { height: 0; margin-bottom: 0; }
-.notify-item.ng-leave,
-.notify-item.ng-enter.ng-enter-active { height: 30px; }
+.notify-item.ng-enter, .notify-item.ng-leave { transition: 0.1s ease-out all; }
+.notify-item.ng-enter, .notify-item.ng-leave.ng-leave-active { height: 0; margin-bottom: 0; }
+.notify-item.ng-leave, .notify-item.ng-enter.ng-enter-active { height: 30px; }
 
 .spinner { position: fixed; bottom: 20px; left: 50%; width: 16px; height: 16px; margin-left: -10px; pointer-events: none; border: 5px dotted rgba(0,0,0,0.4); border-radius: 20px; -webkit-animation: spin 1.5s infinite linear; }
 @-webkit-keyframes spin {
 	100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
-
-/* SHAME CSS */
-.panel-toggle { display: none }
