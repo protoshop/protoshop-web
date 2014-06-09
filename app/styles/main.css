@@ -245,6 +245,8 @@ i { font-style: normal; }
 .about-box { padding: 30px 0; }
 .about-box .box-title { padding: 10px 0; font-size: 28px; font-family: Microsoft Yahei, sans-serif; }
 .about-box p { padding: 10px 0; line-height: 1.5; font-size: 14px; }
+.about-box .about-qrcode-download { height: 200px; background: url(../images/qrcode-download.png) no-repeat -10px -10px; background-size: 200px auto; }
+.env-ctqa .about-box .about-qrcode-download { background-image: url(../images/qrcode-ctqa.png); }
 .about-box a { color: #014eb6; }
 
 /* Notification */

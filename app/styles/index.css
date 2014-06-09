@@ -46,6 +46,7 @@ nav a { margin-left: 10px; }
 .online .pic-online { background-image: url(../images/intro-online.png); background-size: 753px auto; }
 .mobile .pic-mobile { background-image: url(../images/intro-mobile.png); background-size: 640px auto; }
 .mobile .qrcode-download { position: absolute; right: 0; margin-top: 8vmin; width: 120px; height: 138px; background: url(../images/qrcode-download.png) no-repeat; background-size: contain; }
+.env-ctqa .mobile .qrcode-download { background-image: url(../images/qrcode-ctqa.png); }
 
 /* About */
 .about { padding: 0 10%; background-color: #3dbe76; }
