@@ -10,23 +10,31 @@
 <!-- endbuild -->
 </head>
 <body>
+<nav>
+	<span>Protoshop</span>
+	<a id="gotry" href="#tryonline">Online Editor</a>
+	<a id="gomob" href="#getmobile">Mobile Client</a>
+	<a id="goabt" href="#about">About</a>			
+</nav>
 <div id="splash" class="row splash">
-	<a href="../app/" class="logo" title="Login Protoshop"></a>
-	<div class="splash-show">
-		<div class="show-desktop"><span class="fa fa-desktop"></span><br />Build on Web</div>
-		<span class="fa fa-angle-right"></span>
-		<div class="show-mobile"><span class="fa fa-mobile"></span><br />View on Mobile</div>
+	<div class="logo">
+		<i></i>
+		<h1>Protoshop</h1>
 	</div>
-	<div class="nav">
-		<div class="nav-slide">
-			<span>Protoshop</span>
-			<a id="gotry" href="#tryonline">Online Editor</a>
-			<a id="gomob" href="#getmobile">Mobile Client</a>
-			<a id="goabt" href="#about">About</a>			
+	<div class="splash-container">
+		<div class="splash-show">
+			<div class="show-desktop"><span class="fa fa-desktop"></span><br />Build on Web</div>
+			<span class="fa fa-angle-right"></span>
+			<div class="show-mobile"><span class="fa fa-mobile"></span><br />View on Mobile</div>
 		</div>
-		<div class="nav-login">
-			<a href="../app/">Login</a>
-		</div>
+		<form class="login-form">
+			<ul>
+				<li><input type="text" placeholder="Email Address" required /></li>
+				<li><input type="text" placeholder="Nickname" required /></li>
+				<li><input type="password" placeholder="Password" required /></li>
+				<li><button class="btn-login">Sign Up</button><a href="../app/" class="link-form">Login</a></li>
+			</ul>
+		</form>
 	</div>
 </div>
 <div id="tryonline" class="row tryonline">
@@ -126,19 +134,8 @@
 <script>
   $(function(){
     
-    // Nav Bar
-    var $win = $(window), $nav = $('.nav');
-    var barHeight = 40;
-    $win.on('scroll',function(e){
-      if ($win.scrollTop() > $win.height() - barHeight){
-        $nav.addClass('fixed');
-      }else{
-        $nav.removeClass('fixed');
-      }
-    });
-
     // Scroll Func
-    $('.nav span').on('click',function($e){
+    $('nav span').on('click',function($e){
       scrollTo('#splash');
       $e.preventDefault();
     });

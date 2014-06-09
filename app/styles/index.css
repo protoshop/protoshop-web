@@ -2,32 +2,40 @@ html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, 
 body { background: #000; font-size: 14px; font-family: Helvetica, Arial, sans-serif; font-weight: 100; -webkit-user-select: none; -webkit-text-size-adjust: none; overflow: scroll; color: #fff; }
 html, body { height: 100%; }
 ul, li { list-style: none; }
+input, select, textarea, button { -webkit-appearance: none; border: none; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: 300; }
+button { background: none; cursor: pointer; }
 a { color: rgba(255,255,255,0.6); text-decoration: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
 a:hover { color: rgba(255,255,255,1); }
 
 .row { height: 100%; position: relative; }
 
+/* nav */
+nav { position: fixed; width: 100%; left: 0; top: 0; height: 40px; line-height: 40px; background: rgba(0,0,0,0.6); font-size: 16px; text-align: left; z-index: 9; }
+nav span { padding: 0 20px; font-family: Helvetica Neue; font-weight: 100; cursor: default; }
+nav a { margin-left: 10px; }
+
 /* Splash */
-.splash { background-color: #49aaee; text-align: center; }
-.logo { position: relative; display: inline-block; width: 80px; height: 16px; line-height: 16px; margin-top: 20vmin; background-color: #fff; }
-.logo:before, .logo:after { position: absolute; content: ''; width: 32px; height: 32px; background-color: #fff; border-radius: 20px; }
-.logo:before { top: -8px; left: -20px; }
-.logo:after { top: -8px; right: -20px; }
+.splash { background: #fff; }
+.logo { padding: 12vmin 120px 8vmin; }
+.logo i { position: relative; display: inline-block; width: 164px; height: 11px; line-height: 11px; background-color: #3a88be; }
+.logo i:before, .logo i:after { position: absolute; content: ''; width: 40px; height: 40px; background-color: #3a88be; border-radius: 20px; }
+.logo i:before { top: -14px; left: -2px; }
+.logo i:after { top: -14px; right: -2px; }
+.logo h1 { margin-top: 20px; font-size: 40px; font-family: Helvetica Neue; font-weight: 100; color: #3a88be; }
 
-.splash-show { margin-top: 10%; }
-.show-desktop, .show-mobile { display: inline-block; padding: 5vmin; border-radius: 5px; vertical-align: middle; text-align: center; }
-.show-desktop { margin-left: -6vmin; }
-.show-desktop:hover, .show-mobile:hover { background: rgba(0,0,0,0.1); cursor: pointer; }
-.splash-show .fa { height: 20vmin; line-height: 20vmin; font-size: 18vmin; }
-.splash-show .fa-angle-right { display: inline-block; vertical-align: middle; margin: 0 3vmin; color: rgba(255,255,255,0.4); }
-.show-mobile .fa { font-size: 20vmin; }
-
-.nav { position: absolute; width: 100%; left: 0; bottom: 0; height: 40px; line-height: 40px; background: rgba(0,0,0,0.6); font-size: 16px; text-align: left; }
-.nav.fixed { position: fixed; right: 0; top: 0; z-index: 9; }
-.nav-slide { float: left; padding: 0 15px; }
-.nav-slide span { cursor: default; }
-.nav-login { float: right; padding: 0 15px; }
-.nav a { margin-left: 10px; }
+.splash-container { position: relative; height: 50%; padding: 0 80px; background: #3a88be; }
+.splash-show { position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
+.show-desktop, .show-mobile { display: inline-block; padding: 40px; border-radius: 5px; vertical-align: middle; color: rgba(255,255,255,0.8); text-align: center; }
+.show-desktop:hover, .show-mobile:hover { background: rgba(0,0,0,0.1); color: rgba(255,255,255,1); cursor: pointer; }
+.splash-show .fa { height: 16vmin; line-height: 16vmin; font-size: 14vmin; }
+.splash-show .fa-angle-right { display: inline-block; vertical-align: middle; margin: 0 2vmin; font-size: 6vmin; color: rgba(255,255,255,0.4); }
+.show-mobile .fa { font-size: 16vmin; }
+.login-form { position: absolute; right: 120px; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
+.login-form li { padding: 10px 0; }
+.login-form input[type="text"], .login-form input[type="password"] { width: 348px; padding: 15px; border-radius: 3px; font-size: 18px; }
+.login-form .btn-login { float: right; width: 180px; height: 50px; background: #ff8a00; border-radius: 3px; font-size: 18px; color: #fff; }
+.login-form .btn-login:hover { background: #ff7200; }
+.login-form .link-form { display: inline-block; padding: 0 10px; font-size: 26px; line-height: 50px; }
 
 /* TryOnline & GetMobile */
 .tryonline { background: #ffca59; }
@@ -37,7 +45,7 @@ a:hover { color: rgba(255,255,255,1); }
 .online .pic-online, .mobile .pic-mobile { position: absolute; left: 50%; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); width: 50%; height: 100%; background-position: left center; background-repeat: no-repeat; }
 .online .pic-online { background-image: url(../images/intro-online.png); background-size: 753px auto; }
 .mobile .pic-mobile { background-image: url(../images/intro-mobile.png); background-size: 640px auto; }
-.mobile .qrcode-download { position: absolute; right: 0; top: 180px; width: 120px; height: 138px; background: url(../images/qrcode-download.png) no-repeat; background-size: contain; }
+.mobile .qrcode-download { position: absolute; right: 0; margin-top: 8vmin; width: 120px; height: 138px; background: url(../images/qrcode-download.png) no-repeat; background-size: contain; }
 
 /* About */
 .about { padding: 0 10%; background-color: #3dbe76; }
@@ -66,13 +74,13 @@ a:hover { color: rgba(255,255,255,1); }
 .donate .qrcode-donate { position: absolute; -webkit-transform: translate(-136px,-120px); transform: translate(-136px,-120px); opacity: 0; width: 120px; height: 120px; background: url(../images/qrcode-donate.png) no-repeat; background-size: contain; transition: all 200ms ease-in; }
 .donate a:hover + .qrcode-donate { opacity: 1; }
 
-@media (max-width: 640px) {
-	.show-desktop { margin-left: -2vmin; }
+@media (max-width: 768px) {
+	.login-form { display: none; }
 }
 @media (max-width: 480px) {
-	.show-desktop { margin-left: 4vmin; }
 	.nav { font-size: 12px; }
-	.nav-login { display: none; }
+	.splash-container { padding: 0 20px; }
+	.show-desktop, .show-mobile { padding: 20px; }
 	.online .pic-online { background-size: 400px auto; }
 	.mobile .pic-mobile { background-size: 380px auto; }
 	.row.about { padding: 0 10px; }
