@@ -66,9 +66,9 @@ gulp.task('server:home', function () {
   open('http://localhost:9999/home');
 });
 
-gulp.task('server:dist', ['build'], function () {
-  var servers = createServers(BUILD_ROOT, LOCAL_PORT, LIVERELOAD_PORT);
-  gulp.watch([BUILD_ROOT + '/**.*'], servers.onchange);
+gulp.task('server:dist', function () {
+  var servers = createServers('./dist', LOCAL_PORT, LIVERELOAD_PORT);
+  gulp.watch(['./dist' + '/**.*'], servers.onchange);
   open('http://localhost:9999');
 });
 
@@ -109,6 +109,7 @@ gulp.task('usemin', ['html2js'], function () {
   gulp.src('home/*.html')
   .pipe($.usemin({
     css: [$.autoprefixer(), $.minifyCss(), $.rev()],
+    js: [$.ngmin(), $.uglify(), $.rev()],
     html: [$.minifyHtml({empty: true})]
   }))
   .pipe(gulp.dest('dist/home'));
