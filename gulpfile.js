@@ -69,7 +69,7 @@ gulp.task('server:home', function () {
 gulp.task('server:dist', function () {
   var servers = createServers('./dist', LOCAL_PORT, LIVERELOAD_PORT);
   gulp.watch(['./dist' + '/**.*'], servers.onchange);
-  open('http://localhost:9999');
+  open('http://localhost:9999/home');
 });
 
 /**
