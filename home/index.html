@@ -27,12 +27,12 @@
 			<span class="fa fa-angle-right"></span>
 			<div class="show-mobile"><span class="fa fa-mobile"></span><br />View on Mobile</div>
 		</div>
-		<form class="login-form">
+		<form id="login-form" class="login-form">
 			<ul>
-				<li><input type="text" placeholder="Email Address" required /></li>
-				<li><input type="text" placeholder="Nickname" required /></li>
-				<li><input type="password" placeholder="Password" required /></li>
-				<li><button class="btn-login">Sign Up</button><a href="../app/" class="link-form">Login</a></li>
+				<li><input name="email" type="text" placeholder="Email Address" required /></li>
+				<li><input name="nick" type="text" placeholder="Nickname" required /></li>
+				<li><input name="pass" type="password" placeholder="Password" required /></li>
+				<li><button class="btn-login">Sign Up</button><a id="login" href="../app/" class="link-form">Login</a></li>
 			</ul>
 		</form>
 	</div>
@@ -130,10 +130,32 @@
 		<i class="fa fa-coffee"></i> <a href="https://qr.alipay.com/ap27zqsxo3v5q61z1f" title="求咖灰~~~" target="_blank">Buy me a coffee!</a><span class="qrcode-donate"></span> (੭ु๑‾᷄ ⁻̫ ‾᷅)੭ु⁾⁾
 	</div>
 </div>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="../app/bower_components/jquery/jquery.js"></script>
+<script src="../app/scripts/libs/md5.js"></script>
 <script>
   $(function(){
-    
+
+    // ENVIRONMENT
+    var env;
+    if (/debug|localhost/.test(window.location.href)) {
+      env = 'debug';
+    } else if (/ctripqa/.test(window.location.href)) {
+      env = 'ctqa';
+    } else {
+      env = 'open';
+    }
+
+    var apiHosts = {
+      debug: 'http://10.2.254.48/debugProtoShop/',
+      ctqa: 'http://10.2.254.48/ProtoShop/',
+      open: 'http://api.protoshop.io/'
+    };
+
+    var ENV = {
+      env: env,
+      apiHost: apiHosts[env]
+    };
+
     // Scroll Func
     $('nav span').on('click',function($e){
       scrollTo('#splash');
@@ -159,15 +181,36 @@
     }
 
     // Body Class
-    var env = 'unknown';
-    if (/debug|localhost/.test(window.location.href)) {
-      env = 'debug';
-    } else if (/ctripqa/.test(window.location.href)) {
-      env = 'ctqa';
-    } else {
-      env = 'open';
-    }
-    $('body').addClass('env-' + env);
+    $('body').addClass('env-' + ENV.env);
+
+    // Register
+    $('#login-form').on('submit', function (e) {
+      var form = e.target;
+
+      // 将密码做 MD5 转换
+      var data = {
+        email: form.email.value,
+        passwd: V.Security.md5(form.pass.value),
+        nickname: form.nick.value
+      };
+
+      // 注册
+      $.post(ENV.apiHost + 'register/', data)
+        .success(function (res) {
+          switch (res.status) {
+          case 0:
+            var loggedInUser = res.result[0];
+            localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+            window.location.href = $('#login').attr('href');
+            break;
+          default:
+            console.log('Registration Error.');
+          }
+        });
+
+      e.preventDefault();
+    });
+
   });
 </script>
 </body>
