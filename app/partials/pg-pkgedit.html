@@ -63,10 +63,28 @@
           <li class="tools-actor-item" ng-repeat="ele in editStat.selectedScene.elements"
               ng-click="onActorItemClick(ele)"
               ng-class="{'tools-actor-item-selected': ele === editStat.selectedElement}">
-							<span>{{ele.type}}
-							<span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
-							  W: {{ele.width}}  H: {{ele.height}}</span></span>
+              <span>{{ele.type}}
+              <span class="tools-actor-comment">X: {{ele.posX}}  Y: {{ele.posY}}
+                W: {{ele.width}}  H: {{ele.height}}</span></span>
             <button class="tools-actor-action icon-minus-circled" ng-click="removeElement(ele)"></button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- tools: setting -->
+      <div class="tools-box" ng-show="editStat.selectedScene === null">
+        <div class="tools-title">Settings</div>
+        <ul class="tools-setting">
+          <li>
+            <label class="tools-st-title">Name:</label>
+            <input type="text" ng-model="package.appName" />
+          </li>
+          <li>
+            <label class="tools-st-title">Icon: </label>
+            <label>
+              <input type="file" uploader data-handlers="iconUploadHandlers" style="display: none" />
+              <img ng-src="{{package.icon ? fileRoot + package.icon : 'http://wxddb1.qa.nt.ctripcorp.com/packages/icon.png'}}" />
+            </label>
           </li>
         </ul>
       </div>

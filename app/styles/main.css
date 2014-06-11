@@ -128,7 +128,6 @@ i { font-style: normal; }
 .tools-title a { display: block; height: 30px; line-height: 30px; color: #afafaf; }
 .tools-title button { float: right; width: 30px; height: 30px; color: #178dd4; }
 .tools-box { margin-top: -1px; background: #fff; border-top: 1px solid #ccc; }
-.tools-box label { display: inline-block; width: 25%; padding: 0 10px; text-align: right; }
 .tools-box input[type="text"] { padding: 3px; border: 1px solid #ccc; border-radius: 3px; font-size: 10px; vertical-align: middle; }
 .tools-background { padding: 10px; text-align: left; }
 .tools-background .tools-bg-thumb { position: relative; display: inline-block; width: 60px; height: 100px; margin: 0 30px; padding: 0; background: rgba(0,0,0,0.1); vertical-align: middle; text-align: center; cursor: pointer; }
@@ -139,10 +138,11 @@ i { font-style: normal; }
 
 .tools-action li, .tools-actor li, .tools-setting li { padding: 8px 10px; border-bottom: 1px solid #ccc; }
 .tools-action li button, .tools-actor-action { float: right; width: 30px; height: 16px; color: #178dd4; }
-.tools-action li span{ display: inline-block; width: 240px; overflow: hidden; word-break: break-all; }
+.tools-action li span { display: inline-block; width: 240px; overflow: hidden; word-break: break-all; }
 .tools-setting input[type="text"] { width: 160px; height: 18px; }
 .tools-setting img { border-radius: 10px; vertical-align: middle; width:60px; }
-.tools-actor li { cursor: pointer; position: relative; text-overflow: ellipsis; }
+.tools-setting .tools-st-title { display: inline-block; width: 25%; padding: 0 10px; text-align: right; }
+.tools-actor li { position: relative; text-overflow: ellipsis; cursor: pointer; }
 .tools-actor-item-selected { background: rgba(0,50,80,1); color: #fff; }
 .tools-actor-comment { font-size: 10px; margin-left: 6px; }
 
