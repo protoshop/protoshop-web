@@ -10,20 +10,20 @@ a:hover { color: rgba(255,255,255,1); }
 .row { height: 100%; position: relative; }
 
 /* nav */
-nav { position: fixed; width: 100%; left: 0; top: 0; height: 40px; line-height: 40px; background: rgba(0,0,0,0.6); font-size: 16px; text-align: left; z-index: 9; }
+nav { position: fixed; width: 100%; left: 0; top: 0; height: 40px; line-height: 40px; background: rgba(0,0,0,0.8); font-size: 16px; text-align: left; z-index: 9; }
 nav span { padding: 0 20px; font-family: Helvetica Neue; font-weight: 100; cursor: default; }
 nav a { margin-left: 10px; }
 
 /* Splash */
 .splash { background: #fff; }
 .logo { padding: 12vmin 120px 8vmin; }
-.logo i { position: relative; display: inline-block; width: 164px; height: 11px; line-height: 11px; background-color: #3a88be; }
-.logo i:before, .logo i:after { position: absolute; content: ''; width: 40px; height: 40px; background-color: #3a88be; border-radius: 20px; }
+.logo i { position: relative; display: inline-block; width: 164px; height: 11px; line-height: 11px; background-color: #1d8cdb; }
+.logo i:before, .logo i:after { position: absolute; content: ''; width: 40px; height: 40px; background-color: #1d8cdb; border-radius: 20px; }
 .logo i:before { top: -14px; left: -2px; }
 .logo i:after { top: -14px; right: -2px; }
-.logo h1 { margin-top: 20px; font-size: 40px; font-family: Helvetica Neue; font-weight: 100; color: #3a88be; }
+.logo h1 { margin-top: 20px; font-size: 40px; font-family: Helvetica Neue; font-weight: 100; color: #1d8cdb; }
 
-.splash-container { position: relative; height: 50%; padding: 0 80px; background: #3a88be; }
+.splash-container { position: relative; height: 50%; padding: 0 80px; background: #1d8cdb; }
 .splash-show { position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
 .show-desktop, .show-mobile { display: inline-block; padding: 40px; border-radius: 5px; vertical-align: middle; color: rgba(255,255,255,0.8); text-align: center; }
 .show-desktop:hover, .show-mobile:hover { background: rgba(0,0,0,0.1); color: rgba(255,255,255,1); cursor: pointer; }
@@ -35,7 +35,7 @@ nav a { margin-left: 10px; }
 .login-form input[type="text"], .login-form input[type="password"] { width: 348px; padding: 15px; border-radius: 3px; font-size: 18px; }
 .login-form .btn-login { float: right; width: 180px; height: 50px; background: #ff8a00; border-radius: 3px; font-size: 18px; color: #fff; }
 .login-form .btn-login:hover { background: #ff7200; }
-.login-form .link-form { display: inline-block; padding: 0 10px; font-size: 26px; line-height: 50px; }
+.login-form .link-form { display: inline-block; font-size: 14px; line-height: 50px; }
 
 /* TryOnline & GetMobile */
 .tryonline { background: #ffca59; }
