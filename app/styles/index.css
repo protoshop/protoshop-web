@@ -70,6 +70,8 @@ nav a { margin-left: 10px; }
 .team-nonmember dt { margin-left: -104px; padding: 5px 10px; }
 .team-nonmember dd { margin-right: 20px; padding: 5px 0; }
 
+.feedback { margin-top: 40px; padding: 10px; line-height: 1.5; }
+
 .donate { position: absolute; bottom: 0; padding: 2em 0; font-size: 24px; }
 .donate a { font-size: 20px; }
 .donate .qrcode-donate { position: absolute; -webkit-transform: translate(-136px,-120px); transform: translate(-136px,-120px); opacity: 0; width: 120px; height: 120px; background: url(../images/qrcode-donate.png) no-repeat; background-size: contain; transition: all 200ms ease-in; }
