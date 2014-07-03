@@ -210,8 +210,7 @@ i { font-style: normal; }
 .neat-form .fa-lock:after { content: "设为私密项目"; margin-left: .5em; font-size: 14px; color: #ae81ff; vertical-align: middle; }
 .neat-form input[type="checkbox"]:checked + .ispublic .fa-lock { color: rgba(0,0,0,0.2); }
 .neat-form input[type="checkbox"]:checked + .ispublic .fa-lock:after { color: rgba(0,0,0,0.2); }
-.control-group .item-btn { float: right; }
-.control-group button { margin-left: 10px; padding: 0 15px; line-height: 32px; border-radius: 3px; font-size: 16px; color: #fff; }
+.control-group button { margin-right: 10px; padding: 0 15px; line-height: 32px; border-radius: 3px; font-size: 16px; color: #fff; }
 .control-group button:nth-child(1) { background: #ff8a00; }
 .control-group button:nth-child(1):hover { background: #ff7200; }
 .control-group button:nth-child(2) { background: #ccc; }
