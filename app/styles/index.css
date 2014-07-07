@@ -24,7 +24,7 @@ nav a { margin-left: 10px; }
 .logo h1 { margin-top: 20px; font-size: 40px; font-family: Helvetica Neue; font-weight: 100; color: #1d8cdb; }
 
 .splash-container { position: relative; height: 50%; padding: 0 80px; background: #1d8cdb; }
-.splash-show { position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
+.splash-show { position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); width: 90%; }
 .show-desktop, .show-mobile { display: inline-block; padding: 40px; border-radius: 5px; vertical-align: middle; color: rgba(255,255,255,0.8); text-align: center; }
 .show-desktop:hover, .show-mobile:hover { background: rgba(0,0,0,0.1); color: rgba(255,255,255,1); cursor: pointer; }
 .splash-show .fa { height: 16vmin; line-height: 16vmin; font-size: 14vmin; }
@@ -72,18 +72,23 @@ nav a { margin-left: 10px; }
 
 .feedback { margin-top: 40px; padding: 10px; line-height: 1.5; }
 
-.donate { position: absolute; bottom: 0; padding: 2em 0; font-size: 24px; }
+.donate { position: absolute; bottom: 0; padding: 1em 0; font-size: 24px; }
 .donate a { font-size: 20px; }
 .donate .qrcode-donate { position: absolute; -webkit-transform: translate(-136px,-120px); transform: translate(-136px,-120px); opacity: 0; width: 120px; height: 120px; background: url(../images/qrcode-donate.png) no-repeat; background-size: contain; transition: all 200ms ease-in; }
 .donate a:hover + .qrcode-donate { opacity: 1; }
 
+@media (max-height: 768px) {
+	.team-nonmember { display: none; }
+	.feedback { margin-top: -10px; }
+}
 @media (max-width: 768px) {
 	.login-form { display: none; }
 }
-@media (max-width: 480px) {
-	.nav { font-size: 12px; }
+@media (max-width: 640px) {
+	.logo { padding: 24vmin 20px 8vmin; text-align: center; }
+	nav { font-size: 12px; }
 	.splash-container { padding: 0 20px; }
-	.show-desktop, .show-mobile { padding: 20px; }
+	.show-desktop, .show-mobile { padding: 18px; }
 	.online .pic-online { background-size: 400px auto; }
 	.mobile .pic-mobile { background-size: 380px auto; }
 	.row.about { padding: 0 10px; }
@@ -92,8 +97,6 @@ nav a { margin-left: 10px; }
 	.team-member .person-avatar { display: none; }
 	.team-member .person-info { margin: 0; }
 	.team-member .person-job { font-size: 10px; }
-	.team-nonmember { padding-left: 70px; }
-	.team-nonmember dt, .team-nonmember dd { padding: 0; font-size: 14px; }
-	.team-nonmember dt { width: 50px; margin-left: -70px; }
+	.feedback { display: none; }
 	.donate { padding: 1em 0; font-size: 18px; }
 }
