@@ -20,8 +20,8 @@ angular.module('toHELL', [
     templateUrl: 'partials/pg-login.html',
     controller: 'LoginCTRL'
   })
-  .when('/about/', {
-    templateUrl: 'partials/pg-about.html'
+  .when('/help/', {
+    templateUrl: 'partials/pg-help.html'
   })
   .when('/register/', {
     templateUrl: 'partials/pg-register.html',

@@ -18,8 +18,8 @@ i { font-style: normal; }
 .menu-main, .menu-modeswitch { padding: 8px 0; }
 .menu-main { float: left; }
 .navbar button, .btn-navbar { display: inline-block; padding: 0 10px; line-height: 36px; border-radius: 3px; font-size: 16px; font-weight: 300; background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; }
-.navbar-about, .btn-logout, .menu-modeswitch { float: right; margin-right: 10px; }
-.navbar-about .btn-navbar, .btn-logout { margin-top: 7px; }
+.navbar-help, .btn-logout, .menu-modeswitch { float: right; margin-right: 10px; }
+.navbar-help .btn-navbar, .btn-logout { margin-top: 7px; }
 .navbar button:hover, .btn-navbar:hover { background: rgba(255,255,255,0.4); }
 .btn-logout span { pointer-events: none; }
 .btn-logout .ready-text { display: none; }
