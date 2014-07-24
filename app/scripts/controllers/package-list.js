@@ -8,8 +8,6 @@ angular.module('toHELL')
     return;
   }
 
-  $scope.allowShare = ENV.env !== 'open';
-
   $scope.currentUserEmail = accountService.getLoggedInUser().email;
   $scope.byCurrentUser = function (pkg) {
     return pkg.appOwner === $scope.currentUserEmail;
