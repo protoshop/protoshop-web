@@ -32,12 +32,14 @@ Protoshop 项目运行在 [protoshop.io](http://protoshop.io) 上。
 
 ## 部署（Ctrip内部使用）
 
-执行命令 `gulp dist` —— 发布 WebApp 界面代码到 Beta 服务器
-执行命令 `gulp dist:ctqa` -- 发布 WebApp 界面代码到 protoshop.ctripqa.com
-执行命令 `gulp dist:io` -- 发布 WebApp 界面代码到 protoshop.io
+* `gulp dist` —— 发布 WebApp 界面代码到 Beta 服务器
+* `gulp dist:ctqa` -- 发布 WebApp 界面代码到 protoshop.ctripqa.com
+* `gulp dist:io` -- 发布 WebApp 界面代码到 protoshop.io
 
-* 发布应由专人负责
-* 在发布之前应执行 `gulp server:dist` 测试 build 之后的 App 运行是否完整
+部署相关事项
+
+* 部署应由专人负责
+* 在部署之前应执行 `gulp server:dist` 测试 build 之后的 App 运行是否完整
 
 ## 开发规范
 
