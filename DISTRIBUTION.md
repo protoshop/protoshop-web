@@ -1,10 +1,11 @@
 # Web 代码发布流程
 
-1.进⼊入本地仓库
-2.执⾏行 `gulp build` 命令编译JS (中间可能会出错,这个时候出错⼤大部分是由于页面代码有问题导致的，按照错误提⽰排查修改就好了)
-3.执⾏行 `gulp dist:io` (发布到protoshop.io服务器)  
-  注: `glupdist:ctqa` 发布到 protoshop.ctripqa.com 正式环境；`glupdist:debug` 发布到 protoshop.ctripqa.com 测试环境
-4.发布流程结束
+1. 进⼊入本地仓库
+1. 执⾏ `gulp build` 命令编译JS（可能会出错,这个时候出错⼤部分是由于页面代码有问题导致，按照错误提⽰排查修改就好了）
+1. **【重要】** 执行 `gulp server:dist` 测试编译后的代码是否运行良好，功能完整无错
+1. 执行 `gulp dist:io` 发布到 protoshop.io 服务器  
+另: `glup dist:ctqa` 发布到 protoshop.ctripqa.com 正式环境；`glup dist:debug` 发布到 protoshop.ctripqa.com 测试环境
+1. 发布完成
 
 ### 发布过程中可能遇到问题
 
