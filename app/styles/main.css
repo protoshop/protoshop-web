@@ -274,3 +274,11 @@ i { font-style: normal; }
 .bold{ font-weight: bold;}
 .underline{ text-decoration: underline;}
 .italic{ font-style: italic;}
+
+/* roadmap @neroWX */
+.roadmap-page{ position: absolute; top: 0; left: 0;}
+.map{ position: absolute; width: 160px; height: 284px; border:1px solid #ccc; box-shadow: }
+.ancher-left,.ancher-right{ position: absolute; width: 6px; height: 6px; border-radius: 4px; background: #FFF200; border:1px solid #ccc; top: 50%; -webkit-transform:translateY(-50%); transform:translateY(-50%);}
+.ancher-left{ left: -4px; z-index: 2;}
+.ancher-right{ right: -4px; z-index: 2;}
+.line{ stroke:#ccc; stroke-width:1;}
