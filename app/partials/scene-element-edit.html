@@ -21,6 +21,43 @@
           <select ng-model="elem.textSize" ng-options="v for v in props.textSize"></select>
           <input type="color" ng-model="elem.textColor" />
         </div>
+        <div class="prop-textstyle">
+          <label>
+            <input type="checkbox" ng-model="elem.textBold" name="text-bold" />
+            <i class="fa fa-bold" title="bold"></i>
+          </label>
+          <label>
+            <input type="checkbox" ng-model="elem.textItalic" name="text-italic" />
+            <i class="fa fa-italic" title="italic"></i>
+          </label>
+          <label>
+            <input type="checkbox" ng-model="elem.textUnderline" name="text-underline" />
+            <i class="fa fa-underline" title="underline"></i>
+          </label>  
+        </div>
+        <div class="prop-textalign">
+          <label>
+            <input type="radio" ng-model="elem.textAlign" name="text-align" value="left" />
+            <i class="fa fa-align-left" title="align-left"></i>
+          </label>
+          <label>
+            <input type="radio" ng-model="elem.textAlign" name="text-align" value="center" />
+            <i class="fa fa-align-center" title="align-center"></i>
+          </label>
+          <label>
+            <input type="radio" ng-model="elem.textAlign" name="text-align" value="right" />
+            <i class="fa fa-align-right" title="align-right"></i>
+          </label>  
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="elem.opacity !== undefined">
+      <div class="setting-title">Opacity</div>
+      <div class="setting-prop">
+        <div class="prop-opacity">
+          <input type="range" ng-model="elem.opacity" name="opacity"  min="0" max="1" step="0.01" value="1">
+        </div>
       </div>
     </div>
 

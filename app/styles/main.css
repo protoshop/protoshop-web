@@ -95,18 +95,19 @@ i { font-style: normal; }
 .setting-prop > div { padding: 5px 0; }
 .setting-prop input, .setting-prop select { padding: 0 3px; border: 1px solid #ccc; border-radius: 3px; vertical-align: middle; }
 .setting-prop input { height: 24px; }
-.setting-prop select { height: 26px; }
+.setting-prop select { height: 26px;}
 .setting-prop .prop-size label { display: inline-block; width: 92px; padding: 2px 0; text-align: right; }
 .setting-prop .prop-size input { width: 40px; margin-left: 5px; }
 .setting-prop .prop-text input { width: 90px; }
 .setting-prop .prop-text select { width: 48px; }
+{visibility: hidden; width: 0; height: 0;}
 .setting-prop .prop-style input { width: 40px; }
 .setting-prop input[type="color"] { width: 40px; height: 26px; padding: 0 2px; border-radius: 3px; vertical-align: middle; }
 .setting-prop .prop-goto select { width: 188px; }
-.setting-prop .prop-transition label { color: rgba(0,0,0,0.2); cursor: pointer; }
-.setting-prop .prop-transition i { padding: 5px; }
-.setting-prop .prop-transition input[type="radio"] { visibility: hidden; width: 0; height: 0; }
-.setting-prop .prop-transition input[type="radio"]:checked + i { color: rgba(0,0,0,0.8); }
+.setting-prop .prop-transition label,.setting-prop .prop-textstyle label,.setting-prop .prop-textalign label { color: rgba(0,0,0,0.2); cursor: pointer; }
+.setting-prop .prop-transition i,.setting-prop .prop-textstyle i,.setting-prop .prop-textalign i { padding: 5px; }
+.setting-prop .prop-transition input[type="radio"],.setting-prop .prop-textstyle input[type="checkbox"],.setting-prop .prop-textalign input[type="radio"]{ visibility: hidden; width: 0; height: 0; }
+.setting-prop .prop-transition input[type="radio"]:checked + i,.setting-prop .prop-textstyle input[type="checkbox"]:checked + i,.setting-prop .prop-textalign input[type="radio"]:checked + i{ color: rgba(0,0,0,0.8); }
 .setting-prop .prop-transition-time { margin-top: 10px; }
 .setting-prop .prop-transition-time input[type="text"] { display: inline-block; width: 36px; padding: 0 10px; border: none; border-bottom: 1px dotted #ccc; line-height: 1.5; background-color: transparent; font-weight: 300; outline: none; }
 .image-hint { text-align: center; height: 50px; line-height: 50px; background-color: #EEE }
@@ -268,3 +269,8 @@ i { font-style: normal; }
 @-webkit-keyframes spin {
 	100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
+
+/* view style @neroWX */
+.bold{ font-weight: bold;}
+.underline{ text-decoration: underline;}
+.italic{ font-style: italic;}

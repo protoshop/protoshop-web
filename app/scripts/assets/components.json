@@ -15,6 +15,7 @@
       "text": "Button",
       "textColor": "#ffffff",
       "textSize": 18,
+      "textAlign": "center",
 
       "jumpto": {
         "target": "",
@@ -60,7 +61,8 @@
 
       "text": "label",
       "textColor": "#333333",
-      "textSize": 14
+      "textSize": 14,
+      "textAlign": "left"
     }
   },
   "image-view": {
@@ -85,6 +87,8 @@
       "posY": 0,
       "width": 240,
       "height": 160,
+
+      "opacity": 1,
 
       "bgColor": "#E6E7E8"
     }

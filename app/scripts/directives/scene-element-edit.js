@@ -52,6 +52,11 @@ angular.module('toHELL')
         $scope.$emit('delete-element', $scope.elem);
       };
 
+      /**
+      * 文字样式
+      */
+      
+
     },
     link: function (scope) {
       scope.elem = scope.elemData();
