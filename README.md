@@ -25,9 +25,21 @@ Protoshop 项目运行在 [protoshop.io](http://protoshop.io) 上。
 1. `bower install` —— 加载第三方库
 1. `gulp server` —— 启动本地服务器
 
+其他命令：
+
+1. `gulp` -- 列出所有可用的 gulp 任务
+1. `gulp build` -- 构建项目到 dist 目录
+
 ## 部署（Ctrip内部使用）
 
-执行命令 `gulp dist` —— 发布 WebApp 界面代码到 Beta 服务器
+* `gulp dist` —— 发布 WebApp 界面代码到 Beta 服务器
+* `gulp dist:ctqa` -- 发布 WebApp 界面代码到 protoshop.ctripqa.com
+* `gulp dist:io` -- 发布 WebApp 界面代码到 protoshop.io
+
+部署相关事项
+
+* 部署应由专人负责
+* 在部署之前应执行 `gulp server:dist` 测试 build 之后的 App 运行是否完整
 
 ## 开发规范
 

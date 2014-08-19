@@ -8,8 +8,6 @@ angular.module('toHELL')
     return;
   }
 
-  $scope.allowShare = ENV.env !== 'open';
-
   $scope.currentUserEmail = accountService.getLoggedInUser().email;
   $scope.byCurrentUser = function (pkg) {
     return pkg.appOwner === $scope.currentUserEmail;
@@ -72,7 +70,7 @@ angular.module('toHELL')
    */
   $scope.newPackageConfig = {
     appPlatform: 'ios',  // 'android' or 'ios'
-    isPublic: true,
+    isPublic: false,
     appOwner: accountService.getLoggedInUser().email,
     appName: '',
     appDesc: ''

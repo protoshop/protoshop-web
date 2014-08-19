@@ -1,8 +1,11 @@
 <nav class="navbar">
   <notify />
 	<div class="navbar-header">
-		<a class="navbar-brand" href="#" title="<!--BUILDSTAMP-->">Protoshop</a>
+		<a class="navbar-brand" href="#">Protoshop</a>
 		<button ng-show="isEditing()" class="btn-navbar" ng-click="savePackage()">Save</button>
+	</div>
+	<div class="navbar-help">
+		<a href="#/help" class="btn-navbar">Help</a>
 	</div>
 	<button ng-show="isLoggedIn()" ng-click="logout($event)" class="btn-logout">
 		<span class="todo-text">Logout</span><span class="ready-text">Are you sure?</span>
