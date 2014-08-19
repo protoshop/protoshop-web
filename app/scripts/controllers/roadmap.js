@@ -4,6 +4,7 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('roadMapCTRL',['$scope', function($scope){
-        $scope.roadMap = 'hello roadMap!';
+.controller('roadMapCTRL',['$rootScope','$scope', function($rootScope, $scope){
+        $scope.imgs = $rootScope.images;
+        ///console.log(aaa);
     }]);

@@ -39,6 +39,10 @@ angular.module('toHELL', [
                 templateUrl: 'partials/pg-roadmap.html',
                 controller: 'roadMapCTRL'
             })
+            .when('/slist',{
+                templateUrl: 'partials/testList.html',
+                controller: 'testListCTRL'
+            })
             .otherwise({
                 redirectTo: '/'
             });

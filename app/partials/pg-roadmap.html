@@ -1,15 +1,8 @@
 <navbar />
 
 <div class="roadmap-page">
-	<div class="map map1" draggable style="left:100px; top:100px;">
-		<i class="ancher-left"></i>
-		<i class="ancher-right"></i>
-	</div>
-	<div class="map map2" draggable style="left:500px; top:300px;">
-		<i class="ancher-left"></i>
-		<i class="ancher-right"></i>
-	</div>
-	<div class="map map3" style="left:900px; top:200px;">
+	<div ng-repeat="img in imgs" class="map" draggable style="left:{{$index*200+20}}px; top:100px;">
+        <img src="{{img}}" height="100%" width="100%" />
 		<i class="ancher-left"></i>
 		<i class="ancher-right"></i>
 	</div>
