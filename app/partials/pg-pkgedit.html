@@ -14,10 +14,10 @@
           ng-class="{'item-current': scene === editStat.selectedScene}"
           ng-click="selectScene(scene);$event.stopPropagation()"
           scene-list-item>
-          <img class="scene-thumb" ng-src="{{scene.background?fileRoot+scene.background:''}}" />
-          <input type="text" ng-model="scene.name" />
+        <img class="scene-thumb" ng-src="{{scene.background?fileRoot+scene.background:''}}" />
+        <input type="text" ng-model="scene.name" />
       </li>
-  </ul>
+    </ul>
     <div class="scenes-edit">
       <button ng-click="insertScene(editStat.selectedScene);$event.stopPropagation()" title="Add Scene">+</button>
       <button ng-click="removeScene(editStat.selectedScene);$event.stopPropagation()" title="Delete Scene">-</button>
