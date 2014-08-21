@@ -25,6 +25,10 @@ angular.module('toHELL')
         return $route.current.originalPath === '/package/:pkgId';
       };
 
+        $scope.isRoadMap = function () {
+            return $route.current.originalPath === '/roadmap/:pkgId';
+        };
+
       /**
        *  登出账号
        */
@@ -53,6 +57,20 @@ angular.module('toHELL')
       $scope.savePackage = function () {
         $rootScope.$broadcast('package.save');
       };
+
+        /**
+         * 切换到roadmap视图
+         */
+      $scope.goRoadMapView = function(){
+          $rootScope.$broadcast('goview.roadmap');
+      };
+
+        /**
+         * 切换到编辑视图
+         */
+      $scope.goEditView = function(){
+          $rootScope.$broadcast('goview.edit');
+      }
     }
   };
 });

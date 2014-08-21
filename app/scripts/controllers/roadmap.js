@@ -4,7 +4,10 @@
 'use strict';
 
 angular.module('toHELL')
-.controller('roadMapCTRL',['$rootScope','$scope', function($rootScope, $scope){
-        $scope.imgs = $rootScope.images;
-        ///console.log(aaa);
+.controller('roadMapCTRL',['$rootScope','$scope','$location','$routeParams', function($rootScope, $scope, $location, $routeParams){
+        $scope.$on('goview.edit', function () {
+            $location.path('/package/'+$routeParams.pkgId);
+
+        });
+        $scope.sences = localStorage.getItem('dataImgs' + $routeParams.pkgId).split('||');
     }]);
