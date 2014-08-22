@@ -10,12 +10,13 @@
     </div>
     <div class="scenes-title" ng-bind="package.appName"></div>
     <ul class="scenes-list">
-      <li style="height:213px;background-image:url({{scene.background?fileRoot+scene.background:''}})" class="scene-item" ng-repeat="scene in package.scenes | orderBy:'order':number"
-          ng-class="{'item-current': scene === editStat.selectedScene}"
-          ng-click="selectScene(scene);$event.stopPropagation()"
-          scene-list-item>
-        <input type="text" ng-model="scene.name" />
-      </li>
+        <li class="scene-item" ng-repeat="scene in package.scenes | orderBy:'order':number"
+            ng-class="{'item-current': scene === editStat.selectedScene}"
+            ng-click="selectScene(scene);$event.stopPropagation()"
+            scene-list-item>
+            <img class="scene-thumb" ng-src="{{scene.background?fileRoot+scene.background:''}}" />
+            <input type="text" ng-model="scene.name" />
+        </li>
     </ul>
     <div class="scenes-edit">
       <button ng-click="insertScene(editStat.selectedScene);$event.stopPropagation()" title="Add Scene">+</button>
