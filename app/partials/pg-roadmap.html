@@ -1,15 +1,16 @@
 <navbar />
 
-<div class="roadmap-page">
-    <div ng-repeat="sence in sences" class="map" draggable style="left:{{$index*200+20}}px; top:100px;">
-        <img src="{{sence}}" height="100%" width="100%" />
-        <i class="ancher-left"></i>
-        <i class="ancher-right"></i>
+<div style="position:relative;margin-top: 20px">
+    <div class="roadmap-page">
+        <div ng-repeat="scene in scenesTree" class="map" id="scene-{{scene.id}}" style="left:{{200*$index+40}}px; top: 0">
+            <p>{{scene.name}}</p>
+            <p>{{scene.id}}</p>
+            <i class="ancher-left"></i>
+            <i class="ancher-right"></i>
+        </div>
     </div>
 </div>
+
 <svg width="1280" height="700" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	<line x1="262" y1="243" x2="500" y2="442" class="line" />
-	<line x1="660" y1="443" x2="900" y2="342" class="line" />		
-	<line x1="262" y1="243" x2="900" y2="342" class="line" />
-	<line x1="262" y1="243" x2="900" y2="342" class="line" />
+    <line ng-repeat="scene in scenesTree[0]" x1="262" y1="243" x2="500" y2="442" class="line" />
 </svg>
