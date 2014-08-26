@@ -12,6 +12,7 @@ angular.module('toHELL')
                 ox : 0,
                 oy : 0
             };
+
         return {
             restrict: 'A',
             scope: true,
