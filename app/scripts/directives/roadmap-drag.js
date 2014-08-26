@@ -72,3 +72,15 @@ angular.module('toHELL')
             });
         }
     });
+
+    // 自定义指令处理svg的attribute报错问题
+    angular.forEach(['x1', 'y1', 'x2', 'y2'], function(name) {
+        var ngName = 'ng' + name[0].toUpperCase() + name.slice(1);
+        angular.module('toHELL').directive(ngName, function() {
+            return function(scope, element, attrs) {
+                attrs.$observe(ngName, function(value) {
+                    attrs.$set(name, value);
+                })
+            };
+        });
+    });
