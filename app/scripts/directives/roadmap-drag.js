@@ -15,7 +15,6 @@ angular.module('toHELL')
 
         return {
             restrict: 'A',
-            scope: true,
             link : function(scope, elem){
                 elem.on('mousedown', startDrag);
                 $document.on('mouseup', function(){
