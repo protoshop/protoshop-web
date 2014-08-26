@@ -221,6 +221,9 @@ i { font-style: normal; }
 .layer-share { height: 320px; padding: 0 10px; }
 .share-output, .share-input { display: inline-block; height: 26px; font: 16px/26px 'Open Sans', sans-serif; vertical-align: top; float: left }
 .share-input { outline: none; width: 1px; letter-spacing: 4px; overflow: hidden }
+.submit-btns{text-align: right;margin: 10px 0;}
+.share-submit{cursor:pointer;width: 90px;height: 26px;display:inline-block;font: normal 12px/26px "microsoft yahei"; background: #bbb; text-align: center;color: #fff; border-radius: 2px}
+.share-submit:hover{background: #999}
 .users-selected { display: block; margin-top: 15px; padding: 8px 0 2px 8px; background: #fff; border: 1px solid #aaa; cursor: text; overflow: hidden }
 .users-selected.selected-active { border-color: #5897fb; box-shadow: inset 0 0 3px rgba(0,0,0,0.2); }
 .users-selected li { float:left; height: 24px; line-height: 24px; margin: 0 6px 6px 0; padding: 0 5px; background: #f0f0f0; border: 1px solid #aaa; border-radius: 3px; cursor: default; }

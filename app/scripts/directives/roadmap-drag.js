@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('toHELL')
-
+/**
+ * RoadMap Drag directive
+ */
     .directive('roadmapDrag', function ($document) {
         var targetElem,
             startPoint = {
@@ -21,6 +23,7 @@ angular.module('toHELL')
             }
         };
 
+        // 开始拖动block
         function startDrag(e){
             targetElem = angular.element(e.target);
             var ofs = targetElem.parent().offset();
@@ -31,6 +34,7 @@ angular.module('toHELL')
             startPoint.oy = ofs.top;
         }
 
+        // 拖动block动作
         function move(e){
             var top = e.pageY - startPoint.y - startPoint.oy,
                 left = e.pageX - startPoint.x - startPoint.ox,
@@ -41,6 +45,7 @@ angular.module('toHELL')
                 height = parseInt(targetElem.height()),
                 width = parseInt(targetElem.width());
 
+            // 移动线
             lines.forEach(function(line){
                 line = line.split('-');
                 var dir = line[0], lid = line[1],line, nextElem=angular.element('#block-'+lid),
@@ -60,6 +65,7 @@ angular.module('toHELL')
                 }
             });
 
+            // 移动block
             targetElem.css({
                 top : top + 'px',
                 left : left + 'px'
