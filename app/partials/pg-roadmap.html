@@ -9,8 +9,8 @@
             <i class="ancher-right"></i>
         </div>
     </div>
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny">
-        <line ng-repeat="line in lines" id="{{line.id}}" ng-x1="{{line.from[0]}}" ng-y1="{{line.from[1]}}" ng-x2="{{line.to[0]}}" ng-y2="{{line.to[1]}}" class="line" />
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.2">
+        <line ng-repeat="line in lines" ng-bind-attrs="{id:line.id, x1:line.from[0], y1:line.from[1], x2 : line.to[0], y2 : line.to[1]}"  class="line" />
     </svg>
 </div>
 
