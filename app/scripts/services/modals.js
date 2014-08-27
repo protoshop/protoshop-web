@@ -70,8 +70,11 @@ angular.module('toHELL')
   }
 
   // 添加分享好友
-  $scope.addFellow = function (fellow) {
-    setShare(fellow, true);
+  $scope.addFellow = function () {
+     var fellow = {
+         email : angular.element('.share-input').val()
+     };
+     setShare(fellow, true);
   };
 
   // 移除分享好友
