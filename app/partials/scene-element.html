@@ -7,6 +7,6 @@
 <div ng-if="!elem.contentSize">
   <div ng-repeat="elem in elem.elements"
        ng-include="'partials/scene-element.html'"
-       scene-element parent-element class="scene-element" ng-class="elem.type"
+       scene-element parent-element draggable class="scene-element" ng-class="elem.type"
        ng-style="{left: elem.posX, top: elem.posY}"></div>
 </div>

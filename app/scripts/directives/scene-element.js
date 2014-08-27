@@ -39,6 +39,11 @@ angular.module('toHELL')
           return;
         }
 
+        if ($ev.altKey){
+            el.attr('draggable', true).on('dragstart', bindCopyElement);
+            return;
+        }
+
         // 选中此控件
         scope.selectElement && scope.selectElement(scope.elem);
         scope.$apply();
@@ -56,10 +61,14 @@ angular.module('toHELL')
         $document.one('mouseup', unbindDragEvents);
 
         $ev.stopPropagation();
-
       }
 
       el.on('mousedown', bindDragHandler);
+
+      function bindCopyElement(ev){
+          var dt = ev.originalEvent.dataTransfer;
+          dt.setData('type', scope.elem.type);
+      }
 
       /**
        * 根据拖拽事件，更新控件的位置信息
@@ -93,12 +102,12 @@ angular.module('toHELL')
        * 清理拖拽相关事件
        */
 
-      function unbindDragEvents() {
-
+      function unbindDragEvents($ev) {
         // 清除鼠标样式
         $document.find('body').css('cursor', 'auto');
 
         $document.off('mousemove', updateElemPos);
+          el.removeAttr('draggable').off('dragstart', bindCopyElement);
       }
 
       // 阻止控件元素上的点击事件冒泡
