@@ -2,7 +2,7 @@
 
 <div style="position:relative;margin-top: 20px">
     <div class="roadmap-page">
-        <div ng-repeat="scene in scenesTree" class="map" id="scene-{{scene.id}}" style="left:{{200*$index+40}}px; top: 0">
+        <div ng-repeat="scene in scenesBlocks" class="map" id="scene-{{scene.id}}" style="left:{{200*$index+40}}px; top: 0">
             <p>{{scene.name}}</p>
             <p>{{scene.id}}</p>
             <i class="ancher-left"></i>
@@ -12,5 +12,5 @@
 </div>
 
 <svg width="1280" height="700" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <line ng-repeat="scene in scenesTree[0]" x1="262" y1="243" x2="500" y2="442" class="line" />
+    <line ng-repeat="line in lines" x1="{{line[0][0]}}" y1="{{line[0][1]}}" x2="{{line[1][0]}}" y2="{{line[1][1]}}" class="line" />
 </svg>
