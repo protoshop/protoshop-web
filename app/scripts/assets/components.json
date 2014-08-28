@@ -1,186 +1,186 @@
 {
-  "button": {
-    "group": "Basic",
-    "label": "Button",
-    "init": {
-      "type": "button",
-      "posX": 0,
-      "posY": 0,
-      "width": 120,
-      "height": 44,
+    "button": {
+        "group": "Basic",
+        "label": "Button",
+        "init": {
+            "type": "button",
+            "posX": 0,
+            "posY": 0,
+            "width": 120,
+            "height": 44,
 
-      "bgColor": "#2c5abb",
-      "bgImage": "",
+            "bgColor": "#2c5abb",
+            "bgImage": "",
 
-      "text": "Button",
-      "textColor": "#ffffff",
-      "textSize": 18,
-      "textAlign": "center",
+            "text": "Button",
+            "textColor": "#ffffff",
+            "textSize": 18,
+            "textAlign": "center",
 
-      "jumpto": {
-        "target": "",
-        "transitionType": "none",
-        "transitionDirection": "left",
-        "transitionDelay": 0,
-        "transitionDuration": 0.3
-      }
-    }
-  },
-  "hotspot": {
-    "group": "Basic",
-    "label": "Hotspot",
-    "init": {
-      "type": "button",
-      "posX": 0,
-      "posY": 0,
-      "width": 160,
-      "height": 44,
-
-      "bgOpacity": 0,
-
-      "text": "",
-
-      "jumpto": {
-        "target": "",
-        "transitionType": "none",
-        "transitionDirection": "left",
-        "transitionDelay": 0,
-        "transitionDuration": 0.3
-      }
-    }
-  },
-  "label": {
-    "group": "Basic",
-    "label": "Label",
-    "init": {
-      "type": "label",
-      "posX": 0,
-      "posY": 0,
-      "width": 120,
-      "height": 44,
-
-      "text": "label",
-      "textColor": "#333333",
-      "textSize": 14,
-      "textAlign": "left"
-    }
-  },
-  "image-view": {
-    "group": "Basic",
-    "label": "Image",
-    "init": {
-      "type": "imageview",
-      "posX": 0,
-      "posY": 0,
-      "width": 120,
-      "height": 60,
-
-      "image": ""
-    }
-  },
-  "view": {
-    "group": "Basic",
-    "label": "View",
-    "init": {
-      "type": "view",
-      "posX": 0,
-      "posY": 0,
-      "width": 240,
-      "height": 160,
-
-      "opacity": 1,
-
-      "bgColor": "#E6E7E8"
-    }
-  },
-  "toolbar": {
-    "group": "Advance",
-    "label": "Toolbar",
-    "init": {
-      "type": "view",
-      "posX": 0,
-      "posY": 0,
-      "width": 320,
-      "height": 44,
-
-      "bgColor": "#E6E7E8",
-
-      "elements": [
-        {
-          "type": "button",
-          "posX": 0,
-          "posY": 0,
-          "width": 40,
-          "height": 44,
-
-          "bgColor": "#E6E7E8",
-          "bgImage": "",
-
-          "text": "<",
-          "textColor": "#0076FF",
-          "textSize": 14,
-
-          "jumpto": {
-            "target": "",
-            "transitionType": "none",
-            "transitionDirection": "left",
-            "transitionDelay": 0,
-            "transitionDuration": 0.3
-          }
-        },
-        {
-          "type": "button",
-          "posX": 260,
-          "posY": 0,
-          "width": 60,
-          "height": 44,
-
-          "bgColor": "#E6E7E8",
-          "bgImage": "",
-
-          "text": "More",
-          "textColor": "#0076FF",
-          "textSize": 14,
-
-          "jumpto": {
-            "target": "",
-            "transitionType": "none",
-            "transitionDirection": "left",
-            "transitionDelay": 0,
-            "transitionDuration": 0.3
-          }
-        },
-        {
-          "type": "label",
-          "posX": 120,
-          "posY": 0,
-          "width": 120,
-          "height": 44,
-
-          "text": "Toolbar",
-          "textColor": "#000000",
-          "textSize": 24
+            "jumpto": {
+                "target": "",
+                "transitionType": "none",
+                "transitionDirection": "left",
+                "transitionDelay": 0,
+                "transitionDuration": 0.3
+            }
         }
-      ]
-    }
-  },
-  "scroll-view": {
-    "group": "Prototype",
-    "label": "Scroll View",
-    "init": {
-      "type": "scrollview",
-      "posX": 0,
-      "posY": 0,
-      "width": 320,
-      "height": 240,
+    },
+    "hotspot": {
+        "group": "Basic",
+        "label": "Hotspot",
+        "init": {
+            "type": "button",
+            "posX": 0,
+            "posY": 0,
+            "width": 160,
+            "height": 44,
 
-      "bgColor": "",
-      "bgImage": "",
+            "bgOpacity": 0,
 
-      "contentSize": {
-        "width": 420,
-        "height": 340
-      }
+            "text": "",
+
+            "jumpto": {
+                "target": "",
+                "transitionType": "none",
+                "transitionDirection": "left",
+                "transitionDelay": 0,
+                "transitionDuration": 0.3
+            }
+        }
+    },
+    "label": {
+        "group": "Basic",
+        "label": "Label",
+        "init": {
+            "type": "label",
+            "posX": 0,
+            "posY": 0,
+            "width": 120,
+            "height": 44,
+
+            "text": "label",
+            "textColor": "#333333",
+            "textSize": 14,
+            "textAlign": "left"
+        }
+    },
+    "image-view": {
+        "group": "Basic",
+        "label": "Image",
+        "init": {
+            "type": "imageview",
+            "posX": 0,
+            "posY": 0,
+            "width": 120,
+            "height": 60,
+
+            "image": ""
+        }
+    },
+    "view": {
+        "group": "Basic",
+        "label": "View",
+        "init": {
+            "type": "view",
+            "posX": 0,
+            "posY": 0,
+            "width": 240,
+            "height": 160,
+
+            "opacity": 1,
+
+            "bgColor": "#E6E7E8"
+        }
+    },
+    "toolbar": {
+        "group": "Advance",
+        "label": "Toolbar",
+        "init": {
+            "type": "view",
+            "posX": 0,
+            "posY": 0,
+            "width": 320,
+            "height": 44,
+
+            "bgColor": "#E6E7E8",
+
+            "elements": [
+                {
+                    "type": "button",
+                    "posX": 0,
+                    "posY": 0,
+                    "width": 40,
+                    "height": 44,
+
+                    "bgColor": "#E6E7E8",
+                    "bgImage": "",
+
+                    "text": "<",
+                    "textColor": "#0076FF",
+                    "textSize": 14,
+
+                    "jumpto": {
+                        "target": "",
+                        "transitionType": "none",
+                        "transitionDirection": "left",
+                        "transitionDelay": 0,
+                        "transitionDuration": 0.3
+                    }
+                },
+                {
+                    "type": "button",
+                    "posX": 260,
+                    "posY": 0,
+                    "width": 60,
+                    "height": 44,
+
+                    "bgColor": "#E6E7E8",
+                    "bgImage": "",
+
+                    "text": "More",
+                    "textColor": "#0076FF",
+                    "textSize": 14,
+
+                    "jumpto": {
+                        "target": "",
+                        "transitionType": "none",
+                        "transitionDirection": "left",
+                        "transitionDelay": 0,
+                        "transitionDuration": 0.3
+                    }
+                },
+                {
+                    "type": "label",
+                    "posX": 120,
+                    "posY": 0,
+                    "width": 120,
+                    "height": 44,
+
+                    "text": "Toolbar",
+                    "textColor": "#000000",
+                    "textSize": 24
+                }
+            ]
+        }
+    },
+    "scroll-view": {
+        "group": "Prototype",
+        "label": "Scroll View",
+        "init": {
+            "type": "scrollview",
+            "posX": 0,
+            "posY": 0,
+            "width": 320,
+            "height": 240,
+
+            "bgColor": "",
+            "bgImage": "",
+
+            "contentSize": {
+                "width": 420,
+                "height": 340
+            }
+        }
     }
-  }
 }
