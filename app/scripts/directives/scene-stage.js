@@ -17,6 +17,15 @@ angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib) {
                     host.elements.push(newElement);
                 });
             });
+
+            // handle Event 'scene.copyElement'
+            scope.$on('scene.copyElement', function ($event, args) {
+                var host = args.wrapper.elem || scope.editStat.selectedScene;
+                    host.elements = host.elements || [];
+                    host.elements.push(args.elem);
+                    scope.$apply();
+            });
+
             scope.selectElement = function (elemObj) {
                 scope.editStat.selectedElement = elemObj;
             };

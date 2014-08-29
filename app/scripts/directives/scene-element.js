@@ -3,7 +3,7 @@ angular.module('toHELL')
 /**
  * Element（界面元素控件） in scene editor
  */
-    .directive('sceneElement', function ($document) {
+    .directive('sceneElement', function ($rootScope, $document) {
         return {
             restrict: 'AE',
             scope: true,
@@ -14,6 +14,7 @@ angular.module('toHELL')
                 $scope.scenes = $scope.package.scenes;
             },
             link: function (scope, el) {
+                var toString = Object.prototype.toString;
                 /**
                  * 当鼠标点下时，
                  * 记录控件和鼠标指针的当前位置，开始监听拖拽相关事件
@@ -24,13 +25,10 @@ angular.module('toHELL')
                         return;
                     }
                     // 不接受非左键点击
-                    if ($ev.which !== 1) {
+                    if ($ev.which !== 1 || $ev.altKey) {
                         return;
                     }
-                    if ($ev.altKey) {
-                        el.attr('draggable', true).on('dragstart', bindCopyElement);
-                        return;
-                    }
+
                     // 选中此控件
                     scope.selectElement && scope.selectElement(scope.elem);
                     scope.$apply();
@@ -48,11 +46,6 @@ angular.module('toHELL')
                 }
 
                 el.on('mousedown', bindDragHandler);
-
-                function bindCopyElement(ev) {
-                    var dt = ev.originalEvent.dataTransfer;
-                    dt.setData('type', scope.elem.type);
-                }
 
                 /**
                  * 根据拖拽事件，更新控件的位置信息
@@ -84,7 +77,6 @@ angular.module('toHELL')
                     // 清除鼠标样式
                     $document.find('body').css('cursor', 'auto');
                     $document.off('mousemove', updateElemPos);
-                    el.removeAttr('draggable').off('dragstart', bindCopyElement);
                 }
 
                 // 阻止控件元素上的点击事件冒泡
