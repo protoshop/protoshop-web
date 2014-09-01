@@ -3,51 +3,71 @@
 angular.module('toHELL')
 
 /**
- * Parent Element accept adding children.
+ * drag copy element
  */
 
-    .directive('copyElement', function ($rootScope) {
+    .directive('copyElement', function ($document) {
         return {
             restrict: 'AE',
             scope: true,
             link: function (scope, el) {
                 el.on('mousedown', bindDragHandler);
                 el.on('mouseup', unBindDragHandler);
+                el.on('click', function(ev){
+                    console.log(ev);
+                });
 
-                function bindDragHandler(ev){
-                    if (ev.altKey){
-                        el.attr('draggable', true).on('dragstart', bindCopyElement);
+                /**
+                 * 监听拖拽复制事件
+                 */
+                function bindDragHandler(ev) {
+                    if (ev.altKey) {
+                        el.attr('draggable', true).on('dragstart', dragCopyElement);
                     }
                 }
 
-                function unBindDragHandler(){
-                    el.removeAttr('draggable').off('dragstart', bindCopyElement);
+                // 取消监听
+                function unBindDragHandler() {
+                    el.removeAttr('draggable').off('dragstart', dragCopyElement);
                 }
 
-                function deepCfg(obj){
+                // 只复制数据结构，要循环删除$$hashkey
+                function deepCfg(obj) {
                     var keys = Object.keys(obj);
-                    keys.forEach(function deep(key){
-                        if (key === '$$hashKey'){
+                    keys.forEach(function deep(key) {
+                        if (key === '$$hashKey') {
                             delete obj[key];
                             return;
                         }
-                        if (Array.isArray(obj[key])){
-                            obj[key].forEach(function(p){
+                        if (Array.isArray(obj[key])) {
+                            obj[key].forEach(function (p) {
                                 deepCfg(p);
                             });
                         }
                     });
                 }
 
-                function bindCopyElement(ev) {
+                // 拖拽事件
+                function dragCopyElement(ev) {
                     var elem = JSON.parse(JSON.stringify(scope.elem));
                     var ofs = {
-                        ox : ev.originalEvent.offsetX,
-                        oy : ev.originalEvent.offsetY
+                        ox: ev.originalEvent.offsetX,
+                        oy: ev.originalEvent.offsetY
                     }
                     deepCfg(elem);
+                    // 填充拖拽数据
                     ev.originalEvent.dataTransfer.setData('originData', JSON.stringify(elem));
                     ev.originalEvent.dataTransfer.setData('ofs', JSON.stringify(ofs));
+                }
+
+                /**
+                 * ctrl+c复制
+                 */
+                function keyCopyElement(ev) {
+                    console.log(123);
+                    if (ev.ctrlKey){
+                        console.log(scope.elem);
+                    }
                 }
             }
         }

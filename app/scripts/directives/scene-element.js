@@ -14,7 +14,6 @@ angular.module('toHELL')
                 $scope.scenes = $scope.package.scenes;
             },
             link: function (scope, el) {
-                var toString = Object.prototype.toString;
                 /**
                  * 当鼠标点下时，
                  * 记录控件和鼠标指针的当前位置，开始监听拖拽相关事件

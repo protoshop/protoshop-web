@@ -10,7 +10,6 @@ angular.module('toHELL')
         return {
             restrict: 'A',
             link: function (scope, el) {
-                console.log(scope.elem);
                 // Only 'scrollview' and 'view' can have child elements.
                 if (scope.elem && !(scope.elem.type === 'scrollview' || scope.elem.type === 'view')) {
                     return;
