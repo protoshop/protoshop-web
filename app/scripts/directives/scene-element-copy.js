@@ -6,19 +6,19 @@ angular.module('toHELL')
  * drag copy element
  */
 
-    .directive('copyElement', function ($document) {
+    .directive('copyElement', function ($document, $rootScope) {
         return {
             restrict: 'AE',
             scope: true,
             link: function (scope, el) {
                 el.on('mousedown', bindDragHandler);
                 el.on('mouseup', unBindDragHandler);
-                el.on('selectIn', keyCopyElement);
 
                 /**
                  * 监听拖拽复制事件
                  */
                 function bindDragHandler(ev) {
+                    el.focus();
                     if (ev.altKey) {
                         el.attr('draggable', true).on('dragstart', dragCopyElement);
                     }
@@ -58,17 +58,8 @@ angular.module('toHELL')
                     ev.originalEvent.dataTransfer.setData('ofs', JSON.stringify(ofs));
                 }
 
-                /**
-                 * ctrl+c复制
-                 */
-                function keyCopyElement(ev) {
-                    if (ev.ctrlKey){
-                        console.log(scope.elem);
-                    }
-                }
-
-                scope.$on('selectIn', function(){
-                    console.log('selectIn');
+                el.keypress(function(e){
+                    console.log(scope.editStat)
                 });
             }
         }
