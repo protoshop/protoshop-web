@@ -13,9 +13,7 @@ angular.module('toHELL')
             link: function (scope, el) {
                 el.on('mousedown', bindDragHandler);
                 el.on('mouseup', unBindDragHandler);
-                el.on('click', function(ev){
-                    console.log(ev);
-                });
+                el.on('selectIn', keyCopyElement);
 
                 /**
                  * 监听拖拽复制事件
@@ -53,7 +51,7 @@ angular.module('toHELL')
                     var ofs = {
                         ox: ev.originalEvent.offsetX,
                         oy: ev.originalEvent.offsetY
-                    }
+                    };
                     deepCfg(elem);
                     // 填充拖拽数据
                     ev.originalEvent.dataTransfer.setData('originData', JSON.stringify(elem));
@@ -64,11 +62,14 @@ angular.module('toHELL')
                  * ctrl+c复制
                  */
                 function keyCopyElement(ev) {
-                    console.log(123);
                     if (ev.ctrlKey){
                         console.log(scope.elem);
                     }
                 }
+
+                scope.$on('selectIn', function(){
+                    console.log('selectIn');
+                });
             }
         }
     });

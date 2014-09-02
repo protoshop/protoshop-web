@@ -48,17 +48,17 @@ angular.module('toHELL')
             // 移动线
             lines.forEach(function(line){
                 line = line.split('-');
-                var dir = line[0], lid = line[1],line, nextElem=angular.element('#block-'+lid),
+                var dir = line[0], lid = line[1],lineElem, nextElem=angular.element('#block-'+lid),
                     norder=nextElem.attr('data-order');
                 if (dir === 'to'){
-                    line = angular.element('#from-'+curId+'-to-'+lid);
-                    line.attr({
+                    lineElem = angular.element('#from-'+curId+'-to-'+lid);
+                    lineElem.attr({
                         x1 : order > norder ? left : left+width,
                         y1 : top + height * 0.5
                     });
                 }else if (dir === 'from'){
-                    line = angular.element('#from-'+lid+'-to-'+curId);
-                    line.attr({
+                    lineElem = angular.element('#from-'+lid+'-to-'+curId);
+                    lineElem.attr({
                         x2 : order > norder ? left : left+width,
                         y2 : top + height * 0.5
                     });

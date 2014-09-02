@@ -55,8 +55,6 @@ angular.module('toHELL')
                 /**
                  * 文字样式
                  */
-
-
             },
             link: function (scope) {
                 scope.elem = scope.elemData();
