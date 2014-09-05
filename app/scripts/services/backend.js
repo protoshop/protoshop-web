@@ -148,7 +148,7 @@ angular.module('toHELL')
                 var url = ENV.apiHost + 'saveProject/';
                 makeRequest({
                     context: {
-                        token: token
+                        token: accountService.getLoggedInUser().token
                     },
                     package: data
                 }, url, callback);
