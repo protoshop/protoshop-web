@@ -119,18 +119,18 @@ angular.module('toHELL')
         });
 
         $scope.$on('goview.roadmap', function () {
-            var scenes = angular.element('.scenes-list li'),images=[],len=scenes.length;
-            scenes.each(function(i,scene){
+            var scenes = angular.element('.scenes-list li'), images = [], len = scenes.length;
+            scenes.each(function (i, scene) {
                 html2canvas(scene, {
                     allowTaint: true,
-                    onrendered: function(canvas) {
+                    onrendered: function (canvas) {
                         images.push(canvas.toDataURL("image/png"));
                         console.log(images[i]);
-                        if(i==len-1){
+                        if (i == len - 1) {
                             $scope.$apply(function () {
-                                $location.path('/roadmap/'+$routeParams.pkgId);
+                                $location.path('/roadmap/' + $routeParams.pkgId);
                             });
-                            localStorage.setItem('dataImgs' + $routeParams.pkgId,images.join('||'));
+                            localStorage.setItem('dataImgs' + $routeParams.pkgId, images.join('||'));
                         }
                     }
                 });
