@@ -57,10 +57,6 @@ angular.module('toHELL')
                     ev.originalEvent.dataTransfer.setData('originData', JSON.stringify(elem));
                     ev.originalEvent.dataTransfer.setData('ofs', JSON.stringify(ofs));
                 }
-
-                el.keypress(function(e){
-                    console.log(scope.editStat)
-                });
             }
         }
     });
