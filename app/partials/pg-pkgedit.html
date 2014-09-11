@@ -12,8 +12,11 @@
                 ng-class="{'item-current': scene === editStat.selectedScene}"
                 ng-click="selectScene(scene);$event.stopPropagation()"
                 scene-list-item>
-                <img class="scene-thumb" ng-src="{{scene.background?fileRoot+scene.background:''}}"/>
-                <input type="text" ng-model="scene.name"/>
+                    <div class="scene" parent-element ng-style="{'background-image': 'url(' + fileRoot + scene.background + ')'}">
+                        <div ng-repeat="elem in scene.elements"
+                             ng-include="'partials/scene-element-item.html'"
+                             scene-element parent-element copy-element class="scene-element" ng-class="elem.type" ng-style="{left: elem.posX, top:elem.posY}"></div>
+                    </div>
             </li>
         </ul>
         <div class="scenes-edit">
