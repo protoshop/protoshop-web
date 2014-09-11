@@ -12,6 +12,7 @@
                 ng-class="{'item-current': scene === editStat.selectedScene}"
                 ng-click="selectScene(scene);$event.stopPropagation()"
                 scene-list-item>
+                    <!--left 缩略图-->
                     <div class="scene" parent-element ng-style="{'background-image': 'url(' + fileRoot + scene.background + ')'}">
                         <div ng-repeat="elem in scene.elements"
                              ng-include="'partials/scene-element-item.html'"
