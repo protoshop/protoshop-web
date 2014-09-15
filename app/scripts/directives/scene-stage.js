@@ -27,11 +27,7 @@ angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib) {
             });
 
             scope.selectElement = function (elemObj) {
-                if (scope.editStat.selectedElement){
-                    scope.$emit('selectOut',scope.editStat.selectedElement);
-                }
                 scope.editStat.selectedElement = elemObj;
-                scope.$emit('selectIn',scope.editStat.selectedElement);
             };
         }
     };
