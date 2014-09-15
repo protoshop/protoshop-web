@@ -3,7 +3,7 @@
 (function () {
     var module = angular.module('toHELL');
 
-    module.factory('editService', [function () {
+    module.factory('editService', ['$timeout',function ($timeout) {
         var packageLoaded = false;
         var deviceDescription = {
             android: {
@@ -35,6 +35,7 @@
                 packageLoaded = true;
                 platform = this.package.appPlatform.toLowerCase();
             };
+
             this.setStat = function (es) {
                 this.editStat = es;
             };
@@ -206,6 +207,40 @@
                 }
                 return null;
             };
+
+
+            /**
+             * 截屏
+
+            this.scene2img = function () {
+                var scenes = self.package.scenes;
+                var i= 0,len=self.package.scenes.length;
+                function chose(){
+                    $timeout(function(){
+                        self.selectScene(scenes[i]);
+                    },0).then(cutImg);
+                }
+
+                function cutImg(){
+                    var timer = $timeout(function(){
+                        html2canvas($('.layout-stage .scene')[0], {
+                            allowTaint: true,
+                            // logging: true,
+                            rofile: true,
+                            useCORS: true,
+                            onrendered: function (canvas) {
+                                console.log(canvas.toDataURL("image/png"));
+                            }
+                        });
+                    },0);
+
+                    if (++i<len){
+                        timer.then(chose);
+                    }
+                }
+
+                chose();
+            };*/
 
             // 快捷方法
             /**
