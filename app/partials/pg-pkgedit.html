@@ -14,10 +14,10 @@
                 scene-list-item>
                     <!--left 缩略图-->
                 <div class="{{package.appPlatform === 'android' ? 's4':'i5'}}">
-                    <div class="scene" parent-element ng-style="{'background-image': 'url(' + fileRoot + scene.background + ')'}">
+                    <div class="scene" ng-style="{'background-image': 'url(' + fileRoot + scene.background + ')'}">
                         <div ng-repeat="elem in scene.elements"
                              ng-include="'partials/scene-element-item.html'"
-                             scene-element parent-element copy-element class="scene-element" ng-class="elem.type" ng-style="{left: elem.posX, top:elem.posY}"></div>
+                             class="scene-element" ng-class="elem.type" ng-style="{left: elem.posX, top:elem.posY}"></div>
                     </div>
                 </div>
 

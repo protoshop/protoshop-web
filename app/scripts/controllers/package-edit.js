@@ -119,7 +119,7 @@ angular.module('toHELL')
         });
 
         $scope.$on('goview.roadmap', function () {
-            var scenes = angular.element('.scenes-list li'), images = [], len = scenes.length;
+            var scenes = angular.element('.scenes-list'), images = [], len = scenes.length;
             scenes.each(function (i, scene) {
                 html2canvas(scene, {
                     allowTaint: true,
