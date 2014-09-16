@@ -182,5 +182,35 @@
                 "height": 340
             }
         }
+    },
+    "notes" : {
+        "group" : "Advance",
+        "label" : "Notes",
+        "init" : {
+            "type": "view",
+            "posX": 480,
+            "posY": 0,
+            "width": 240,
+            "height": 160,
+            "opacity": 1,
+            "bgColor": "#E6E7E8",
+            "wrapperSize" : true
+        }
+    },
+    "paragraph" : {
+        "group": "Basic",
+        "label": "Paragraph",
+        "init": {
+            "type": "label",
+            "posX": 0,
+            "posY": 0,
+            "width": 120,
+            "height": 44,
+
+            "text": "label",
+            "textColor": "#333333",
+            "textSize": 14,
+            "textAlign": "left"
+        }
     }
 }
