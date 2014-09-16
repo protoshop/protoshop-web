@@ -4,14 +4,15 @@
 'use strict';
 
 angular.module('toHELL')
-    .controller('roadMapCTRL', ['$scope', '$location', '$routeParams', 'accountService', 'backendService',
-        function ($scope, $location, $routeParams, accountService, backendService) {
+    .controller('roadMapCTRL', ['$scope', '$location', '$routeParams', 'ENV','accountService', 'backendService',
+        function ($scope, $location, $routeParams, ENV, accountService, backendService) {
+            $scope.fileRoot = ENV.pkgRoot + $routeParams.pkgId + '/';
             $scope.$on('goview.edit', function () {
                 $location.path('/package/' + $routeParams.pkgId);
 
             });
 
-            $scope.scenes = localStorage.getItem('dataImgs' + $routeParams.pkgId).split('||');
+            //$scope.scenes = localStorage.getItem('dataImgs' + $routeParams.pkgId).split('||');
 
             function getBlocks(elements) {
                 var links = [];
@@ -45,10 +46,9 @@ angular.module('toHELL')
                 $scope.scenesBlocks = {};
                 scenes.forEach(function (scene) {
                     $scope.scenesBlocks[scene.id] = {
-                        name: scene.name,
-                        id: scene.id,
                         links: getBlocks(scene.elements),
-                        order: scene.order
+                        order: scene.order,
+                        scene : scene
                     }
                 });
 

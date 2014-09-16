@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('toHELL')
-    .controller('PackageEditCTRL', function ($scope, $routeParams, $document, ENV, formDataObject, $location, backendService, editService, $timeout, notifyService, accountService) {
+    .controller('PackageEditCTRL', function ($scope, $routeParams, $document, ENV, formDataObject, $location,
+                                             backendService, editService, $timeout, notifyService, accountService) {
         if (!accountService.isLoggedIn()) {
             $location.path('/');
             return;
@@ -119,22 +120,23 @@ angular.module('toHELL')
         });
 
         $scope.$on('goview.roadmap', function () {
-            var scenes = angular.element('.scenes-list'), images = [], len = scenes.length;
-            scenes.each(function (i, scene) {
-                html2canvas(scene, {
-                    allowTaint: true,
-                    onrendered: function (canvas) {
-                        images.push(canvas.toDataURL("image/png"));
-                        console.log(images[i]);
-                        if (i == len - 1) {
-                            $scope.$apply(function () {
-                                $location.path('/roadmap/' + $routeParams.pkgId);
-                            });
-                            localStorage.setItem('dataImgs' + $routeParams.pkgId, images.join('||'));
-                        }
-                    }
-                });
-            });
+            $location.path('/roadmap/' + $routeParams.pkgId);
+//            var scenes = angular.element('.scenes-list'), images = [], len = scenes.length;
+//            scenes.each(function (i, scene) {
+//                html2canvas(scene, {
+//                    allowTaint: true,
+//                    onrendered: function (canvas) {
+//                        images.push(canvas.toDataURL("image/png"));
+//                        console.log(images[i]);
+//                        if (i == len - 1) {
+//                            $scope.$apply(function () {
+//                                $location.path('/roadmap/' + $routeParams.pkgId);
+//                            });
+//                            localStorage.setItem('dataImgs' + $routeParams.pkgId, images.join('||'));
+//                        }
+//                    }
+//                });
+//            });
 
         });
 
