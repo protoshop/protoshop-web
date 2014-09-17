@@ -287,7 +287,14 @@ i { font-style: normal; }
 
 /* roadmap @neroWX */
 .roadmap-page,.roadmap-dom{ position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
-.map{ position: absolute; width: 160px; height: 284px; border:1px solid #ccc; z-index: 100}
+.map{ position: absolute; z-index: 100;}
+.map .i5,.map .s4{background:none; margin: 0 auto;}
+.map .i5{ width: 160px; height: 284px;}
+.map .s4{ width: 160px; height: 256px;}
+.map .i5 .scene,.map .s4 .scene{ margin: 0; padding: 0; background: #fff; border:1px solid #ccc;-webkit-transform-origin:0% 0%; background-size:100% 100%;}
+.map .i5 .scene{-webkit-transform:scale(0.5);}
+.map .s4 .scene{-webkit-transform:scale(0.4);}
+
 .ancher-left,.ancher-right{ position: absolute; width: 6px; height: 6px; border-radius: 4px; background: #FFF200; border:1px solid #ccc; top: 50%; -webkit-transform:translateY(-50%); transform:translateY(-50%);}
 .ancher-left{ left: -4px; z-index: 2;}
 .ancher-right{ right: -4px; z-index: 2;}
