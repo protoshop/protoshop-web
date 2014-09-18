@@ -43,26 +43,29 @@ angular.module('toHELL')
                 var _package = result[0];
                 var scenes = _package.scenes;
                 $scope.package = _package;
-                $scope.scenesBlocks = {};
+                $scope.scenesBlocks = [];
                 scenes.forEach(function (scene) {
-                    $scope.scenesBlocks[scene.id] = {
+                    $scope.scenesBlocks.push({
                         links: getBlocks(scene.elements),
                         order: scene.order,
                         scene : scene,
                         id : scene.id
-                    }
+                    });
                 });
 
                 $scope.lines = getLines($scope.scenesBlocks);
             });
 
             function getLines(blocks) {
-                var lines = [], keys = Object.keys(blocks), linesInfo=[];
-                keys.forEach(function (key) {
-                    var from = blocks[key], links = from.links || [], forder = from.order, fid = from.id;
+                var lines = [], linesInfo=[];
+                blocks = blocks ||[];
+                blocks.forEach(function (block) {
+                    var from = block, links = from.links || [], forder = from.order, fid = from.id;
                     from.lines = from.lines || [];
                     links.forEach(function (bid) {
-                        var to =blocks[bid], torder = to.order, x1, x2, tid = to.id;
+                        var to =blocks.filter(function(block){
+                            return block.id == bid;
+                        })[0], torder = to.order, x1, x2, tid = to.id;
                         to.lines=to.lines||[];
                         x1 = forder < torder ? (forder + 1) * 200 : forder * 200 + 40;
                         x2 = forder < torder ? torder * 200 + 40 : (torder + 1) * 200;
