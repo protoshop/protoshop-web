@@ -288,7 +288,7 @@ i { font-style: normal; }
 /* roadmap @neroWX */
 .roadmap-page,.roadmap-dom{ position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
 .map{ position: absolute; z-index: 100;}
-.map .i5,.map .s4{background:none; margin: 0 auto;}
+.map .i5,.map .s4{background:none; margin: 0 auto;overflow: hidden}
 .map .i5{ width: 160px; height: 284px;}
 .map .s4{ width: 160px; height: 256px;}
 .map .i5 .scene,.map .s4 .scene{ margin: 0; padding: 0; background: #fff; border:1px solid #ccc;-webkit-transform-origin:0% 0%; background-size:100% 100%;}

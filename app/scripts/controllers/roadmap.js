@@ -48,7 +48,8 @@ angular.module('toHELL')
                     $scope.scenesBlocks[scene.id] = {
                         links: getBlocks(scene.elements),
                         order: scene.order,
-                        scene : scene
+                        scene : scene,
+                        id : scene.id
                     }
                 });
 
@@ -70,8 +71,8 @@ angular.module('toHELL')
                         if (forder != torder && linesInfo.indexOf(fid + '-' + tid) == -1 && linesInfo.indexOf(tid + '-' + fid) == -1) {
                             lines.push({
                                 id: 'from-' + fid + '-to-' + tid,
-                                from: [x1, 142],
-                                to: [x2, 142]
+                                from: [x1, 128],
+                                to: [x2, 128]
                             });
                             from.lines.push('to-' + tid);
                             to.lines.push('from-' + fid);

@@ -5,7 +5,9 @@ angular.module('toHELL')
  * RoadMap Drag directive
  */
     .directive('roadmapDrag', function ($document) {
+
         var targetElem,
+            platform,
             startPoint = {
                 x : 0,
                 y : 0,
@@ -17,6 +19,9 @@ angular.module('toHELL')
         return {
             restrict: 'A',
             link : function(scope, elem){
+                if (!platform){
+                    platform = scope.package.appPlatform == 'ios' ? 0.5 : 0.4;
+                }
                 elem.on('mousedown', startDrag);
                 $document.on('mouseup', function(){
                     $document.off('mousemove', move);
@@ -26,11 +31,11 @@ angular.module('toHELL')
 
         // 开始拖动block
         function startDrag(e){
-            targetElem = angular.element(e.target);
+            targetElem = angular.element(e.currentTarget);
             var ofs = targetElem.parent().offset();
             $document.on('mousemove', move);
-            startPoint.x = e.offsetX;
-            startPoint.y = e.offsetY;
+            startPoint.x = e.offsetX*platform;
+            startPoint.y = e.offsetY*platform;
             startPoint.ox = ofs.left;
             startPoint.oy = ofs.top;
         }
