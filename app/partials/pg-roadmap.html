@@ -2,7 +2,7 @@
 
 <div style="position:relative;margin-top: 20px;width:100%;height:100%;">
     <div class="roadmap-page">
-        <div ng-repeat="block in scenesBlocks" class="map" roadmap-drag data-lines="{{block.lines.join(' ')}}" data-order="{{block.order}}" id="block-{{block.id}}" style="left:{{200*$index+40}}px; top: 0">
+        <div ng-repeat="block in scenesBlocks  | orderBy:'order':number" class="map" roadmap-drag data-lines="{{block.lines.join(' ')}}" data-order="{{block.order}}" id="block-{{block.id}}" style="left:{{200*$index+40}}px; top: 0">
             <div class="{{package.appPlatform === 'android' ? 's4':'i5'}}">
                 <div class="scene" ng-style="{'background-image': 'url(' + fileRoot + block.scene.background + ')'}">
                     <div ng-repeat="elem in block.scene.elements"

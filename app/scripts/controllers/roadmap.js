@@ -6,6 +6,7 @@
 angular.module('toHELL')
     .controller('roadMapCTRL', ['$scope', '$location', '$routeParams', 'ENV','accountService', 'backendService',
         function ($scope, $location, $routeParams, ENV, accountService, backendService) {
+            var platform;
             $scope.fileRoot = ENV.pkgRoot + $routeParams.pkgId + '/';
             $scope.$on('goview.edit', function () {
                 $location.path('/package/' + $routeParams.pkgId);
@@ -43,6 +44,7 @@ angular.module('toHELL')
                 var _package = result[0];
                 var scenes = _package.scenes;
                 $scope.package = _package;
+                platform = _package.appPlatform;
                 $scope.scenesBlocks = [];
                 scenes.forEach(function (scene) {
                     $scope.scenesBlocks.push({
@@ -57,7 +59,7 @@ angular.module('toHELL')
             });
 
             function getLines(blocks) {
-                var lines = [], linesInfo=[];
+                var lines = [], linesInfo=[], half = platform == 'ios' ? 142 : 128;
                 blocks = blocks ||[];
                 blocks.forEach(function (block) {
                     var from = block, links = from.links || [], forder = from.order, fid = from.id;
@@ -74,8 +76,8 @@ angular.module('toHELL')
                         if (forder != torder && linesInfo.indexOf(fid + '-' + tid) == -1 && linesInfo.indexOf(tid + '-' + fid) == -1) {
                             lines.push({
                                 id: 'from-' + fid + '-to-' + tid,
-                                from: [x1, 128],
-                                to: [x2, 128]
+                                from: [x1, half],
+                                to: [x2, half]
                             });
                             from.lines.push('to-' + tid);
                             to.lines.push('from-' + fid);

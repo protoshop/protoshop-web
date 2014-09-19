@@ -33,9 +33,10 @@ angular.module('toHELL')
         function startDrag(e){
             targetElem = angular.element(e.currentTarget);
             var ofs = targetElem.parent().offset();
+            var rc = targetElem[0].getBoundingClientRect();
             $document.on('mousemove', move);
-            startPoint.x = e.offsetX*platform;
-            startPoint.y = e.offsetY*platform;
+            startPoint.x = e.pageX - rc.left;
+            startPoint.y = e.pageY - rc.top;
             startPoint.ox = ofs.left;
             startPoint.oy = ofs.top;
         }
