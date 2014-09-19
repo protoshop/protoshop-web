@@ -52,6 +52,9 @@ angular.module('toHELL')
                 height = parseInt(targetElem.height()),
                 width = parseInt(targetElem.width());
 
+            top = top.crop(0, 9999);
+            left = left.crop(0, 9999);
+
             // 移动线
             lines.forEach(function(line){
                 line = line.split('-');
@@ -75,7 +78,7 @@ angular.module('toHELL')
             // 移动block
             targetElem.css({
                 top : top + 'px',
-                left : left + 'px'
+                left : left.crop(0, 9999) + 'px'
             });
         }
     })
