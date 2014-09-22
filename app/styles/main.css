@@ -128,7 +128,7 @@ i { font-style: normal; }
 .scene-element.notes { background-color: rgba(255, 255, 255, 1); }
 .elem-text-content {}
 .vertical-top{}
-.vertical-mid{position: absolute; top: 50%; left: 0; width: 100%;  -webkit-transform: translate(0, -50%); transform: translate(0, -50%);}
+.vertical-mid{position: absolute; top: 50%; left: 0; width: 100%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%);}
 .label .element-view { border: 1px dashed rgba(0,0,0,0.2); text-align: left; }
 .imageview img { width: 100%; height: 100%; }
 
