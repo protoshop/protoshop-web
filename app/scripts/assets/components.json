@@ -204,7 +204,7 @@
         "group": "Basic",
         "label": "Paragraph",
         "init": {
-            "type": "label",
+            "type": "paragraph",
             "posX": 0,
             "posY": 0,
             "width": 120,
