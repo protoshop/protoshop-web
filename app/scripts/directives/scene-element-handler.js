@@ -53,6 +53,7 @@ angular.module('toHELL')
                             break;
                         case 'right':
                             scope.elem.width = (scope.origin.elemw + deltaX).crop(0, wrapperSize.width - scope.origin.elemx);
+                            break;
                     }
                     scope.$apply();
                 }

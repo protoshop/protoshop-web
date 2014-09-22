@@ -187,14 +187,17 @@
         "group" : "Advance",
         "label" : "Notes",
         "init" : {
-            "type": "view",
+            "type": "notes",
             "posX": 480,
             "posY": 0,
             "width": 240,
             "height": 160,
             "opacity": 1,
-            "bgColor": "#E6E7E8",
-            "wrapperSize" : true
+            "bgColor": "transparent",
+            "wrapperSize" : {
+                "height" : 1000,
+                "width" : 1000
+            }
         }
     },
     "paragraph" : {
