@@ -192,9 +192,9 @@ angular.module('toHELL')
             if ($scope.editStat.selectedElement){
                 transData = JSON.parse(JSON.stringify($scope.editStat.selectedElement));
                 deepCfg(transData);
+                // 重置elem位置到屏幕正中
                 transData.posX = ($scope.size.width - transData.width)*0.5;
                 transData.posY = ($scope.size.height - transData.height)*0.5;
-                console.log(transData);
             }
         });
 

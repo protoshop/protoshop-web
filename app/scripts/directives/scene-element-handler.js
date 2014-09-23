@@ -37,24 +37,45 @@ angular.module('toHELL')
                     var deltaX = $ev.clientX - scope.origin.mousex;
                     var deltaY = $ev.clientY - scope.origin.mousey;
                     var wrapperSize = scope.elemData ? scope.elemData().contentSize : scope.$parent.$parent.size;
-                    switch (scope.direction) {
-                        case 'up':
-                            deltaY = deltaY.crop(0 - scope.origin.elemy, scope.origin.elemh);
-                            scope.elem.posY = scope.origin.elemy + deltaY;
-                            scope.elem.height = scope.origin.elemh - deltaY;
-                            break;
-                        case 'down':
-                            scope.elem.height = (scope.origin.elemh + deltaY).crop(0, wrapperSize.height - scope.origin.elemy);
-                            break;
-                        case 'left':
-                            deltaX = deltaX.crop(0 - scope.origin.elemx, scope.origin.elemw);
-                            scope.elem.posX = scope.origin.elemx + deltaX;
-                            scope.elem.width = scope.origin.elemw - deltaX;
-                            break;
-                        case 'right':
-                            scope.elem.width = (scope.origin.elemw + deltaX).crop(0, wrapperSize.width - scope.origin.elemx);
-                            break;
+
+                    if (scope.elem.type == 'notes'){
+                        switch (scope.direction) {
+                            case 'up' :
+                                scope.elem.posY = scope.origin.elemy + deltaY;
+                                scope.elem.height = scope.origin.elemh - deltaY;
+                                break;
+                            case 'down' :
+                                scope.elem.height = (scope.origin.elemh + deltaY);
+                                break;
+                            case 'left':
+                                scope.elem.posX = scope.origin.elemx + deltaX;
+                                scope.elem.width = scope.origin.elemw - deltaX;
+                                break;
+                            case 'right':
+                                scope.elem.width = (scope.origin.elemw + deltaX);
+                                break;
+                        }
+                    }else{
+                        switch (scope.direction) {
+                            case 'up':
+                                deltaY = deltaY.crop(0 - scope.origin.elemy, scope.origin.elemh);
+                                scope.elem.posY = scope.origin.elemy + deltaY;
+                                scope.elem.height = scope.origin.elemh - deltaY;
+                                break;
+                            case 'down':
+                                scope.elem.height = (scope.origin.elemh + deltaY).crop(0, wrapperSize.height - scope.origin.elemy);
+                                break;
+                            case 'left':
+                                deltaX = deltaX.crop(0 - scope.origin.elemx, scope.origin.elemw);
+                                scope.elem.posX = scope.origin.elemx + deltaX;
+                                scope.elem.width = scope.origin.elemw - deltaX;
+                                break;
+                            case 'right':
+                                scope.elem.width = (scope.origin.elemw + deltaX).crop(0, wrapperSize.width - scope.origin.elemx);
+                                break;
+                        }
                     }
+
                     scope.$apply();
                 }
 
