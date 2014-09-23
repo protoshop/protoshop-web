@@ -184,7 +184,7 @@
         }
     },
     "notes" : {
-        "group" : "Advance",
+        "group" : "Basic",
         "label" : "Notes",
         "init" : {
             "type": "notes",
