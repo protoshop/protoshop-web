@@ -145,7 +145,9 @@ angular.module('toHELL')
          */
 
         $scope.$on('keydown', function (onEvent, keyEvent) {
-
+            console.log(keyEvent.keyCode);
+            console.log(keyEvent);
+            console.log(navigator.platform);
             switch (keyEvent.keyCode) {
                 case 8:
                     // 酌情阻止 Backspace 后退
@@ -163,6 +165,19 @@ angular.module('toHELL')
                         keyEvent.preventDefault();
                         keyEvent.stopPropagation();
                     }
+                    break;
+                case 67:
+                    // ctrl或者meta + c 复制
+                    if (keyEvent.ctrlKey || keyEvent.metaKey){
+                        $scope.$broadcast('copy-element');
+                    }
+                    break;
+                case 86:
+                    // ctrl或者meta + v 粘贴
+                    if (keyEvent.ctrlKey || keyEvent.metaKey){
+                        $scope.$broadcast('parse-element');
+                    }
+                    break;
             }
         });
 
@@ -171,4 +186,42 @@ angular.module('toHELL')
             ev.stopPropagation();
         });
 
+        var transData;
+        // 监听复制事件
+        $scope.$on('copy-element', function(){
+            if ($scope.editStat.selectedElement){
+                transData = JSON.parse(JSON.stringify($scope.editStat.selectedElement));
+                deepCfg(transData);
+                transData.posX = ($scope.size.width - transData.width)*0.5;
+                transData.posY = ($scope.size.height - transData.height)*0.5;
+                console.log(transData);
+            }
+        });
+
+        // 监听粘贴
+        $scope.$on('parse-element', function(){
+            if ($scope.editStat.selectedElement){
+                $scope.$broadcast('scene.copyElement', {
+                    elem: transData,
+                    wrapper: $scope
+                });
+            }
+            transData =null;
+        });
+
+        // 只复制数据结构，要循环删除$$hashkey
+        function deepCfg(obj) {
+            var keys = Object.keys(obj);
+            keys.forEach(function deep(key) {
+                if (key === '$$hashKey') {
+                    delete obj[key];
+                    return;
+                }
+                if (Array.isArray(obj[key])) {
+                    obj[key].forEach(function (p) {
+                        deepCfg(p);
+                    });
+                }
+            });
+        }
     });

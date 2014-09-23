@@ -10,6 +10,12 @@ angular.module('toHELL')
         return {
             restrict: 'AE',
             scope: true,
+            controller : function($scope, $element){
+                $element.on('evt:copy', function($event){
+                    console.log($event);
+                    console.log($scope);
+                });
+            },
             link: function (scope, el) {
                 el.on('mousedown', bindDragHandler);
                 el.on('mouseup', unBindDragHandler);
