@@ -3,9 +3,9 @@
 <div class="layout-main">
     <!-- 左栏：场景列表 -->
     <div class="layout-scenes" ng-click="deselectScene()">
-        <div class="panel-toggle">
+        <!--<div class="panel-toggle">
             <button class="fa fa-chevron-left"></button>
-        </div>
+        </div>-->
         <div class="scenes-title" ng-bind="package.appName"></div>
         <ul class="scenes-list">
             <li class="scene-item" ng-repeat="scene in package.scenes | orderBy:'order':number"
@@ -37,9 +37,9 @@
     </div>
     <!-- 右栏：场景修改工具区 -->
     <div class="layout-tools">
-        <div class="panel-toggle">
+        <!--<div class="panel-toggle">
             <button class="fa fa-chevron-right"></button>
-        </div>
+        </div>-->
         <div class="panel-tools">
             <!-- tools: background -->
             <div class="tools-box" ng-show="editStat.selectedScene !== null">
