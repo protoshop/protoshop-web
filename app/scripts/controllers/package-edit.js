@@ -145,9 +145,6 @@ angular.module('toHELL')
          */
 
         $scope.$on('keydown', function (onEvent, keyEvent) {
-            console.log(keyEvent.keyCode);
-            console.log(keyEvent);
-            console.log(navigator.platform);
             switch (keyEvent.keyCode) {
                 case 8:
                     // 酌情阻止 Backspace 后退
@@ -189,7 +186,7 @@ angular.module('toHELL')
         var transData;
         // 监听复制事件
         $scope.$on('copy-element', function(){
-            if ($scope.editStat.selectedElement){
+            if (!!$scope.editStat.selectedElement){
                 transData = JSON.parse(JSON.stringify($scope.editStat.selectedElement));
                 deepCfg(transData);
                 // 重置elem位置到屏幕正中
@@ -200,7 +197,7 @@ angular.module('toHELL')
 
         // 监听粘贴
         $scope.$on('parse-element', function(){
-            if ($scope.editStat.selectedElement){
+            if (!!transData){
                 $scope.$broadcast('scene.copyElement', {
                     elem: transData,
                     wrapper: $scope
