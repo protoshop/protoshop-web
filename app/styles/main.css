@@ -26,14 +26,16 @@ i { font-style: normal; }
 .btn-logout.ready .ready-text { display: inline; }
 .btn-logout.ready .todo-text { display: none; }
 
-.layout-main { display: -webkit-flex; display: flex; flex: 1; -webkit-flex: 1; justify-content: center; -webkit-justify-content: center; }
+.layout-main { display: -webkit-flex; display: flex; flex: 1; -webkit-flex: 1; justify-content: center; -webkit-justify-content: center; position: relative;}
 .layout-scenes, .layout-tools { display: -webkit-flex; display: flex; flex-direction: column; -webkit-flex-direction: column; position: relative; background: #fff; transition: all linear 0.2s; }
 .layout-scenes { width: 180px; }
 .layout-tools { width: 300px; }
-.layout-stage { display: -webkit-flex; display: flex; -webkit-flex: 1; flex: 1; justify-content: center; -webkit-justify-content: center; align-items: center; -webkit-align-items: center; background-color: rgba(0,0,0,0.2); overflow: auto; }
-.i5, .s4 { background: center no-repeat; }
-.i5 { width: 522px; height: 900px; background-image: url(../images/bg-stage-i5.png); background-size: 522px auto; }
-.s4 { width: 450px; height: 806px; background-image: url(../images/bg-stage-s4.png); background-size: 450px auto; }
+.layout-stage { display: -webkit-flex; display: flex; -webkit-flex: 1; flex: 1; background-color: rgba(0,0,0,0.2); overflow: scroll;}
+.layout-canvas{ width: 9999px; height: 9999px; position: relative;}
+.layout-canvas:after{ content: ""; position: absolute;  left: 9998px; bottom:0; width: 1px; height: 1px;}
+.i5, .s4 { background: center no-repeat;}
+.i5 { width: 522px; height: 900px; background-image: url(../images/bg-stage-i5.png); background-size: 522px auto; padding-top: 142px; box-sizing:border-box; }
+.s4 { width: 450px; height: 806px; background-image: url(../images/bg-stage-s4.png); background-size: 450px auto; padding-top: 82px; box-sizing:border-box;}
 .panel-toggle { position: absolute; top: 50%; -webkit-transform: translate(0,-50%); transform: translate(0,-50%); z-index: 99; }
 .panel-toggle button { margin-bottom: 5px; padding: 8px 10px; background: rgba(0,0,0,0.1); font-size: 16px; color: #fff; }
 .panel-toggle button:last-child { margin-bottom: 0; }
@@ -64,7 +66,7 @@ i { font-style: normal; }
 .scenes-edit button { width: 45%; height: 30px; line-height: 30px; margin-top: 5px; border: 1px solid rgba(0,0,0,0.2); border-radius: 3px; font-size: 20px; }
 .scenes-edit button:hover { background: #195fbc; color: #fff; }
 
-.scenes-list .i5,.scenes-list .s4{ background:none; margin: 0 auto;}
+.scenes-list .i5,.scenes-list .s4{ background:none; margin: 0 auto; padding: 0;}
 .scenes-list .i5{ width: 128px; height: 228px;}
 .scenes-list .s4{ width: 140px; height: 224px;}
 .scenes-list .i5 .scene,.scenes-list .s4 .scene{ margin: 0; padding: 0; background: #fff; border:1px solid #ccc;-webkit-transform-origin:0% 0%; background-size:100% 100%;}
@@ -73,8 +75,8 @@ i { font-style: normal; }
 /* Stage ( layout - center stage ) */
 
 .scene { position: relative; background-size: 100% 100% }
-.i5 .scene { width: 320px; height: 568px; margin-left: 101px; margin-top: 142px; }
-.s4 .scene { width: 400px; height: 640px; margin-left: 26px; margin-top: 82px; }
+.i5 .scene { width: 320px; height: 568px; margin-left: 101px; }
+.s4 .scene { width: 400px; height: 640px; margin-left: 26px;  }
 .scene-bg { width: 100%; height: 100%; pointer-events: none; }
 .scene-element { position: absolute }
 .scene-element:hover { box-sizing: border-box }
@@ -290,7 +292,7 @@ i { font-style: normal; }
 /* roadmap @neroWX */
 .roadmap-page,.roadmap-dom{ position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
 .map{ position: absolute; z-index: 100; -webkit-user-select:none; -ms-user-select:none; -o-user-select:none; -moz-user-select:none; user-select:none;}
-.map .i5,.map .s4{background:none; margin: 0 auto;overflow: hidden; border:1px solid #ccc;}
+.map .i5,.map .s4{background:none; margin: 0 auto; padding: 0; overflow: hidden; border:1px solid #ccc;}
 .map .i5{ width: 160px; height: 284px;}
 .map .s4{ width: 160px; height: 256px;}
 .map .i5 .scene,.map .s4 .scene{ margin: 0; padding: 0; background: #fff; -webkit-transform-origin:0% 0%; background-size:100% 100%;}
