@@ -1,140 +1,157 @@
-<div class="scene-setting">
-  <div class="scene-setting-line"></div>
-  <div class="scene-setting-panel">
-    <h3><button class="element-delete" ng-click="deleteElement()">DELETE</button>{{elem.type.toUpperCase()}}</h3>
-
-    <div class="setting-title">Size &amp; Position:</div>
-    <div class="setting-prop">
-      <div class="prop-size">
-        <label>X <input type="number" ng-model="elem.posX" /></label>
-        <label>Y <input type="number" ng-model="elem.posY" /></label>
-        <label>W <input type="number" ng-model="elem.width" /></label>
-        <label>H <input type="number" ng-model="elem.height" /></label>
-      </div>
+<div class="tools-box" ng-show="elem = editStat.selectedElement">
+    <div class="tools-title">
+        <span class="element-delete" ng-click="deleteElement()">DELETE</span>
+        {{elem.type.toUpperCase()}}
     </div>
+    <div class="scene-setting">
+        <div class="scene-setting-line"></div>
+        <div class="scene-setting-panel">
 
-    <div ng-if="elem.textColor">
-      <div class="setting-title">Text:</div>
-      <div class="setting-prop">
-        <div class="prop-text">
-          <input type="text" ng-model="elem.text" placeholder="Here is text..." />
-          <select ng-model="elem.textSize" ng-options="v for v in props.textSize"></select>
-          <input type="color" ng-model="elem.textColor" />
+            <div class="setting-title">Size &amp; Position:</div>
+            <div class="setting-prop">
+                <div class="prop-size">
+                    <label>X <input type="number" ng-model="elem.posX"/></label>
+                    <label>Y <input type="number" ng-model="elem.posY"/></label>
+                    <label>W <input type="number" ng-model="elem.width"/></label>
+                    <label>H <input type="number" ng-model="elem.height"/></label>
+                </div>
+            </div>
+
+            <div ng-if="elem.textColor">
+                <div class="setting-title">Text:</div>
+                <div class="setting-prop">
+                    <div class="prop-text">
+                        <input type="text" ng-model="elem.text" placeholder="Here is text..."/>
+                        <select ng-model="elem.textSize" ng-options="v for v in props.textSize"></select>
+                        <input type="color" ng-model="elem.textColor"/>
+                    </div>
+                    <div class="prop-textstyle">
+                        <label>
+                            <input type="checkbox" ng-model="elem.textBold" name="text-bold"/>
+                            <i class="fa fa-bold" title="bold"></i>
+                        </label>
+                        <label>
+                            <input type="checkbox" ng-model="elem.textItalic" name="text-italic"/>
+                            <i class="fa fa-italic" title="italic"></i>
+                        </label>
+                        <label>
+                            <input type="checkbox" ng-model="elem.textUnderline" name="text-underline"/>
+                            <i class="fa fa-underline" title="underline"></i>
+                        </label>
+                    </div>
+                    <div class="prop-textalign">
+                        <label>
+                            <input type="radio" ng-model="elem.textAlign" name="text-align" value="left"/>
+                            <i class="fa fa-align-left" title="align-left"></i>
+                        </label>
+                        <label>
+                            <input type="radio" ng-model="elem.textAlign" name="text-align" value="center"/>
+                            <i class="fa fa-align-center" title="align-center"></i>
+                        </label>
+                        <label>
+                            <input type="radio" ng-model="elem.textAlign" name="text-align" value="right"/>
+                            <i class="fa fa-align-right" title="align-right"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="elem.opacity !== undefined">
+                <div class="setting-title">Opacity</div>
+                <div class="setting-prop">
+                    <div class="prop-opacity">
+                        <input type="range" ng-model="elem.opacity" name="opacity" min="0" max="1" step="0.01"
+                               value="1">
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="elem.contentSize">
+                <div class="setting-title">Wrapper Size:</div>
+                <div class="setting-prop">
+                    <div class="prop-size">
+                        <label>W <input type="number" ng-model="elem.contentSize.width"/></label>
+                        <label>H <input type="number" ng-model="elem.contentSize.height"/></label>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="elem.bgColor">
+                <div class="setting-title">Style:</div>
+                <div class="setting-prop">
+                    <div class="prop-style">Background Color:
+                        <input type="color" ng-model="elem.bgColor"/>
+                    </div>
+                    <div ng-if="elem.bgImage" class="prop-style">Background Image:
+                        <input type="text" ng-model="elem.bgImage"/>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="elem.image !== undefined">
+                <div class="setting-title">Image:</div>
+                <div class="setting-prop">
+                    <div class="prop-style">
+                        <label>
+                            <div class="image-hint" ng-if="elem.image === ''">Select Image</div>
+                            <input type="file" uploader data-handlers="imageViewUploadHandlers"
+                                   data-current="{{editStat.selectedScene.background||''}}" style="display:none">
+                            <img style="max-width:100%; max-height: 200px" ng-if="elem.image"
+                                 ng-src="{{fileRoot + elem.image}}"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="elem.jumpto">
+                <div class="setting-title">Jump To:</div>
+                <div class="setting-prop">
+                    <div class="prop-goto">
+                        <select ng-model="elem.jumpto.target"
+                                ng-options="s.id as s.name for s in package.scenes"></select>
+                    </div>
+                    <div class="prop-transition">
+                        <label>
+                            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name"
+                                   value="none"/>
+                            <i class="fa fa-ban"></i></label>
+                        <label>
+                            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name"
+                                   value="push"/>
+                            <i>Push</i></label>
+                        <label>
+                            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name"
+                                   value="cover"/>
+                            <i>Cover</i></label>
+                    </div>
+                    <div class="prop-transition" ng-hide="elem.jumpto.transitionType==='none'">
+                        <label><input type="radio" ng-model="elem.jumpto.transitionDirection"
+                                      name="transition-direction"
+                                      value="up"/>
+                            <i class="fa fa-arrow-up" title="up"></i></label>
+                        <label><input type="radio" ng-model="elem.jumpto.transitionDirection"
+                                      name="transition-direction"
+                                      value="right"/>
+                            <i class="fa fa-arrow-right" title="right"></i></label>
+                        <label><input type="radio" ng-model="elem.jumpto.transitionDirection"
+                                      name="transition-direction"
+                                      value="down"/>
+                            <i class="fa fa-arrow-down" title="down"></i></label>
+                        <label><input type="radio" ng-model="elem.jumpto.transitionDirection"
+                                      name="transition-direction"
+                                      value="left"/>
+                            <i class="fa fa-arrow-left" title="left"></i></label>
+
+                        <div class="prop-transition-time">
+                            <input type="text" ng-model="elem.jumpto.transitionDelay" time-unit/>
+                            s delay<br/>
+                            <input type="text" ng-model="elem.jumpto.transitionDuration" time-unit/>
+                            s duration
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="prop-textstyle">
-          <label>
-            <input type="checkbox" ng-model="elem.textBold" name="text-bold" />
-            <i class="fa fa-bold" title="bold"></i>
-          </label>
-          <label>
-            <input type="checkbox" ng-model="elem.textItalic" name="text-italic" />
-            <i class="fa fa-italic" title="italic"></i>
-          </label>
-          <label>
-            <input type="checkbox" ng-model="elem.textUnderline" name="text-underline" />
-            <i class="fa fa-underline" title="underline"></i>
-          </label>  
-        </div>
-        <div class="prop-textalign">
-          <label>
-            <input type="radio" ng-model="elem.textAlign" name="text-align" value="left" />
-            <i class="fa fa-align-left" title="align-left"></i>
-          </label>
-          <label>
-            <input type="radio" ng-model="elem.textAlign" name="text-align" value="center" />
-            <i class="fa fa-align-center" title="align-center"></i>
-          </label>
-          <label>
-            <input type="radio" ng-model="elem.textAlign" name="text-align" value="right" />
-            <i class="fa fa-align-right" title="align-right"></i>
-          </label>  
-        </div>
-      </div>
     </div>
-
-    <div ng-if="elem.opacity !== undefined">
-      <div class="setting-title">Opacity</div>
-      <div class="setting-prop">
-        <div class="prop-opacity">
-          <input type="range" ng-model="elem.opacity" name="opacity"  min="0" max="1" step="0.01" value="1">
-        </div>
-      </div>
-    </div>
-
-    <div ng-if="elem.contentSize">
-      <div class="setting-title">Wrapper Size:</div>
-      <div class="setting-prop">
-        <div class="prop-size">
-          <label>W <input type="number" ng-model="elem.contentSize.width" /></label>
-          <label>H <input type="number" ng-model="elem.contentSize.height" /></label>
-        </div>
-      </div>
-    </div>
-
-    <div ng-if="elem.bgColor">
-      <div class="setting-title">Style:</div>
-      <div class="setting-prop">
-        <div class="prop-style">Background Color:
-          <input type="color" ng-model="elem.bgColor" />
-        </div>
-        <div ng-if="elem.bgImage" class="prop-style">Background Image:
-          <input type="text" ng-model="elem.bgImage" />
-        </div>
-      </div>
-    </div>
-
-    <div ng-if="elem.image !== undefined">
-      <div class="setting-title">Image:</div>
-      <div class="setting-prop">
-        <div class="prop-style">
-          <label>
-            <div class="image-hint" ng-if="elem.image === ''">Select Image</div>
-            <input type="file" uploader data-handlers="imageViewUploadHandlers" data-current="{{editStat.selectedScene.background||''}}" style="display:none">
-            <img style="max-width:100%; max-height: 200px" ng-if="elem.image" ng-src="{{fileRoot + elem.image}}" />
-          </label>
-        </div>
-      </div>
-    </div>
-
-    <div ng-if="elem.jumpto">
-      <div class="setting-title">Jump To:</div>
-      <div class="setting-prop">
-        <div class="prop-goto">
-          <select ng-model="elem.jumpto.target" ng-options="s.id as s.name for s in package.scenes"></select>
-        </div>
-        <div class="prop-transition">
-          <label>
-            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name" value="none" />
-            <i class="fa fa-ban"></i></label>
-          <label>
-            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name" value="push" />
-            <i>Push</i></label>
-          <label>
-            <input type="radio" ng-model="elem.jumpto.transitionType" name="transition-name" value="cover" />
-            <i>Cover</i></label>
-        </div>
-        <div class="prop-transition" ng-hide="elem.jumpto.transitionType==='none'">
-          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
-                        value="up" />
-            <i class="fa fa-arrow-up" title="up"></i></label>
-          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
-                        value="right" />
-            <i class="fa fa-arrow-right" title="right"></i></label>
-          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
-                        value="down" />
-            <i class="fa fa-arrow-down" title="down"></i></label>
-          <label><input type="radio" ng-model="elem.jumpto.transitionDirection" name="transition-direction"
-                        value="left" />
-            <i class="fa fa-arrow-left" title="left"></i></label>
-          <div class="prop-transition-time">
-            <input type="text" ng-model="elem.jumpto.transitionDelay" time-unit />
-            s delay<br />
-            <input type="text" ng-model="elem.jumpto.transitionDuration" time-unit />
-            s duration
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>

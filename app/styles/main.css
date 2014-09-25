@@ -93,10 +93,10 @@ i { font-style: normal; }
 .element-view { height: 100%; width: 100%; text-align: center; pointer-events: none; overflow: hidden; word-break:break-all;}
 .dragover > .element-view { box-shadow: 0 0 0 2px #ffd700; }
 
-.scene-setting { position: absolute; right: 100%; top: 0; margin-right: 10px; z-index: 99; }
-.element-delete { float: right; color: #DC143C; cursor: pointer; font-size: 14px; line-height: 32px; }
+.scene-setting {width: 100%;position: relative}
+.element-delete {float: right;color: #DC143C; cursor: pointer; font-size: 14px; line-height: 32px; }
 .scene-setting-line { background: #fff; }
-.scene-setting-panel { width: 240px; padding-bottom: 10px; background: #fff; border: 1px solid #ccc; }
+.scene-setting-panel { padding-bottom: 10px; background: #fff; }
 .scene-setting-panel h3 { padding: 0 10px; line-height: 2; background: rgba(0,0,0,0.1); border-bottom: 1px solid #ccc; }
 .scene-setting-panel .setting-title { padding: 10px; font-weight: 700; }
 .scene-setting-panel .setting-prop { padding: 0 20px; font-size: 12px; }
@@ -108,7 +108,6 @@ i { font-style: normal; }
 .setting-prop .prop-size input { width: 40px; margin-left: 5px; }
 .setting-prop .prop-text input { width: 90px; }
 .setting-prop .prop-text select { width: 48px; }
-{visibility: hidden; width: 0; height: 0;}
 .setting-prop .prop-style input { width: 40px; }
 .setting-prop input[type="color"] { width: 40px; height: 26px; padding: 0 2px; border-radius: 3px; vertical-align: middle; }
 .setting-prop .prop-goto select { width: 188px; }

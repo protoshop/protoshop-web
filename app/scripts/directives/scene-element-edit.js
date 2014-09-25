@@ -10,13 +10,11 @@ angular.module('toHELL')
         return {
             restrict: 'AE',
             replace: true,
-            scope: {
-                elemData: '&elemData'
-            },
+            scope: true,
             templateUrl: 'partials/scene-element-edit.html',
             controller: function ($scope, uiprops) {
 
-                $scope.package = $scope.$parent.package;
+                //$scope.package = $scope.$parent.package;
 
                 // For enum props config
                 uiprops.then(function (props) {
@@ -57,7 +55,7 @@ angular.module('toHELL')
                  */
             },
             link: function (scope) {
-                scope.elem = scope.elemData();
+                //scope.elem = scope.elemData();
             }
         };
     });
