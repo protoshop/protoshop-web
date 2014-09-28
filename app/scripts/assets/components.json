@@ -208,11 +208,11 @@
             "type": "paragraph",
             "posX": 0,
             "posY": 0,
-            "width": 120,
-            "height": 44,
+            "width": 240,
+            "height": 160,
             "lineHeight" : 24,
 
-            "text": "label",
+            "text": "Text",
             "textColor": "#333333",
             "textSize": 14,
             "textAlign": "left"

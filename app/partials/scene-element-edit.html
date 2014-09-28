@@ -21,7 +21,7 @@
                 <div class="setting-title">Text:</div>
                 <div class="setting-prop">
                     <div class="prop-text">
-                        <input type="text" ng-model="elem.text" placeholder="Here is text..."/>
+                        <input ng-if="elem.type !== 'paragraph'" type="text" ng-model="elem.text" placeholder="Here is text..."/>
                         <select ng-model="elem.textSize" ng-options="v for v in props.textSize"></select>
                         <input type="color" ng-model="elem.textColor"/>
                         <select ng-if="elem.type === 'paragraph'" ng-model="elem.lineHeight" ng-options="v for v in props.lineHeight"></select>

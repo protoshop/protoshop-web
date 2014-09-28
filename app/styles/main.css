@@ -1,6 +1,6 @@
 /* Protoshop @lilyxue */
 html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, th, td, em, form, input,select, textarea, button, header, nav, menu, section, aside, footer { margin: 0; padding: 0; }
-body { background:#fff; font-size:14px; font-family: Helvetica, Arial, sans-serif; font-weight: 100; -webkit-user-select: none; -webkit-text-size-adjust: none; color: #333; }
+body { background:#fff; font-size:14px; font-family: Helvetica, Arial, sans-serif; font-weight: 100;-webkit-user-select:none; -webkit-text-size-adjust: none; color: #333; }
 html, body { height: 100%; }
 ul, li { list-style: none; }
 a { color:#000; text-decoration:none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
@@ -126,7 +126,7 @@ i { font-style: normal; }
 .scene-element.button { background-color: rgba(255, 135, 124, 0.4); }
 .scene-element.view { background-color: rgba(120, 180, 255, 0.3); }
 .scene-element.scrollview { background-color: rgba(120, 200, 255, 0.4); }
-.scene-element.notes { background-color: rgba(255, 255, 255, 0.2); }
+.scene-element.notes { background-color: rgba(255, 255, 255, 1); }
 .elem-text-content {}
 .vertical-top{}
 .vertical-mid{position: absolute; top: 50%; left: 0; width: 100%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%);}

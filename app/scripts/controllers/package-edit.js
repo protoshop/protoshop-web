@@ -148,7 +148,8 @@ angular.module('toHELL')
             switch (keyEvent.keyCode) {
                 case 8:
                     // 酌情阻止 Backspace 后退
-                    if (keyEvent.target.tagName === 'INPUT') {
+                    console.log(angular.element(keyEvent.target).prop('contenteditable'));
+                    if (keyEvent.target.tagName === 'INPUT'|| angular.element(keyEvent.target).attr('contenteditable')) {
                         // 如果焦点在输入框内，则阻止冒泡
                         keyEvent.stopPropagation();
                     }
