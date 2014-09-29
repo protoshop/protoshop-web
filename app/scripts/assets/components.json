@@ -23,8 +23,7 @@
                 "transitionDirection": "left",
                 "transitionDelay": 0,
                 "transitionDuration": 0.3
-            },
-            "notes":[]
+            }
         }
     },
     "hotspot": {
@@ -198,7 +197,8 @@
             "wrapperSize" : {
                 "height" : 1000,
                 "width" : 1000
-            }
+            },
+            "relationto" : []
         }
     },
     "paragraph" : {

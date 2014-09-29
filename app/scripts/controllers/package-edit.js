@@ -8,6 +8,8 @@ angular.module('toHELL')
             return;
         }
 
+
+
         $scope.fileRoot = ENV.pkgRoot + $routeParams.pkgId + '/';
 
         /**
@@ -54,6 +56,7 @@ angular.module('toHELL')
             // 默认选中第一个场景
             var sceneId = editService.findScene('order', 0);
             $scope.selectScene(sceneId);
+            console.log(editService.getComments());
         });
 
         editService.setStat($scope.editStat);
@@ -121,6 +124,7 @@ angular.module('toHELL')
 
         $scope.$on('goview.roadmap', function () {
             $location.path('/roadmap/' + $routeParams.pkgId);
+            // TODO 抓屏效果，目前已经废弃
 //            var scenes = angular.element('.scenes-list'), images = [], len = scenes.length;
 //            scenes.each(function (i, scene) {
 //                html2canvas(scene, {
@@ -148,7 +152,6 @@ angular.module('toHELL')
             switch (keyEvent.keyCode) {
                 case 8:
                     // 酌情阻止 Backspace 后退
-                    console.log(angular.element(keyEvent.target).prop('contenteditable'));
                     if (keyEvent.target.tagName === 'INPUT'|| angular.element(keyEvent.target).attr('contenteditable')) {
                         // 如果焦点在输入框内，则阻止冒泡
                         keyEvent.stopPropagation();

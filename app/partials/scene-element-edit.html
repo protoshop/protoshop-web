@@ -104,6 +104,15 @@
                 </div>
             </div>
 
+            <div ng-if="elem.relationto">
+                <div class="setting-title">Relation To:</div>
+                <div class="setting-prop">
+                    <div class="prop-goto">
+                        <select ng-model="elem.relationto" ng-options="e.id as e.name for e in editStat.selectedElement.elements"></select>
+                    </div>
+                </div>
+            </div>
+
             <div ng-if="elem.jumpto">
                 <div class="setting-title">Jump To:</div>
                 <div class="setting-prop">

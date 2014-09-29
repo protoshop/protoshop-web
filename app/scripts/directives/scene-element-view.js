@@ -14,7 +14,6 @@ angular.module('toHELL')
                 if (scope.elem.type == 'paragraph') {
                     el.parent('.scene-element').on('dblclick', function (e) {
                         e.stopPropagation();
-
                         el.css('pointer-events', 'auto');
 
                         // 真正的内容元素
@@ -22,7 +21,10 @@ angular.module('toHELL')
                         para.css('pointer-events', 'auto')
                             // 监听内容编辑
                             .on('input', function () {
-                                scope.$apply(read);
+                                scope.$apply(function() {
+                                    var html = para.html();
+                                    ngModel.$setViewValue(html);
+                                });
                             })
                             .on('blur', function () {
                                 para.css('pointer-events', 'none')
@@ -31,10 +33,10 @@ angular.module('toHELL')
                             })
                             .attr('contenteditable', true).focus();
 
-                        function read() {
-                            var html = para.html();
-                            ngModel.$setViewValue(html);
-                        }
+                        // 编辑时取消选中状态
+                        scope.$apply(function(){
+                            scope.editStat.selectedElement=null;
+                        });
                     });
                 }
             }

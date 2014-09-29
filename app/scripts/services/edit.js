@@ -572,6 +572,16 @@
                     width: (200 + gotoSignX) // 200表示goto thumb图距离设备的最小距离，目前单位实际为px
                 };
             }
+
+            this.getComments = function(){
+                var scene = self.editStat.selectedScene,
+                    elements = !!scene ? scene.elements:[],
+                    cms = elements.filter(function(elem){
+                        return elem.type == 'notes';
+                    });
+                console.log(scene);
+                return cms;
+            }
         }
 
         return new EditServiceInstance();

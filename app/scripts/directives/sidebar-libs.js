@@ -6,7 +6,6 @@ angular.module('toHELL').directive('sidebarlibs', function (uilib) {
         templateUrl: 'partials/sidebar-libs.html',
         link: function (scope) {
             scope.dragComponent = function (ev) {
-                console.log(scope);
                 var type = ev.target.getAttribute('data-type');
                 var dt = ev.originalEvent.dataTransfer;
                 dt.setData('type', type);
