@@ -211,6 +211,8 @@
         "group" : "Basic",
         "label" : "Notes",
         "init" : {
+            "cid" : "",
+            "name" : "",
             "type": "notes",
             "posX": 480,
             "posY": 0,

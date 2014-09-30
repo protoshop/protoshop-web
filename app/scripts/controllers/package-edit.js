@@ -56,7 +56,7 @@ angular.module('toHELL')
             // 默认选中第一个场景
             var sceneId = editService.findScene('order', 0);
             $scope.selectScene(sceneId);
-            console.log(editService.getComments());
+            $scope.comments = editService.getComments();
         });
 
         editService.setStat($scope.editStat);
