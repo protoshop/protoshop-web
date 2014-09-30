@@ -10,8 +10,10 @@ angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib) {
             scope.$on('scene.addElement', function (event, args) {
                 uilib.then(function (lib) {
                     var newElement = JSON.parse(JSON.stringify(lib.data[args.type].init));
-                    newElement.posX = parseInt(args.posx - 60).crop(0, 200);
-                    newElement.posY = parseInt(args.posy - 22).crop(0, 436);
+                    newElement.posX = args.type === 'notes' ? parseInt(args.posx - newElement.width * 0.5 - 101)
+                        : parseInt(args.posx - 60).crop(0, 200);
+                    newElement.posY = args.type === 'notes' ? parseInt(args.posy - newElement.height * 0.5 - 142)
+                        : parseInt(args.posy - 22).crop(0, 436);
                     var host = args.wrapper.elem || scope.editStat.selectedScene;
                     host.elements = host.elements || [];
                     host.elements.push(newElement);

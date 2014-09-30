@@ -108,7 +108,7 @@
                 <div class="setting-title">Relation To:</div>
                 <div class="setting-prop">
                     <div class="prop-goto">
-                        <select ng-model="elem.relationto" ng-options="e.id as e.name for e in editStat.selectedElement.elements"></select>
+                        <select ng-model="elem.relationto.target" ng-options="e.id as e.type for e in editStat.selectedScene.elements"></select>
                     </div>
                 </div>
             </div>
