@@ -53,6 +53,7 @@ angular.module('toHELL')
 
                 // 拖拽事件
                 function dragCopyElement(ev) {
+                    ev.stopPropagation();
                     var elem = JSON.parse(JSON.stringify(scope.elem));
                     var ofs = {
                         ox: ev.originalEvent.offsetX,

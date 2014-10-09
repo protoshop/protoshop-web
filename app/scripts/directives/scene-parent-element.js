@@ -33,6 +33,7 @@ angular.module('toHELL')
                 $el.on('drop', function (ev) {
                     var pos = angular.element(ev.target).offset();
                     ev.stopPropagation();
+                    $el.removeClass('dragover');
                     if (ev.altKey){
                         var elem = JSON.parse(ev.originalEvent.dataTransfer.getData('originData'));
                         var ofs = JSON.parse(ev.originalEvent.dataTransfer.getData('ofs'));
@@ -44,8 +45,6 @@ angular.module('toHELL')
                         });
                         return;
                     }
-
-                    $el.removeClass('dragover');
 
                     var newElemType = ev.originalEvent.dataTransfer.getData('type');
                     if (newElemType) {
