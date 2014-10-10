@@ -144,6 +144,7 @@ angular.module('toHELL')
 
         });
 
+        var transData;
         /**
          * 响应键盘动作
          */
@@ -187,7 +188,7 @@ angular.module('toHELL')
             ev.stopPropagation();
         });
 
-        var transData;
+
         // 监听复制事件
         $scope.$on('copy-element', function(){
             if (!!$scope.editStat.selectedElement){
