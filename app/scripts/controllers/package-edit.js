@@ -8,7 +8,7 @@ angular.module('toHELL')
             return;
         }
 
-
+        console.log($scope);
 
         $scope.fileRoot = ENV.pkgRoot + $routeParams.pkgId + '/';
 
@@ -21,6 +21,7 @@ angular.module('toHELL')
             selectedScene: null,
             selectedElement: null,
             selectedAction: null,
+            comments : null,
             gotoSignStyle: {
                 top: '',
                 right: ''
@@ -56,7 +57,6 @@ angular.module('toHELL')
             // 默认选中第一个场景
             var sceneId = editService.findScene('order', 0);
             $scope.selectScene(sceneId);
-            $scope.comments = editService.getComments();
         });
 
         editService.setStat($scope.editStat);

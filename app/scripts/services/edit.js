@@ -3,7 +3,7 @@
 (function () {
     var module = angular.module('toHELL');
 
-    module.factory('editService', ['$timeout',function ($timeout) {
+    module.factory('editService', [function () {
         var packageLoaded = false;
         var deviceDescription = {
             android: {
@@ -60,6 +60,7 @@
              */
             this.selectScene = function (scene) {
                 self.editStat.selectedScene = scene;
+                self.editStat.comments = self.getComments(scene);
                 // 清除掉之前可能有的其他元素、动作选择
                 self.deselectElement();
                 self.deselectAction();
@@ -573,13 +574,11 @@
                 };
             }
 
-            this.getComments = function(){
-                var scene = self.editStat.selectedScene,
-                    elements = !!scene ? scene.elements:[],
+            this.getComments = function(scene){
+                var elements = !!scene ? scene.elements:[],
                     cms = elements.filter(function(elem){
                         return elem.type == 'notes';
                     });
-                console.log(scene);
                 return cms;
             }
         }

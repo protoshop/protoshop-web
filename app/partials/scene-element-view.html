@@ -3,7 +3,7 @@
      ng-style="{left: elem.posX, top:elem.posY, height: elem.height, width: elem.width, backgroundColor:elem.bgColor, borderRadius:elem.bdRadius+'px', textAlign:elem.textAlign, opacity:elem.opacity}" >
 
   <p ng-if="elem.text" class="elem-text-content{{elem.type=='paragraph' ? '' : ' vertical-mid'}}"
-        ng-style="{color:elem.textColor,fontSize:elem.textSizel,lineHeight:elem.lineHeight+'px'}" ng-class="{bold:elem.textBold, italic:elem.textItalic, underline:elem.textUnderline}">{{elem.text}}</p>
+        ng-style="{color:elem.textColor,fontSize:elem.textSize,lineHeight:elem.lineHeight+'px'}" ng-class="{bold:elem.textBold, italic:elem.textItalic, underline:elem.textUnderline}">{{elem.text}}</p>
 
   <img ng-if="elem.image" ng-src="{{fileRoot + elem.image}}" />
 

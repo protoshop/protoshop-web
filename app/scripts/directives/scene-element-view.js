@@ -22,7 +22,7 @@ angular.module('toHELL')
                             // 监听内容编辑
                             .on('input', function () {
                                 scope.$apply(function() {
-                                    var html = para.html();
+                                    var html = para.text();
                                     ngModel.$setViewValue(html);
                                 });
                             })
