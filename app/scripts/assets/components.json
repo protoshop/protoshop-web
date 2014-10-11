@@ -240,7 +240,7 @@
             "width": 240,
             "height": 160,
             "lineHeight" : 24,
-
+            "bgColor": "transparent",
             "text": "Text",
             "textColor": "#333333",
             "textSize": 14,
