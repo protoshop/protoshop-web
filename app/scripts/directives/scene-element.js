@@ -43,9 +43,6 @@ angular.module('toHELL')
                 });
 
                 scope.$on('paste-element-' + scope.elem.$$hashKey, function(){
-                    console.log('paste');
-                    console.log(parent);
-
                     if (!!transData) {
                         $rootScope.$broadcast('scene.copyElement', {
                             elem: transData,

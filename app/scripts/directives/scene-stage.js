@@ -1,5 +1,5 @@
 'use strict';
-angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib) {
+angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib, editService) {
     return {
         restrict: 'A',
         replace: true,
@@ -23,14 +23,25 @@ angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib) {
                     var host = args.wrapper.elem || scope.editStat.selectedScene;
                     host.elements = host.elements || [];
                     host.elements.push(newElement);
+                    if (isComment) {
+                        scope.editStat.comments = editService.getComments(scope.editStat.selectedScene);
+                    }
                 });
             });
 
             // handle Event 'scene.copyElement'
             scope.$on('scene.copyElement', function ($event, args) {
+                var newElement=args.elem, isComment=newElement.type == 'notes';
+                if (isComment){
+                    newElement['cid'] = 'c_' + (+new Date());
+                    scope.editStat.comments = editService.getComments(scope.editStat.selectedScene);
+                }
                 var host = args.wrapper && args.wrapper.elem || scope.editStat.selectedScene;
                     host.elements = host.elements || [];
-                    host.elements.push(args.elem);
+                    host.elements.push(newElement);
+                if (isComment) {
+                    scope.editStat.comments = editService.getComments(scope.editStat.selectedScene);
+                }
                     scope.$apply();
             });
 
