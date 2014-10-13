@@ -169,6 +169,7 @@ angular.module('toHELL')
                     }
                     break;
                 case 67:
+                    console.log($scope.editStat.selectedElement)
                     // ctrl或者meta + c 复制
                     if (keyEvent.ctrlKey || keyEvent.metaKey){
                         $scope.$broadcast('copy-element');
@@ -177,7 +178,7 @@ angular.module('toHELL')
                 case 86:
                     // ctrl或者meta + v 粘贴
                     if (keyEvent.ctrlKey || keyEvent.metaKey){
-                        $scope.$broadcast('parse-element');
+                        $scope.$broadcast('paste-element');
                     }
                     break;
             }
@@ -192,23 +193,27 @@ angular.module('toHELL')
         // 监听复制事件
         $scope.$on('copy-element', function(){
             if (!!$scope.editStat.selectedElement){
-                transData = JSON.parse(JSON.stringify($scope.editStat.selectedElement));
-                deepCfg(transData);
-                // 重置elem位置到屏幕正中
-                transData.posX = ($scope.size.width - transData.width)*0.5;
-                transData.posY = ($scope.size.height - transData.height)*0.5;
+                var elemkey = $scope.editStat.selectedElement.$$hashKey;
+                $scope.$broadcast('copy-element-' + elemkey);
+//                transData = JSON.parse(JSON.stringify($scope.editStat.selectedElement));
+//                deepCfg(transData);
+//                // 重置elem位置到屏幕正中
+//                transData.posX = ($scope.size.width - transData.width)*0.5;
+//                transData.posY = ($scope.size.height - transData.height)*0.5;
             }
         });
 
         // 监听粘贴
-        $scope.$on('parse-element', function(){
-            if (!!transData){
-                $scope.$broadcast('scene.copyElement', {
-                    elem: transData,
-                    wrapper: $scope
-                });
-            }
-            transData =null;
+        $scope.$on('paste-element', function(){
+            var elemkey = $scope.editStat.selectedElement.$$hashKey;
+            $scope.$broadcast('paste-element-' + elemkey);
+//            if (!!transData){
+//                $scope.$broadcast('scene.copyElement', {
+//                    elem: transData,
+//                    wrapper: $scope
+//                });
+//            }
+//            transData =null;
         });
 
         // 只复制数据结构，要循环删除$$hashkey

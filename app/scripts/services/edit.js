@@ -275,6 +275,7 @@
              * @todo 目前考虑自动选中第一个action，时机成熟时移除
              */
             this.selectElement = function (element) {
+
                 self.deselectAction();
                 self.deselectElement();
                 self.editStat.selectedElement = element;
@@ -344,6 +345,21 @@
                 this.selectElement(newElement);
                 self.deselectAction();
             };
+
+            this.copyElemData=function(obj){
+                var keys = Object.keys(obj);
+                keys.forEach(function deep(key) {
+                    if (key === '$$hashKey') {
+                        delete obj[key];
+                        return;
+                    }
+                    if (Array.isArray(obj[key])) {
+                        obj[key].forEach(function (p) {
+                            self.copyElemData(p);
+                        });
+                    }
+                });
+            }
 
             /**
              * 选中一个动作

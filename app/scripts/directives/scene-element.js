@@ -3,10 +3,10 @@ angular.module('toHELL')
 /**
  * Element（界面元素控件） in scene editor
  */
-    .directive('sceneElement', function ($rootScope, $document) {
+    .directive('sceneElement', function ($rootScope, $document, editService) {
         return {
             restrict: 'AE',
-            scope: true,
+
             controller: function ($scope, ENV) {
                 // Scene 的编辑区的基础环境信息。 TODO：stage 的宽和高应该取自工程配置
                 $scope.size = $scope.elem;
@@ -18,6 +18,42 @@ angular.module('toHELL')
                  * 当鼠标点下时，
                  * 记录控件和鼠标指针的当前位置，开始监听拖拽相关事件
                  */
+
+                scope.size = scope.package.appPlatform === 'ios' ? {
+                    width: 320,
+                    height: 568
+                } : {
+                    width: 400,
+                    height: 640
+                };
+                var transData,parent;
+                scope.$on('copy-element-' + scope.elem.$$hashKey, function(){
+                    parent=scope;
+
+                    while(parent=parent.$parent){
+                        if (parent.hasOwnProperty('elem') && scope.elem != parent.elem && parent.elem.elements){
+                            break;
+                        }
+                    }
+                    transData = JSON.parse(JSON.stringify(scope.editStat.selectedElement));
+                    editService.copyElemData(transData);
+                    transData.posX = (parent ? parent.elem.contentSize.width : scope.size.width - transData.width)*0.5;
+                    transData.posY = (parent ? parent.elem.contentSize.height : scope.size.height - transData.height)*0.5;
+                });
+
+                scope.$on('paste-element-' + scope.elem.$$hashKey, function(){
+                    console.log('paste');
+                    console.log(parent);
+
+                    if (!!transData) {
+                        $rootScope.$broadcast('scene.copyElement', {
+                            elem: transData,
+                            wrapper: parent
+                        });
+                    }
+                    transData = null;
+                });
+
                 function bindDragHandler($ev) {
                     // 过滤掉元素附属编辑框上的点击事件
                     if (!$ev.target.classList.contains('scene-element')) {

@@ -28,7 +28,7 @@ angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib) {
 
             // handle Event 'scene.copyElement'
             scope.$on('scene.copyElement', function ($event, args) {
-                var host = args.wrapper.elem || scope.editStat.selectedScene;
+                var host = args.wrapper && args.wrapper.elem || scope.editStat.selectedScene;
                     host.elements = host.elements || [];
                     host.elements.push(args.elem);
                     scope.$apply();

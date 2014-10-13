@@ -9,7 +9,10 @@ angular.module('toHELL')
     .directive('parentElement', function ($rootScope) {
         return {
             restrict: 'A',
+            socpe:true,
             link: function (scope, el) {
+
+                scope.aaa = 123456;
                 // Only 'scrollview' and 'view' can have child elements.
                 if (scope.elem && !(scope.elem.type === 'notes' || scope.elem.type === 'scrollview' || scope.elem.type === 'view')) {
                     return;
