@@ -250,5 +250,17 @@
                 "target" : ""
             }
         }
+    },
+    "line":{
+        "group": "Basic",
+        "label": "Line",
+        "init": {
+            "type": "line",
+            "posX": 0,
+            "posY": 0,
+            "width": 120,
+            "height": 2,
+            "bgColor" : "#0033cc"
+        }
     }
 }
