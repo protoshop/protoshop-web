@@ -310,8 +310,6 @@
                         for (var i = parent.elements.length; i--;) {
                             if (traverse(parent.elements[i], element, callback)) {
                                 return true;
-                            } else {
-                                return false;
                             }
                         }
                         return false;
@@ -353,7 +351,12 @@
                         delete obj[key];
                         return;
                     }
-                    if (Array.isArray(obj[key])) {
+
+                    if (key === 'cid'){
+                        obj[key] = '';
+                    }
+
+                    if (key === 'elements' && Array.isArray(obj[key])) {
                         obj[key].forEach(function (p) {
                             self.copyElemData(p);
                         });
