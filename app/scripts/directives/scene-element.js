@@ -26,6 +26,7 @@ angular.module('toHELL')
                     width: 400,
                     height: 640
                 };
+
                 var transData,parent;
                 scope.$on('copy-element-' + scope.elem.$$hashKey, function(){
                     parent=scope;
