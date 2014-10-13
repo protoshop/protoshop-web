@@ -19,7 +19,7 @@ angular.module('toHELL')
                  * 记录控件和鼠标指针的当前位置，开始监听拖拽相关事件
                  */
 
-                scope.size = scope.package.appPlatform === 'ios' ? {
+                scope.psize = scope.package.appPlatform === 'ios' ? {
                     width: 320,
                     height: 568
                 } : {
@@ -38,8 +38,8 @@ angular.module('toHELL')
                     }
                     transData = JSON.parse(JSON.stringify(scope.editStat.selectedElement));
                     editService.copyElemData(transData);
-                    transData.posX = (parent ? parent.elem.contentSize.width : scope.size.width - transData.width)*0.5;
-                    transData.posY = (parent ? parent.elem.contentSize.height : scope.size.height - transData.height)*0.5;
+                    transData.posX = (parent ? parent.elem.contentSize.width : scope.psize.width - transData.width)*0.5;
+                    transData.posY = (parent ? parent.elem.contentSize.height : scope.psize.height - transData.height)*0.5;
                 });
 
                 scope.$on('paste-element-' + scope.elem.$$hashKey, function(){
