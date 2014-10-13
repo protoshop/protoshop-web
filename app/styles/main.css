@@ -167,7 +167,9 @@ i { font-style: normal; }
 .thumb-list { background-position: -160px -256px; }
 .thumb-toolbar { background-position: -240px -80px; }
 .thumb-label { background-position: -320px -160px; }
+.thumb-line { background-position: -320px 0px; }
 .thumb-view { background-position: -80px -80px; }
+.thumb-paragraph { background-position: -560px -160px; }
 .thumb-image-view { background-position: -640px 0; }
 .thumb-scroll-view { background-position: 0 -80px; }
 
