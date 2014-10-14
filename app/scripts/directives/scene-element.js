@@ -28,6 +28,10 @@ angular.module('toHELL')
                 };
 
                 var transData,parent;
+
+                /**
+                 * 复制
+                 */
                 scope.$on('copy-element-' + scope.elem.$$hashKey, function(){
                     parent=scope;
 
@@ -38,10 +42,13 @@ angular.module('toHELL')
                     }
                     transData = JSON.parse(JSON.stringify(scope.editStat.selectedElement));
                     editService.copyElemData(transData);
-                    transData.posX = (parent ? parent.elem.contentSize.width : scope.psize.width - transData.width)*0.5;
-                    transData.posY = (parent ? parent.elem.contentSize.height : scope.psize.height - transData.height)*0.5;
+                    transData.posX = (parent ? parent.elem.width : scope.psize.width - transData.width)*0.5;
+                    transData.posY = (parent ? parent.elem.height : scope.psize.height - transData.height)*0.5;
                 });
 
+                /**
+                 * 粘贴
+                 */
                 scope.$on('paste-element-' + scope.elem.$$hashKey, function(){
                     if (!!transData) {
                         $rootScope.$broadcast('scene.copyElement', {
