@@ -95,8 +95,8 @@ angular.module('toHELL')
                     var minY = 0;
                     //
                     if (scope.elem.wrapperSize) {
-                        scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(99999, minX);
-                        scope.elem.posY = (scope.origin.posy + $ev.clientY - scope.origin.mousey).crop(99999, minY);
+                        scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(scope.elem.wrapperSize.width, minX);
+                        scope.elem.posY = (scope.origin.posy + $ev.clientY - scope.origin.mousey).crop(scope.elem.wrapperSize.height, minY);
                     } else {
                         scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(maxX, minX);
                         scope.elem.posY = (scope.origin.posy + $ev.clientY - scope.origin.mousey).crop(maxY, minY);

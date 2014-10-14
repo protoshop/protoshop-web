@@ -38,7 +38,7 @@ angular.module('toHELL')
                     var deltaY = $ev.clientY - scope.origin.mousey;
                     var wrapperSize = scope.elemData ? scope.elemData().contentSize : scope.$parent.$parent.size;
 
-                    if (scope.elem.type == 'notes'){
+                    if ('notes line'.split(' ').indexOf(scope.elem.type) >= 0){
                         switch (scope.direction) {
                             case 'up' :
                                 scope.elem.posY = scope.origin.elemy + deltaY;

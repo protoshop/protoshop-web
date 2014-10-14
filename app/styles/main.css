@@ -81,10 +81,10 @@ i { font-style: normal; }
 .scene-element { position: absolute }
 .scene-element:hover { box-sizing: border-box }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
-.anchor i:nth-child(1) { left: 0; top: 50%; cursor: w-resize; }
-.anchor i:nth-child(2) { left: 50%; top: 0; cursor: n-resize; }
-.anchor i:nth-child(3) { right: 0; top: 50%; cursor: e-resize; }
-.anchor i:nth-child(4) { left: 50%; bottom: 0; cursor: s-resize; }
+.anchor i.left { left: 0; top: 50%; cursor: w-resize; }
+.anchor i.up { left: 50%; top: 0; cursor: n-resize; }
+.anchor i.right { right: 0; top: 50%; cursor: e-resize; }
+.anchor i.down { left: 50%; bottom: 0; cursor: s-resize; }
 /* 隐藏 scroll-view content 拖拽的左和上锚点 */
 .elem-content > .anchor i:nth-child(1),
 .elem-content > .anchor i:nth-child(2) { display: none; }

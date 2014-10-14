@@ -221,8 +221,8 @@
             "opacity": 1,
             "bgColor": "transparent",
             "wrapperSize" : {
-                "height" : 1000,
-                "width" : 1000
+                "height" : 9999,
+                "width" : 9999
             },
 
             "relationto" : {
@@ -260,7 +260,11 @@
             "posY": 0,
             "width": 120,
             "height": 2,
-            "bgColor" : "#0033cc"
+            "bgColor" : "#0033cc",
+            "wrapperSize" : {
+                "height" : 9999,
+                "width" : 9999
+            }
         }
     }
 }
