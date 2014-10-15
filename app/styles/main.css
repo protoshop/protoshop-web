@@ -82,8 +82,10 @@ i { font-style: normal; }
 .scene-element:hover { box-sizing: border-box }
 .anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i.a-left { left: 0; top: 50%; cursor: w-resize; }
+.polyline i.a-left{top:0;left:-80px;}
 .anchor i.a-up { left: 50%; top: 0; cursor: n-resize; }
 .anchor i.a-right { right: 0; top: 50%; cursor: e-resize; }
+.polyline .anchor i.a-right{bottom: 0;top: auto;right: -80px}
 .anchor i.a-down { left: 50%; bottom: 0; cursor: s-resize; }
 /* 隐藏 scroll-view content 拖拽的左和上锚点 */
 .elem-content > .anchor i:nth-child(1),
@@ -124,10 +126,13 @@ i { font-style: normal; }
 
 /* Element type-specific styles */
 .scene-element.button { background-color: rgba(255, 135, 124, 0.4); }
+.scene-element.polyline:after, .scene-element.polyline:before {content:" ";height: 2px;position:absolute;width:80px;background-color: #039;top:0;left: -80px;}
+.scene-element.polyline:after{bottom: 0;left: 0;top:auto}
 .scene-element.view { background-color: rgba(120, 180, 255, 0.3); }
 .scene-element.scrollview { background-color: rgba(120, 200, 255, 0.4); }
 .scene-element.notes { background-color: rgba(255, 255, 255, 1); }
-.elem-text-content {}
+.elem-text-content {display: block;width: 100%;}
+textarea.elem-text-content{resize: none;height: 100%; overflow: hidden}
 .vertical-top{}
 .vertical-mid{position: absolute; top: 50%; left: 0; width: 100%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%);}
 .label .element-view,.paragraph .element-view { border: 1px dashed rgba(0,0,0,0.2); text-align: left; }
@@ -169,6 +174,7 @@ i { font-style: normal; }
 .thumb-label { background-position: -320px -160px; }
 .thumb-line { background-position: -320px 0; }
 .thumb-vline { background-position: -400px 0; }
+.thumb-polyline { background-position: -400px 0; }
 .thumb-view { background-position: -80px -80px; }
 .thumb-paragraph { background-position: -560px -160px; }
 .thumb-image-view { background-position: -640px 0; }
