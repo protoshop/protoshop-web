@@ -127,7 +127,8 @@ i { font-style: normal; }
 .scene-element.view { background-color: rgba(120, 180, 255, 0.3); }
 .scene-element.scrollview { background-color: rgba(120, 200, 255, 0.4); }
 .scene-element.notes { background-color: rgba(255, 255, 255, 1); }
-.elem-text-content {}
+.elem-text-content {display: block;width: 100%;}
+textarea.elem-text-content{resize: none;height: 100%; overflow: hidden}
 .vertical-top{}
 .vertical-mid{position: absolute; top: 50%; left: 0; width: 100%; -webkit-transform: translate(0, -50%); transform: translate(0, -50%);}
 .label .element-view,.paragraph .element-view { border: 1px dashed rgba(0,0,0,0.2); text-align: left; }

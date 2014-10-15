@@ -3,9 +3,13 @@
      ng-style="{left: elem.posX, top:elem.posY, height: elem.height, width: elem.width, backgroundColor:elem.bgColor, borderRadius:elem.bdRadius+'px', textAlign:elem.textAlign, opacity:elem.opacity}">
     <h3 ng-if="elem.type=='notes' && elem === editStat.selectedElement" style="position: absolute;top:-24px;font:normal 14px/24px 'microsoft yahei'">{{elem.cid}}</h3>
 
-    <p ng-if="elem.text" class="elem-text-content{{elem.type=='paragraph' ? '' : ' vertical-mid'}}"
+    <p ng-if="elem.text&&elem.type!='paragraph'" class="elem-text-content{{elem.type=='paragraph' ? '' : ' vertical-mid'}}"
        ng-style="{color:elem.textColor,fontSize:elem.textSize,lineHeight:elem.lineHeight+'px'}"
        ng-class="{bold:elem.textBold, italic:elem.textItalic, underline:elem.textUnderline}">{{elem.text}}</p>
+
+    <textarea ng-if="elem.text&&elem.type=='paragraph'" class="elem-text-content{{elem.type=='paragraph' ? '' : ' vertical-mid'}}"
+       ng-style="{color:elem.textColor,fontSize:elem.textSize,lineHeight:elem.lineHeight+'px'}"
+       ng-class="{bold:elem.textBold, italic:elem.textItalic, underline:elem.textUnderline}">{{elem.text}}</textarea>
 
     <img ng-if="elem.image" ng-src="{{fileRoot + elem.image}}"/>
 

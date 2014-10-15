@@ -29,7 +29,7 @@ angular.module('toHELL').directive('sceneOutter', function($rootScope){
 
                 ev.stopPropagation();
                 var type = ev.originalEvent.dataTransfer.getData('type');
-                if (type=='notes') {
+                if ('notes line vline'.split(' ').indexOf(type)>-1) {
                     $rootScope.$broadcast('scene.addElement', {
                         wrapper: scope,
                         type: type,
