@@ -21,7 +21,9 @@ angular.module('toHELL')
                         elemw: scope.elem.width,
                         elemh: scope.elem.height,
                         mousex: $event.clientX,
-                        mousey: $event.clientY
+                        mousey: $event.clientY,
+                        elembx: scope.elem.bposX,
+                        elemax: scope.elem.aposX
                     };
                     scope.direction = $event.target.dataset.handle;
                     // 绑定
@@ -38,7 +40,7 @@ angular.module('toHELL')
                     var deltaY = $ev.clientY - scope.origin.mousey;
                     var wrapperSize = scope.elemData ? scope.elemData().contentSize : scope.$parent.$parent.size;
 
-                    if ('notes line vline'.split(' ').indexOf(scope.elem.type) >= 0){
+                    if ('notes line vline polyline'.split(' ').indexOf(scope.elem.type) >= 0){
                         switch (scope.direction) {
                             case 'up' :
                                 scope.elem.posY = scope.origin.elemy + deltaY;
@@ -48,11 +50,22 @@ angular.module('toHELL')
                                 scope.elem.height = (scope.origin.elemh + deltaY);
                                 break;
                             case 'left':
-                                scope.elem.posX = scope.origin.elemx + deltaX;
-                                scope.elem.width = scope.origin.elemw - deltaX;
+                                if (scope.elem.type=='polyline'){
+                                    scope.elem.bposX = scope.origin.elembx + deltaX;
+                                    scope.elem.bwidth = Math.abs(scope.origin.elembx + deltaX);
+                                }else{
+                                    scope.elem.posX = scope.origin.elemx + deltaX;
+                                    scope.elem.width = scope.origin.elemw - deltaX;
+                                }
                                 break;
                             case 'right':
-                                scope.elem.width = (scope.origin.elemw + deltaX);
+                                if (scope.elem.type=='polyline'){
+                                    scope.elem.aposX = scope.origin.elemax + deltaX;
+                                    scope.elem.awidth = Math.abs(scope.origin.elemax + deltaX);
+                                }else{
+                                    scope.elem.width = (scope.origin.elemw + deltaX);
+                                }
+
                                 break;
                         }
                     }else{

@@ -80,7 +80,7 @@ i { font-style: normal; }
 .scene-bg { width: 100%; height: 100%; pointer-events: none; }
 .scene-element { position: absolute }
 .scene-element:hover { box-sizing: border-box }
-.anchor i { position: absolute; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
+.anchor i { position: absolute; z-index:10; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i.a-left { left: 0; top: 50%; cursor: w-resize; }
 .polyline i.a-left{top:0;left:-80px;}
 .anchor i.a-up { left: 50%; top: 0; cursor: n-resize; }
@@ -126,8 +126,8 @@ i { font-style: normal; }
 
 /* Element type-specific styles */
 .scene-element.button { background-color: rgba(255, 135, 124, 0.4); }
-.scene-element.polyline:after, .scene-element.polyline:before {content:" ";height: 2px;position:absolute;width:80px;background-color: #039;top:0;left: -80px;}
-.scene-element.polyline:after{bottom: 0;left: 0;top:auto}
+.scene-element.polyline .l-after, .scene-element.polyline .l-before {content:" ";height: 2px;position:absolute;width:80px;background-color: #039;top:0;left: -80px;}
+.scene-element.polyline .l-after{bottom: 0;left: 0;top:auto}
 .scene-element.view { background-color: rgba(120, 180, 255, 0.3); }
 .scene-element.scrollview { background-color: rgba(120, 200, 255, 0.4); }
 .scene-element.notes { background-color: rgba(255, 255, 255, 1); }
