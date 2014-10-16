@@ -169,7 +169,6 @@ angular.module('toHELL')
                     }
                     break;
                 case 67:
-                    console.log($scope.editStat.selectedElement)
                     // ctrl或者meta + c 复制
                     if (keyEvent.ctrlKey || keyEvent.metaKey){
                         $scope.$broadcast('copy-element');
@@ -195,6 +194,7 @@ angular.module('toHELL')
             if (!!$scope.editStat.selectedElement){
                 var elemkey = $scope.editStat.selectedElement.$$hashKey;
                 $scope.$broadcast('copy-element-' + elemkey);
+                // TODO 这里执行会提高性能，但不好查找父级scope
 //                transData = JSON.parse(JSON.stringify($scope.editStat.selectedElement));
 //                deepCfg(transData);
 //                // 重置elem位置到屏幕正中
@@ -207,6 +207,7 @@ angular.module('toHELL')
         $scope.$on('paste-element', function(){
             var elemkey = $scope.editStat.selectedElement.$$hashKey;
             $scope.$broadcast('paste-element-' + elemkey);
+            // TODO 这里执行会提高性能，但不好查找父级scope
 //            if (!!transData){
 //                $scope.$broadcast('scene.copyElement', {
 //                    elem: transData,
@@ -215,20 +216,4 @@ angular.module('toHELL')
 //            }
 //            transData =null;
         });
-
-        // 只复制数据结构，要循环删除$$hashkey
-        function deepCfg(obj) {
-            var keys = Object.keys(obj);
-            keys.forEach(function deep(key) {
-                if (key === '$$hashKey') {
-                    delete obj[key];
-                    return;
-                }
-                if (Array.isArray(obj[key])) {
-                    obj[key].forEach(function (p) {
-                        deepCfg(p);
-                    });
-                }
-            });
-        }
     });

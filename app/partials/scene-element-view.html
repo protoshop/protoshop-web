@@ -2,11 +2,11 @@
      ng-model="elem.text"
      ng-style="{left: elem.posX, top:elem.posY, height: elem.height, width: elem.width, backgroundColor:elem.bgColor, borderRadius:elem.bdRadius+'px', textAlign:elem.textAlign, opacity:elem.opacity}">
 
-    <p ng-if="elem.text&&elem.type!='paragraph'" class="elem-text-content{{elem.type=='paragraph' ? '' : ' vertical-mid'}}"
+    <p ng-if="elem.text&&elem.type!='paragraph'" class="elem-text-content vertical-mid"
        ng-style="{color:elem.textColor,fontSize:elem.textSize,lineHeight:elem.lineHeight+'px'}"
        ng-class="{bold:elem.textBold, italic:elem.textItalic, underline:elem.textUnderline}">{{elem.text}}</p>
 
-    <textarea ng-if="elem.text&&elem.type=='paragraph'" class="elem-text-content{{elem.type=='paragraph' ? '' : ' vertical-mid'}}"
+    <textarea ng-if="elem.text&&elem.type=='paragraph'" class="elem-text-content"
        ng-style="{color:elem.textColor,fontSize:elem.textSize,lineHeight:elem.lineHeight+'px'}"
        ng-class="{bold:elem.textBold, italic:elem.textItalic, underline:elem.textUnderline}">{{elem.text}}</textarea>
 
