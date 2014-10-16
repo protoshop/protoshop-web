@@ -300,7 +300,33 @@
             "wrapperSize" : {
                 "height" : 9999,
                 "width" : 9999
-            }
+            },
+            "elements" :[
+                {
+                    "type" : "before",
+                    "width": 80,
+                    "height" : 2,
+                    "posX":-80,
+                    "posY":0,
+                    "bgColor":"#0033cc",
+                    "wrapperSize":{
+                        "height":9999,
+                        "width":99999
+                    }
+                },
+                {
+                    "type" : "after",
+                    "width": 80,
+                    "height" : 2,
+                    "posX":0,
+                    "posY":"100%",
+                    "bgColor":"#0033cc",
+                    "wrapperSize":{
+                        "height":9999,
+                        "width":99999
+                    }
+                }
+            ]
         }
     }
 }

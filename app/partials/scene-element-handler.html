@@ -1,6 +1,6 @@
 <div class="anchor">
-  <i data-handle="left" class="a-left" ng-style="{left:elem.bposX||0}" ng-if="elem.type!=='vline'"></i>
+  <i data-handle="left" class="a-left" ng-if="'vline polyline'.split(' ').indexOf(elem.type)<0"></i>
   <i data-handle="up" class="a-up" ng-if="elem.type!=='line'"></i>
-  <i data-handle="right" class="a-right" ng-style="{right:-1*elem.aposX||auto}" ng-if="elem.type!=='vline'"></i>
+  <i data-handle="right" class="a-right" ng-if="'vline polyline'.split(' ').indexOf(elem.type)<0"></i>
   <i data-handle="down" class="a-down" ng-if="elem.type!=='line'"></i>
 </div>
