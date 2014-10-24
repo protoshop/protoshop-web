@@ -9,10 +9,17 @@ angular.module('toHELL')
             replace: 'true',
             templateUrl: 'partials/element-polyline-handler.html',
             link: function (scope, el) {
-
+                console.log(el.parent());
                 el.on('drag dragstart dragmove', function($ev){
                     $ev.stopPropagation();
                     $ev.preventDefault();
+                   return false;
+                });
+
+                el.parent().on('drag dragstart dragmove', function($ev){
+                    $ev.stopPropagation();
+                    $ev.preventDefault();
+                    return false;
                 });
 
                 el.on('mousedown', function ($event) {
@@ -31,9 +38,11 @@ angular.module('toHELL')
                     };
                     scope.direction = $event.target.dataset.handle;
                     // 绑定
-                    $document.on('mousemove', updateElemRect);
+
                     if ($event.shiftKey){
                         $document.one('mousemove', addNewLine);
+                    }else{
+                        $document.on('mousemove', updateElemRect);
                     }
                     $document.one('mouseup', unbindDragEvents);
                     $event.stopPropagation();
@@ -63,9 +72,7 @@ angular.module('toHELL')
 
                     uilib.then(function(libs){
                         var element = JSON.parse(JSON.stringify(libs.data[type].init));
-                        //scope.$apply(function(){
                             scope.elem.elements.push(element);
-                        //})
                     });
                 }
 
