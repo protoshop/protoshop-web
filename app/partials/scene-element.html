@@ -1,12 +1,13 @@
 <element-view elem-data="elem"></element-view>
 <!--<element-edit elem-data="elem" ng-if="elem === editStat.selectedElement"></element-edit>-->
-<element-content-editor elem-data="elem" ng-if="elem === editStat.selectedElement && elem.contentSize"></element-content-editor>
-<element-handler elem-data="elem" ng-if="elem === editStat.selectedElement"></element-handler>
+<element-content-editor elem-data="elem"
+                        ng-if="elem === editStat.selectedElement && elem.contentSize"></element-content-editor>
+<element-handler elem-data="elem" ng-if="elem === editStat.selectedElement&&'vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)<0"></element-handler>
+<polyline-handler elem-data="elem" ng-if="'vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)>=0"></polyline-handler>
 
 <div ng-if="!elem.contentSize">
-
-  <div ng-repeat="elem in elem.elements"
-       ng-include="'partials/scene-element.html'"
-       scene-element parent-element copy-element draggable class="scene-element" ng-class="elem.type"
-       ng-style="{left: elem.posX, top: elem.posY}"></div>
+    <div ng-repeat="elem in elem.elements"
+         ng-include="'partials/scene-element.html'"
+         scene-element parent-element copy-element draggable class="scene-element" ng-class="elem.type"
+         ng-style="{left: elem.posX, top: elem.posY}"></div>
 </div>

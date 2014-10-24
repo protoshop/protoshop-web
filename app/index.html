@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="toHELL">
 <head>
-	<meta charset="utf-8">
-	<title>Protoshop - 携程无线</title>
-	<meta name="viewport" content="width=device-width" />
-	<!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/font-awesome.css" />
-	<link rel="stylesheet" href="styles/main.css" />
-	<!-- endbuild -->
+    <meta charset="utf-8">
+    <title>Protoshop - 携程无线</title>
+    <meta name="viewport" content="width=device-width"/>
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/font-awesome.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
+    <!-- endbuild -->
 </head>
 <body>
 
 <p id="browser-not-support" style="line-height: 3em; text-align: center; display: none">
-	非常、非常抱歉，暂不支持你使用的浏览器……装个 Chrome 吧 :D<br/>
-	<a href="http://www.google.com/intl/zh-CN/chrome/browser/">
-		<img width="123" height="40" src="images/chrome_logo_2x.png">
-	</a>
-	<script>
-		if (!window.navigator.userAgent.match(/Chrome/)) {
-			document.getElementById('browser-not-support').style.display = 'block';
-		}
-	</script>
+    非常、非常抱歉，暂不支持你使用的浏览器……装个 Chrome 吧 :D<br/>
+    <a href="http://www.google.com/intl/zh-CN/chrome/browser/">
+        <img width="123" height="40" src="images/chrome_logo_2x.png">
+    </a>
+    <script>
+        if (!window.navigator.userAgent.match(/Chrome/)) {
+            document.getElementById('browser-not-support').style.display = 'block';
+        }
+    </script>
 </p>
 
 <div class="layout" ng-view key-events></div>
@@ -59,11 +59,11 @@
 <script src="scripts/directives/scene-element.js"></script>
 <script src="scripts/directives/scene-element-copy.js"></script>
 <script src="scripts/directives/scene-element-handler.js"></script>
+<script src="scripts/directives/element-polyline-handler.js"></script>
 <script src="scripts/directives/scene-element-view.js"></script>
 <script src="scripts/directives/scene-element-edit.js"></script>
 <script src="scripts/directives/scene-element-content-editor.js"></script>
 <script src="scripts/directives/scene-parent-element.js"></script>
-
 <script src="scripts/directives/sidebar-libs.js"></script>
 <script src="scripts/directives/drag.js"></script>
 <script src="scripts/directives/roadmap-drag.js"></script>
@@ -78,13 +78,20 @@
 <script src="scripts/partials.js"></script>
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-48582044-1', 'protoshop.io');
-  ga('send', 'pageview');
+    ga('create', 'UA-48582044-1', 'protoshop.io');
+    ga('send', 'pageview');
 
 </script>
 

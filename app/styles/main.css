@@ -85,8 +85,14 @@ i { font-style: normal; }
 .polyline i.a-left{top:0;left:-80px;}
 .anchor i.a-up { left: 50%; top: 0; cursor: n-resize; }
 .anchor i.a-right { right: 0; top: 50%; cursor: e-resize; }
-.polyline .anchor i.a-right{bottom: 0;top: auto;right: -80px}
 .anchor i.a-down { left: 50%; bottom: 0; cursor: s-resize; }
+
+.v-bf-anchor, .h-bf-anchor, .h-af-anchor, .v-af-anchor{width: 10px;height: 10px; position: absolute;margin-top:-6px;margin-left:-6px;z-index: 10;border-radius: 50%;background: #fff; border:1px solid #000}
+.v-bf-anchor{left:0;top:0; cursor: n-resize}
+.v-af-anchor{left:0;top:100%; cursor: s-resize;}
+.h-bf-anchor{left:0;top:0; cursor: w-resize;}
+.h-af-anchor{left:100%;top:0; cursor: e-resize;}
+
 /* 隐藏 scroll-view content 拖拽的左和上锚点 */
 .elem-content > .anchor i:nth-child(1),
 .elem-content > .anchor i:nth-child(2) { display: none; }
