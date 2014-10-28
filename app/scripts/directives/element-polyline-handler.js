@@ -12,6 +12,7 @@ angular.module('toHELL')
 
                 var anchor, child;
 
+                // 禁止掉浏览拖放
                 el.on('drag dragstart dragmove', function ($ev) {
                     $ev.stopPropagation();
                     $ev.preventDefault();
@@ -29,7 +30,10 @@ angular.module('toHELL')
                     if ($event.which !== 1) {
                         return;
                     }
+
+                    // 折线触控点
                     anchor = el.find('i');
+                    // 子折线
                     child = scope.elem.elements && scope.elem.elements[0];
                     // 记录初始状态
                     scope.origin = {
@@ -50,12 +54,14 @@ angular.module('toHELL')
                 el.on('click', addNewLine);
 
                 el.on('mouseover', function ($event) {
+                    // 按shift鼠标变形
                     if ($event.shiftKey && (!scope.elem.elements || scope.elem.elements.length == 0)) {
                         el.find('i').css('cursor', 'pointer');
                     }
                 });
 
                 el.on('mouseout', function(){
+                    // 恢复鼠标
                     el.find('i').css('cursor', '');
                 });
 
@@ -63,8 +69,8 @@ angular.module('toHELL')
                  * 添加新折线
                  */
                 function addNewLine($ev) {
+                    // 按shift添加，且只能添加一条折线
                     if ($ev.shiftKey && (!scope.elem.elements || scope.elem.elements.length == 0)) {
-                        el.off('click', addNewLine);
                         scope.elem.elements = scope.elem.elements || [];
                         var type, elem = scope.elem, etype = elem.type, X=0, Y=0;
 
@@ -114,6 +120,7 @@ angular.module('toHELL')
                     switch (scope.direction) {
                         case 'v-bf':
                         case 'v-af':
+                            // 处理垂直方向的折线
                             if (scope.origin.elemy >= 0){
                                 Y = scope.origin.elemh + deltaY;
                             }else if(scope.origin.elemy < 0){
@@ -137,6 +144,7 @@ angular.module('toHELL')
                             break;
                         case 'h-bf':
                         case 'h-af':
+                            // 处理水平方向人折线
                             if (scope.origin.elemx >= 0){
                                 X = scope.origin.elemw + deltaX;
                             }else if(scope.origin.elemx < 0){
