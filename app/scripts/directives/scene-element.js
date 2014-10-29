@@ -13,7 +13,7 @@ angular.module('toHELL')
                 $scope.fileRoot = ENV.pkgRoot + $scope.package.appID + '/';
                 $scope.scenes = $scope.package.scenes;
             },
-            link: function (scope, el) {
+            link: function (scope, el, attr) {
                 /**
                  * 当鼠标点下时，
                  * 记录控件和鼠标指针的当前位置，开始监听拖拽相关事件
@@ -81,7 +81,9 @@ angular.module('toHELL')
                         mousey: $ev.clientY
                     };
                     // 绑定
-                    $document.on('mousemove', updateElemPos);
+                    if (!scope.elem.type.match(/^[vh](?:before|after)$/g)){
+                        $document.on('mousemove', updateElemPos);
+                    }
                     $document.one('mouseup', unbindDragEvents);
                     $ev.stopPropagation();
                 }

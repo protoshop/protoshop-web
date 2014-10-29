@@ -8,8 +8,6 @@ angular.module('toHELL')
             return;
         }
 
-        console.log($scope);
-
         $scope.fileRoot = ENV.pkgRoot + $routeParams.pkgId + '/';
 
         /**
@@ -124,24 +122,6 @@ angular.module('toHELL')
 
         $scope.$on('goview.roadmap', function () {
             $location.path('/roadmap/' + $routeParams.pkgId);
-            // TODO 抓屏效果，目前已经废弃
-//            var scenes = angular.element('.scenes-list'), images = [], len = scenes.length;
-//            scenes.each(function (i, scene) {
-//                html2canvas(scene, {
-//                    allowTaint: true,
-//                    onrendered: function (canvas) {
-//                        images.push(canvas.toDataURL("image/png"));
-//                        console.log(images[i]);
-//                        if (i == len - 1) {
-//                            $scope.$apply(function () {
-//                                $location.path('/roadmap/' + $routeParams.pkgId);
-//                            });
-//                            localStorage.setItem('dataImgs' + $routeParams.pkgId, images.join('||'));
-//                        }
-//                    }
-//                });
-//            });
-
         });
 
         var transData;
@@ -194,12 +174,6 @@ angular.module('toHELL')
             if (!!$scope.editStat.selectedElement){
                 var elemkey = $scope.editStat.selectedElement.$$hashKey;
                 $scope.$broadcast('copy-element-' + elemkey);
-                // TODO 这里执行会提高性能，但不好查找父级scope
-//                transData = JSON.parse(JSON.stringify($scope.editStat.selectedElement));
-//                deepCfg(transData);
-//                // 重置elem位置到屏幕正中
-//                transData.posX = ($scope.size.width - transData.width)*0.5;
-//                transData.posY = ($scope.size.height - transData.height)*0.5;
             }
         });
 
@@ -207,13 +181,5 @@ angular.module('toHELL')
         $scope.$on('paste-element', function(){
             var elemkey = $scope.editStat.selectedElement.$$hashKey;
             $scope.$broadcast('paste-element-' + elemkey);
-            // TODO 这里执行会提高性能，但不好查找父级scope
-//            if (!!transData){
-//                $scope.$broadcast('scene.copyElement', {
-//                    elem: transData,
-//                    wrapper: $scope
-//                });
-//            }
-//            transData =null;
         });
     });

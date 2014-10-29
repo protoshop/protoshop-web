@@ -5,7 +5,6 @@ angular.module('toHELL')
         return {
             restrict: 'A',
             link: function (scope, el, attrs) {
-
                 el[0].draggable = true;
 
                 var events = {

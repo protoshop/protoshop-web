@@ -14,6 +14,7 @@ angular.module('toHELL')
             templateUrl: 'partials/scene-element-edit.html',
             controller: function ($scope, uiprops) {
 
+                // 编辑属性框已经移支左侧，不再需要找父级pakcage
                 //$scope.package = $scope.$parent.package;
 
                 // For enum props config

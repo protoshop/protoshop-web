@@ -36,11 +36,12 @@ angular.module('toHELL')
                  * @param $ev
                  */
                 function updateElemRect($ev) {
+                    console.log('moveing!');
                     var deltaX = $ev.clientX - scope.origin.mousex;
                     var deltaY = $ev.clientY - scope.origin.mousey;
                     var wrapperSize = scope.elemData ? scope.elemData().contentSize : scope.$parent.$parent.size;
 
-                    if ('notes line vline polyline'.split(' ').indexOf(scope.elem.type) >= 0){
+                    if ('notes line vline polyline'.split(' ').indexOf(scope.elem.type) >= 0) {
                         switch (scope.direction) {
                             case 'up' :
                                 scope.elem.posY = scope.origin.elemy + deltaY;
@@ -50,25 +51,25 @@ angular.module('toHELL')
                                 scope.elem.height = (scope.origin.elemh + deltaY);
                                 break;
                             case 'left':
-                                if (scope.elem.type=='polyline'){
+                                if (scope.elem.type == 'polyline') {
                                     scope.elem.bposX = scope.origin.elembx + deltaX;
                                     scope.elem.bwidth = Math.abs(scope.origin.elembx + deltaX);
-                                }else{
+                                } else {
                                     scope.elem.posX = scope.origin.elemx + deltaX;
                                     scope.elem.width = scope.origin.elemw - deltaX;
                                 }
                                 break;
                             case 'right':
-                                if (scope.elem.type=='polyline'){
+                                if (scope.elem.type == 'polyline') {
                                     scope.elem.aposX = scope.origin.elemax + deltaX;
                                     scope.elem.awidth = Math.abs(scope.origin.elemax + deltaX);
-                                }else{
+                                } else {
                                     scope.elem.width = (scope.origin.elemw + deltaX);
                                 }
 
                                 break;
                         }
-                    }else{
+                    } else {
                         switch (scope.direction) {
                             case 'up':
                                 deltaY = deltaY.crop(0 - scope.origin.elemy, scope.origin.elemh);
@@ -138,6 +139,7 @@ angular.module('toHELL')
                  * @param $ev
                  */
                 function updateElemRect($ev) {
+                    console.log('moveing!');
                     var deltaX = $ev.clientX - scope.origin.mousex;
                     var deltaY = $ev.clientY - scope.origin.mousey;
                     switch (scope.direction) {

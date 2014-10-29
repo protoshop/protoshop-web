@@ -80,6 +80,7 @@ i { font-style: normal; }
 .scene-bg { width: 100%; height: 100%; pointer-events: none; }
 .scene-element { position: absolute }
 .scene-element:hover { box-sizing: border-box }
+.polyline, .vafter, .vbefore, .hafter, .hbefore{cursor: pointer}
 .anchor i { position: absolute; z-index:10; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i.a-left { left: 0; top: 50%; cursor: w-resize; }
 .polyline i.a-left{top:0;left:-80px;}
