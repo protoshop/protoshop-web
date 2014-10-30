@@ -61,7 +61,7 @@ angular.module('toHELL')
 
                 function bindDragHandler($ev) {
                     // 过滤掉元素附属编辑框上的点击事件
-                    if (!$ev.target.classList.contains('scene-element')) {
+                    if (!$ev.target.classList.contains('scene-element')&&!$ev.target.classList.contains('move-anchor')) {
                         return;
                     }
                     // 不接受非左键点击
@@ -88,6 +88,7 @@ angular.module('toHELL')
                     $ev.stopPropagation();
                 }
 
+                var targetEl = scope.elem.type == 'polyline' ? el.find('.move-anchor') : el;
                 el.on('mousedown', bindDragHandler);
 
                 /**

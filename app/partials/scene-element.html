@@ -4,7 +4,8 @@
                         ng-if="elem === editStat.selectedElement && elem.contentSize"></element-content-editor>
 <element-handler elem-data="elem" ng-if="elem === editStat.selectedElement&&'vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)<0"></element-handler>
 <polyline-handler elem-data="elem" ng-if="elem === editStat.selectedElement&&'vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)>=0"></polyline-handler>
-<div ng-if="elem.type=='polyline'" style="width: 10px;height: 10px;position: absolute;z-index: 1000;top: 50%;margin-top:-5px;left: -4px;background: #cc0;cursor: move"></div>
+<div ng-if="elem.type=='polyline'" class="move-anchor" style="width: 10px;height: 10px;position: absolute;z-index: 1000;top: 50%;margin-top:-5px;left: -4px;background: #03c;cursor: move"></div>
+<div ng-if="'polyline vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)>=0" class="hover-line"></div>
 
 <div ng-if="!elem.contentSize">
     <div ng-repeat="elem in elem.elements"

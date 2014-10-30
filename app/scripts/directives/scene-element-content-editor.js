@@ -29,7 +29,6 @@ angular.module('toHELL')
 
             },
             link: function (scope, el) {
-
                 scope.elem = scope.elemData();
 
                 scope.editStat = {};

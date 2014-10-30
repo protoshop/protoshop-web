@@ -78,12 +78,12 @@ angular.module('toHELL')
                             case 'hbefore':
                                 type = 'vbefore';
                                 X = elem.posX < 0 ? 0 : elem.width;
-                                Y = -20;
+                                Y = -40;
                                 break;
                             case 'vbefore':
                                 type = 'hbefore';
                                 Y = elem.posY < 0 ? 0 : elem.height;
-                                X = -20;
+                                X = -40;
                                 break;
                             case 'hafter':
                                 type = 'vafter';
