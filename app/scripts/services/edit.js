@@ -26,6 +26,7 @@
             this.editStat = {
                 selectedScene: null,
                 selectedElement: null,
+                selectChildElement:null,
                 selectedAction: null,
                 sceneHasAdded: false
             };
@@ -254,6 +255,7 @@
             this.deselectElement = function () {
                 self.deselectAction();
                 self.editStat.selectedElement = null;
+                self.editStat.selectChildElement = null;
             };
 
             /**

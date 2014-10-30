@@ -1,4 +1,4 @@
-<div class="tools-box" ng-show="elem = editStat.selectedElement">
+<div class="tools-box" ng-show="elem = editStat.selectChildElement || editStat.selectedElement">
     <div class="tools-title">
         <span class="element-delete" ng-click="deleteElement()">DELETE</span>
         {{elem.type.toUpperCase()}}

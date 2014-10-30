@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-    .controller('PackageEditCTRL', function ($scope, $routeParams, $document, ENV, formDataObject, $location,
+    .controller('PackageEditCTRL', function ($rootScope,$scope, $routeParams, $document, ENV, formDataObject, $location,
                                              backendService, editService, $timeout, notifyService, accountService) {
         if (!accountService.isLoggedIn()) {
             $location.path('/');
@@ -19,6 +19,7 @@ angular.module('toHELL')
             selectedScene: null,
             selectedElement: null,
             selectedAction: null,
+            selectChildElement : null,
             comments : null,
             gotoSignStyle: {
                 top: '',
