@@ -22,7 +22,7 @@ angular.module('toHELL')
                     $scope.props = props.data;
                 });
 
-                $scope.fileRoot = ENV.pkgRoot + $scope.package.appID + '/';
+                //$scope.fileRoot = ENV.pkgRoot + $scope.$parent.package.appID + '/';
 
                 /**
                  * 图片上传
