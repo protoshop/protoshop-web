@@ -70,11 +70,24 @@ angular.module('toHELL')
                  */
                 function addNewLine($ev) {
                     // 按shift添加，且只能添加一条折线
-                    if ($ev.shiftKey && (!scope.elem.elements || scope.elem.elements.length == 0)) {
+                    if ($ev.shiftKey && (!scope.elem.elements
+                        || scope.elem.type == 'polyline' && scope.elem.elements.length<2
+                        || scope.elem.elements.length == 0)) {
                         scope.elem.elements = scope.elem.elements || [];
-                        var type, elem = scope.elem, etype = elem.type, X=0, Y=0;
+                        var type, elem = scope.elem, etype = elem.type, X=0, Y= 0, target=$ev.target;
 
                         switch (etype) {
+                            case 'polyline':
+                                if (scope.direction == 'v-bf'){
+                                    type = 'hbefore';
+                                    Y = 0;
+                                    X = -40;
+                                }else if(scope.direction == 'v-af'){
+                                    type = 'hafter';
+                                    Y = elem.height;
+                                    X = 0;
+                                }
+                                break;
                             case 'hbefore':
                                 type = 'vbefore';
                                 X = elem.posX < 0 ? 0 : elem.width;

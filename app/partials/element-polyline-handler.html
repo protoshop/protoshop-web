@@ -1,6 +1,6 @@
 <div class="polyline-anchor">
   <i data-handle="h-bf" class="h-bf-anchor" ng-style="{left: elem.posX<0 ? 0 : elem.width, top:0}" ng-if="'hbefore'==elem.type"></i>
-  <i data-handle="v-bf" class="v-bf-anchor" ng-style="{left: 0, top:elem.posY<0 ? 0 : elem.height}" ng-if="'vbefore'==elem.type"></i>
+  <i data-handle="v-bf" class="v-bf-anchor" ng-style="{left: 0, top:elem.type == 'polyline' || elem.posY<0 ? 0 : elem.height}" ng-if="'vbefore'==elem.type||'polyline'==elem.type"></i>
   <i data-handle="h-af" class="h-af-anchor" ng-style="{left: elem.posX<0 ? 0 : elem.width, top:0}" ng-if="'hafter'==elem.type"></i>
-  <i data-handle="v-af" class="v-af-anchor" ng-style="{left: 0, top:elem.posY<0 ? 0 : elem.height}" ng-if="'vafter'==elem.type"></i>
+  <i data-handle="v-af" class="v-af-anchor" ng-style="{left: 0, top:elem.posY<0 ? 0 : elem.height}" ng-if="'vafter'==elem.type||'polyline'==elem.type"></i>
 </div>

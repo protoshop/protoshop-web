@@ -101,7 +101,6 @@ angular.module('toHELL')
                         $document.on('mousemove', updateElemPos);
                     }
                     $document.one('mouseup', unbindDragEvents);
-
                 }
 
                 //var targetEl = scope.elem.type == 'polyline' ? el.find('.move-anchor') : el;

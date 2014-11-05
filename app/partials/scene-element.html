@@ -2,7 +2,7 @@
 <!--<element-edit elem-data="elem" ng-if="elem === editStat.selectedElement"></element-edit>-->
 <element-content-editor elem-data="elem"
                         ng-if="elem === editStat.selectedElement && elem.contentSize"></element-content-editor>
-<element-handler elem-data="elem" ng-if="elem === editStat.selectedElement&&'vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)<0"></element-handler>
+<element-handler elem-data="elem" ng-if="elem === editStat.selectedElement&&'polyline vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)<0"></element-handler>
 <polyline-handler elem-data="elem" ng-if="polylineObj.selectedLine === editStat.selectedElement"></polyline-handler>
 <div ng-if="elem.type=='polyline'" class="move-anchor"></div>
 <div ng-if="'polyline vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)>=0" class="hover-line"></div>
