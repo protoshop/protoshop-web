@@ -10,7 +10,7 @@ angular.module('toHELL')
             templateUrl: 'partials/element-polyline-handler.html',
             link: function (scope, el) {
 
-                var anchor, child;
+                var anchor, childElements,child;
 
                 // 禁止掉浏览拖放
                 el.on('drag dragstart dragmove', function ($ev) {
@@ -33,8 +33,10 @@ angular.module('toHELL')
 
                     // 折线触控点
                     anchor = el.find('i');
+
                     // 子折线
-                    child = scope.elem.elements && scope.elem.elements[0];
+                    childElements = scope.elem.elements;
+                    child = childElements && childElements[0];
                     // 记录初始状态
                     scope.origin = {
                         elemx: scope.elem.posX,
@@ -133,26 +135,40 @@ angular.module('toHELL')
                     switch (scope.direction) {
                         case 'v-bf':
                         case 'v-af':
-                            // 处理垂直方向的折线
-                            if (scope.origin.elemy >= 0){
-                                Y = scope.origin.elemh + deltaY;
-                            }else if(scope.origin.elemy < 0){
-                                Y = -1 * (scope.origin.elemh - deltaY);
+                            console.log(deltaY);
+                            if (scope.elem.type == 'polyline'){
+                                if (scope.direction == 'v-bf'){
+                                    Y = scope.origin.elemh - deltaY;
+                                    childElements[1].posY = Y;
+                                    scope.elem.posY = scope.origin.elemy + deltaY;
+                                }else if(scope.direction == 'v-af'){
+                                    Y = scope.origin.elemh + deltaY;
+                                    childElements[1].posY = Y;
+                                }
+
+                            }else{
+                                // 处理垂直方向的折线
+                                if (scope.origin.elemy >= 0){
+                                    Y = scope.origin.elemh + deltaY;
+                                }else if(scope.origin.elemy < 0){
+                                    Y = -1 * (scope.origin.elemh - deltaY);
+                                }
+
+                                if (Y>=0){
+                                    scope.elem.posY = 0;
+                                    anchor.css('top', '100%');
+                                    if (child){
+                                        child.posY = Y;
+                                    }
+                                }else{
+                                    scope.elem.posY = Y;
+                                    anchor.css('top', 0);
+                                    if (child){
+                                        child.posY = 0;
+                                    }
+                                }
                             }
 
-                            if (Y>=0){
-                                scope.elem.posY = 0;
-                                anchor.css('top', '100%');
-                                if (child){
-                                    child.posY = Y;
-                                }
-                            }else{
-                                scope.elem.posY = Y;
-                                anchor.css('top', 0);
-                                if (child){
-                                    child.posY = 0;
-                                }
-                            }
                             scope.elem.height = Math.abs(Y);
                             break;
                         case 'h-bf':
