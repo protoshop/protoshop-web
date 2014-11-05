@@ -6,7 +6,6 @@ angular.module('toHELL')
     .directive('sceneElement', function ($rootScope, $document, editService) {
         return {
             restrict: 'AE',
-
             controller: function ($scope, ENV) {
                 // Scene 的编辑区的基础环境信息。 TODO：stage 的宽和高应该取自工程配置
                 $scope.size = $scope.elem;
@@ -28,6 +27,12 @@ angular.module('toHELL')
                 };
 
                 var transData,parent;
+
+                if(scope.elem.type == 'polyline'){
+                    scope.polylineObj = {
+                        selectedLine : undefined
+                    };
+                }
 
                 /**
                  * 复制
@@ -60,8 +65,11 @@ angular.module('toHELL')
                 });
 
                 function bindDragHandler($ev) {
+                    $ev.stopPropagation();
                     // 过滤掉元素附属编辑框上的点击事件
-                    if (!$ev.target.classList.contains('scene-element')&&!$ev.target.classList.contains('move-anchor')) {
+                    if (!$ev.target.classList.contains('scene-element')
+                        &&!$ev.target.classList.contains('move-anchor')
+                        &&!$ev.target.classList.contains('hover-line')) {
                         return;
                     }
                     // 不接受非左键点击
@@ -71,8 +79,16 @@ angular.module('toHELL')
 
                     // 选中此控件
                     scope.selectElement && scope.selectElement(scope.elem);
+                    if (scope.elem.type.match(/^vafter|vbefore|hafter|hbefore|polyline$/g)){
+                        scope.polylineObj.selectedLine = scope.editStat.selectedElement;
+                    }
+
 
                     scope.$apply();
+
+                    if ($ev.target.classList.contains('hover-line') && scope.elem.type !== 'polyline'){
+                        return;
+                    }
                     // 记录控件和鼠标初始位置
                     scope.origin = {
                         posx: scope.elem.posX,
@@ -85,10 +101,10 @@ angular.module('toHELL')
                         $document.on('mousemove', updateElemPos);
                     }
                     $document.one('mouseup', unbindDragEvents);
-                    $ev.stopPropagation();
+
                 }
 
-                var targetEl = scope.elem.type == 'polyline' ? el.find('.move-anchor') : el;
+                //var targetEl = scope.elem.type == 'polyline' ? el.find('.move-anchor') : el;
                 el.on('mousedown', bindDragHandler);
 
                 /**
