@@ -65,12 +65,11 @@ angular.module('toHELL')
                 });
 
                 function bindDragHandler($ev) {
-                    $ev.stopPropagation();
+
                     // 过滤掉元素附属编辑框上的点击事件
-                    if (!$ev.target.classList.contains('scene-element')
-                        &&!$ev.target.classList.contains('move-anchor')
+                    if (!$ev.target.classList.contains('move-anchor')
                         &&!$ev.target.classList.contains('hover-line')) {
-                        return;
+                        $ev.stopPropagation();
                     }
                     // 不接受非左键点击
                     if ($ev.which !== 1 || $ev.altKey) {
@@ -86,7 +85,10 @@ angular.module('toHELL')
 
                     scope.$apply();
 
-                    if ($ev.target.classList.contains('hover-line') && scope.elem.type !== 'polyline'){
+                    if ($ev.target.classList.contains('hover-line')
+                        && scope.elem.type !== 'polyline'
+                        && scope.elem.type !== 'line'
+                        && scope.elem.type !== 'vline'){
                         return;
                     }
                     // 记录控件和鼠标初始位置
