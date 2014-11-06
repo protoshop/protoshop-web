@@ -26,6 +26,7 @@
             this.editStat = {
                 selectedScene: null,
                 selectedElement: null,
+                selectChildElement:null,
                 selectedAction: null,
                 sceneHasAdded: false
             };
@@ -209,40 +210,6 @@
                 return null;
             };
 
-
-            /**
-             * 截屏
-
-            this.scene2img = function () {
-                var scenes = self.package.scenes;
-                var i= 0,len=self.package.scenes.length;
-                function chose(){
-                    $timeout(function(){
-                        self.selectScene(scenes[i]);
-                    },0).then(cutImg);
-                }
-
-                function cutImg(){
-                    var timer = $timeout(function(){
-                        html2canvas($('.layout-stage .scene')[0], {
-                            allowTaint: true,
-                            // logging: true,
-                            rofile: true,
-                            useCORS: true,
-                            onrendered: function (canvas) {
-                                console.log(canvas.toDataURL("image/png"));
-                            }
-                        });
-                    },0);
-
-                    if (++i<len){
-                        timer.then(chose);
-                    }
-                }
-
-                chose();
-            };*/
-
             // 快捷方法
             /**
              * 搜索特定id的场景
@@ -288,6 +255,7 @@
             this.deselectElement = function () {
                 self.deselectAction();
                 self.editStat.selectedElement = null;
+                self.editStat.selectChildElement = null;
             };
 
             /**

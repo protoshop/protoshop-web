@@ -1,14 +1,15 @@
 <element-view elem-data="elem"></element-view>
 <!--<element-edit elem-data="elem" ng-if="elem === editStat.selectedElement"></element-edit>-->
-<element-content-editor elem-data="elem" ng-if="elem === editStat.selectedElement && elem.contentSize"></element-content-editor>
-<element-handler elem-data="elem" ng-if="elem === editStat.selectedElement"></element-handler>
-<span ng-if="elem.type=='polyline'" ng-style="{left:elem.bposX,width:elem.bwidth}" class="l-before"></span>
-<span ng-if="elem.type=='polyline'" ng-style="{right:elem.aposX,width:elem.awidth}" class="l-after"></span>
+<element-content-editor elem-data="elem"
+                        ng-if="elem === editStat.selectedElement && elem.contentSize"></element-content-editor>
+<element-handler elem-data="elem" ng-if="elem === editStat.selectedElement&&'polyline vafter vbefore hafter hbefore'.split(' ').indexOf(elem.type)<0"></element-handler>
+<polyline-handler elem-data="elem" ng-if="polylineObj.selectedLine === editStat.selectedElement"></polyline-handler>
+<!--<div ng-if="elem.type=='polyline'" class="move-anchor"></div>-->
+<div ng-if="'polyline vafter vbefore hafter hbefore line vline'.split(' ').indexOf(elem.type)>=0" class="hover-line"></div>
 
 <div ng-if="!elem.contentSize">
-
-  <div ng-repeat="elem in elem.elements"
-       ng-include="'partials/scene-element.html'"
-       scene-element parent-element copy-element draggable class="scene-element" ng-class="elem.type"
-       ng-style="{left: elem.posX, top: elem.posY}"></div>
+    <div ng-repeat="elem in elem.elements"
+         ng-include="'partials/scene-element.html'"
+         scene-element parent-element copy-element draggable class="scene-element" ng-class="elem.type"
+         ng-style="{left: elem.posX, top: elem.posY}"></div>
 </div>

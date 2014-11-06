@@ -1,7 +1,7 @@
 <div class="lib-category">
   <!--<h3>Basic</h3>-->
   <ul class="lib-list">
-    <li ng-repeat="(type, comp) in libs" draggable on-dragstart="dragComponent" data-type="{{type}}">
+    <li ng-if="comp.label" ng-repeat="(type, comp) in libs" draggable on-dragstart="dragComponent" data-type="{{type}}">
       <div class="lib-item-thumb" ng-class="'thumb-'+type"></div>
       <span class="lib-item-caption" ng-bind="comp.label"></span>
     </li>

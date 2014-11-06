@@ -6,7 +6,7 @@ angular.module('toHELL')
  * Element Content Editor
  */
 
-    .directive('elementContentEditor', function () {
+    .directive('elementContentEditor', function ($rootScope) {
         return {
             restrict: 'AE',
             replace: true,
@@ -15,7 +15,6 @@ angular.module('toHELL')
             },
             templateUrl: 'partials/scene-element-content.html',
             controller: function ($scope, uiprops) {
-
                 $scope.package = $scope.$parent.package;
 
                 // For enum props config
@@ -26,7 +25,6 @@ angular.module('toHELL')
                 $scope.editStat = {
                     selectedElement: null
                 };
-
             },
             link: function (scope, el) {
 
@@ -34,15 +32,18 @@ angular.module('toHELL')
 
                 scope.editStat = {};
 
+                console.log(scope.$parent.editStat);
+
                 scope.selectElement = function (elemObj) {
                     scope.editStat.selectedElement = elemObj;
+                    scope.$parent.editStat.selectChildElement = elemObj;
                 };
 
                 el.on('click', function () {
                     scope.editStat.selectedElement = null;
+                    scope.$parent.editStat.selectChildElement = null;
                     scope.$apply();
                 });
-
             }
         };
     });

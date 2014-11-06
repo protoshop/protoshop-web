@@ -6,14 +6,13 @@ angular.module('toHELL')
     .directive('sceneElement', function ($rootScope, $document, editService) {
         return {
             restrict: 'AE',
-
             controller: function ($scope, ENV) {
                 // Scene 的编辑区的基础环境信息。 TODO：stage 的宽和高应该取自工程配置
                 $scope.size = $scope.elem;
                 $scope.fileRoot = ENV.pkgRoot + $scope.package.appID + '/';
                 $scope.scenes = $scope.package.scenes;
             },
-            link: function (scope, el) {
+            link: function (scope, el, attr) {
                 /**
                  * 当鼠标点下时，
                  * 记录控件和鼠标指针的当前位置，开始监听拖拽相关事件
@@ -28,6 +27,12 @@ angular.module('toHELL')
                 };
 
                 var transData,parent;
+
+                if(scope.elem.type == 'polyline'){
+                    scope.polylineObj = {
+                        selectedLine : undefined
+                    };
+                }
 
                 /**
                  * 复制
@@ -60,9 +65,11 @@ angular.module('toHELL')
                 });
 
                 function bindDragHandler($ev) {
+
                     // 过滤掉元素附属编辑框上的点击事件
-                    if (!$ev.target.classList.contains('scene-element')) {
-                        return;
+                    if (!$ev.target.classList.contains('move-anchor')
+                        &&!$ev.target.classList.contains('hover-line')) {
+                        $ev.stopPropagation();
                     }
                     // 不接受非左键点击
                     if ($ev.which !== 1 || $ev.altKey) {
@@ -71,8 +78,19 @@ angular.module('toHELL')
 
                     // 选中此控件
                     scope.selectElement && scope.selectElement(scope.elem);
+                    if (scope.elem.type.match(/^vafter|vbefore|hafter|hbefore|polyline$/g)){
+                        scope.polylineObj.selectedLine = scope.editStat.selectedElement;
+                    }
+
 
                     scope.$apply();
+
+                    if ($ev.target.classList.contains('hover-line')
+                        && scope.elem.type !== 'polyline'
+                        && scope.elem.type !== 'line'
+                        && scope.elem.type !== 'vline'){
+                        return;
+                    }
                     // 记录控件和鼠标初始位置
                     scope.origin = {
                         posx: scope.elem.posX,
@@ -81,11 +99,13 @@ angular.module('toHELL')
                         mousey: $ev.clientY
                     };
                     // 绑定
-                    $document.on('mousemove', updateElemPos);
+                    if (!scope.elem.type.match(/^[vh](?:before|after)$/g)){
+                        $document.on('mousemove', updateElemPos);
+                    }
                     $document.one('mouseup', unbindDragEvents);
-                    $ev.stopPropagation();
                 }
 
+                //var targetEl = scope.elem.type == 'polyline' ? el.find('.move-anchor') : el;
                 el.on('mousedown', bindDragHandler);
 
                 /**

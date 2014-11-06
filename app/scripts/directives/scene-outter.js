@@ -9,7 +9,6 @@ angular.module('toHELL').directive('sceneOutter', function($rootScope){
         replace : true,
         scope : true,
         link : function(scope, el, attr){
-            console.log(el);
             var $el = angular.element(el);
 
             $el.on('dragover', function (ev) {
@@ -29,7 +28,7 @@ angular.module('toHELL').directive('sceneOutter', function($rootScope){
 
                 ev.stopPropagation();
                 var type = ev.originalEvent.dataTransfer.getData('type');
-                if ('notes line vline'.split(' ').indexOf(type)>-1) {
+                if ('notes line vline polyline'.split(' ').indexOf(type)>-1) {
                     $rootScope.$broadcast('scene.addElement', {
                         wrapper: scope,
                         type: type,

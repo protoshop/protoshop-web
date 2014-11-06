@@ -46,6 +46,7 @@ angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib, ed
             });
 
             scope.selectElement = function (elemObj) {
+                scope.editStat.selectChildElement = null;
                 scope.editStat.selectedElement = elemObj;
             };
         }

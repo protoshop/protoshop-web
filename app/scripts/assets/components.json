@@ -25,8 +25,8 @@
                 "transitionDuration": 0.3
             },
 
-            "relationto" : {
-                "target" : ""
+            "relationto": {
+                "target": ""
             }
         }
     },
@@ -52,8 +52,8 @@
                 "transitionDuration": 0.3
             },
 
-            "relationto" : {
-                "target" : ""
+            "relationto": {
+                "target": ""
             }
         }
     },
@@ -72,8 +72,8 @@
             "textSize": 14,
             "textAlign": "left",
 
-            "relationto" : {
-                "target" : ""
+            "relationto": {
+                "target": ""
             }
         }
     },
@@ -89,8 +89,8 @@
 
             "image": "",
 
-            "relationto" : {
-                "target" : ""
+            "relationto": {
+                "target": ""
             }
         }
     },
@@ -108,8 +108,8 @@
 
             "bgColor": "#E6E7E8",
 
-            "relationto" : {
-                "target" : ""
+            "relationto": {
+                "target": ""
             }
         }
     },
@@ -202,17 +202,17 @@
                 "height": 340
             },
 
-            "relationto" : {
-                "target" : ""
+            "relationto": {
+                "target": ""
             }
         }
     },
-    "notes" : {
-        "group" : "Basic",
-        "label" : "Notes",
-        "init" : {
-            "cid" : "",
-            "name" : "",
+    "notes": {
+        "group": "Basic",
+        "label": "Notes",
+        "init": {
+            "cid": "",
+            "name": "",
             "type": "notes",
             "posX": 480,
             "posY": 0,
@@ -220,17 +220,17 @@
             "height": 160,
             "opacity": 1,
             "bgColor": "transparent",
-            "wrapperSize" : {
-                "height" : 9999,
-                "width" : 9999
+            "wrapperSize": {
+                "height": 9999,
+                "width": 9999
             },
 
-            "relationto" : {
-                "target" : ""
+            "relationto": {
+                "target": ""
             }
         }
     },
-    "paragraph" : {
+    "paragraph": {
         "group": "Basic",
         "label": "Paragraph",
         "init": {
@@ -239,19 +239,19 @@
             "posY": 0,
             "width": 240,
             "height": 160,
-            "lineHeight" : 24,
+            "lineHeight": 24,
             "bgColor": "transparent",
             "text": "Text",
             "textColor": "#333333",
             "textSize": 14,
             "textAlign": "left",
 
-            "relationto" : {
-                "target" : ""
+            "relationto": {
+                "target": ""
             }
         }
     },
-    "line":{
+    "line": {
         "group": "Basic",
         "label": "Line",
         "init": {
@@ -260,14 +260,14 @@
             "posY": 0,
             "width": 120,
             "height": 2,
-            "bgColor" : "#0033cc",
-            "wrapperSize" : {
-                "height" : 9999,
-                "width" : 9999
+            "bgColor": "#0033cc",
+            "wrapperSize": {
+                "height": 9999,
+                "width": 9999
             }
         }
     },
-    "vline":{
+    "vline": {
         "group": "Basic",
         "label": "Vline",
         "init": {
@@ -276,31 +276,115 @@
             "posY": 0,
             "width": 2,
             "height": 120,
-            "bgColor" : "#0033cc",
-            "wrapperSize" : {
-                "height" : 9999,
-                "width" : 9999
+            "bgColor": "#0033cc",
+            "wrapperSize": {
+                "height": 9999,
+                "width": 9999
             }
         }
     },
-    "polyline":{
+    "hbefore": {
+        "group":"basic",
+        "init":{
+            "type": "hbefore",
+            "width": 40,
+            "height": 2,
+            "posX": -40,
+            "posY": 0,
+            "bgColor": "#0033cc",
+            "wrapperSize": {
+                "height": 9999,
+                "width": 99999
+            }
+        }
+
+    },
+    "hafter": {
+        "Group":"basic",
+        "init" : {
+            "type": "hafter",
+            "width": 40,
+            "height": 2,
+            "posX": 0,
+            "posY": "100%",
+            "bgColor": "#0033cc",
+            "wrapperSize": {
+                "height": 9999,
+                "width": 99999
+            }
+        }
+    },
+    "vbefore": {
+        "group":"basic",
+        "init":{
+            "type": "vbefore",
+            "width": 2,
+            "height": 40,
+            "posX": 0,
+            "posY": -40,
+            "bgColor": "#0033cc",
+            "wrapperSize": {
+                "height": 9999,
+                "width": 99999
+            }
+        }
+
+    },
+    "vafter": {
+        "Group":"basic",
+        "init" : {
+            "type": "vafter",
+            "width": 2,
+            "height": 40,
+            "posX": "100%",
+            "posY": 0,
+            "bgColor": "#0033cc",
+            "wrapperSize": {
+                "height": 9999,
+                "width": 99999
+            }
+        }
+    },
+    "polyline": {
         "group": "Basic",
         "label": "Polyline",
         "init": {
             "type": "polyline",
-            "bposX":-80,
-            "bwidth":80,
-            "aposX":80,
-            "awidth":80,
             "posX": 0,
             "posY": 0,
             "width": 2,
             "height": 120,
-            "bgColor" : "#0033cc",
-            "wrapperSize" : {
-                "height" : 9999,
-                "width" : 9999
-            }
+            "bgColor": "#0033cc",
+            "wrapperSize": {
+                "height": 9999,
+                "width": 9999
+            },
+            "elements": [
+                {
+                    "type": "hbefore",
+                    "width": 80,
+                    "height": 2,
+                    "posX": -80,
+                    "posY": 0,
+                    "bgColor": "#0033cc",
+                    "wrapperSize": {
+                        "height": 9999,
+                        "width": 99999
+                    }
+                },
+                {
+                    "type": "hafter",
+                    "width": 80,
+                    "height": 2,
+                    "posX": 0,
+                    "posY": "100%",
+                    "bgColor": "#0033cc",
+                    "wrapperSize": {
+                        "height": 9999,
+                        "width": 99999
+                    }
+                }
+            ]
         }
     }
 }

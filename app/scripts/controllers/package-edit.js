@@ -1,14 +1,12 @@
 'use strict';
 
 angular.module('toHELL')
-    .controller('PackageEditCTRL', function ($scope, $routeParams, $document, ENV, formDataObject, $location,
+    .controller('PackageEditCTRL', function ($rootScope,$scope, $routeParams, $document, ENV, formDataObject, $location,
                                              backendService, editService, $timeout, notifyService, accountService) {
         if (!accountService.isLoggedIn()) {
             $location.path('/');
             return;
         }
-
-        console.log($scope);
 
         $scope.fileRoot = ENV.pkgRoot + $routeParams.pkgId + '/';
 
@@ -21,6 +19,7 @@ angular.module('toHELL')
             selectedScene: null,
             selectedElement: null,
             selectedAction: null,
+            selectChildElement : null,
             comments : null,
             gotoSignStyle: {
                 top: '',
@@ -124,24 +123,6 @@ angular.module('toHELL')
 
         $scope.$on('goview.roadmap', function () {
             $location.path('/roadmap/' + $routeParams.pkgId);
-            // TODO 抓屏效果，目前已经废弃
-//            var scenes = angular.element('.scenes-list'), images = [], len = scenes.length;
-//            scenes.each(function (i, scene) {
-//                html2canvas(scene, {
-//                    allowTaint: true,
-//                    onrendered: function (canvas) {
-//                        images.push(canvas.toDataURL("image/png"));
-//                        console.log(images[i]);
-//                        if (i == len - 1) {
-//                            $scope.$apply(function () {
-//                                $location.path('/roadmap/' + $routeParams.pkgId);
-//                            });
-//                            localStorage.setItem('dataImgs' + $routeParams.pkgId, images.join('||'));
-//                        }
-//                    }
-//                });
-//            });
-
         });
 
         var transData;
@@ -169,7 +150,6 @@ angular.module('toHELL')
                     }
                     break;
                 case 67:
-                    console.log($scope.editStat.selectedElement)
                     // ctrl或者meta + c 复制
                     if (keyEvent.ctrlKey || keyEvent.metaKey){
                         $scope.$broadcast('copy-element');
@@ -195,11 +175,6 @@ angular.module('toHELL')
             if (!!$scope.editStat.selectedElement){
                 var elemkey = $scope.editStat.selectedElement.$$hashKey;
                 $scope.$broadcast('copy-element-' + elemkey);
-//                transData = JSON.parse(JSON.stringify($scope.editStat.selectedElement));
-//                deepCfg(transData);
-//                // 重置elem位置到屏幕正中
-//                transData.posX = ($scope.size.width - transData.width)*0.5;
-//                transData.posY = ($scope.size.height - transData.height)*0.5;
             }
         });
 
@@ -207,28 +182,5 @@ angular.module('toHELL')
         $scope.$on('paste-element', function(){
             var elemkey = $scope.editStat.selectedElement.$$hashKey;
             $scope.$broadcast('paste-element-' + elemkey);
-//            if (!!transData){
-//                $scope.$broadcast('scene.copyElement', {
-//                    elem: transData,
-//                    wrapper: $scope
-//                });
-//            }
-//            transData =null;
         });
-
-        // 只复制数据结构，要循环删除$$hashkey
-        function deepCfg(obj) {
-            var keys = Object.keys(obj);
-            keys.forEach(function deep(key) {
-                if (key === '$$hashKey') {
-                    delete obj[key];
-                    return;
-                }
-                if (Array.isArray(obj[key])) {
-                    obj[key].forEach(function (p) {
-                        deepCfg(p);
-                    });
-                }
-            });
-        }
     });

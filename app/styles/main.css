@@ -80,13 +80,25 @@ i { font-style: normal; }
 .scene-bg { width: 100%; height: 100%; pointer-events: none; }
 .scene-element { position: absolute }
 .scene-element:hover { box-sizing: border-box }
-.anchor i { position: absolute; z-index:10; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
+.polyline, .vafter, .vbefore, .hafter, .hbefore{cursor: pointer}
+.anchor i { position: absolute; z-index:1000; display: inline-block; width: 10px; height: 10px; margin: -7px; border-radius: 50%; background-color: #fff; border: 1px solid #000; }
 .anchor i.a-left { left: 0; top: 50%; cursor: w-resize; }
 .polyline i.a-left{top:0;left:-80px;}
 .anchor i.a-up { left: 50%; top: 0; cursor: n-resize; }
 .anchor i.a-right { right: 0; top: 50%; cursor: e-resize; }
-.polyline .anchor i.a-right{bottom: 0;top: auto;right: -80px}
 .anchor i.a-down { left: 50%; bottom: 0; cursor: s-resize; }
+.hover-line{position: absolute;z-index: 1;width: 100%;height: 100%;top:0;left: 0;cursor: pointer;}
+.vline > .hover-line:hover,.polyline > .hover-line:hover,.vafter > .hover-line:hover, .vbefore > .hover-line:hover{width: 4px; left:-1px;background: #03c;opacity: 0.7; box-shadow: 1px 1px 4px #03c,-1px -1px 2px #03c}
+.line > .hover-line:hover, .hafter > .hover-line:hover, .hbefore > .hover-line:hover{height: 4px; top:-1px;background: #03c; opacity: 0.7;box-shadow: 1px 1px 4px #03c,-1px -1px 2px #03c}
+
+.v-bf-anchor, .h-bf-anchor, .h-af-anchor, .v-af-anchor{width: 10px;height: 10px; position: absolute;margin-top:-6px;margin-left:-6px;z-index: 100;border-radius: 50%;background: #fff; border:1px solid #000}
+.v-bf-anchor{left:0;top:0; cursor: n-resize}
+.v-af-anchor{left:0;top:100%; cursor: s-resize;}
+.h-bf-anchor{left:0;top:0; cursor: w-resize;}
+.h-af-anchor{left:100%;top:0; cursor: e-resize;}
+
+.move-anchor{width: 10px;height: 10px;position: absolute;z-index: 1000;top: 50%;margin-top:-5px;left: -4px;background: #03c;cursor: move;}
+
 /* 隐藏 scroll-view content 拖拽的左和上锚点 */
 .elem-content > .anchor i:nth-child(1),
 .elem-content > .anchor i:nth-child(2) { display: none; }
