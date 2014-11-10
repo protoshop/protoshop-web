@@ -26,7 +26,15 @@ angular.module('toHELL')
                     height: 640
                 };
 
-                var transData,parent;
+                var transData,parent,
+                    isAssists = 'vbefore vafter hbefore hafter vline line polyline notes'
+                        .split(' ').indexOf(scope.elem.type) >= 0;
+
+                if(scope.elem.type == 'polyline'){
+                    scope.polylineObj = {
+                        selectedLine : undefined
+                    };
+                }
 
                 if(scope.elem.type == 'polyline'){
                     scope.polylineObj = {
@@ -67,8 +75,8 @@ angular.module('toHELL')
                 function bindDragHandler($ev) {
 
                     // 过滤掉元素附属编辑框上的点击事件
-                    if (!$ev.target.classList.contains('move-anchor')
-                        &&!$ev.target.classList.contains('hover-line')) {
+
+                    if (!$ev.target.classList.contains('hover-line')) {
                         $ev.stopPropagation();
                     }
                     // 不接受非左键点击
@@ -83,8 +91,15 @@ angular.module('toHELL')
                     }
 
 
+                    // 折线，操作控件显示
+                    if (scope.elem.type.match(/^vafter|vbefore|hafter|hbefore|polyline$/g)){
+                        scope.polylineObj.selectedLine = scope.editStat.selectedElement;
+                    }
+
                     scope.$apply();
 
+
+                    // 使vafter vbefore hafter hbefore可以拖动整个polyline
                     if ($ev.target.classList.contains('hover-line')
                         && scope.elem.type !== 'polyline'
                         && scope.elem.type !== 'line'
@@ -119,7 +134,7 @@ angular.module('toHELL')
                     var maxX = zoneSize.width - scope.elem.width;
                     var minX = 0;
                     var maxY = zoneSize.height - scope.elem.height;
-                    var minY = 0;
+                    var minY = isAssists ? -144 : 0;
                     //
                     if (scope.elem.wrapperSize) {
                         scope.elem.posX = (scope.origin.posx + $ev.clientX - scope.origin.mousex).crop(scope.elem.wrapperSize.width, minX);
