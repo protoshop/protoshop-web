@@ -36,12 +36,6 @@ angular.module('toHELL')
                     };
                 }
 
-                if(scope.elem.type == 'polyline'){
-                    scope.polylineObj = {
-                        selectedLine : undefined
-                    };
-                }
-
                 /**
                  * 复制
                  */
