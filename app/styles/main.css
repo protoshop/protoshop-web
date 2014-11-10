@@ -186,7 +186,7 @@ textarea.elem-text-content{resize: none;height: 100%; overflow: hidden}
 .thumb-label { background-position: -320px -160px; }
 .thumb-line { background-position: -320px 0; }
 .thumb-vline { background-position: -400px 0; }
-.thumb-polyline { background-position: -400px 0; }
+.thumb-polyline { background-position: -560px -400px; }
 .thumb-view { background-position: -80px -80px; }
 .thumb-paragraph { background-position: -560px -160px; }
 .thumb-image-view { background-position: -640px 0; }
