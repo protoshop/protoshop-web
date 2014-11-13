@@ -32,8 +32,6 @@ angular.module('toHELL')
 
                 scope.editStat = {};
 
-                console.log(scope.$parent.editStat);
-
                 scope.selectElement = function (elemObj) {
                     scope.editStat.selectedElement = elemObj;
                     scope.$parent.editStat.selectChildElement = elemObj;

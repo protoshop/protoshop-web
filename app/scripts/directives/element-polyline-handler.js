@@ -135,7 +135,6 @@ angular.module('toHELL')
                     switch (scope.direction) {
                         case 'v-bf':
                         case 'v-af':
-                            console.log(deltaY);
                             if (scope.elem.type == 'polyline'){
                                 if (scope.direction == 'v-bf'){
                                     Y = scope.origin.elemh - deltaY;

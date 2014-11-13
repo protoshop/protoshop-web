@@ -80,10 +80,6 @@ angular.module('toHELL')
 
                     // 选中此控件
                     scope.selectElement && scope.selectElement(scope.elem);
-                    if (scope.elem.type.match(/^vafter|vbefore|hafter|hbefore|polyline$/g)){
-                        scope.polylineObj.selectedLine = scope.editStat.selectedElement;
-                    }
-
 
                     // 折线，操作控件显示
                     if (scope.elem.type.match(/^vafter|vbefore|hafter|hbefore|polyline$/g)){
