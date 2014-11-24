@@ -1,6 +1,14 @@
 <navbar/>
 <!-- 布局主体 -->
 <div class="layout-main">
+    <!-- 中栏：场景详情修改区 -->
+    <div class="layout-stage" ng-click="onBackgroundClick()">
+        <div class="layout-canvas" scene-outter>
+            <div class="{{package.appPlatform === 'android' ? 's4':'i5'}}">
+                <div class="scene" scene-stage scene="editStat.selectedScene"></div>
+            </div>
+        </div>
+    </div>
     <!-- 左栏：场景列表 -->
     <div class="layout-scenes" ng-click="deselectScene()">
         <!--<div class="panel-toggle">
@@ -29,14 +37,7 @@
             </button>
         </div>
     </div>
-    <!-- 中栏：场景详情修改区 -->
-    <div class="layout-stage" ng-click="onBackgroundClick()">
-        <div class="layout-canvas" scene-outter>
-            <div class="{{package.appPlatform === 'android' ? 's4':'i5'}}">
-                <div class="scene" scene-stage scene="editStat.selectedScene"></div>
-            </div>
-        </div>        
-    </div>
+
     <!-- 右栏：场景修改工具区 -->
     <div class="layout-tools">
         <!--<div class="panel-toggle">

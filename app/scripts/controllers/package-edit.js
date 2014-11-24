@@ -41,11 +41,13 @@ angular.module('toHELL')
             pkgId: $routeParams.pkgId,
             token: accountService.getLoggedInUser().token
         }, function (result) {
+            $scope.selectScene(result[0].scenes[0]);
+
             $scope.package = result[0];
             editService.setPackage($scope.package);
             // 默认选中第一个场景
-            var sceneId = editService.findScene('order', 0);
-            $scope.selectScene(sceneId);
+            //var sceneId = editService.findScene('order', 0);
+            //$scope.selectScene(sceneId);
 
             editService.setStat($scope.editStat);
 
