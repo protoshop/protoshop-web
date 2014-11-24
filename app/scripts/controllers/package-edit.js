@@ -43,6 +43,10 @@ angular.module('toHELL')
         }, function (result) {
             $scope.package = result[0];
             editService.setPackage($scope.package);
+            // 默认选中第一个场景
+            var sceneId = editService.findScene('order', 0);
+            $scope.selectScene(sceneId);
+
             editService.setStat($scope.editStat);
 
             $scope.size = $scope.package.appPlatform === 'ios' ? {
@@ -53,9 +57,7 @@ angular.module('toHELL')
                 height: 640
             };
 
-            // 默认选中第一个场景
-            var sceneId = editService.findScene('order', 0);
-            $scope.selectScene(sceneId);
+
         });
 
         editService.setStat($scope.editStat);
