@@ -28,7 +28,7 @@ i { font-style: normal; }
 
 .layout-main { display: -webkit-flex; display: flex; flex: 1; -webkit-flex: 1; justify-content: center; -webkit-justify-content: center; position: relative;}
 .layout-scenes, .layout-tools { display: -webkit-flex; display: flex; flex-direction: column; -webkit-flex-direction: column; position: relative; background: #fff; transition: all linear 0.2s; }
-.layout-scenes { width: 180px; }
+.layout-scenes { width: 180px; order:-1; }
 .layout-tools { width: 300px; }
 .layout-stage { display: -webkit-flex; display: flex; -webkit-flex: 1; flex: 1; background-color: rgba(0,0,0,0.2); overflow: scroll;}
 .layout-canvas{ width: 9999px; height: 9999px; position: relative;}
