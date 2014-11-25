@@ -1,7 +1,7 @@
 'use strict';
 angular.module('toHELL').directive('sceneStage', function ($rootScope, uilib, editService) {
     return {
-        restrict: 'A',
+        restrict: 'EA',
         replace: true,
         templateUrl: 'partials/scene-stage.html',
         scope: true,

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('toHELL')
-    .controller('PackageEditCTRL', function ($rootScope,$scope, $routeParams, $document, ENV, formDataObject, $location,
+    .controller('PackageEditCTRL', function ($rootScope,$scope, $routeParams, $document,  ENV, formDataObject, $location,
                                              backendService, editService, $timeout, notifyService, accountService) {
         if (!accountService.isLoggedIn()) {
             $location.path('/');
@@ -41,17 +41,26 @@ angular.module('toHELL')
             pkgId: $routeParams.pkgId,
             token: accountService.getLoggedInUser().token
         }, function (result) {
+            var data = result[0], scenes = data.scenes, firstScenes=scenes;
+
+            // 默认选中第一个场景,优先渲染
+            $scope.selectScene(scenes[0]);
+
+            if (scenes.length > 5){
+                firstScenes = scenes.slice(0,5);
+            }
 
 
-            $scope.selectScene(result[0].scenes[0]);
-
-            $scope.package = result[0];
-            editService.setPackage($scope.package);
-            // 默认选中第一个场景
-            //var sceneId = editService.findScene('order', 0);
-            //$scope.selectScene(sceneId);
-
-            editService.setStat($scope.editStat);
+            // 暂时初始化package
+            $scope.package = {
+                appID: data.appID,
+                appIcon: data.appIcon,
+                appName: data.appName,
+                appPlatform: data.appPlatform,
+                scenes : firstScenes,
+                size : data.size,
+                splash : data.splash
+            };
 
             $scope.size = $scope.package.appPlatform === 'ios' ? {
                 width: 320,
@@ -60,6 +69,19 @@ angular.module('toHELL')
                 width: 400,
                 height: 640
             };
+
+            // 延时渲染左侧例表
+            if (scenes.length > 5){
+                $timeout(function(){
+                    $scope.package.scenes.push.apply($scope.package.scenes, scenes.slice(5));
+                    editService.setPackage($scope.package);
+                    // 默认选中第一个场景
+                    //var sceneId = editService.findScene('order', 0);
+                    //$scope.selectScene(sceneId);
+                    editService.setStat($scope.editStat);
+                    $scope.$apply();
+                },500);
+            }
         });
 
         editService.setStat($scope.editStat);
