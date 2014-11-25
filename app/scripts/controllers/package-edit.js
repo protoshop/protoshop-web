@@ -41,6 +41,8 @@ angular.module('toHELL')
             pkgId: $routeParams.pkgId,
             token: accountService.getLoggedInUser().token
         }, function (result) {
+
+
             $scope.selectScene(result[0].scenes[0]);
 
             $scope.package = result[0];
@@ -58,8 +60,6 @@ angular.module('toHELL')
                 width: 400,
                 height: 640
             };
-
-
         });
 
         editService.setStat($scope.editStat);

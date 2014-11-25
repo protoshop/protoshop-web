@@ -287,7 +287,6 @@ textarea.elem-text-content{resize: none;height: 100%; overflow: hidden}
 .help-box .qrcode-donate { position: absolute; -webkit-transform: translate(-114px,-120px); transform: translate(-114px,-120px); opacity: 0; width: 120px; height: 120px; background: url(../images/qrcode-donate.png) no-repeat; background-size: contain; transition: all 200ms ease-in; }
 .help-box a:hover + .qrcode-donate { opacity: 1; }
 
-
 /* Notification */
 .notify { position: fixed; top: 0; left: 50%; margin: 10px -120px; min-width: 320px; z-index: 999; }
 .notify-item { border-radius: 5px; height: 30px; line-height: 30px; margin-bottom: 18px; letter-spacing: 0.1em; text-align: center; overflow: hidden; box-shadow: 0 0 6px rgba(0,0,0,0.4); }
