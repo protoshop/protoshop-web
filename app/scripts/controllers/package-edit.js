@@ -50,7 +50,6 @@ angular.module('toHELL')
                 firstScenes = scenes.slice(0,5);
             }
 
-
             // 暂时初始化package
             $scope.package = {
                 appID: data.appID,
