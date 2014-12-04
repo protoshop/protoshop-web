@@ -70,9 +70,11 @@ angular.module('toHELL')
             };
 
             // 延时渲染左侧例表
-            if (scenes.length > 5){
+
                 $timeout(function(){
-                    $scope.package.scenes.push.apply($scope.package.scenes, scenes.slice(5));
+                    if (scenes.length > 5){
+                        $scope.package.scenes.push.apply($scope.package.scenes, scenes.slice(5));
+                    }
                     editService.setPackage($scope.package);
                     // 默认选中第一个场景
                     //var sceneId = editService.findScene('order', 0);
@@ -80,7 +82,7 @@ angular.module('toHELL')
                     editService.setStat($scope.editStat);
                     $scope.$apply();
                 },500);
-            }
+
         });
 
         editService.setStat($scope.editStat);
